@@ -1,13 +1,13 @@
 {
   "name": "todo-app",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Todo app",
   "main": "main.js",
   "scripts": {
     "build": "browserify main.js -o bundle.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Cheratt Karim",
   "license": "MIT",
   "dependencies": {
     "eventset": "^1.7.0"
