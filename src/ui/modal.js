@@ -1,4 +1,4 @@
-const customEvent = require('./event').customEvent;
+const AppEvent = require('../event').AppEvent;
 
 function Modal(){
 
@@ -12,7 +12,7 @@ function Modal(){
 
     __element = document.getElementById(anchorID);
 
-    customEvent.addListener("modal-state" , this.modalState.bind(this));
+    AppEvent.addListener("modal-state" , this.modalState.bind(this));
 
     // browser event
     __element.onclick = this.close.bind(this);

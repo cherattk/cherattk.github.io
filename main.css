@@ -12,14 +12,14 @@ html,body{
   background: #eef3fb;
 }
 
-#container{
-  width:500px;
-  margin:50px auto;
-  background: white;
-  padding:0 50px;
-  border:1px solid #ccc;
-  box-shadow:0 1px 5px #ccceee;
-  border-radius:3px;
+.notice h1{
+  font-size:13px;
+  padding:10px;
+  font-style:italic;
+  margin:0;
+  background:#fff;
+  border-bottom:1px solid #ccc;
+  line-height:2em;
 }
 
 ul {
@@ -27,62 +27,141 @@ ul {
   padding: 0;
   list-style:none;
 }
+input[type="text"]{
+  padding:0 10px;
+  border:1px solid #999;
+  outline:none;
+  box-shadow:1px 1px 1px #ccc inset;
+  font-size:15px;
+  height:32px;
+  vertical-align: bottom;
+}
+input[type="text"]:focus{
+  border-color:#327fe0;
+}
+.btn{
+  border:1px solid transparent;
+  outline:none;
+}
+.btn:active{
+  box-shadow:none;
+}
+.btn-blue{
+  background:#4f97f1;
+  color:#fff;
+  border:1px solid #327fe0;
+  box-shadow:0 1px 0 #80b6f9 inset;
+}
+.btn-blue:hover{
+  background:#398bf3;
+}
+.show{
+  display:block;
+}
+.hide{
+  display:none;
+}
+.checkbox{
+  display:none;
+}
+.checkbox + label{
+  position: relative;
+}
+.checkbox + label span{
+  background:#fff;
+  border:1px solid #ccc;
+  display:inline-block;
+  width:17px;
+  height:17px;
+  margin-right:5px;
+  position:relative;
+  top:4px;
+}
+.checkbox + label span:hover{
+  border-color:#1b74e4;
+}
+.checkbox + label span:before{
+  content: '';
+  position: absolute;
+  border-color: #1b74e4;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top:1px;
+  left:6px;
+  transform: rotate(45deg);
+  height: 10px;
+  width:4px;
+  display: none;
+}
+.checkbox:checked + label span{
+  border-color:#1b74e4;
+}
+.checkbox:checked + label span:before{
+  display:block;
+}
 
-/************* Begin Form-Component ***********************/
-#task-form{
+/************* Application ***************/
+.todo-app{
+  width:500px;
+  margin:50px auto;
+  background: white;
+  padding:30px;
+  border:1px solid #ccc;
+  box-shadow:0 1px 5px #ccceee;
+}
+.header h1{
+  background:#eee;
+  padding:20px;
+  margin:0 0 30px 0;
+}
+/************* Form ***********************/
+.form{
   margin: 0 0 20px;
   text-align:left;
 }
-#task-form input[type="text"]{
-  padding:7px;
-  border:1px solid #999;
+.form input[type="text"]{ 
   width:calc(100% - 100px);
-  outline:none;
-  box-shadow:1px 1px 1px #ccc inset
 }
-#task-form input[type="text"]:focus{
-  border-color:#327fe0;
-}
-#task-form input[type="submit"]{
-  padding:7px 20px;
-  background:#4f97f1;
-  border:1px solid #327fe0;
+.form input[type="submit"]{
+  padding:5px 15px;
   font-weight:bold;
   cursor:pointer;
-  color:#fff;
+  height:34px;
+  margin-left:-4px;
+  border-radius:0 3px 3px 0;
 }
-#task-form input[type="submit"]:hover{
-  background:#1b74e4;
+
+/************** List  ********************/
+.list-action{
+  padding:0px 0 10px 15px;
+  text-align:left;
+  margin:0 0 10px 0;
+  border-bottom:1px solid #ccc;
 }
-/***************** End Form ********************/
-
-
-
-/************** Begin Component-List  ********************/
-.todo-list{
+.list-action span{
+  font-weight:bold;
+}
+.list{
   text-align: left;
   padding:0 0 30px 0;
-  font-weight:bold;
 }
 
-.todo-list li{
-  padding:10px;
-  cursor:pointer;
-  border-left:5px solid transparent;
-  margin-bottom:5px;
+.list li{
+  padding:10px 15px;
+  margin-bottom:2px;
+  background-color:#eee;
+}
+
+.list li:hover{
   background-color:#e5e5e5;
 }
-
-.todo-list li{
-  border-left-color:#f36b19;
-}
-.todo-list li.done{
+.list li.done{
   background:#2bef2b;
   text-decoration: line-through;
   position:relative;
   border-left-color:green;
 }
-.todo-list li.done::before {
+.list li.done::before {
   content: '';
   position: absolute;
   border-color: #095409;
@@ -94,13 +173,31 @@ ul {
   height: 15px;
   width: 7px;
 }
+.list p{
+  display:inline-block;
+  margin:0;
+}
+.list .checkbox{
+  border:1px solid;
+}
 
-.show{
-  display:block;
+/****************************************************/
+.action-bar{
+  margin:0px 0px -25px 120px;
+  padding:0;
+  text-align:left;
+  border-left:1px solid #ccc;
 }
-.hide{
-  display:none;
+.action-bar button{
+  font-size: 15px;
+  display:inline-block;
+  margin:0 10px;
+  padding:3px 10px;
+  cursor:pointer;
+  background:#4f97f1;
+  color:#fff;
 }
+
 /***********************************************/
 .modal{
   position: fixed;
@@ -117,7 +214,7 @@ ul {
   top: 100px;
   left:calc((100% - 500px)/2);
   z-index: 15;
-  width:calc(500px - 20px);
+  width:calc(500px - 40px);
   padding: 20px;
   background:#fff;
   border:1px solid #777;

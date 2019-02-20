@@ -10,15 +10,34 @@
 <body>
   <div id="container">
             
-    <div>
-      <h1>Todo List</h1>
+    <div class="notice">
+      <h1>
+        Notice : This todo app is example usage of 
+        <a href="https://github.com/cherattk/eventset" target="__blank">EventSet package</a>
+        <br/>
+        The task list is stored locally in your browser using the 
+        localStorage API
+        <a href="https://en.wikipedia.org/wiki/Web_storage" target="__blank">
+          See How
+        </a>
+      </h1>
     </div>
-    
-    <div id="anchor-form"><!-- component inserted here--></div>            
-    
-    <div id="anchor-list"><!-- component inserted here--></div>
 
-    <div id="anchor-modal"><!-- component inserted here--></div>
+    <div class="todo-app">
+
+        <div class="header">      
+          <h1>Task List</h1>
+        </div>
+
+        <div id="anchor-form"><!-- component inserted here--></div>    
+        
+        <div id="anchor-action"><!-- component inserted here--></div>
+        
+        <div id="anchor-list"><!-- component inserted here--></div>
+
+        <div id="anchor-modal"><!-- component inserted here--></div>
+
+    </div>
 
 </div>
 <script src="bundle.js"></script>

@@ -1,4 +1,4 @@
-const customEvent = require('./event').customEvent;
+const AppEvent = require('../event').AppEvent;
 
 function Form(){
 
@@ -18,7 +18,7 @@ function Form(){
     e.preventDefault();
     var value = e.target.elements['task_label'].value;
     if(!value){
-      customEvent.dispatch("modal-state" , {
+      AppEvent.dispatch("modal-state" , {
             show : true,
             message : "You can not add an empty task"
       });
@@ -26,22 +26,25 @@ function Form(){
     }
 
     var item = {
+      id : (new Date()).getTime().toString(),
       status : "todo",
-      label : value
+      label : value,
+      checked : false
     };
-    customEvent.dispatch("save-task-form", {
-      task: item
+    AppEvent.dispatch("save-form", {
+      name : "task",
+      data: item
     });
     e.target.reset();
   }
 
   this.render = function() {
     __element.innerHTML = `
-                <form id="task-form">
-                  <input type="text" 
+                <form class="form">
+                  <input type="text" maxlength="47"
                         name="task_label" 
                         placeholder="Add your task"/>
-                  <input type="submit" value="save"/>
+                  <input type="submit" value="save" class="btn btn-blue"/>
                 </form>
               ` ;
   }
