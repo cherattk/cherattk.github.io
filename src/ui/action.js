@@ -1,4 +1,4 @@
-const AppEvent = require('../event').AppEvent;
+const AppEvent = require('../app/eventstore').AppEvent;
 
 function Action(){
 
@@ -11,13 +11,13 @@ function Action(){
 
     __element = document.getElementById(anchorID);
     this.render();
-    AppEvent.addListener("select-item" , this.selectItem.bind(this));
+    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
 
     __element.onclick = this.action;
 
   }
 
-  this.selectItem = function(event){
+  this.updateItemList = function(event){
     
     if(typeof event.eventMessage.id !== "undefined"){
       let id = event.eventMessage.id;
@@ -40,14 +40,28 @@ function Action(){
 
   this.action = function(domEvent){
     var actionName = domEvent.target.dataset.action;
+    var eventMessage;
+
       if(actionName === "delete" && __state.list.length > 0){
-          console.log("delete item : " + __state.list.toString());
-          AppEvent.dispatch("remove-item" , {
-            name : "task",
-            list_id : __state.list.slice()
-          });
-          __state.list = [];
+          eventMessage = {
+              action : "remove",
+              name : "task",
+              items : __state.list.slice()
+          }        
       }
+      if( actionName === "done" || 
+          actionName === "todo" || 
+          actionName === "progress" ){
+        eventMessage = {
+          action : "update-status",
+          name : "task",
+          items : __state.list.slice(),
+          value : actionName
+        }    
+      }
+
+      AppEvent.dispatch("update-item" , eventMessage);
+      __state.list = [];
   }
 
   this.render = function() {
@@ -55,6 +69,15 @@ function Action(){
                 <div class="action-bar">
                   <button data-action="delete" class="btn btn-blue">
                     delete
+                  </button>
+                  <button data-action="progress" class="btn btn-blue">
+                    Progress
+                  </button>
+                  <button data-action="done" class="btn btn-blue">
+                    Done
+                  </button>
+                  <button data-action="todo" class="btn btn-blue">
+                    Todo
                   </button>
                 </div>` ;
   }

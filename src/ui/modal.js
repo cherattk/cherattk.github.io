@@ -1,4 +1,4 @@
-const AppEvent = require('../event').AppEvent;
+const AppEvent = require('../app/eventstore').AppEvent;
 
 function Modal(){
 

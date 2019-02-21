@@ -1,4 +1,4 @@
-const AppEvent = require('../event').AppEvent;
+const AppEvent = require('../app/eventstore').AppEvent;
 
 function List(){
   
@@ -34,13 +34,15 @@ function List(){
     var action = ev.target.dataset.action;
     if (sendMessage = (action === 'select-all')) {
       message.list = __state.list.map(function(item){
+        // this will add "checked" attribute to __state.list[item]
+        // to render html-element with checked attribute
+        // see this.render()
         item.checked = ev.target.checked;
         return item.id;
       });
       if(!ev.target.checked){
         message.list = [];
-      }
-      
+      }      
       __state.allchecked = ev.target.checked;
       this.render();
     }
@@ -67,16 +69,18 @@ function List(){
   this.render = function() {
 
     var list = "";
-    var item;
+    var item , checked;
     for (let index = 0 , max = __state.list.length ; index < max; index++) {
       item = __state.list[index];
+      checked = (typeof item.checked !=="undefined" && !!item.checked);
+
       list += `<li class="${item.status}">
                 <input id="item-${item.id}"
                       data-item-id="${item.id}"
                       data-action="select-item"
                       type="checkbox"
                       class="checkbox" 
-                      ${item.checked ? "checked" : ''}/>
+                      ${checked ? "checked" : ''}/>
                 <label for="item-${item.id}">
                   <span></span>
                 </label>

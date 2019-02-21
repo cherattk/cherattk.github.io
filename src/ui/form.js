@@ -1,4 +1,4 @@
-const AppEvent = require('../event').AppEvent;
+const AppEvent = require('../app/eventstore').AppEvent;
 
 function Form(){
 
@@ -28,8 +28,7 @@ function Form(){
     var item = {
       id : (new Date()).getTime().toString(),
       status : "todo",
-      label : value,
-      checked : false
+      label : value
     };
     AppEvent.dispatch("save-form", {
       name : "task",

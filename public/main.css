@@ -50,7 +50,6 @@ input[type="text"]:focus{
   background:#4f97f1;
   color:#fff;
   border:1px solid #327fe0;
-  box-shadow:0 1px 0 #80b6f9 inset;
 }
 .btn-blue:hover{
   background:#398bf3;
@@ -100,9 +99,25 @@ input[type="text"]:focus{
   display:block;
 }
 
+/*************** item status ************/
+.todo{
+  background-color:#eee;
+  border:1px solid transparent;
+}
+.done{
+  background:#abf3ab;
+  border-color:green;
+}
+.done p{
+  text-decoration: line-through rgb(10, 95, 10) solid;
+}
+.progress{
+  background-color:#b6d3f7;
+}
+
 /************* Application ***************/
 .todo-app{
-  width:500px;
+  width:550px;
   margin:50px auto;
   background: white;
   padding:30px;
@@ -127,8 +142,7 @@ input[type="text"]:focus{
   font-weight:bold;
   cursor:pointer;
   height:34px;
-  margin-left:-4px;
-  border-radius:0 3px 3px 0;
+  margin-left:-5px;
 }
 
 /************** List  ********************/
@@ -148,31 +162,9 @@ input[type="text"]:focus{
 
 .list li{
   padding:10px 15px;
-  margin-bottom:2px;
-  background-color:#eee;
+  margin-bottom:5px;
 }
 
-.list li:hover{
-  background-color:#e5e5e5;
-}
-.list li.done{
-  background:#2bef2b;
-  text-decoration: line-through;
-  position:relative;
-  border-left-color:green;
-}
-.list li.done::before {
-  content: '';
-  position: absolute;
-  border-color: #095409;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 5px;
-  right: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-}
 .list p{
   display:inline-block;
   margin:0;
@@ -184,18 +176,19 @@ input[type="text"]:focus{
 /****************************************************/
 .action-bar{
   margin:0px 0px -25px 120px;
-  padding:0;
+  padding:0 0 0 10px;
   text-align:left;
   border-left:1px solid #ccc;
 }
 .action-bar button{
   font-size: 15px;
   display:inline-block;
-  margin:0 10px;
-  padding:3px 10px;
+  margin:0;
+  padding:3px 15px;
   cursor:pointer;
   background:#4f97f1;
   color:#fff;
+  border-radius:20px;
 }
 
 /***********************************************/

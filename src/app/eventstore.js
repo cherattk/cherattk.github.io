@@ -7,7 +7,7 @@ AppEvent.addEvent("fetch-list");
 AppEvent.addEvent("data-change");
 AppEvent.addEvent("modal-state");
 AppEvent.addEvent("select-item");
-AppEvent.addEvent("remove-item");
+AppEvent.addEvent("update-item");
 
 module.exports = {
     AppEvent
