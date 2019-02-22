@@ -1,19 +1,34 @@
-const devSata = [
+const demoData = [
+    {
+        id : "6",
+        stage : "doing",
+        label : "Sanitize input data"
+    },
     {
         id : "1",
-        label : "task todo",
-        status : "todo"
+        stage : "todo",
+        label : "Update Changelog file"
+    },
+    {
+        id : "4",
+        stage : "todo",
+        label : "Update README.md file"
+    },
+    {
+        id : "5",
+        stage : "todo",
+        label : "Update package.json file"
     },
     {
         id : "2",
-        label : "task in progresss",
-        status : "progress"
+        stage : "doing",
+        label : "Fix Bugs"
     },
     {
         id : "3",
-        label : "task done",
-        status : "done"
-    },
+        stage : "done",
+        label : "Version 0.3.0"
+    }
 ];
 
 
@@ -26,7 +41,7 @@ function DataStore(storeList , storeDriver){
             {
                 name : storeList[index],
                 // data : []
-                data : devSata
+                data : demoData
             }
         )       
     }

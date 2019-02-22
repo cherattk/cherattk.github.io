@@ -30,7 +30,7 @@ function DataManager(){
     };
     store.data.forEach(function(item){
       if((target_item.indexOf(item.id) >= 0)){
-        item.status = value;
+        item.stage = value;
       }
       copyStore.data.push(item);
     });
@@ -75,7 +75,7 @@ function DataManager(){
     if(action === "remove"){
       copyStore = __remove(store , targetItem);
     }
-    if(action === "update-status"){
+    if(action === "update-stage"){
       copyStore = __updateStatus(store , targetItem , value);
     }
 

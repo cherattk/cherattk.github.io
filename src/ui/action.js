@@ -1,20 +1,40 @@
 const AppEvent = require('../app/eventstore').AppEvent;
 
-function Action(){
+const __config = {
+  tab : [
+    {name : "todo" , label : "To Do" , style : "yellow"},
+    {name : "doing" , label : "In progress" , style : "blue"},
+    {name : "done" , label : "Done" , style : "green"},
+    {name : "delete" , label : "Delete" , style : "red"},
+  ],
+   // used to define type of available action
+  action : ["todo" , "doing" , "done" , "delete"]
+};
+
+function ActionBar(){
 
   var __element;
   var __state = {
-    list : []
+    list : [],
+    itemStatus : ""
   };
 
   this.init = function(anchorID) {
 
     __element = document.getElementById(anchorID);
+    
     this.render();
-    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
-
     __element.onclick = this.action;
 
+    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
+
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+
+  }
+
+  this.setItemStatus = function(customEvent){
+    __state.itemStatus = customEvent.eventMessage.stage;
+    this.render();
   }
 
   this.updateItemList = function(event){
@@ -42,45 +62,47 @@ function Action(){
     var actionName = domEvent.target.dataset.action;
     var eventMessage;
 
-      if(actionName === "delete" && __state.list.length > 0){
-          eventMessage = {
-              action : "remove",
-              name : "task",
-              items : __state.list.slice()
-          }        
-      }
-      if( actionName === "done" || 
-          actionName === "todo" || 
-          actionName === "progress" ){
+    if(__state.list.length < 0 || __config.action.indexOf(actionName) < 0){
+      return;
+    }
+    if(actionName === "delete"){
         eventMessage = {
-          action : "update-status",
-          name : "task",
-          items : __state.list.slice(),
-          value : actionName
-        }    
+            action : "remove",
+            name : "task",
+            items : __state.list.slice()
+        }        
+    }
+    else{ 
+      // for actions : {"todo" , "doing" , "done"}
+      eventMessage = {
+        action : "update-stage",
+        name : "task",
+        items : __state.list.slice(),
+        value : actionName
       }
+    }
 
-      AppEvent.dispatch("update-item" , eventMessage);
-      __state.list = [];
+    AppEvent.dispatch("update-item" , eventMessage);
+    __state.list = [];
   }
 
   this.render = function() {
+
+    var actionList = "";
+    __config.tab.map(function(item){
+        if(item.name !== __state.itemStatus){
+          actionList += `<button data-action="${item.name}" 
+                                  class="btn btn-${item.style}">
+                            ${item.label}
+                          </button>`;
+        }
+    });
     __element.innerHTML = `                
                 <div class="action-bar">
-                  <button data-action="delete" class="btn btn-blue">
-                    delete
-                  </button>
-                  <button data-action="progress" class="btn btn-blue">
-                    Progress
-                  </button>
-                  <button data-action="done" class="btn btn-blue">
-                    Done
-                  </button>
-                  <button data-action="todo" class="btn btn-blue">
-                    Todo
-                  </button>
+                <label>Move To : </label>                
+                  ${actionList}
                 </div>` ;
   }
 }
 
-module.exports = new Action();
+module.exports = new ActionBar();

@@ -1,7 +1,7 @@
 {
   "name": "todo-app",
-  "version": "0.2.0",
-  "description": "Todo app",
+  "version": "0.3.0",
+  "description": "Todo App Demo",
   "main": "main.js",
   "scripts": {
     "build": "browserify public/main.js -o public/bundle.js"

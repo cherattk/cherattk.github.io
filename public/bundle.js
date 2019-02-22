@@ -253,13 +253,15 @@ DataManager.init();
 const Form = require('../src/ui/form.js');
 const List = require('../src/ui/list.js');
 const Modal = require('../src/ui/modal.js');
-const Action = require('../src/ui/action.js');
+const ActionBar = require('../src/ui/action.js');
+const NavBar = require('../src/ui/navbar.js');
 
 Form.init("anchor-form");
 List.init("anchor-list");
 Modal.init("anchor-modal");
-Action.init("anchor-action");
-},{"../src/app/datamanager.js":5,"../src/ui/action.js":8,"../src/ui/form.js":9,"../src/ui/list.js":10,"../src/ui/modal.js":11}],5:[function(require,module,exports){
+ActionBar.init("anchor-action");
+NavBar.init("anchor-navbar"); 
+},{"../src/app/datamanager.js":5,"../src/ui/action.js":8,"../src/ui/form.js":9,"../src/ui/list.js":10,"../src/ui/modal.js":11,"../src/ui/navbar.js":12}],5:[function(require,module,exports){
 const DataStore = require('./datastore');
 
 const AppEvent = require('./eventstore').AppEvent;
@@ -292,7 +294,7 @@ function DataManager(){
     };
     store.data.forEach(function(item){
       if((target_item.indexOf(item.id) >= 0)){
-        item.status = value;
+        item.stage = value;
       }
       copyStore.data.push(item);
     });
@@ -337,7 +339,7 @@ function DataManager(){
     if(action === "remove"){
       copyStore = __remove(store , targetItem);
     }
-    if(action === "update-status"){
+    if(action === "update-stage"){
       copyStore = __updateStatus(store , targetItem , value);
     }
 
@@ -360,22 +362,37 @@ function DataManager(){
 const manager = new DataManager();
 module.exports = manager;
 },{"./datastore":6,"./eventstore":7}],6:[function(require,module,exports){
-const devSata = [
+const demoData = [
+    {
+        id : "6",
+        stage : "doing",
+        label : "Sanitize input data"
+    },
     {
         id : "1",
-        label : "task todo",
-        status : "todo"
+        stage : "todo",
+        label : "Update Changelog file"
+    },
+    {
+        id : "4",
+        stage : "todo",
+        label : "Update README.md file"
+    },
+    {
+        id : "5",
+        stage : "todo",
+        label : "Update package.json file"
     },
     {
         id : "2",
-        label : "task in progresss",
-        status : "progress"
+        stage : "doing",
+        label : "Fix Bugs"
     },
     {
         id : "3",
-        label : "task done",
-        status : "done"
-    },
+        stage : "done",
+        label : "Version 0.3.0"
+    }
 ];
 
 
@@ -388,7 +405,7 @@ function DataStore(storeList , storeDriver){
             {
                 name : storeList[index],
                 // data : []
-                data : devSata
+                data : demoData
             }
         )       
     }
@@ -429,6 +446,7 @@ AppEvent.addEvent("data-change");
 AppEvent.addEvent("modal-state");
 AppEvent.addEvent("select-item");
 AppEvent.addEvent("update-item");
+AppEvent.addEvent("navigate-list");
 
 module.exports = {
     AppEvent
@@ -436,21 +454,41 @@ module.exports = {
 },{"eventset":1}],8:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
-function Action(){
+const __config = {
+  tab : [
+    {name : "todo" , label : "To Do" , style : "yellow"},
+    {name : "doing" , label : "In progress" , style : "blue"},
+    {name : "done" , label : "Done" , style : "green"},
+    {name : "delete" , label : "Delete" , style : "red"},
+  ],
+   // used to define type of available action
+  action : ["todo" , "doing" , "done" , "delete"]
+};
+
+function ActionBar(){
 
   var __element;
   var __state = {
-    list : []
+    list : [],
+    itemStatus : ""
   };
 
   this.init = function(anchorID) {
 
     __element = document.getElementById(anchorID);
+    
     this.render();
-    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
-
     __element.onclick = this.action;
 
+    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
+
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+
+  }
+
+  this.setItemStatus = function(customEvent){
+    __state.itemStatus = customEvent.eventMessage.stage;
+    this.render();
   }
 
   this.updateItemList = function(event){
@@ -478,54 +516,63 @@ function Action(){
     var actionName = domEvent.target.dataset.action;
     var eventMessage;
 
-      if(actionName === "delete" && __state.list.length > 0){
-          eventMessage = {
-              action : "remove",
-              name : "task",
-              items : __state.list.slice()
-          }        
-      }
-      if( actionName === "done" || 
-          actionName === "todo" || 
-          actionName === "progress" ){
+    if(__state.list.length < 0 || __config.action.indexOf(actionName) < 0){
+      return;
+    }
+    if(actionName === "delete"){
         eventMessage = {
-          action : "update-status",
-          name : "task",
-          items : __state.list.slice(),
-          value : actionName
-        }    
+            action : "remove",
+            name : "task",
+            items : __state.list.slice()
+        }        
+    }
+    else{ 
+      // for actions : {"todo" , "doing" , "done"}
+      eventMessage = {
+        action : "update-stage",
+        name : "task",
+        items : __state.list.slice(),
+        value : actionName
       }
+    }
 
-      AppEvent.dispatch("update-item" , eventMessage);
-      __state.list = [];
+    AppEvent.dispatch("update-item" , eventMessage);
+    __state.list = [];
   }
 
   this.render = function() {
+
+    var actionList = "";
+    __config.tab.map(function(item){
+        if(item.name !== __state.itemStatus){
+          actionList += `<button data-action="${item.name}" 
+                                  class="btn btn-${item.style}">
+                            ${item.label}
+                          </button>`;
+        }
+    });
     __element.innerHTML = `                
                 <div class="action-bar">
-                  <button data-action="delete" class="btn btn-blue">
-                    delete
-                  </button>
-                  <button data-action="progress" class="btn btn-blue">
-                    Progress
-                  </button>
-                  <button data-action="done" class="btn btn-blue">
-                    Done
-                  </button>
-                  <button data-action="todo" class="btn btn-blue">
-                    Todo
-                  </button>
+                <label>Move To : </label>                
+                  ${actionList}
                 </div>` ;
   }
 }
 
-module.exports = new Action();
+module.exports = new ActionBar();
 },{"../app/eventstore":7}],9:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
+
+const __config ={
+  maxChar : 55
+}
 
 function Form(){
 
   var __element;
+  var __state = {
+    itemStatus : "todo" // default 
+  }
 
   this.init = function(anchorID) {
 
@@ -533,8 +580,14 @@ function Form(){
 
     // browser event
     __element.onsubmit = this.submit.bind(this);
-
     this.render();
+
+    // customEvent
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+  }
+
+  this.setItemStatus = function (customEvent) {
+    __state.itemStatus = customEvent.eventMessage.stage;
   }
 
   this.submit = function(e){
@@ -550,7 +603,7 @@ function Form(){
 
     var item = {
       id : (new Date()).getTime().toString(),
-      status : "todo",
+      stage : __state.itemStatus,
       label : value
     };
     AppEvent.dispatch("save-form", {
@@ -563,9 +616,9 @@ function Form(){
   this.render = function() {
     __element.innerHTML = `
                 <form class="form">
-                  <input type="text" maxlength="47"
+                  <input type="text" maxlength="${__config.maxChar}"
                         name="task_label" 
-                        placeholder="Add your task"/>
+                        placeholder="Task : ${__config.maxChar} charcaters max" />
                   <input type="submit" value="save" class="btn btn-blue"/>
                 </form>
               ` ;
@@ -578,27 +631,26 @@ const AppEvent = require('../app/eventstore').AppEvent;
 
 function List(){
   
-  var __state , __element;
+  var __element;
+  var __state = {
+      list : [], // list of item
+      allchecked : false,
+      filter : ""
+    };
 
   this.init =  function(anchorID) {
     
     __element =  document.getElementById(anchorID);
-    __state = {
-        /**
-         * list of item, item <==> {id , status , label}
-         */
-        list : [],
-        allchecked : false
-      };
-
+    
     // browser event
     __element.onclick = this.selectItem.bind(this);
 
-    // custom event
+    AppEvent.addListener("navigate-list" , this.setFilter.bind(this));
+
     // register listener for "change-data" first
     AppEvent.addListener("data-change" , this.updateList.bind(this));
 
-    // this event will trigger "data-change" from DataManager
+    // trigger "data-change" event to init list
     AppEvent.dispatch("fetch-list" , { name : "task"});
   }
 
@@ -611,10 +663,12 @@ function List(){
     if (sendMessage = (action === 'select-all')) {
       message.list = __state.list.map(function(item){
         // this will add "checked" attribute to __state.list[item]
-        // to render html-element with checked attribute
+        // to set render html-checkbox element as checked.
         // see this.render()
-        item.checked = ev.target.checked;
-        return item.id;
+        if(item.stage === __state.filter){
+          item.checked = ev.target.checked;
+          return item.id;
+        }
       });
       if(!ev.target.checked){
         message.list = [];
@@ -628,29 +682,44 @@ function List(){
     }    
     if(sendMessage){
       AppEvent.dispatch("select-item" , message);
-    }
-
-    
+    }    
   }
 
   this.updateList = function(event) {
     var name = event.eventMessage.name;
     if(name === "task"){
       __state.list = event.eventMessage.data;
-      __state.allchecked = false;
+      __state.allchecked = false;    
       this.render();
     }
   }
 
+  this.setFilter = function(customEvent) {
+    __state.filter = customEvent.eventMessage.stage;
+    __state.allchecked = false;
+    __state.list.map(function(item){
+      // this will add "checked" attribute to __state.list[item]
+      // to render html-checkbox element as (un)checked.
+      // see this.render()
+      item.checked = false;
+    });
+    this.render();
+    AppEvent.dispatch("select-item" , {
+      checked : false,
+      list : []
+    });
+  }
+
   this.render = function() {
 
-    var list = "";
-    var item , checked;
-    for (let index = 0 , max = __state.list.length ; index < max; index++) {
-      item = __state.list[index];
-      checked = (typeof item.checked !=="undefined" && !!item.checked);
+    var checked = false, list = "";
 
-      list += `<li class="${item.status}">
+    __state.list.map(function(item){
+        if( item.stage !== __state.filter){
+          return;
+        }
+        checked = (typeof item.checked !== "undefined" && !!item.checked);
+        list += `<li class="${item.stage}">
                 <input id="item-${item.id}"
                       data-item-id="${item.id}"
                       data-action="select-item"
@@ -661,8 +730,8 @@ function List(){
                   <span></span>
                 </label>
                 <p>${item.label}</p>
-              </li>`;      
-    }
+              </li>`;
+    });
 
     var html = `
           <div class="list-action">
@@ -676,7 +745,7 @@ function List(){
               </label>
           </div>
           <ul class="list">            
-            ${ list ? list : "<li>Empty List</li>" }
+            ${ list ? list : `<li class="empty-list">Empty List</li>` }
           </ul>`;
 
     __element.innerHTML = html;
@@ -737,4 +806,62 @@ function Modal(){
 }
 
 module.exports = new Modal();
+},{"../app/eventstore":7}],12:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
+
+const __config = [
+  { value: "todo", label: "To Do", checked: true },
+  { value: "doing", label: "In Progress", checked: false },
+  { value: "done", label: "Done", checked: false }
+]
+
+function NavBar() {
+
+  var __element;
+
+  this.init = function (anchorID) {
+    __element = document.getElementById(anchorID);
+
+    AppEvent.dispatch("navigate-list", {
+      stage : "todo"
+    });
+
+    this.render();
+
+    this.navigate();
+  }
+
+  this.navigate = function () {
+    var input = __element.querySelectorAll("input[type=\"radio\"]");
+    input.forEach(function(item){
+      item.onchange = function (ev) {
+        AppEvent.dispatch("navigate-list", {
+          stage : ev.target.value
+        });
+      }
+    })
+  }
+
+  this.render = function () {
+    var tab = "";
+    __config.map(function (item, idx) {
+      tab += `<div>
+                <input id="tab-${idx}" 
+                      value=${item.value}
+                      name="tab-nav"
+                    type="radio" ${item.checked ? "checked" : ""}/>
+                <label for="tab-${idx}">
+                ${item.label}
+                </label>
+              </div>`;
+    });
+
+
+    __element.innerHTML = `<div class="tab-nav">
+                              ${tab}
+                            </div>`;
+  }
+}
+
+module.exports = new NavBar();
 },{"../app/eventstore":7}]},{},[4]);
