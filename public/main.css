@@ -11,7 +11,11 @@ body{
   text-align:center;
   background: #eef3fb;
 }
-
+.github-banner{
+  position:absolute;
+  top:0;
+  right:0;
+}
 .notice h1{
   font-size:13px;
   padding:10px;
