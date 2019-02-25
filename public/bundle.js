@@ -1,17 +1,4 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-const DataManager = require('./src/lib/datamanager.js');
-DataManager.init();
-
-const Form = require('./src/ui/form.js');
-const List = require('./src/ui/list.js');
-const Modal = require('./src/ui/modal.js');
-const Action = require('./src/ui/action.js');
-
-Form.init("anchor-form");
-List.init("anchor-list");
-Modal.init("anchor-modal");
-Action.init("anchor-action");
-},{"./src/lib/datamanager.js":6,"./src/ui/action.js":8,"./src/ui/form.js":9,"./src/ui/list.js":10,"./src/ui/modal.js":11}],2:[function(require,module,exports){
 /**
  * @module EventSet
  * @license MIT Licence
@@ -55,7 +42,7 @@ function EventSet() {
 
 module.exports = new EventSet();
 
-},{"./topic.js":3,"./util.js":4}],3:[function(require,module,exports){
+},{"./topic.js":2,"./util.js":3}],2:[function(require,module,exports){
 /**
  * @module Topic
  * @license MIT Licence
@@ -225,7 +212,7 @@ function Topic(topicName){
 }
 
 module.exports = Topic;
-},{"./util.js":4}],4:[function(require,module,exports){
+},{"./util.js":3}],3:[function(require,module,exports){
 /**
  * @module Util
  * @license MIT Licence
@@ -259,35 +246,143 @@ const Util = {
 };
 
 module.exports = Util;
-},{}],5:[function(require,module,exports){
-const EventSet = require('eventset');
+},{}],4:[function(require,module,exports){
+module.exports = function FixDataStore(){
 
-const AppEvent = EventSet.Topic('app.event');
+  // return;
+  if (!window.localStorage) {
+    return;
+  }
 
-AppEvent.addEvent("save-form");
-AppEvent.addEvent("fetch-list");
-AppEvent.addEvent("data-change");
-AppEvent.addEvent("modal-state");
-AppEvent.addEvent("select-item");
-AppEvent.addEvent("remove-item");
+  const storeList = [
+    {
+      name : "task",
+      field : [
+        [
+          "status" , "stage"
+        ]
+      ]
+    }
+  ];
 
-module.exports = {
-    AppEvent
+  var __originData , 
+      __copyData , 
+      patchName , 
+      patchDone;
+
+  storeList.map(function(store){
+    
+    // 1 - check if the data store is patched
+    patchName = ("patch." + store.name + ".store");
+    patchDone = window.localStorage.getItem(patchName);
+    if(patchDone === "done"){
+      return;
+    }
+
+    // 2 - the data store is not patched
+    storeData = window.localStorage.getItem(store.name);
+    if(storeData){
+      __originData = JSON.parse(storeData);
+
+      //apply change
+      __copyData = __originData.map(function(item){
+        // create a new field named field[1].value and
+        // assign to a new created field the value of 
+        // the previous field named field[0]
+        var __item = Object.assign({} , item);
+        store.field.map(function(field){
+          delete __item.checked;
+          if(typeof item[field[0]] !== "undefined"){
+            __item[field[1]] = item[field[0]].toString();
+            delete __item[field[0]];
+          }
+        });
+        return __item;
+      });
+
+      window.localStorage.setItem(
+        `${store.name}`, 
+        JSON.stringify(__copyData)
+      );
+
+      window.localStorage.setItem(patchName , "done");
+
+    }
+
+  });
+
 }
-},{"eventset":2}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
+
+// apply data store of previous version
+// require('../devdata/task.store');
+
+require('../patch/fixdatastore.js')();
+
+const DataManager = require('../src/app/datamanager.js');
+DataManager.init();
+
+const Form = require('../src/ui/form.js');
+const List = require('../src/ui/list.js');
+const Modal = require('../src/ui/modal.js');
+const MoveTo = require('../src/ui/moveto.js');
+const TabNavigation = require('../src/ui/tabnav.js');
+
+Form.init("anchor-form");
+List.init("anchor-list");
+Modal.init("anchor-modal");
+MoveTo.init("anchor-action");
+TabNavigation.init("anchor-tabnav"); 
+},{"../patch/fixdatastore.js":4,"../src/app/datamanager.js":6,"../src/ui/form.js":10,"../src/ui/list.js":11,"../src/ui/modal.js":12,"../src/ui/moveto.js":13,"../src/ui/tabnav.js":14}],6:[function(require,module,exports){
 const DataStore = require('./datastore');
 
-const AppEvent = require('../event').AppEvent;
+const AppEvent = require('./eventstore').AppEvent;
 
 function DataManager(){
 
   var __dataStore = new DataStore(['task']);
   
+
+  const __remove = function __remove(store , target_item){
+    var copyStore = {
+      name : store.name,
+      data : []
+    };
+    store.data.forEach(function(item){
+      // if item is not in array
+      if((target_item.indexOf(item.id) < 0)){
+        copyStore.data.push(item);
+      }
+    });
+
+    __dataStore.saveStore(copyStore);
+    return copyStore;
+  }
+
+  const __updateStatus = function __updateStatus(store , target_item , value){
+    var copyStore = {
+      name : store.name,
+      data : []
+    };
+    store.data.forEach(function(item){
+      if((target_item.indexOf(item.id) >= 0)){
+        item.stage = value;
+      }
+      copyStore.data.push(item);
+    });
+
+    __dataStore.saveStore(copyStore);
+    return copyStore;
+  }
+
+
   this.init = function(){ 
     AppEvent.addListener("save-form" , this.save.bind(this));
     AppEvent.addListener("fetch-list" , this.getList.bind(this));
-    AppEvent.addListener("remove-item" , this.remove.bind(this));
+    AppEvent.addListener("update-item" , this.update.bind(this));
   }
+
+
 
   this.save = function(customEvent){
     var storeName = customEvent.eventMessage.name;
@@ -303,22 +398,22 @@ function DataManager(){
         });
   }
 
-  this.remove = function(customEvent){
+
+  this.update = function(customEvent){
+    var action = customEvent.eventMessage.action;
     var storeName = customEvent.eventMessage.name;
-    var idArray = customEvent.eventMessage.list_id;
+    var targetItem = customEvent.eventMessage.items;
+    var value = customEvent.eventMessage.value;
+
     var store = __dataStore.getStore(storeName);
 
-    var copyStore = {
-      name : store.name,
-      data : []
-    };
-
-    store.data.forEach(function(item){
-      if((idArray.indexOf(item.id) < 0)){
-        copyStore.data.push(item);
-      }
-    })
-    __dataStore.saveStore(copyStore);
+    var copyStore;
+    if(action === "remove"){
+      copyStore = __remove(store , targetItem);
+    }
+    if(action === "update-stage"){
+      copyStore = __updateStatus(store , targetItem , value);
+    }
 
     AppEvent.dispatch("data-change" , copyStore);
   }
@@ -338,38 +433,13 @@ function DataManager(){
 
 const manager = new DataManager();
 module.exports = manager;
-},{"../event":5,"./datastore":7}],7:[function(require,module,exports){
+},{"./datastore":7,"./eventstore":8}],7:[function(require,module,exports){
+const LocalStore = require('../lib/localstore.js');
+
 function DataStore(storeList){
 
-    var __storeArray = [];
+    var __storeArray = LocalStore.loadStore(storeList);
 
-    if (typeof Storage !== "undefined") {
-        var storeContent;
-        storeList.map(function(storeName){
-            storeContent = window.localStorage.getItem(storeName);
-            if(storeContent){
-                // save in memory
-                __storeArray.push(
-                    {
-                        name : storeName,
-                        data : JSON.parse(storeContent)
-                    }
-                );
-            }
-            else{
-                let __store = {
-                    name : storeName,
-                    data : []
-                };
-                // save in memory
-                __storeArray.push(__store);
-
-                // save in browser
-                window.localStorage.setItem(storeName , "[]");
-            }
-        });
-    }
-    
     this.getStore = function(name){
         var store = __storeArray.filter(function(store){
             return (store.name === name);
@@ -383,9 +453,9 @@ function DataStore(storeList){
                 __storeArray[index] = store;
                 break;
             }            
-        }       
+        }
 
-        window.localStorage.setItem(store.name , JSON.stringify(store.data));
+        LocalStore.save(store);
     }
 
     this.genID = function(){
@@ -397,76 +467,86 @@ module.exports = DataStore;
 
 
 
-},{}],8:[function(require,module,exports){
-const AppEvent = require('../event').AppEvent;
+},{"../lib/localstore.js":9}],8:[function(require,module,exports){
+const EventSet = require('eventset');
 
-function Action(){
+const AppEvent = EventSet.Topic('app.event');
 
-  var __element;
-  var __state = {
-    list : []
-  };
+AppEvent.addEvent("save-form");
+AppEvent.addEvent("fetch-list");
+AppEvent.addEvent("data-change");
+AppEvent.addEvent("modal-state");
+AppEvent.addEvent("select-item");
+AppEvent.addEvent("update-item");
+AppEvent.addEvent("navigate-list");
 
-  this.init = function(anchorID) {
+module.exports = {
+    AppEvent
+}
+},{"eventset":1}],9:[function(require,module,exports){
+function LocalStore(){
 
-    __element = document.getElementById(anchorID);
-    this.render();
-    AppEvent.addListener("select-item" , this.selectItem.bind(this));
+    this.loadStore = function(storeList) {
 
-    __element.onclick = this.action;
+        if (!window.localStorage) {
+            return;
+        }
 
-  }
+        var __storeArray = [];
+        var storeData;
+        storeList.map(function(storeName){
+            storeData = window.localStorage.getItem(storeName);
+            if(storeData){
+                __storeArray.push(
+                    {
+                        name : storeName,
+                        data : JSON.parse(storeData)
+                    }
+                );
+            }
+            else{
+                let __store = {
+                    name : storeName,
+                    data : []
+                };
+                __storeArray.push(__store);
 
-  this.selectItem = function(event){
-    
-    if(typeof event.eventMessage.id !== "undefined"){
-      let id = event.eventMessage.id;
-      let checked = event.eventMessage.checked;
-      let index = __state.list.indexOf(id);
-      if(checked /* selected */ && index < 0 /* item is not in the array */){
-        __state.list.push(id);
-        return;
-      }
-      if(!checked /* unselected */&& index >= 0 /* item is in the array */){
-        __state.list.splice(index , 1);
-        return;
-      }
+                // save in browser
+                window.localStorage.setItem(
+                    __store.name , 
+                    JSON.stringify(__store.data)
+                );
+            }
+            });
+
+        return __storeArray;        
     }
-    if(typeof event.eventMessage.list !== "undefined"){
-      __state.list = event.eventMessage.list;
+
+    this.save = function(store){
+        window.localStorage.setItem(
+            store.name , 
+            JSON.stringify(store.data)
+        );
     }
-
-  }
-
-  this.action = function(domEvent){
-    var actionName = domEvent.target.dataset.action;
-      if(actionName === "delete" && __state.list.length > 0){
-          console.log("delete item : " + __state.list.toString());
-          AppEvent.dispatch("remove-item" , {
-            name : "task",
-            list_id : __state.list.slice()
-          });
-          __state.list = [];
-      }
-  }
-
-  this.render = function() {
-    __element.innerHTML = `                
-                <div class="action-bar">
-                  <button data-action="delete" class="btn btn-blue">
-                    delete
-                  </button>
-                </div>` ;
-  }
 }
 
-module.exports = new Action();
-},{"../event":5}],9:[function(require,module,exports){
-const AppEvent = require('../event').AppEvent;
+module.exports = new LocalStore();
+
+
+
+},{}],10:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
+
+const __config ={
+  maxChar : 55
+}
 
 function Form(){
 
   var __element;
+  var __state = {
+    itemStatus : "todo" // default 
+  }
 
   this.init = function(anchorID) {
 
@@ -474,8 +554,14 @@ function Form(){
 
     // browser event
     __element.onsubmit = this.submit.bind(this);
-
     this.render();
+
+    // customEvent
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+  }
+
+  this.setItemStatus = function (customEvent) {
+    __state.itemStatus = customEvent.eventMessage.stage;
   }
 
   this.submit = function(e){
@@ -491,9 +577,8 @@ function Form(){
 
     var item = {
       id : (new Date()).getTime().toString(),
-      status : "todo",
-      label : value,
-      checked : false
+      stage : __state.itemStatus,
+      label : value
     };
     AppEvent.dispatch("save-form", {
       name : "task",
@@ -505,9 +590,9 @@ function Form(){
   this.render = function() {
     __element.innerHTML = `
                 <form class="form">
-                  <input type="text" maxlength="47"
+                  <input type="text" maxlength="${__config.maxChar}"
                         name="task_label" 
-                        placeholder="Add your task"/>
+                        placeholder="Add a task : ${__config.maxChar} characters max" />
                   <input type="submit" value="save" class="btn btn-blue"/>
                 </form>
               ` ;
@@ -515,32 +600,31 @@ function Form(){
 }
 
 module.exports = new Form();
-},{"../event":5}],10:[function(require,module,exports){
-const AppEvent = require('../event').AppEvent;
+},{"../app/eventstore":8}],11:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
 
 function List(){
   
-  var __state , __element;
+  var __element;
+  var __state = {
+      list : [], // list of item
+      allchecked : false,
+      filter : ""
+    };
 
   this.init =  function(anchorID) {
     
     __element =  document.getElementById(anchorID);
-    __state = {
-        /**
-         * list of item, item <==> {id , status , label}
-         */
-        list : [],
-        allchecked : false
-      };
-
+    
     // browser event
     __element.onclick = this.selectItem.bind(this);
 
-    // custom event
+    AppEvent.addListener("navigate-list" , this.setFilter.bind(this));
+
     // register listener for "change-data" first
     AppEvent.addListener("data-change" , this.updateList.bind(this));
 
-    // this event will trigger "data-change" from DataManager
+    // trigger "data-change" event to init list
     AppEvent.dispatch("fetch-list" , { name : "task"});
   }
 
@@ -552,13 +636,17 @@ function List(){
     var action = ev.target.dataset.action;
     if (sendMessage = (action === 'select-all')) {
       message.list = __state.list.map(function(item){
-        item.checked = ev.target.checked;
-        return item.id;
+        // this will add "checked" attribute to __state.list[item]
+        // to set render html-checkbox element as checked.
+        // see this.render()
+        if(item.stage === __state.filter){
+          item.checked = ev.target.checked;
+          return item.id;
+        }
       });
       if(!ev.target.checked){
         message.list = [];
-      }
-      
+      }      
       __state.allchecked = ev.target.checked;
       this.render();
     }
@@ -568,39 +656,56 @@ function List(){
     }    
     if(sendMessage){
       AppEvent.dispatch("select-item" , message);
-    }
-
-    
+    }    
   }
 
   this.updateList = function(event) {
     var name = event.eventMessage.name;
     if(name === "task"){
       __state.list = event.eventMessage.data;
-      __state.allchecked = false;
+      __state.allchecked = false;    
       this.render();
     }
   }
 
+  this.setFilter = function(customEvent) {
+    __state.filter = customEvent.eventMessage.stage;
+    __state.allchecked = false;
+    __state.list.map(function(item){
+      // this will add "checked" attribute to __state.list[item]
+      // to render html-checkbox element as (un)checked.
+      // see this.render()
+      item.checked = false;
+    });
+    this.render();
+    AppEvent.dispatch("select-item" , {
+      checked : false,
+      list : []
+    });
+  }
+
   this.render = function() {
 
-    var list = "";
-    var item;
-    for (let index = 0 , max = __state.list.length ; index < max; index++) {
-      item = __state.list[index];
-      list += `<li class="${item.status}">
+    var checked = false, list = "";
+
+    __state.list.map(function(item){
+        if( item.stage !== __state.filter){
+          return;
+        }
+        checked = (typeof item.checked !== "undefined" && !!item.checked);
+        list += `<li class="${item.stage}">
                 <input id="item-${item.id}"
                       data-item-id="${item.id}"
                       data-action="select-item"
                       type="checkbox"
                       class="checkbox" 
-                      ${item.checked ? "checked" : ''}/>
+                      ${checked ? "checked" : ''}/>
                 <label for="item-${item.id}">
                   <span></span>
                 </label>
                 <p>${item.label}</p>
-              </li>`;      
-    }
+              </li>`;
+    });
 
     var html = `
           <div class="list-action">
@@ -614,7 +719,7 @@ function List(){
               </label>
           </div>
           <ul class="list">            
-            ${ list ? list : "<li>Empty List</li>" }
+            ${ list ? list : `<li class="empty-list">Empty List</li>` }
           </ul>`;
 
     __element.innerHTML = html;
@@ -623,8 +728,8 @@ function List(){
 }
 
 module.exports = new List();
-},{"../event":5}],11:[function(require,module,exports){
-const AppEvent = require('../event').AppEvent;
+},{"../app/eventstore":8}],12:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
 
 function Modal(){
 
@@ -675,4 +780,171 @@ function Modal(){
 }
 
 module.exports = new Modal();
-},{"../event":5}]},{},[1]);
+},{"../app/eventstore":8}],13:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
+
+const __config = {
+  tab : [
+    {name : "todo" , label : "To Do" , style : "yellow"},
+    {name : "doing" , label : "In progress" , style : "blue"},
+    {name : "done" , label : "Done" , style : "green"},
+    {name : "delete" , label : "Delete" , style : "red"},
+  ],
+   // used to define type of available action
+  action : ["todo" , "doing" , "done" , "delete"]
+};
+
+function MoveTo(){
+
+  var __element;
+  var __state = {
+    list : [],
+    itemStatus : ""
+  };
+
+  this.init = function(anchorID) {
+
+    __element = document.getElementById(anchorID);
+    
+    this.render();
+    __element.onclick = this.action;
+
+    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
+
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+
+  }
+
+  this.setItemStatus = function(customEvent){
+    __state.itemStatus = customEvent.eventMessage.stage;
+    this.render();
+  }
+
+  this.updateItemList = function(event){
+    
+    if(typeof event.eventMessage.id !== "undefined"){
+      let id = event.eventMessage.id;
+      let checked = event.eventMessage.checked;
+      let index = __state.list.indexOf(id);
+      if(checked /* selected */ && index < 0 /* item is not in the array */){
+        __state.list.push(id);
+        return;
+      }
+      if(!checked /* unselected */&& index >= 0 /* item is in the array */){
+        __state.list.splice(index , 1);
+        return;
+      }
+    }
+    if(typeof event.eventMessage.list !== "undefined"){
+      __state.list = event.eventMessage.list;
+    }
+
+  }
+
+  this.action = function(domEvent){
+    var actionName = domEvent.target.dataset.action;
+    var eventMessage;
+
+    if(__state.list.length < 0 || __config.action.indexOf(actionName) < 0){
+      return;
+    }
+    if(actionName === "delete"){
+        eventMessage = {
+            action : "remove",
+            name : "task",
+            items : __state.list.slice()
+        }        
+    }
+    else{ 
+      // for actions : {"todo" , "doing" , "done"}
+      eventMessage = {
+        action : "update-stage",
+        name : "task",
+        items : __state.list.slice(),
+        value : actionName
+      }
+    }
+
+    AppEvent.dispatch("update-item" , eventMessage);
+    __state.list = [];
+  }
+
+  this.render = function() {
+
+    var actionList = "";
+    __config.tab.map(function(item){
+        if(item.name !== __state.itemStatus){
+          actionList += `<button data-action="${item.name}" 
+                                  class="btn btn-${item.style}">
+                            ${item.label}
+                          </button>`;
+        }
+    });
+    __element.innerHTML = `                
+                <div class="action-bar">
+                <label>Move To : </label>                
+                  ${actionList}
+                </div>` ;
+  }
+}
+
+module.exports = new MoveTo();
+},{"../app/eventstore":8}],14:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
+
+const __config = [
+  { value: "todo", label: "To Do", checked: true },
+  { value: "doing", label: "In Progress", checked: false },
+  { value: "done", label: "Done", checked: false }
+]
+
+function TabNavigation() {
+
+  var __element;
+
+  this.init = function (anchorID) {
+    __element = document.getElementById(anchorID);
+
+    AppEvent.dispatch("navigate-list", {
+      stage : "todo"
+    });
+
+    this.render();
+
+    this.navigate();
+  }
+
+  this.navigate = function () {
+    var input = __element.querySelectorAll("input[type=\"radio\"]");
+    input.forEach(function(item){
+      item.onchange = function (ev) {
+        AppEvent.dispatch("navigate-list", {
+          stage : ev.target.value
+        });
+      }
+    })
+  }
+
+  this.render = function () {
+    var tab = "";
+    __config.map(function (item, idx) {
+      tab += `<div>
+                <input id="tab-${idx}" 
+                      value=${item.value}
+                      name="tab-nav"
+                    type="radio" ${item.checked ? "checked" : ""}/>
+                <label for="tab-${idx}">
+                ${item.label}
+                </label>
+              </div>`;
+    });
+
+
+    __element.innerHTML = `<div class="tab-nav">
+                              ${tab}
+                            </div>`;
+  }
+}
+
+module.exports = new TabNavigation();
+},{"../app/eventstore":8}]},{},[5]);

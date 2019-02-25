@@ -1,28 +1,27 @@
-const AppEvent = require('../event').AppEvent;
+const AppEvent = require('../app/eventstore').AppEvent;
 
 function List(){
   
-  var __state , __element;
+  var __element;
+  var __state = {
+      list : [], // list of item
+      allchecked : false,
+      filter : ""
+    };
 
   this.init =  function(anchorID) {
     
     __element =  document.getElementById(anchorID);
-    __state = {
-        /**
-         * list of item, item <==> {id , status , label}
-         */
-        list : [],
-        allchecked : false
-      };
-
+    
     // browser event
     __element.onclick = this.selectItem.bind(this);
 
-    // custom event
+    AppEvent.addListener("navigate-list" , this.setFilter.bind(this));
+
     // register listener for "change-data" first
     AppEvent.addListener("data-change" , this.updateList.bind(this));
 
-    // this event will trigger "data-change" from DataManager
+    // trigger "data-change" event to init list
     AppEvent.dispatch("fetch-list" , { name : "task"});
   }
 
@@ -34,13 +33,17 @@ function List(){
     var action = ev.target.dataset.action;
     if (sendMessage = (action === 'select-all')) {
       message.list = __state.list.map(function(item){
-        item.checked = ev.target.checked;
-        return item.id;
+        // this will add "checked" attribute to __state.list[item]
+        // to set render html-checkbox element as checked.
+        // see this.render()
+        if(item.stage === __state.filter){
+          item.checked = ev.target.checked;
+          return item.id;
+        }
       });
       if(!ev.target.checked){
         message.list = [];
-      }
-      
+      }      
       __state.allchecked = ev.target.checked;
       this.render();
     }
@@ -50,39 +53,56 @@ function List(){
     }    
     if(sendMessage){
       AppEvent.dispatch("select-item" , message);
-    }
-
-    
+    }    
   }
 
   this.updateList = function(event) {
     var name = event.eventMessage.name;
     if(name === "task"){
       __state.list = event.eventMessage.data;
-      __state.allchecked = false;
+      __state.allchecked = false;    
       this.render();
     }
   }
 
+  this.setFilter = function(customEvent) {
+    __state.filter = customEvent.eventMessage.stage;
+    __state.allchecked = false;
+    __state.list.map(function(item){
+      // this will add "checked" attribute to __state.list[item]
+      // to render html-checkbox element as (un)checked.
+      // see this.render()
+      item.checked = false;
+    });
+    this.render();
+    AppEvent.dispatch("select-item" , {
+      checked : false,
+      list : []
+    });
+  }
+
   this.render = function() {
 
-    var list = "";
-    var item;
-    for (let index = 0 , max = __state.list.length ; index < max; index++) {
-      item = __state.list[index];
-      list += `<li class="${item.status}">
+    var checked = false, list = "";
+
+    __state.list.map(function(item){
+        if( item.stage !== __state.filter){
+          return;
+        }
+        checked = (typeof item.checked !== "undefined" && !!item.checked);
+        list += `<li class="${item.stage}">
                 <input id="item-${item.id}"
                       data-item-id="${item.id}"
                       data-action="select-item"
                       type="checkbox"
                       class="checkbox" 
-                      ${item.checked ? "checked" : ''}/>
+                      ${checked ? "checked" : ''}/>
                 <label for="item-${item.id}">
                   <span></span>
                 </label>
                 <p>${item.label}</p>
-              </li>`;      
-    }
+              </li>`;
+    });
 
     var html = `
           <div class="list-action">
@@ -96,7 +116,7 @@ function List(){
               </label>
           </div>
           <ul class="list">            
-            ${ list ? list : "<li>Empty List</li>" }
+            ${ list ? list : `<li class="empty-list">Empty List</li>` }
           </ul>`;
 
     __element.innerHTML = html;

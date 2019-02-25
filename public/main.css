@@ -1,13 +1,13 @@
-html,body{
+html,
+body{
   width:100%;
   height:100%;
   padding:0;
   margin:0;
   border:0;
   color:#222;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:'Arial','Helvetica', sans-serif;
   font-size:16px;
-  /* letter-spacing:0.03em; */
   text-align:center;
   background: #eef3fb;
 }
@@ -15,11 +15,13 @@ html,body{
 .notice h1{
   font-size:13px;
   padding:10px;
-  font-style:italic;
   margin:0;
   background:#fff;
   border-bottom:1px solid #ccc;
   line-height:2em;
+}
+.notice span{
+  color:red;
 }
 
 ul {
@@ -27,34 +29,66 @@ ul {
   padding: 0;
   list-style:none;
 }
+
+p{
+  word-break: break-all;
+}
+
 input[type="text"]{
   padding:0 10px;
   border:1px solid #999;
   outline:none;
-  box-shadow:1px 1px 1px #ccc inset;
   font-size:15px;
   height:32px;
   vertical-align: bottom;
+  border-radius:3px;
 }
 input[type="text"]:focus{
   border-color:#327fe0;
 }
+
 .btn{
   border:1px solid transparent;
   outline:none;
+  cursor:pointer;
+  background-color:#eee;
+  border:1px solid #ccc;
 }
 .btn:active{
-  box-shadow:none;
+  border-color:#ffffff;
 }
 .btn-blue{
-  background:#4f97f1;
+  background-color:#4c93ea;
+  border-color:#3f7fce;
   color:#fff;
-  border:1px solid #327fe0;
-  box-shadow:0 1px 0 #80b6f9 inset;
 }
 .btn-blue:hover{
-  background:#398bf3;
+  background-color:#3f7fce;
 }
+.btn-yellow{
+  background-color:#fbe163;
+  border-color:#d2b52a;
+}
+.btn-yellow:hover{
+  background-color:#eac510;
+}
+.btn-green{
+  background-color:#11bd11;
+  border-color:#059805;
+  color:#fff;
+}
+.btn-green:hover{
+  background-color:green;
+}
+.btn-red{
+  background-color:#ff3f00;
+  border-color:red;
+  color:#fff;
+}
+.btn-red:hover{
+  background-color:red;
+}
+
 .show{
   display:block;
 }
@@ -65,17 +99,18 @@ input[type="text"]:focus{
   display:none;
 }
 .checkbox + label{
-  position: relative;
+  display: inline-block;
 }
 .checkbox + label span{
   background:#fff;
-  border:1px solid #ccc;
-  display:inline-block;
-  width:17px;
-  height:17px;
-  margin-right:5px;
+  border:1px solid #aaa;
+  display:block;
+  width:18px;
+  height:18px;
+  margin-right:10px;
   position:relative;
-  top:4px;
+  float:left;
+  border-radius:10px;
 }
 .checkbox + label span:hover{
   border-color:#1b74e4;
@@ -86,10 +121,10 @@ input[type="text"]:focus{
   border-color: #1b74e4;
   border-style: solid;
   border-width: 0 2px 2px 0;
-  top:1px;
+  top:3px;
   left:6px;
   transform: rotate(45deg);
-  height: 10px;
+  height:8px;
   width:4px;
   display: none;
 }
@@ -99,20 +134,58 @@ input[type="text"]:focus{
 .checkbox:checked + label span:before{
   display:block;
 }
+/***************** Navigation Bar **********/
+.tab-nav{
+  text-align:left;
+  border-bottom:1px solid #aaa;
+  font-size:14px;
+  margin-bottom:10px;
+}
+.tab-nav > div{
+  display:inline;
+}
+.tab-nav input{
+  display:none;
+}
+.tab-nav label{
+  position:relative;
+  display:inline-block;
+  padding:10px 20px;
+  margin:0 0 0 5px;
+  cursor:pointer;
+  border:1px solid #aaa;
+  border-bottom:0;
+  background:#fff;
+  font-weight:bold;
+  text-transform:uppercase;
+  font-size:13px;
+  border-radius:3px 3px 0 0;
+}
+.tab-nav label:hover{
+  text-decoration:underline;
+  background:#fff;
+}
+.tab-nav input:checked + label{
+  cursor:default;
+  background:#fff;
+  z-index:20;
+  bottom:-1px;
+}
 
 /************* Application ***************/
 .todo-app{
-  width:500px;
+  width:570px;
   margin:50px auto;
   background: white;
   padding:30px;
   border:1px solid #ccc;
   box-shadow:0 1px 5px #ccceee;
 }
-.header h1{
+.central-header h1{
   background:#eee;
   padding:20px;
   margin:0 0 30px 0;
+  font-size: 23px;
 }
 /************* Form ***********************/
 .form{
@@ -127,13 +200,13 @@ input[type="text"]:focus{
   font-weight:bold;
   cursor:pointer;
   height:34px;
-  margin-left:-4px;
+  margin-left:-8px;
   border-radius:0 3px 3px 0;
 }
 
 /************** List  ********************/
 .list-action{
-  padding:0px 0 10px 15px;
+  padding:15px;
   text-align:left;
   margin:0 0 10px 0;
   border-bottom:1px solid #ccc;
@@ -147,55 +220,65 @@ input[type="text"]:focus{
 }
 
 .list li{
-  padding:10px 15px;
-  margin-bottom:2px;
+  padding:15px;
+  margin-bottom:5px;
+  border-left-width:5px;
+  border-left-style:solid;
   background-color:#eee;
 }
 
-.list li:hover{
-  background-color:#e5e5e5;
-}
-.list li.done{
-  background:#2bef2b;
-  text-decoration: line-through;
-  position:relative;
-  border-left-color:green;
-}
-.list li.done::before {
-  content: '';
-  position: absolute;
-  border-color: #095409;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 5px;
-  right: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
+.list li > label ,
+.list li > p{
+  display: inline-block;
+  vertical-align: top;
 }
 .list p{
   display:inline-block;
   margin:0;
+  width:calc(100% - 50px);
 }
 .list .checkbox{
   border:1px solid;
 }
+/*************** item status ************/
+.empty-list{
+  background-color:#eee;
+  border-color:#777;
+}
+li.todo{
+  border-color:#f5cc06;
+  background-color: #fbf9d6;
+}
+li.doing{
+  border-color:#4c93ea;
+  background-color:#e8f3ff;
+}
+li.done{
+  border-color:#74c774;
+  background-color:#ebfbeb;
+}
+li.done p{
+  text-decoration:line-through;
+}
 
 /****************************************************/
 .action-bar{
-  margin:0px 0px -25px 120px;
-  padding:0;
+  padding:10px 0 0 0;
   text-align:left;
-  border-left:1px solid #ccc;
+  float: right;
+}
+.action-bar label{
+  font-weight:bold;
+  font-size:13px;
+  margin-right:10px;
 }
 .action-bar button{
-  font-size: 15px;
-  display:inline-block;
-  margin:0 10px;
-  padding:3px 10px;
-  cursor:pointer;
-  background:#4f97f1;
-  color:#fff;
+  font-size: 12px;
+  padding:5px 15px;
+  margin-right:5px;
+  font-weight:bold;
+  border-radius:20px;
+  text-transform:capitalize;
 }
 
 /***********************************************/

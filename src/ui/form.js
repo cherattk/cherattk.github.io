@@ -1,8 +1,15 @@
-const AppEvent = require('../event').AppEvent;
+const AppEvent = require('../app/eventstore').AppEvent;
+
+const __config ={
+  maxChar : 55
+}
 
 function Form(){
 
   var __element;
+  var __state = {
+    itemStatus : "todo" // default 
+  }
 
   this.init = function(anchorID) {
 
@@ -10,8 +17,14 @@ function Form(){
 
     // browser event
     __element.onsubmit = this.submit.bind(this);
-
     this.render();
+
+    // customEvent
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+  }
+
+  this.setItemStatus = function (customEvent) {
+    __state.itemStatus = customEvent.eventMessage.stage;
   }
 
   this.submit = function(e){
@@ -27,9 +40,8 @@ function Form(){
 
     var item = {
       id : (new Date()).getTime().toString(),
-      status : "todo",
-      label : value,
-      checked : false
+      stage : __state.itemStatus,
+      label : value
     };
     AppEvent.dispatch("save-form", {
       name : "task",
@@ -41,9 +53,9 @@ function Form(){
   this.render = function() {
     __element.innerHTML = `
                 <form class="form">
-                  <input type="text" maxlength="47"
+                  <input type="text" maxlength="${__config.maxChar}"
                         name="task_label" 
-                        placeholder="Add your task"/>
+                        placeholder="Add a task : ${__config.maxChar} characters max" />
                   <input type="submit" value="save" class="btn btn-blue"/>
                 </form>
               ` ;
