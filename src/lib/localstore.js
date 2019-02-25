@@ -1,17 +1,20 @@
-function DataStore(storeList){
+function LocalStore(){
 
-    var __storeArray = [];
+    this.loadStore = function(storeList) {
 
-    if (typeof Storage !== "undefined") {
-        var storeContent;
+        if (!window.localStorage) {
+            return;
+        }
+
+        var __storeArray = [];
+        var storeData;
         storeList.map(function(storeName){
-            storeContent = window.localStorage.getItem(storeName);
-            if(storeContent){
-                // save in memory
+            storeData = window.localStorage.getItem(storeName);
+            if(storeData){
                 __storeArray.push(
                     {
                         name : storeName,
-                        data : JSON.parse(storeContent)
+                        data : JSON.parse(storeData)
                     }
                 );
             }
@@ -20,38 +23,27 @@ function DataStore(storeList){
                     name : storeName,
                     data : []
                 };
-                // save in memory
                 __storeArray.push(__store);
 
                 // save in browser
-                window.localStorage.setItem(storeName , "[]");
+                window.localStorage.setItem(
+                    __store.name , 
+                    JSON.stringify(__store.data)
+                );
             }
-        });
-    }
-    
-    this.getStore = function(name){
-        var store = __storeArray.filter(function(store){
-            return (store.name === name);
-        });
-        return Object.assign({} , store[0]);
+            });
+
+        return __storeArray;        
     }
 
-    this.saveStore = function(store){
-        for (let index = 0; index < __storeArray.length; index++) {
-            if(__storeArray[index].name === store.name){
-                __storeArray[index] = store;
-                break;
-            }            
-        }       
-
-        window.localStorage.setItem(store.name , JSON.stringify(store.data));
-    }
-
-    this.genID = function(){
-        return Math.random().toString(36).substring(2, 13);
+    this.save = function(store){
+        window.localStorage.setItem(
+            store.name , 
+            JSON.stringify(store.data)
+        );
     }
 }
 
-module.exports = DataStore;
+module.exports = new LocalStore();
 
 

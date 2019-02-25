@@ -6,7 +6,7 @@ const __config = [
   { value: "done", label: "Done", checked: false }
 ]
 
-function NavBar() {
+function TabNavigation() {
 
   var __element;
 
@@ -54,4 +54,4 @@ function NavBar() {
   }
 }
 
-module.exports = new NavBar();
+module.exports = new TabNavigation();

@@ -7,13 +7,11 @@ Bugs
 
 Version 0.3.0
 -------------
-#### Changes
-- The task list is no longer saved in the browser and is reset to its initial state when the application is reloaded. See /src/app/datastore.js
-
 #### Added
 - Organize tasks as a Kanban board with 3 stages : {To do} - {In Progress} - {Done}.
 - Assign a specific color to each stage.
-- Add "Move To" action to move a task to a specific stage.
+- Add a "Move to" component to move a task to a specific stage.
+- patch script that update the structure of the task object.
 
 Version 0.2.0
 -------------

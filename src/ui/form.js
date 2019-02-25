@@ -55,7 +55,7 @@ function Form(){
                 <form class="form">
                   <input type="text" maxlength="${__config.maxChar}"
                         name="task_label" 
-                        placeholder="Task : ${__config.maxChar} charcaters max" />
+                        placeholder="Add a task : ${__config.maxChar} characters max" />
                   <input type="submit" value="save" class="btn btn-blue"/>
                 </form>
               ` ;

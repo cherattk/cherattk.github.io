@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Demo</title>
+  <title>Task Manager</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
@@ -12,18 +12,20 @@
             
     <div class="notice">
       <h1>
-        <span style="color:red;">Notice</span> : 
-        This app is an example use of 
-        <a href="https://github.com/cherattk/eventset" target="_blank">EventSet</a>
-        package. It is provided for demonstration purposes only. 
+        <span>Notice</span> :
+        This application is built for experimentation purpose.
+        Dot not use it with sensitive information.
+        <br/> 
+        The data managed by this app (the task list) 
+        are saved in your browser 
+        <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" 
+          target="_blank">(See How)</a>
+        and remain available 
+        until you delete it.        
         <br/>
-        The task list is reset to its initial state 
-        when the application is reloaded.
-        <br/>        
-        The source code is available on 
-        <a href="https://github.com/cherattk/cherattk.github.io" target="_blank">
-          GitHub
-        </a>
+        However, due to the experimental nature of this application,
+        these data could be deleted or corrupted 
+        by changes made to a later version.
       </h1>
     </div>
 
@@ -31,11 +33,11 @@
 
         <div class="central">
           <div class="central-header">      
-            <h1>Demo v0.3.0</h1>
+            <h1>Task Manager v0.3.0</h1>
           </div>
           <div id="anchor-form"><!-- component inserted here--></div>        
           
-          <div id="anchor-navbar"><!-- component inserted here--></div>
+          <div id="anchor-tabnav"><!-- component inserted here--></div>
           
           <div id="anchor-action"><!-- component inserted here--></div>
           

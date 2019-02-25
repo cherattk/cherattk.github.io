@@ -247,21 +247,93 @@ const Util = {
 
 module.exports = Util;
 },{}],4:[function(require,module,exports){
+module.exports = function FixDataStore(){
+
+  // return;
+  if (!window.localStorage) {
+    return;
+  }
+
+  const storeList = [
+    {
+      name : "task",
+      field : [
+        [
+          "status" , "stage"
+        ]
+      ]
+    }
+  ];
+
+  var __originData , 
+      __copyData , 
+      patchName , 
+      patchDone;
+
+  storeList.map(function(store){
+    
+    // 1 - check if the data store is patched
+    patchName = ("patch." + store.name + ".store");
+    patchDone = window.localStorage.getItem(patchName);
+    if(patchDone === "done"){
+      return;
+    }
+
+    // 2 - the data store is not patched
+    storeData = window.localStorage.getItem(store.name);
+    if(storeData){
+      __originData = JSON.parse(storeData);
+
+      //apply change
+      __copyData = __originData.map(function(item){
+        // create a new field named field[1].value and
+        // assign to a new created field the value of 
+        // the previous field named field[0]
+        var __item = Object.assign({} , item);
+        store.field.map(function(field){
+          delete __item.checked;
+          if(typeof item[field[0]] !== "undefined"){
+            __item[field[1]] = item[field[0]].toString();
+            delete __item[field[0]];
+          }
+        });
+        return __item;
+      });
+
+      window.localStorage.setItem(
+        `${store.name}`, 
+        JSON.stringify(__copyData)
+      );
+
+      window.localStorage.setItem(patchName , "done");
+
+    }
+
+  });
+
+}
+},{}],5:[function(require,module,exports){
+
+// apply data store of previous version
+// require('../devdata/task.store');
+
+require('../patch/fixdatastore.js')();
+
 const DataManager = require('../src/app/datamanager.js');
 DataManager.init();
 
 const Form = require('../src/ui/form.js');
 const List = require('../src/ui/list.js');
 const Modal = require('../src/ui/modal.js');
-const ActionBar = require('../src/ui/action.js');
-const NavBar = require('../src/ui/navbar.js');
+const MoveTo = require('../src/ui/moveto.js');
+const TabNavigation = require('../src/ui/tabnav.js');
 
 Form.init("anchor-form");
 List.init("anchor-list");
 Modal.init("anchor-modal");
-ActionBar.init("anchor-action");
-NavBar.init("anchor-navbar"); 
-},{"../src/app/datamanager.js":5,"../src/ui/action.js":8,"../src/ui/form.js":9,"../src/ui/list.js":10,"../src/ui/modal.js":11,"../src/ui/navbar.js":12}],5:[function(require,module,exports){
+MoveTo.init("anchor-action");
+TabNavigation.init("anchor-tabnav"); 
+},{"../patch/fixdatastore.js":4,"../src/app/datamanager.js":6,"../src/ui/form.js":10,"../src/ui/list.js":11,"../src/ui/modal.js":12,"../src/ui/moveto.js":13,"../src/ui/tabnav.js":14}],6:[function(require,module,exports){
 const DataStore = require('./datastore');
 
 const AppEvent = require('./eventstore').AppEvent;
@@ -361,54 +433,12 @@ function DataManager(){
 
 const manager = new DataManager();
 module.exports = manager;
-},{"./datastore":6,"./eventstore":7}],6:[function(require,module,exports){
-const demoData = [
-    {
-        id : "6",
-        stage : "doing",
-        label : "Sanitize input data"
-    },
-    {
-        id : "1",
-        stage : "todo",
-        label : "Update Changelog file"
-    },
-    {
-        id : "4",
-        stage : "todo",
-        label : "Update README.md file"
-    },
-    {
-        id : "5",
-        stage : "todo",
-        label : "Update package.json file"
-    },
-    {
-        id : "2",
-        stage : "doing",
-        label : "Fix Bugs"
-    },
-    {
-        id : "3",
-        stage : "done",
-        label : "Version 0.3.0"
-    }
-];
+},{"./datastore":7,"./eventstore":8}],7:[function(require,module,exports){
+const LocalStore = require('../lib/localstore.js');
 
+function DataStore(storeList){
 
-function DataStore(storeList , storeDriver){
-
-    var __storeArray = [];
-    
-    for (let index = 0; index < storeList.length; index++) {
-        __storeArray.push(
-            {
-                name : storeList[index],
-                // data : []
-                data : demoData
-            }
-        )       
-    }
+    var __storeArray = LocalStore.loadStore(storeList);
 
     this.getStore = function(name){
         var store = __storeArray.filter(function(store){
@@ -424,6 +454,8 @@ function DataStore(storeList , storeDriver){
                 break;
             }            
         }
+
+        LocalStore.save(store);
     }
 
     this.genID = function(){
@@ -435,7 +467,7 @@ module.exports = DataStore;
 
 
 
-},{}],7:[function(require,module,exports){
+},{"../lib/localstore.js":9}],8:[function(require,module,exports){
 const EventSet = require('eventset');
 
 const AppEvent = EventSet.Topic('app.event');
@@ -451,116 +483,58 @@ AppEvent.addEvent("navigate-list");
 module.exports = {
     AppEvent
 }
-},{"eventset":1}],8:[function(require,module,exports){
-const AppEvent = require('../app/eventstore').AppEvent;
+},{"eventset":1}],9:[function(require,module,exports){
+function LocalStore(){
 
-const __config = {
-  tab : [
-    {name : "todo" , label : "To Do" , style : "yellow"},
-    {name : "doing" , label : "In progress" , style : "blue"},
-    {name : "done" , label : "Done" , style : "green"},
-    {name : "delete" , label : "Delete" , style : "red"},
-  ],
-   // used to define type of available action
-  action : ["todo" , "doing" , "done" , "delete"]
-};
+    this.loadStore = function(storeList) {
 
-function ActionBar(){
-
-  var __element;
-  var __state = {
-    list : [],
-    itemStatus : ""
-  };
-
-  this.init = function(anchorID) {
-
-    __element = document.getElementById(anchorID);
-    
-    this.render();
-    __element.onclick = this.action;
-
-    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
-
-    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
-
-  }
-
-  this.setItemStatus = function(customEvent){
-    __state.itemStatus = customEvent.eventMessage.stage;
-    this.render();
-  }
-
-  this.updateItemList = function(event){
-    
-    if(typeof event.eventMessage.id !== "undefined"){
-      let id = event.eventMessage.id;
-      let checked = event.eventMessage.checked;
-      let index = __state.list.indexOf(id);
-      if(checked /* selected */ && index < 0 /* item is not in the array */){
-        __state.list.push(id);
-        return;
-      }
-      if(!checked /* unselected */&& index >= 0 /* item is in the array */){
-        __state.list.splice(index , 1);
-        return;
-      }
-    }
-    if(typeof event.eventMessage.list !== "undefined"){
-      __state.list = event.eventMessage.list;
-    }
-
-  }
-
-  this.action = function(domEvent){
-    var actionName = domEvent.target.dataset.action;
-    var eventMessage;
-
-    if(__state.list.length < 0 || __config.action.indexOf(actionName) < 0){
-      return;
-    }
-    if(actionName === "delete"){
-        eventMessage = {
-            action : "remove",
-            name : "task",
-            items : __state.list.slice()
-        }        
-    }
-    else{ 
-      // for actions : {"todo" , "doing" , "done"}
-      eventMessage = {
-        action : "update-stage",
-        name : "task",
-        items : __state.list.slice(),
-        value : actionName
-      }
-    }
-
-    AppEvent.dispatch("update-item" , eventMessage);
-    __state.list = [];
-  }
-
-  this.render = function() {
-
-    var actionList = "";
-    __config.tab.map(function(item){
-        if(item.name !== __state.itemStatus){
-          actionList += `<button data-action="${item.name}" 
-                                  class="btn btn-${item.style}">
-                            ${item.label}
-                          </button>`;
+        if (!window.localStorage) {
+            return;
         }
-    });
-    __element.innerHTML = `                
-                <div class="action-bar">
-                <label>Move To : </label>                
-                  ${actionList}
-                </div>` ;
-  }
+
+        var __storeArray = [];
+        var storeData;
+        storeList.map(function(storeName){
+            storeData = window.localStorage.getItem(storeName);
+            if(storeData){
+                __storeArray.push(
+                    {
+                        name : storeName,
+                        data : JSON.parse(storeData)
+                    }
+                );
+            }
+            else{
+                let __store = {
+                    name : storeName,
+                    data : []
+                };
+                __storeArray.push(__store);
+
+                // save in browser
+                window.localStorage.setItem(
+                    __store.name , 
+                    JSON.stringify(__store.data)
+                );
+            }
+            });
+
+        return __storeArray;        
+    }
+
+    this.save = function(store){
+        window.localStorage.setItem(
+            store.name , 
+            JSON.stringify(store.data)
+        );
+    }
 }
 
-module.exports = new ActionBar();
-},{"../app/eventstore":7}],9:[function(require,module,exports){
+module.exports = new LocalStore();
+
+
+
+},{}],10:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 const __config ={
@@ -618,7 +592,7 @@ function Form(){
                 <form class="form">
                   <input type="text" maxlength="${__config.maxChar}"
                         name="task_label" 
-                        placeholder="Task : ${__config.maxChar} charcaters max" />
+                        placeholder="Add a task : ${__config.maxChar} characters max" />
                   <input type="submit" value="save" class="btn btn-blue"/>
                 </form>
               ` ;
@@ -626,7 +600,7 @@ function Form(){
 }
 
 module.exports = new Form();
-},{"../app/eventstore":7}],10:[function(require,module,exports){
+},{"../app/eventstore":8}],11:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 function List(){
@@ -754,7 +728,7 @@ function List(){
 }
 
 module.exports = new List();
-},{"../app/eventstore":7}],11:[function(require,module,exports){
+},{"../app/eventstore":8}],12:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 function Modal(){
@@ -806,7 +780,116 @@ function Modal(){
 }
 
 module.exports = new Modal();
-},{"../app/eventstore":7}],12:[function(require,module,exports){
+},{"../app/eventstore":8}],13:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
+
+const __config = {
+  tab : [
+    {name : "todo" , label : "To Do" , style : "yellow"},
+    {name : "doing" , label : "In progress" , style : "blue"},
+    {name : "done" , label : "Done" , style : "green"},
+    {name : "delete" , label : "Delete" , style : "red"},
+  ],
+   // used to define type of available action
+  action : ["todo" , "doing" , "done" , "delete"]
+};
+
+function MoveTo(){
+
+  var __element;
+  var __state = {
+    list : [],
+    itemStatus : ""
+  };
+
+  this.init = function(anchorID) {
+
+    __element = document.getElementById(anchorID);
+    
+    this.render();
+    __element.onclick = this.action;
+
+    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
+
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+
+  }
+
+  this.setItemStatus = function(customEvent){
+    __state.itemStatus = customEvent.eventMessage.stage;
+    this.render();
+  }
+
+  this.updateItemList = function(event){
+    
+    if(typeof event.eventMessage.id !== "undefined"){
+      let id = event.eventMessage.id;
+      let checked = event.eventMessage.checked;
+      let index = __state.list.indexOf(id);
+      if(checked /* selected */ && index < 0 /* item is not in the array */){
+        __state.list.push(id);
+        return;
+      }
+      if(!checked /* unselected */&& index >= 0 /* item is in the array */){
+        __state.list.splice(index , 1);
+        return;
+      }
+    }
+    if(typeof event.eventMessage.list !== "undefined"){
+      __state.list = event.eventMessage.list;
+    }
+
+  }
+
+  this.action = function(domEvent){
+    var actionName = domEvent.target.dataset.action;
+    var eventMessage;
+
+    if(__state.list.length < 0 || __config.action.indexOf(actionName) < 0){
+      return;
+    }
+    if(actionName === "delete"){
+        eventMessage = {
+            action : "remove",
+            name : "task",
+            items : __state.list.slice()
+        }        
+    }
+    else{ 
+      // for actions : {"todo" , "doing" , "done"}
+      eventMessage = {
+        action : "update-stage",
+        name : "task",
+        items : __state.list.slice(),
+        value : actionName
+      }
+    }
+
+    AppEvent.dispatch("update-item" , eventMessage);
+    __state.list = [];
+  }
+
+  this.render = function() {
+
+    var actionList = "";
+    __config.tab.map(function(item){
+        if(item.name !== __state.itemStatus){
+          actionList += `<button data-action="${item.name}" 
+                                  class="btn btn-${item.style}">
+                            ${item.label}
+                          </button>`;
+        }
+    });
+    __element.innerHTML = `                
+                <div class="action-bar">
+                <label>Move To : </label>                
+                  ${actionList}
+                </div>` ;
+  }
+}
+
+module.exports = new MoveTo();
+},{"../app/eventstore":8}],14:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 const __config = [
@@ -815,7 +898,7 @@ const __config = [
   { value: "done", label: "Done", checked: false }
 ]
 
-function NavBar() {
+function TabNavigation() {
 
   var __element;
 
@@ -863,5 +946,5 @@ function NavBar() {
   }
 }
 
-module.exports = new NavBar();
-},{"../app/eventstore":7}]},{},[4]);
+module.exports = new TabNavigation();
+},{"../app/eventstore":8}]},{},[5]);

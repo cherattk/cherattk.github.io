@@ -11,7 +11,7 @@ const __config = {
   action : ["todo" , "doing" , "done" , "delete"]
 };
 
-function ActionBar(){
+function MoveTo(){
 
   var __element;
   var __state = {
@@ -105,4 +105,4 @@ function ActionBar(){
   }
 }
 
-module.exports = new ActionBar();
+module.exports = new MoveTo();
