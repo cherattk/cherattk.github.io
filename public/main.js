@@ -1,7 +1,6 @@
-
-// apply data store of previous version
-// require('../devdata/task.store');
-
+/**
+ * @version 0.3.0
+ */
 require('../patch/fixdatastore.js')();
 
 const DataManager = require('../src/app/datamanager.js');

@@ -1,3 +1,6 @@
+/**
+ * Fix the structure of the task object
+ */
 module.exports = function FixDataStore(){
 
   // return;
@@ -10,7 +13,9 @@ module.exports = function FixDataStore(){
       name : "task",
       field : [
         [
-          "status" , "stage"
+          // rename "status" property to "stage"
+          "status",
+          "stage"
         ]
       ]
     }

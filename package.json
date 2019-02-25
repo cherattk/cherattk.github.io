@@ -1,7 +1,7 @@
 {
-  "name": "todo-app",
+  "name": "task-manager",
   "version": "0.3.0",
-  "description": "Todo App Demo",
+  "description": "Task Manager",
   "main": "main.js",
   "scripts": {
     "build": "browserify public/main.js -o public/bundle.js"
