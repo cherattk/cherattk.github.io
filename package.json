@@ -1,7 +1,7 @@
 {
-  "name": "task-manager",
+  "name": "task",
   "version": "0.3.0",
-  "description": "Task Manager",
+  "description": "A Kanban Task List",
   "main": "main.js",
   "scripts": {
     "build": "browserify public/main.js -o public/bundle.js"

@@ -1,7 +1,6 @@
 html,
 body{
   width:100%;
-  height:100%;
   padding:0;
   margin:0;
   border:0;
@@ -20,9 +19,9 @@ body{
   font-size:13px;
   padding:10px;
   margin:0;
-  background:#fff;
-  border-bottom:1px solid #ccc;
   line-height:2em;
+  background:#fff;
+  border-bottom:1px solid rgb(223, 235, 249);
 }
 .notice span{
   color:red;
@@ -184,9 +183,10 @@ input[type="text"]:focus{
   padding:30px;
   border:1px solid #ccc;
   box-shadow:0 1px 5px #ccceee;
+  border-radius:5px;
 }
 .central-header h1{
-  background:#eee;
+  background:#dfebf9;
   padding:20px;
   margin:0 0 30px 0;
   font-size: 23px;
