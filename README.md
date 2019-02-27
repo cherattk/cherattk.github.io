@@ -1,7 +1,7 @@
 ### Presentation
 This project is a framework for experimenting with the component-based architecture to design a web application that meet the following criteria:
-- Scalability: ability to add new features without having to reengineering the entire application.
-- Stability: adding new features without introducing critical bugs.
-- Reusability: the application or a part of it must be easily adaptable to different types of application.
+- Scalability: The ability to add new features without having to refactoring the application.
+- Stability: Adding new features without introducing critical bugs.
+- Reusability: The application must be easily adaptable to other uses.
 
 - <a href="https://cherattk.github.io" target="_blank">Live demo https://cherattk.github.io</a>
