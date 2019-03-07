@@ -329,17 +329,20 @@ const DataManager = require('../src/app/datamanager.js');
 DataManager.init();
 
 const Form = require('../src/ui/form.js');
-const List = require('../src/ui/list.js');
-const Modal = require('../src/ui/modal.js');
-const MoveTo = require('../src/ui/moveto.js');
-const TabNavigation = require('../src/ui/tabnav.js');
-
 Form.init("anchor-form");
+
+const List = require('../src/ui/list.js');
 List.init("anchor-list");
+
+const Modal = require('../src/ui/modal.js');
 Modal.init("anchor-modal");
-MoveTo.init("anchor-action");
+
+const ActionBar = require('../src/ui/actionbar.js');
+ActionBar.init("anchor-action");
+
+const TabNavigation = require('../src/ui/tabnav.js');
 TabNavigation.init("anchor-tabnav"); 
-},{"../patch/fixdatastore.js":4,"../src/app/datamanager.js":6,"../src/ui/form.js":10,"../src/ui/list.js":11,"../src/ui/modal.js":12,"../src/ui/moveto.js":13,"../src/ui/tabnav.js":14}],6:[function(require,module,exports){
+},{"../patch/fixdatastore.js":4,"../src/app/datamanager.js":6,"../src/ui/actionbar.js":10,"../src/ui/form.js":11,"../src/ui/list.js":12,"../src/ui/modal.js":13,"../src/ui/tabnav.js":14}],6:[function(require,module,exports){
 const DataStore = require('./datastore');
 
 const AppEvent = require('./eventstore').AppEvent;
@@ -543,6 +546,115 @@ module.exports = new LocalStore();
 },{}],10:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
+const __config = {
+  tab : [
+    {name : "todo" , label : "To Do" , style : "yellow"},
+    {name : "doing" , label : "In progress" , style : "blue"},
+    {name : "done" , label : "Done" , style : "green"},
+    {name : "delete" , label : "Delete" , style : "red"},
+  ],
+   // used to define type of available action
+  action : ["todo" , "doing" , "done" , "delete"]
+};
+
+function ActionBar(){
+
+  var __element;
+  var __state = {
+    list : [],
+    itemStatus : ""
+  };
+
+  this.init = function(anchorID) {
+
+    __element = document.getElementById(anchorID);
+    
+    this.render();
+    __element.onclick = this.action;
+
+    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
+
+    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
+
+  }
+
+  this.setItemStatus = function(customEvent){
+    __state.itemStatus = customEvent.eventMessage.stage;
+    this.render();
+  }
+
+  this.updateItemList = function(event){
+    
+    if(typeof event.eventMessage.id !== "undefined"){
+      let id = event.eventMessage.id;
+      let checked = event.eventMessage.checked;
+      let index = __state.list.indexOf(id);
+      if(checked /* selected */ && index < 0 /* item is not in the array */){
+        __state.list.push(id);
+        return;
+      }
+      if(!checked /* unselected */&& index >= 0 /* item is in the array */){
+        __state.list.splice(index , 1);
+        return;
+      }
+    }
+    if(typeof event.eventMessage.list !== "undefined"){
+      __state.list = event.eventMessage.list;
+    }
+
+  }
+
+  this.action = function(domEvent){
+    var actionName = domEvent.target.dataset.action;
+    var eventMessage;
+
+    if(__state.list.length < 0 || __config.action.indexOf(actionName) < 0){
+      return;
+    }
+    if(actionName === "delete"){
+        eventMessage = {
+            action : "remove",
+            name : "task",
+            items : __state.list.slice()
+        }        
+    }
+    else{ 
+      // for actions : {"todo" , "doing" , "done"}
+      eventMessage = {
+        action : "update-stage",
+        name : "task",
+        items : __state.list.slice(),
+        value : actionName
+      }
+    }
+
+    AppEvent.dispatch("update-item" , eventMessage);
+    __state.list = [];
+  }
+
+  this.render = function() {
+
+    var actionList = "";
+    __config.tab.map(function(item){
+        if(item.name !== __state.itemStatus){
+          actionList += `<button data-action="${item.name}" 
+                                  class="btn btn-${item.style}">
+                            ${item.label}
+                          </button>`;
+        }
+    });
+    __element.innerHTML = `                
+                <div class="action-bar">
+                <label>Move To : </label>                
+                  ${actionList}
+                </div>` ;
+  }
+}
+
+module.exports = new ActionBar();
+},{"../app/eventstore":8}],11:[function(require,module,exports){
+const AppEvent = require('../app/eventstore').AppEvent;
+
 const __config ={
   maxChar : 50
 }
@@ -606,7 +718,7 @@ function Form(){
 }
 
 module.exports = new Form();
-},{"../app/eventstore":8}],11:[function(require,module,exports){
+},{"../app/eventstore":8}],12:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 function List(){
@@ -736,7 +848,7 @@ function List(){
 }
 
 module.exports = new List();
-},{"../app/eventstore":8}],12:[function(require,module,exports){
+},{"../app/eventstore":8}],13:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 function Modal(){
@@ -788,115 +900,6 @@ function Modal(){
 }
 
 module.exports = new Modal();
-},{"../app/eventstore":8}],13:[function(require,module,exports){
-const AppEvent = require('../app/eventstore').AppEvent;
-
-const __config = {
-  tab : [
-    {name : "todo" , label : "To Do" , style : "yellow"},
-    {name : "doing" , label : "In progress" , style : "blue"},
-    {name : "done" , label : "Done" , style : "green"},
-    {name : "delete" , label : "Delete" , style : "red"},
-  ],
-   // used to define type of available action
-  action : ["todo" , "doing" , "done" , "delete"]
-};
-
-function MoveTo(){
-
-  var __element;
-  var __state = {
-    list : [],
-    itemStatus : ""
-  };
-
-  this.init = function(anchorID) {
-
-    __element = document.getElementById(anchorID);
-    
-    this.render();
-    __element.onclick = this.action;
-
-    AppEvent.addListener("select-item" , this.updateItemList.bind(this));
-
-    AppEvent.addListener("navigate-list" , this.setItemStatus.bind(this));
-
-  }
-
-  this.setItemStatus = function(customEvent){
-    __state.itemStatus = customEvent.eventMessage.stage;
-    this.render();
-  }
-
-  this.updateItemList = function(event){
-    
-    if(typeof event.eventMessage.id !== "undefined"){
-      let id = event.eventMessage.id;
-      let checked = event.eventMessage.checked;
-      let index = __state.list.indexOf(id);
-      if(checked /* selected */ && index < 0 /* item is not in the array */){
-        __state.list.push(id);
-        return;
-      }
-      if(!checked /* unselected */&& index >= 0 /* item is in the array */){
-        __state.list.splice(index , 1);
-        return;
-      }
-    }
-    if(typeof event.eventMessage.list !== "undefined"){
-      __state.list = event.eventMessage.list;
-    }
-
-  }
-
-  this.action = function(domEvent){
-    var actionName = domEvent.target.dataset.action;
-    var eventMessage;
-
-    if(__state.list.length < 0 || __config.action.indexOf(actionName) < 0){
-      return;
-    }
-    if(actionName === "delete"){
-        eventMessage = {
-            action : "remove",
-            name : "task",
-            items : __state.list.slice()
-        }        
-    }
-    else{ 
-      // for actions : {"todo" , "doing" , "done"}
-      eventMessage = {
-        action : "update-stage",
-        name : "task",
-        items : __state.list.slice(),
-        value : actionName
-      }
-    }
-
-    AppEvent.dispatch("update-item" , eventMessage);
-    __state.list = [];
-  }
-
-  this.render = function() {
-
-    var actionList = "";
-    __config.tab.map(function(item){
-        if(item.name !== __state.itemStatus){
-          actionList += `<button data-action="${item.name}" 
-                                  class="btn btn-${item.style}">
-                            ${item.label}
-                          </button>`;
-        }
-    });
-    __element.innerHTML = `                
-                <div class="action-bar">
-                <label>Move To : </label>                
-                  ${actionList}
-                </div>` ;
-  }
-}
-
-module.exports = new MoveTo();
 },{"../app/eventstore":8}],14:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 

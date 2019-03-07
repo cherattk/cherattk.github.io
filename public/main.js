@@ -7,13 +7,16 @@ const DataManager = require('../src/app/datamanager.js');
 DataManager.init();
 
 const Form = require('../src/ui/form.js');
-const List = require('../src/ui/list.js');
-const Modal = require('../src/ui/modal.js');
-const MoveTo = require('../src/ui/moveto.js');
-const TabNavigation = require('../src/ui/tabnav.js');
-
 Form.init("anchor-form");
+
+const List = require('../src/ui/list.js');
 List.init("anchor-list");
+
+const Modal = require('../src/ui/modal.js');
 Modal.init("anchor-modal");
-MoveTo.init("anchor-action");
+
+const ActionBar = require('../src/ui/actionbar.js');
+ActionBar.init("anchor-action");
+
+const TabNavigation = require('../src/ui/tabnav.js');
 TabNavigation.init("anchor-tabnav"); 
