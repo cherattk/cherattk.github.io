@@ -91,29 +91,31 @@ function List(){
         }
         checked = (typeof item.checked !== "undefined" && !!item.checked);
         list += `<li class="${item.stage}">
-                <input id="item-${item.id}"
-                      data-item-id="${item.id}"
-                      data-action="select-item"
-                      type="checkbox"
-                      class="checkbox" 
-                      ${checked ? "checked" : ''}/>
-                <label for="item-${item.id}">
-                  <span></span>
-                </label>
+                <div class="checkbox">
+                  <input id="item-${item.id}"
+                        data-item-id="${item.id}"
+                        data-action="select-item"
+                        type="checkbox"
+                        ${checked ? "checked" : ''}/>
+                  <label for="item-${item.id}">
+                    <span></span>
+                  </label>
+                </div>
                 <p>${item.label}</p>
               </li>`;
     });
 
     var html = `
           <div class="list-action">
-              <input id="list-select-all"
-                      type="checkbox" 
-                      class="checkbox"                      
-                      data-action="select-all"
-                      ${__state.allchecked ? "checked" : ''}/>
-              <label for="list-select-all">
-              <span></span>all
-              </label>
+              <div class="checkbox">
+                <input id="list-select-all"
+                        type="checkbox"                    
+                        data-action="select-all"
+                        ${__state.allchecked ? "checked" : ''}/>
+                <label for="list-select-all">
+                <span></span>all
+                </label>
+              </div>
           </div>
           <ul class="list">            
             ${ list ? list : `<li class="empty-list">Empty List</li>` }

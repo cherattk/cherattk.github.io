@@ -1,5 +1,4 @@
-html,
-body{
+html, body{
   width:100%;
   padding:0;
   margin:0;
@@ -57,9 +56,6 @@ input[type="text"]:focus{
   background-color:#eee;
   border:1px solid #ccc;
 }
-.btn:active{
-  border-color:#ffffff;
-}
 .btn-blue{
   background-color:#4c93ea;
   border-color:#3f7fce;
@@ -98,13 +94,17 @@ input[type="text"]:focus{
 .hide{
   display:none;
 }
+
 .checkbox{
+  display:inline-block;
+}
+.checkbox input{
   display:none;
 }
-.checkbox + label{
+.checkbox label{
   display: inline-block;
 }
-.checkbox + label span{
+.checkbox label span{
   background:#fff;
   border:1px solid #aaa;
   display:block;
@@ -113,12 +113,12 @@ input[type="text"]:focus{
   margin-right:10px;
   position:relative;
   float:left;
-  border-radius:10px;
+  border-radius:3px;
 }
-.checkbox + label span:hover{
+.checkbox label span:hover{
   border-color:#1b74e4;
 }
-.checkbox + label span:before{
+.checkbox label span:before{
   content: '';
   position: absolute;
   border-color: #1b74e4;
@@ -131,10 +131,10 @@ input[type="text"]:focus{
   width:4px;
   display: none;
 }
-.checkbox:checked + label span{
+.checkbox input:checked + label span{
   border-color:#1b74e4;
 }
-.checkbox:checked + label span:before{
+.checkbox input:checked + label span:before{
   display:block;
 }
 /***************** Navigation Bar **********/
@@ -160,13 +160,11 @@ input[type="text"]:focus{
   border-bottom:0;
   background:#fff;
   font-weight:bold;
-  text-transform:uppercase;
+  text-transform:capitalize;
   font-size:13px;
-  border-radius:3px 3px 0 0;
 }
 .tab-nav label:hover{
-  text-decoration:underline;
-  background:#fff;
+  background:#eee;
 }
 .tab-nav input:checked + label{
   cursor:default;
@@ -176,20 +174,20 @@ input[type="text"]:focus{
 }
 
 /************* Application ***************/
-.todo-app{
-  width:570px;
+.board{
+  width:650px;
   margin:50px auto;
   background: white;
   padding:30px;
   border:1px solid #ccc;
   box-shadow:0 1px 5px #ccceee;
-  border-radius:5px;
 }
-.central-header h1{
-  background:#dfebf9;
+.board h1{
   padding:20px;
   margin:0 0 30px 0;
-  font-size: 23px;
+  font-size: 21px;
+  background:#dfebf9;
+  color: #194274;
 }
 /************* Form ***********************/
 .form{
@@ -230,19 +228,14 @@ input[type="text"]:focus{
   border-left-style:solid;
   background-color:#eee;
 }
-
-.list li > label ,
+.list li > .checkbox,
 .list li > p{
   display: inline-block;
   vertical-align: top;
 }
 .list p{
-  display:inline-block;
-  margin:0;
+  margin:1px 0 0 0;
   width:calc(100% - 50px);
-}
-.list .checkbox{
-  border:1px solid;
 }
 /*************** item status ************/
 .empty-list{
@@ -306,19 +299,17 @@ li.done p{
   background:#fff;
   border:1px solid #777;
   box-shadow:0 2px 5px #777;
-  border-radius:5px;
 }
 .modal-close{
   position:absolute;
   z-index:100;
-  right:0;
-  top:0;
+  right:1px;
+  top:1px;
   padding:5px 10px;
   text-align:center;
   background:#0950a9;
   color:white;
   font-size: 16px;
-  border-radius:0 3px 0 0;
 }
 .modal-close:hover{
   background:#444;
@@ -332,5 +323,5 @@ li.done p{
   height: 100%;
   z-index:10;    
   background:#444;
-  opacity:0.6;
+  opacity:0.5;
 }

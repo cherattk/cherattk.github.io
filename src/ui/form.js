@@ -1,7 +1,7 @@
 const AppEvent = require('../app/eventstore').AppEvent;
 
 const __config ={
-  maxChar : 55
+  maxChar : 50
 }
 
 function Form(){

@@ -247,6 +247,9 @@ const Util = {
 
 module.exports = Util;
 },{}],4:[function(require,module,exports){
+/**
+ * Fix the structure of the task object
+ */
 module.exports = function FixDataStore(){
 
   // return;
@@ -259,7 +262,9 @@ module.exports = function FixDataStore(){
       name : "task",
       field : [
         [
-          "status" , "stage"
+          // rename "status" property to "stage"
+          "status",
+          "stage"
         ]
       ]
     }
@@ -290,13 +295,15 @@ module.exports = function FixDataStore(){
         // assign to a new created field the value of 
         // the previous field named field[0]
         var __item = Object.assign({} , item);
-        store.field.map(function(field){
-          delete __item.checked;
+        store.field.map(function(field){          
           if(typeof item[field[0]] !== "undefined"){
             __item[field[1]] = item[field[0]].toString();
             delete __item[field[0]];
           }
         });
+
+         // no need to store it
+        delete __item.checked;
         return __item;
       });
 
@@ -313,10 +320,9 @@ module.exports = function FixDataStore(){
 
 }
 },{}],5:[function(require,module,exports){
-
-// apply data store of previous version
-// require('../devdata/task.store');
-
+/**
+ * @version 0.3.0
+ */
 require('../patch/fixdatastore.js')();
 
 const DataManager = require('../src/app/datamanager.js');
@@ -538,7 +544,7 @@ module.exports = new LocalStore();
 const AppEvent = require('../app/eventstore').AppEvent;
 
 const __config ={
-  maxChar : 55
+  maxChar : 50
 }
 
 function Form(){
@@ -694,29 +700,31 @@ function List(){
         }
         checked = (typeof item.checked !== "undefined" && !!item.checked);
         list += `<li class="${item.stage}">
-                <input id="item-${item.id}"
-                      data-item-id="${item.id}"
-                      data-action="select-item"
-                      type="checkbox"
-                      class="checkbox" 
-                      ${checked ? "checked" : ''}/>
-                <label for="item-${item.id}">
-                  <span></span>
-                </label>
+                <div class="checkbox">
+                  <input id="item-${item.id}"
+                        data-item-id="${item.id}"
+                        data-action="select-item"
+                        type="checkbox"
+                        ${checked ? "checked" : ''}/>
+                  <label for="item-${item.id}">
+                    <span></span>
+                  </label>
+                </div>
                 <p>${item.label}</p>
               </li>`;
     });
 
     var html = `
           <div class="list-action">
-              <input id="list-select-all"
-                      type="checkbox" 
-                      class="checkbox"                      
-                      data-action="select-all"
-                      ${__state.allchecked ? "checked" : ''}/>
-              <label for="list-select-all">
-              <span></span>all
-              </label>
+              <div class="checkbox">
+                <input id="list-select-all"
+                        type="checkbox"                    
+                        data-action="select-all"
+                        ${__state.allchecked ? "checked" : ''}/>
+                <label for="list-select-all">
+                <span></span>all
+                </label>
+              </div>
           </div>
           <ul class="list">            
             ${ list ? list : `<li class="empty-list">Empty List</li>` }
