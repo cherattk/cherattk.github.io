@@ -23,6 +23,10 @@ html, body{
   overflow-y:hidden;
   line-height:2.5em;
   font-weight:bold;
+  height:0px;
+}
+.notice > p.open-notice{
+  height:auto;
 }
 .notice-button{
   padding:7px 10px;
@@ -37,17 +41,17 @@ html, body{
   line-height:1em;
 }
 .notice-button:before{
-  content:"close ";
+  content:"read ";
 }
 .notice-button:hover{  
   cursor:pointer;
   background-color:#558cd0;  
 }
-.reduce-notice{
-  height:0px;
+.open-notice{
+  height:auto;
 }
-.open-notice-button:before{
-  content:"open ";
+.close-notice-button:before{
+  content:"close ";
 }
 
 ul {
