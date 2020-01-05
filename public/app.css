@@ -7,53 +7,13 @@ html, body{
   font-family:'Arial','Helvetica', sans-serif;
   font-size:16px;
   text-align:center;
-  background: #eef3fb;
 }
-.github-banner{
-  position:absolute;
-  top:0;
-  right:0;
+.header{
+  height:55px;
+  background: white;
+  border-bottom:1px solid #dedeef;
+  box-shadow:0 1px 1px #efeff3;
 }
-.notice > p{
-  font-size:13px;
-  padding:10px 10px 40px 10px;
-  margin:0;
-  background:#fff;
-  border-bottom:1px solid rgb(223, 235, 249);
-  overflow-y:hidden;
-  line-height:2.5em;
-  font-weight:bold;
-  height:0px;
-}
-.notice > p.open-notice{
-  height:auto;
-}
-.notice-button{
-  padding:7px 10px;
-  background-color:#fff;
-  border:1px solid rgb(223, 235, 249);;
-  display:inline-block;
-  border-top:0;
-  border-radius:3px;
-  background-color:#3f7fce;
-  color:#fff;
-  font-size:13px;
-  line-height:1em;
-}
-.notice-button:before{
-  content:"read ";
-}
-.notice-button:hover{  
-  cursor:pointer;
-  background-color:#558cd0;  
-}
-.open-notice{
-  height:auto;
-}
-.close-notice-button:before{
-  content:"close ";
-}
-
 ul {
   margin: 0;
   padding: 0;
@@ -76,14 +36,6 @@ input[type="text"]{
 input[type="text"]:focus{
   border-color:#327fe0;
 }
-
-.btn{
-  border:1px solid transparent;
-  outline:none;
-  cursor:pointer;
-  background-color:#eee;
-  border:1px solid #ccc;
-}
 .btn-blue{
   background-color:#4c93ea;
   border-color:#3f7fce;
@@ -91,6 +43,7 @@ input[type="text"]:focus{
 }
 .btn-blue:hover{
   background-color:#3f7fce;
+  color:#fff;
 }
 .btn-yellow{
   background-color:#fbe163;
@@ -106,6 +59,7 @@ input[type="text"]:focus{
 }
 .btn-green:hover{
   background-color:green;
+  color:#fff;
 }
 .btn-red{
   background-color:#ff3f00;
@@ -114,8 +68,9 @@ input[type="text"]:focus{
 }
 .btn-red:hover{
   background-color:red;
+  color:#fff;
 }
-
+/*
 .show{
   display:block;
 }
@@ -123,6 +78,7 @@ input[type="text"]:focus{
   display:none;
 }
 
+*/
 .checkbox{
   display:inline-block;
 }
@@ -181,7 +137,7 @@ input[type="text"]:focus{
 .tab-nav label{
   position:relative;
   display:inline-block;
-  padding:10px 20px;
+  padding:15px 30px;
   margin:0 0 0 5px;
   cursor:pointer;
   border:1px solid #aaa;
@@ -190,6 +146,7 @@ input[type="text"]:focus{
   font-weight:bold;
   text-transform:capitalize;
   font-size:13px;
+  border-radius:3px 3px 0 0;
 }
 .tab-nav label:hover{
   background:#eee;
@@ -203,19 +160,24 @@ input[type="text"]:focus{
 
 /************* Application ***************/
 .board{
-  width:650px;
-  margin:50px auto;
-  background: white;
-  padding:30px;
-  border:1px solid #ccc;
-  box-shadow:0 1px 5px #ccceee;
+  max-width:960px;
+  padding:30px 0;
+  margin:auto;
 }
-.board h1{
-  padding:20px;
+.board-header{
+  padding:25px;
   margin:0 0 30px 0;
-  font-size: 21px;
   background:#dfebf9;
   color: #194274;
+}
+.board-header button{
+  float: right;
+  margin:0;
+}
+.board-header h1{  
+  font-size: 21px;
+  text-align:left;
+  margin:0;
 }
 /************* Form ***********************/
 .form{
@@ -235,15 +197,6 @@ input[type="text"]:focus{
 }
 
 /************** List  ********************/
-.list-action{
-  padding:15px;
-  text-align:left;
-  margin:0 0 10px 0;
-  border-bottom:1px solid #ccc;
-}
-.list-action span{
-  font-weight:bold;
-}
 .list{
   text-align: left;
   padding:0 0 30px 0;
@@ -287,69 +240,46 @@ li.done p{
 }
 
 /****************************************************/
-.action-bar{
-  padding:10px 0 0 0;
-  text-align:left;
-  float: right;
+.task-action-bar{
+  padding:15px 0;
+  text-align:right;
 }
-.action-bar label{
+.task-action-bar button{
+  display:inline-block;
+  vertical-align:top;
+  margin-right:10px;
+}
+.task-action-bar label{
   font-weight:bold;
   font-size:13px;
   margin-right:10px;
 }
-.action-bar button{
+/*
+.task-action-group button, .btn-add-task{
   font-size: 12px;
-  padding:5px 15px;
+  padding:7px 15px;
   margin-right:5px;
   font-weight:bold;
   border-radius:20px;
   text-transform:capitalize;
 }
+*/
+.task-check-all{
+  text-align:left;
+  margin:0 0 10px 0;
+  border-bottom:1px solid #ccc;
+}
+.task-check-all span{
+  font-weight:bold;
+}
 
-/***********************************************/
-.modal{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index:1000;
-  min-height:100%;
-  overflow-y: auto;
+
+.project-list{
+  text-align: left;
 }
-.modal-content{
-  position:absolute;
-  top: 100px;
-  left:calc((100% - 500px)/2);
-  z-index: 15;
-  width:calc(500px - 40px);
-  padding: 20px;
-  background:#fff;
-  border:1px solid #777;
-  box-shadow:0 2px 5px #777;
-}
-.modal-close{
-  position:absolute;
-  z-index:100;
-  right:1px;
-  top:1px;
-  padding:5px 10px;
-  text-align:center;
-  background:#0950a9;
+
+.project-list .list-group-item:hover{
+  background-color:#0e77eb;
   color:white;
-  font-size: 16px;
-}
-.modal-close:hover{
-  background:#444;
   cursor:pointer;
-}
-.overlay{    
-  position:absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index:10;    
-  background:#444;
-  opacity:0.5;
 }

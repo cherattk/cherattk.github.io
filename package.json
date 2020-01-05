@@ -4,7 +4,7 @@
   "description": "A Kanban Task List",
   "main": "main.js",
   "scripts": {
-    "build": "browserify public/main.js -o public/bundle.js"
+    "start": "http-server -a 127.0.0.1 ./public"
   },
   "keywords": [],
   "author": "Cheratt Karim",
@@ -13,6 +13,11 @@
     "eventset": "^1.7.0"
   },
   "devDependencies": {
-    "browserify": "^16.2.3"
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.0",
+    "gulp": "^4.0.2"
   }
 }

@@ -320,29 +320,6 @@ module.exports = function FixDataStore(){
 
 }
 },{}],5:[function(require,module,exports){
-/**
- * @version 0.3.0
- */
-require('../patch/fixdatastore.js')();
-
-const DataManager = require('../src/app/datamanager.js');
-DataManager.init();
-
-const Form = require('../src/ui/form.js');
-Form.init("anchor-form");
-
-const List = require('../src/ui/list.js');
-List.init("anchor-list");
-
-const Modal = require('../src/ui/modal.js');
-Modal.init("anchor-modal");
-
-const ActionBar = require('../src/ui/actionbar.js');
-ActionBar.init("anchor-action");
-
-const TabNavigation = require('../src/ui/tabnav.js');
-TabNavigation.init("anchor-tabnav"); 
-},{"../patch/fixdatastore.js":4,"../src/app/datamanager.js":6,"../src/ui/actionbar.js":10,"../src/ui/form.js":11,"../src/ui/list.js":12,"../src/ui/modal.js":13,"../src/ui/tabnav.js":14}],6:[function(require,module,exports){
 const DataStore = require('./datastore');
 
 const AppEvent = require('./eventstore').AppEvent;
@@ -442,7 +419,7 @@ function DataManager(){
 
 const manager = new DataManager();
 module.exports = manager;
-},{"./datastore":7,"./eventstore":8}],7:[function(require,module,exports){
+},{"./datastore":6,"./eventstore":7}],6:[function(require,module,exports){
 const LocalStore = require('../lib/localstore.js');
 
 function DataStore(storeList){
@@ -476,7 +453,7 @@ module.exports = DataStore;
 
 
 
-},{"../lib/localstore.js":9}],8:[function(require,module,exports){
+},{"../lib/localstore.js":8}],7:[function(require,module,exports){
 const EventSet = require('eventset');
 
 const AppEvent = EventSet.Topic('app.event');
@@ -492,7 +469,7 @@ AppEvent.addEvent("navigate-list");
 module.exports = {
     AppEvent
 }
-},{"eventset":1}],9:[function(require,module,exports){
+},{"eventset":1}],8:[function(require,module,exports){
 function LocalStore(){
 
     this.loadStore = function(storeList) {
@@ -543,7 +520,30 @@ module.exports = new LocalStore();
 
 
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
+/**
+ * @version 0.3.0
+ */
+require('../patch/fixdatastore.js')();
+
+const DataManager = require('./app/datamanager.js');
+DataManager.init();
+
+const Form = require('./ui/form.js');
+Form.init("anchor-form");
+
+const List = require('./ui/list.js');
+List.init("anchor-list");
+
+const Modal = require('./ui/modal.js');
+Modal.init("anchor-modal");
+
+const ActionBar = require('./ui/actionbar.js');
+ActionBar.init("anchor-action");
+
+const TabNavigation = require('./ui/tabnav.js');
+TabNavigation.init("anchor-tabnav"); 
+},{"../patch/fixdatastore.js":4,"./app/datamanager.js":5,"./ui/actionbar.js":10,"./ui/form.js":11,"./ui/list.js":12,"./ui/modal.js":13,"./ui/tabnav.js":14}],10:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 const __config = {
@@ -652,7 +652,7 @@ function ActionBar(){
 }
 
 module.exports = new ActionBar();
-},{"../app/eventstore":8}],11:[function(require,module,exports){
+},{"../app/eventstore":7}],11:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 const __config ={
@@ -718,100 +718,100 @@ function Form(){
 }
 
 module.exports = new Form();
-},{"../app/eventstore":8}],12:[function(require,module,exports){
+},{"../app/eventstore":7}],12:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
-function List(){
-  
+function List() {
+
   var __element;
   var __state = {
-      list : [], // list of item
-      allchecked : false,
-      filter : ""
-    };
+    list: [], // list of item
+    allchecked: false,
+    filter: ""
+  };
 
-  this.init =  function(anchorID) {
-    
-    __element =  document.getElementById(anchorID);
-    
+  this.init = function (anchorID) {
+
+    __element = document.getElementById(anchorID);
+
     // browser event
     __element.onclick = this.selectItem.bind(this);
 
-    AppEvent.addListener("navigate-list" , this.setFilter.bind(this));
+    AppEvent.addListener("navigate-list", this.setFilter.bind(this));
 
     // register listener for "change-data" first
-    AppEvent.addListener("data-change" , this.updateList.bind(this));
+    AppEvent.addListener("data-change", this.updateList.bind(this));
 
     // trigger "data-change" event to init list
-    AppEvent.dispatch("fetch-list" , { name : "task"});
+    AppEvent.dispatch("fetch-list", { name: "task" });
   }
 
-  this.selectItem = function(ev){
+  this.selectItem = function (ev) {
 
     var message = {
-      checked : ev.target.checked
+      checked: ev.target.checked
     };
     var action = ev.target.dataset.action;
     if (sendMessage = (action === 'select-all')) {
-      message.list = __state.list.map(function(item){
+      message.list = __state.list.map(function (item) {
         // this will add "checked" attribute to __state.list[item]
         // to set render html-checkbox element as checked.
         // see this.render()
-        if(item.stage === __state.filter){
+        if (item.stage === __state.filter) {
           item.checked = ev.target.checked;
           return item.id;
         }
       });
-      if(!ev.target.checked){
+      if (!ev.target.checked) {
         message.list = [];
-      }      
+      }
       __state.allchecked = ev.target.checked;
       this.render();
     }
-    else if(sendMessage = (action === 'select-item') ){
+    else if (sendMessage = (action === 'select-item')) {
       message.id = ev.target.dataset.itemId;
-      
-    }    
-    if(sendMessage){
-      AppEvent.dispatch("select-item" , message);
-    }    
+
+    }
+    if (sendMessage) {
+      AppEvent.dispatch("select-item", message);
+    }
   }
 
-  this.updateList = function(event) {
+  this.updateList = function (event) {
     var name = event.eventMessage.name;
-    if(name === "task"){
+    if (name === "task") {
       __state.list = event.eventMessage.data;
-      __state.allchecked = false;    
+      __state.allchecked = false;
       this.render();
     }
   }
 
-  this.setFilter = function(customEvent) {
+  this.setFilter = function (customEvent) {
     __state.filter = customEvent.eventMessage.stage;
     __state.allchecked = false;
-    __state.list.map(function(item){
+    __state.list.map(function (item) {
       // this will add "checked" attribute to __state.list[item]
       // to render html-checkbox element as (un)checked.
       // see this.render()
       item.checked = false;
     });
     this.render();
-    AppEvent.dispatch("select-item" , {
-      checked : false,
-      list : []
+    AppEvent.dispatch("select-item", {
+      checked: false,
+      list: []
     });
   }
 
-  this.render = function() {
+  this.renderListItem = function (params) {
+    var checked = false,
+      list = "";
 
-    var checked = false, list = "";
-
-    __state.list.map(function(item){
-        if( item.stage !== __state.filter){
-          return;
-        }
-        checked = (typeof item.checked !== "undefined" && !!item.checked);
-        list += `<li class="${item.stage}">
+    __state.list.map(function (item) {
+      if (item.stage !== __state.filter) {
+        return;
+      }
+      checked = (typeof item.checked !== "undefined" && !!item.checked);
+      list += `<li class="${item.stage}">
                 <div class="checkbox">
                   <input id="item-${item.id}"
                         data-item-id="${item.id}"
@@ -826,6 +826,11 @@ function List(){
               </li>`;
     });
 
+    return (list ? list : `<li class="empty-list">Empty List</li>`);
+  }
+
+  this.render = function () {
+
     var html = `
           <div class="list-action">
               <div class="checkbox">
@@ -839,7 +844,7 @@ function List(){
               </div>
           </div>
           <ul class="list">            
-            ${ list ? list : `<li class="empty-list">Empty List</li>` }
+            ${ this.renderListItem() }
           </ul>`;
 
     __element.innerHTML = html;
@@ -848,7 +853,7 @@ function List(){
 }
 
 module.exports = new List();
-},{"../app/eventstore":8}],13:[function(require,module,exports){
+},{"../app/eventstore":7}],13:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 function Modal(){
@@ -900,7 +905,7 @@ function Modal(){
 }
 
 module.exports = new Modal();
-},{"../app/eventstore":8}],14:[function(require,module,exports){
+},{"../app/eventstore":7}],14:[function(require,module,exports){
 const AppEvent = require('../app/eventstore').AppEvent;
 
 const __config = [
@@ -958,4 +963,4 @@ function TabNavigation() {
 }
 
 module.exports = new TabNavigation();
-},{"../app/eventstore":8}]},{},[5]);
+},{"../app/eventstore":7}]},{},[9]);

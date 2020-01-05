@@ -1,10 +1,10 @@
+// TaskForm
 const AppEvent = require('../app/eventstore').AppEvent;
 
-const __config ={
+const __config = {
   maxChar : 50
 }
-
-function Form(){
+function TaskForm(){
 
   var __element;
   var __state = {
@@ -62,4 +62,4 @@ function Form(){
   }
 }
 
-module.exports = new Form();
+module.exports = new TaskForm();
