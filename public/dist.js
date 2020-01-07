@@ -311,9 +311,9 @@ var DataStore = require('./datastore');
 var AppEvent = require('./eventstore').AppEvent;
 
 function DataManager() {
-  var __dataStore = new DataStore(['task']);
+  var _dataStore = new DataStore(['task']);
 
-  var __remove = function __remove(store, target_item) {
+  var _remove = function _remove(store, target_item) {
     var copyStore = {
       name: store.name,
       data: []
@@ -325,12 +325,12 @@ function DataManager() {
       }
     });
 
-    __dataStore.saveStore(copyStore);
+    _dataStore.saveStore(copyStore);
 
     return copyStore;
   };
 
-  var __updateStatus = function __updateStatus(store, target_item, value) {
+  var _updateStatus = function _updateStatus(store, target_item, value) {
     var copyStore = {
       name: store.name,
       data: []
@@ -343,30 +343,25 @@ function DataManager() {
       copyStore.data.push(item);
     });
 
-    __dataStore.saveStore(copyStore);
+    _dataStore.saveStore(copyStore);
 
     return copyStore;
   };
 
-  this.init = function () {
-    AppEvent.addListener("save-form", this.save.bind(this));
-    AppEvent.addListener("fetch-list", this.getList.bind(this));
-    AppEvent.addListener("update-item", this.update.bind(this));
+  this.init = function () {// AppEvent.addListener("save-form" , this.save.bind(this));
+    // AppEvent.addListener("fetch-list", this.getList.bind(this));
+    // AppEvent.addListener("update-item", this.update.bind(this));
   };
 
-  this.save = function (customEvent) {
-    var storeName = customEvent.eventMessage.name;
-    var item = customEvent.eventMessage.data;
+  this.save = function (storeName, data) {
+    var store = _dataStore.getStore(storeName);
 
-    var store = __dataStore.getStore(storeName);
+    store.data.push(data);
 
-    store.data.push(item);
-
-    __dataStore.saveStore(store);
+    _dataStore.saveStore(store);
 
     AppEvent.dispatch("data-change", {
-      name: store.name,
-      data: store.data
+      store: storeName
     });
   };
 
@@ -376,16 +371,16 @@ function DataManager() {
     var targetItem = customEvent.eventMessage.items;
     var value = customEvent.eventMessage.value;
 
-    var store = __dataStore.getStore(storeName);
+    var store = _dataStore.getStore(storeName);
 
     var copyStore;
 
     if (action === "remove") {
-      copyStore = __remove(store, targetItem);
+      copyStore = _remove(store, targetItem);
     }
 
     if (action === "update-stage") {
-      copyStore = __updateStatus(store, targetItem, value);
+      copyStore = _updateStatus(store, targetItem, value);
     }
 
     AppEvent.dispatch("data-change", copyStore);
@@ -394,7 +389,7 @@ function DataManager() {
   this.getList = function (customEvent) {
     var storeName = customEvent.eventMessage.name;
 
-    var store = __dataStore.getStore(storeName);
+    var store = _dataStore.getStore(storeName);
 
     AppEvent.dispatch("data-change", {
       name: store.name,
@@ -540,16 +535,16 @@ ProjectList.init("div-project-list");
 
 (function () {
   var bootstrap = [{
-    src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-    integrity: "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo",
+    src: "https://code.jquery.com/jquery-3.4.1.slim.min.js",
+    integrity: "sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n",
     crossorigin: "anonymous"
   }, {
-    src: "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js",
-    integrity: "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1",
+    src: "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
+    integrity: "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo",
     crossorigin: "anonymous"
   }, {
-    src: "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js",
-    integrity: "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM",
+    src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
+    integrity: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
     crossorigin: "anonymous"
   }];
   bootstrap.map(function (item) {
@@ -679,7 +674,7 @@ function ActionBar() {
       }
     });
 
-    __element.innerHTML = "                \n                <div class=\"task-action-bar\">\n                  \n                  <div class=\"task-action-group\">\n                    <label>Status : </label>                \n                      ".concat(actionList, "\n                  </div>\n                </div>");
+    __element.innerHTML = "                \n                <div class=\"task-action-bar\">                  \n                  <div class=\"task-action-group\">\n                    <label>Move to : </label>                \n                      ".concat(actionList, "\n                  </div>\n                </div>");
   };
 }
 
@@ -849,20 +844,18 @@ module.exports = new Modal();
  */
 var AppEvent = require('../app/eventstore').AppEvent;
 
+var DataManager = require('../app/datamanager');
+
 function ProjectList() {
   var _element;
 
   var _state = {
-    projct_list: [{
+    project_list: [{
       id: "1",
       name: "My Project -1 "
-    }, {
-      id: "2",
-      name: "My Project -2 "
-    }, {
-      id: "3",
-      name: "My Project -3 "
-    }]
+    } // { id : "2" , name :  "My Project -2 "},
+    // { id : "3" , name :  "My Project -3 "}
+    ]
   };
 
   this.init = function (anchorID) {
@@ -879,6 +872,13 @@ function ProjectList() {
   this.click = function (e) {
     if (e.target.tagName === 'LI') {
       alert('select project');
+      return;
+    }
+
+    if (e.target.id === 'add-project') {
+      DataManager.save("task", {});
+      e.target.reset();
+      return;
     }
   };
 
@@ -887,23 +887,23 @@ function ProjectList() {
   };
 
   this.renderList = function () {
-    var list = "<ul class=\"list-group list-group-flush\">";
+    var list = "<ul class=\"list-group\">";
 
-    _state.projct_list.map(function (project) {
+    _state.project_list.map(function (project) {
       list += "<li class=\"list-group-item\" id=\"prj-".concat(project.id, "\">").concat(project.name, "</li>");
     });
 
-    return _state.projct_list ? list : this.emptyState();
+    return _state.project_list ? list : this.emptyState();
   };
 
   this.render = function () {
-    _element.innerHTML = "\n    <div id=\"project-list\" class=\"project-list modal fade\" role=\"dialog\">\n    <div class=\"modal-dialog\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">My Projects</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n        <div class=\"modal-body\">\n          ".concat(this.renderList(), "\n        </div>\n      </div>\n\n    </div>\n  </div>\n              ");
+    _element.innerHTML = "\n    <div id=\"project-list\" class=\"modal fade project-list\" role=\"dialog\">\n    <div class=\"modal-dialog\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">My Projects</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n\n        <div class=\"modal-body form-add-project\"> \n          <form id=\"add-project\">\n            <div class=\"form-group\">\n              <label for=\"project-name\">Project name</label>\n              <input type=\"text\" class=\"form-control\" id=\"project-name\" name=\"project-name\" aria-describedby=\"projectName\">\n              <small id=\"projectName\" class=\"form-text text-muted\">Enter you project name and click save.</small>\n            </div>\n            <button type=\"button\" class=\"btn btn-primary\">Save</button>\n          </form>\n        </div>\n        <div class=\"modal-body\">\n          ".concat(this.renderList(), "          \n        </div>\n      </div>\n\n    </div>\n  </div>");
   };
 }
 
 module.exports = new ProjectList();
 
-},{"../app/eventstore":7}],14:[function(require,module,exports){
+},{"../app/datamanager":5,"../app/eventstore":7}],14:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../app/eventstore').AppEvent;

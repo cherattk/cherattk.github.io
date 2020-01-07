@@ -8,12 +8,6 @@ html, body{
   font-size:16px;
   text-align:center;
 }
-.header{
-  height:55px;
-  background: white;
-  border-bottom:1px solid #dedeef;
-  box-shadow:0 1px 1px #efeff3;
-}
 ul {
   margin: 0;
   padding: 0;
@@ -23,19 +17,12 @@ ul {
 p{
   word-break: break-all;
 }
+/** ovveride bootstrap */
+.modal-content{
+  padding:10px 15px;
+}
+/**************************/
 
-input[type="text"]{
-  padding:0 10px;
-  border:1px solid #999;
-  outline:none;
-  font-size:15px;
-  height:32px;
-  vertical-align: bottom;
-  border-radius:3px;
-}
-input[type="text"]:focus{
-  border-color:#327fe0;
-}
 .btn-blue{
   background-color:#4c93ea;
   border-color:#3f7fce;
@@ -81,6 +68,7 @@ input[type="text"]:focus{
 */
 .checkbox{
   display:inline-block;
+  margin-top:3px;
 }
 .checkbox input{
   display:none;
@@ -180,22 +168,9 @@ input[type="text"]:focus{
   margin:0;
 }
 /************* Form ***********************/
-.form{
-  margin: 0 0 20px;
-  text-align:left;
+.form-add-project{
+  border-bottom:1px solid #ccc;
 }
-.form input[type="text"]{ 
-  width:calc(100% - 100px);
-}
-.form input[type="submit"]{
-  padding:5px 15px;
-  font-weight:bold;
-  cursor:pointer;
-  height:34px;
-  margin-left:-8px;
-  border-radius:0 3px 3px 0;
-}
-
 /************** List  ********************/
 .list{
   text-align: left;
@@ -203,7 +178,7 @@ input[type="text"]:focus{
 }
 
 .list li{
-  padding:15px;
+  padding:17px 10px 10px 15px;
   margin-bottom:5px;
   border-left-width:5px;
   border-left-style:solid;
@@ -215,8 +190,9 @@ input[type="text"]:focus{
   vertical-align: top;
 }
 .list p{
-  margin:1px 0 0 0;
+  margin:0;
   width:calc(100% - 50px);
+  padding:0;
 }
 /*************** item status ************/
 .empty-list{

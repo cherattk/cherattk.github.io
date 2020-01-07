@@ -1,4 +1,4 @@
-// const { series, src, dest } = require('gulp');
+const { watch } = require('gulp');
 // const sass = require('gulp-sass');
 const browserify = require("browserify");
 const fs = require('fs');
@@ -20,4 +20,9 @@ function build_js(){
 // }
 
 // exports.css = build_css;
-exports.ui = build_js;
+// exports.ui = build_js;
+
+exports.default = function() {
+  // You can use a single task
+  watch('src/js/**/*.js', build_js);
+};

@@ -98,10 +98,9 @@ function ActionBar() {
       }
     });
     __element.innerHTML = `                
-                <div class="task-action-bar">
-                  
+                <div class="task-action-bar">                  
                   <div class="task-action-group">
-                    <label>Status : </label>                
+                    <label>Move to : </label>                
                       ${actionList}
                   </div>
                 </div>` ;
