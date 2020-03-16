@@ -24,7 +24,7 @@ function TaskForm() {
 
   var __form = $(`
     <form id="task-form" class="task-form">
-      <input type="text" name="task_body" class="form-control mb-3" placeholder="Task..." />
+      <input type="text" name="task_body" placeholder="Task..." />
       <!--<input type="submit" value="Save" class="btn btn-primary btn-sm"/>
       <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>-->
     </form>`);
