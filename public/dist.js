@@ -2,42 +2,55 @@
 /**
  * @module EventSet
  * @license MIT Licence
- * @copyright Copyright (c) 2018-2019 cheratt karim
+ * @copyright Copyright (c) 2018-present cheratt karim
  *                                              
  */
 
 const Topic = require('./topic.js');
 const Util = require('./util.js');
 
- /**
-  * EventSet 
-  */
-
-
+/**
+ * EventSet 
+ */
 function EventSet() {
 
-    var _topicList = new Map();
+  var _topicList = new Map();
 
-    this.Topic = function(topicName) {
-        
-        if(!Util.isString(topicName)){
-            var errorMsg = `EventSet.createTopic() : topicName argument must be of type string`;            
-            throw new TypeError(errorMsg);
-        }
+  /**
+   * @deprecated since 1.8.0
+   * @alias of Eventset.createTopic()
+   * 
+   */
+  this.Topic = function(topicName) {
+    return this.createTopic(topicName);
+  }
 
-        var _topic = null;
-        var topicToken = Util.clean(topicName);   
+/** 
+ * Singleton factory for a Topic instance
+ * 
+ * @param {string} topicName 
+ * @returns Topic Instance
+ * 
+ * */
+  this.createTopic = function (topicName) {
 
-        if(_topicList.has(topicToken)){
-            _topic = _topicList.get(topicName);
-        }
-        else{
-            _topic = new Topic(topicName);
-            _topicList.set(topicName , _topic);
-        }
-
-        return _topic;
+    if (!Util.isValidString(topicName)) {
+      throw new TypeError(`package eventset : EventSet.createTopic() : topicName argument must be of type string`);
     }
+
+    var _topic = null;
+    var _topicToken = Util.clean(topicName);
+
+    if (_topicList.has(_topicToken)) {
+      _topic = _topicList.get(topicName);
+    }
+    else {
+      _topic = new Topic(topicName);
+      _topicList.set(topicName, _topic);
+    }
+
+    return _topic;
+  }
 }
 
 module.exports = new EventSet();
@@ -46,202 +59,211 @@ module.exports = new EventSet();
 /**
  * @module Topic
  * @license MIT Licence
- * @copyright Copyright (c) 2018-2019 cheratt karim
+ * @copyright Copyright (c) 2018-present cheratt karim
  */
 
- const Util = require('./util.js');
+const Util = require('./util.js');
 
- /**
-  * 
-  * @param {string} topicName
-  * 
-  * @retruns {Object} New Topic instance 
-  */
-function Topic(topicName){
+/**
+ * Topic constructor
+ * 
+ * @param {string} topicName
+ * @retruns {Object} New Topic instance 
+ */
 
-    if(!Util.isString(topicName)){
-        var errorMsg = `Topic.Topic() : topicName argument must be of type string`;            
-        throw new TypeError(errorMsg);
+module.exports = function Topic(topicName) {
+
+  if (!Util.isValidString(topicName)) {
+    throw new TypeError(`package eventset : Topic.Topic() : topicName argument must be of type string`);
+  }
+
+  var _eventMap = new Map();
+
+  /**
+   * Get Topic Name
+   * 
+   * @returns {string} topic name
+   */
+  this.getName = function () {
+    return topicName;
+  }
+
+  /**
+   * Get all registered events
+   * 
+   * @returns {Array<string>} An array of event names
+   */
+  this.getEventList = function () {
+    var result = Array.from(_eventMap.keys());
+    return result;
+  }
+
+  /**
+   * Register the event to the topic
+   * and returns an array of registered events
+   * 
+   * @param   {string} eventName - event name
+   * 
+   * @returns {Array<string>} An array of events
+   */
+  this.addEvent = function (eventName) {
+    if (!Util.isValidString(eventName)) {
+      throw new TypeError(`package eventset : Topic.addEvent() : eventName argument must be of type string`);
     }
 
-    var _eventMap = new Map();
+    var eventToken = Util.clean(eventName);
 
-    /**
-     * Get Topic Name
-     * 
-     * @returns {string} topic name
-     */
-    this.getName = function(){
-        return topicName;
+    if (!_eventMap.has(eventToken)) {
+      _eventMap.set(eventToken, new Map());
+    }
+    return this.getEventList();
+  }
+
+  /**
+   * Remove the event from the topic and all its attached listeners
+   * 
+   * @param {string} eventName 
+   * @returns {Array<string>} An array of events
+   */
+
+  this.removeEvent = function (eventName) {
+    if (!Util.isValidString(eventName)) {
+      throw new TypeError(`package eventset : Topic.removeEvent() : eventName argument must be of type string`);
     }
 
+    var eventToken = Util.clean(eventName);
 
-    /**
-     * Get all registered events
-     * 
-     * @returns {Array<string>} An array of event names
-     */
-    this.getEvent = function (){
-        var result = Array.from(_eventMap.keys());
-        return result;
+    if (_eventMap.has(eventToken)) {
+      _eventMap.delete(eventToken);
+    }
+    return this.getEventList();
+  }
+
+  /**
+   * Register event listener
+   * 
+   * @param {string} eventName
+   * @param {Function} listener
+   * 
+   * @returns {string} listener identifier
+   */
+  this.addListener = function (eventName, listenerCallback, errorCallback) {
+    if (!Util.isValidString(eventName)) {
+      throw new TypeError(`package eventset : Topic.addListener() : eventName argument must be a String type`);
     }
 
-    /**
-     * Register the event to the topic
-     * 
-     * @param   {string} eventName - event name
-     * 
-     * @returns {Array<string>} An array of event names
-     */
-    this.addEvent = function (eventName){
-        if(!Util.isString(eventName)){
-            var errorMsg = `Topic.addEvent() : first argument must be of type string`;            
-            throw new TypeError(errorMsg);
-        }
-
-        var eventToken = Util.clean(eventName);
-
-        if(!_eventMap.has(eventToken)){
-            _eventMap.set(eventToken , new Map());
-        }
-        return this.getEvent();
+    if (typeof listenerCallback !== 'function') {
+      throw new Error(`package eventset : Topic.addListener() : the listener argument must be a Function`);
     }
 
-    /**
-     * Remove the event from the topic and all its event listeners
-     * 
-     * @param {string} eventName
-     * 
-     * @returns {Array<string>} An array of events names
-     */
-
-    this.removeEvent = function(eventName) {
-        if(!Util.isString(eventName)){
-            var errorMsg = `Topic.removeEvent() : first argument must be of type string`;            
-            throw new TypeError(errorMsg);
-        }
-
-        var eventToken = Util.clean(eventName);
-
-        if(_eventMap.has(eventToken)){
-            _eventMap.delete(eventToken);
-        }
-        return this.getEvent();
+    var eventToken = Util.clean(eventName);
+    if (!_eventMap.has(eventToken)) {
+      throw new Error(`package eventset : Topic.addListener() Invalid event name : event named ${eventName} does not exists`);
     }
 
-    /**
-     * Register event listener
-     * 
-     * @param {string} eventName
-     * @param {any} listener
-     * 
-     * @returns {string} listener identifier
-     */
-    this.addListener = function(eventName , listener){
-        if(!Util.isString(eventName)){
-            throw new TypeError(`Topic.addListener() : first argument must be a String type`);
-        }
+    var listenerMap = _eventMap.get(eventToken);
+    var listenerId = eventToken + '/' + (listenerMap.size + 1).toString();
 
-        if(typeof listener !== 'function'){
-            throw new Error(`Topic.addListener() : second argument must be a Function type`);
-        }
+    listenerMap.set(listenerId, {
+      listener: listenerCallback,
+      error: (typeof errorCallback === 'function' ? errorCallback :
+        function (listenerError) { console.log(listenerError); })
+    });
 
-        var eventToken = Util.clean(eventName);
-        if(!_eventMap.has(eventToken)){
-            throw new Error( 'Invalid event name : ' + eventName);
-        }
+    return listenerId;
+  }
 
-        var listenerMap = _eventMap.get(eventToken);
-        var listenerId = eventToken + '/' + (listenerMap.size + 1).toString();
-            listenerMap.set(listenerId , listener);
-        
-        return listenerId;
-    }
-    
 
-    /**
-     * Remove listener
-     * 
-     * @param {string} listenerId
-     * 
-     * @retruns {boolean} true if it succeeds, false otherwise
-     */
-    this.removeListener = function(listenerId){
-        if(!Util.isString(listenerId)){
-            var errorMsg = `Topic.removeListener() : listenerId argument must be of type string`;            
-            throw new TypeError(errorMsg);
-        }
-
-        var eventToken = listenerId.split("/" , 1)[0];
-        if(!_eventMap.has(eventToken)){
-            throw new Error( 'Invalid listener identifier : ' + listenerId);
-        }
-
-        var listenerMap  = _eventMap.get(eventToken);
-        var deleteResult = listenerMap.delete(listenerId);
-        return deleteResult;
+  /**
+   * Remove listener
+   * 
+   * @param {string} listenerId
+   * 
+   * @retruns {boolean} true if it succeeds, false otherwise
+   */
+  this.removeListener = function (listenerId) {
+    if (!Util.isValidString(listenerId)) {
+      throw new TypeError(`package eventset : Topic.removeListener() : listenerId argument must be of type string`);
     }
 
-
-    /**
-     * Dispatch event
-     * 
-     * @returns {undefined}
-     */
-    this.dispatch = function(eventName , message){
-        if(!Util.isString(eventName)){
-            throw new TypeError(`Topic.dispatch() : first argument must be of type string`);
-        }        
-        var eventToken = Util.clean(eventName);
-        if(!_eventMap.has(eventToken)){
-            throw new Error('Invalid event name : ' + eventName);
-        }
-
-        var copyMessage = JSON.parse(JSON.stringify(message));
-        var event  = {
-            topicName    : topicName,
-            eventName    : eventName, 
-            eventMessage : copyMessage
-        };
-        
-        var listenerMap = _eventMap.get(eventToken);
-        listenerMap.forEach(function(listener){
-            listener(event);
-        });
+    var eventToken = listenerId.split("/", 1)[0];
+    if (!_eventMap.has(eventToken)) {
+      throw new Error(`package eventset : Invalid listener identifier : listener with idetifier ${eventToken} does not exists`);
     }
+
+    var listenerMap = _eventMap.get(eventToken);
+    var deleteResult = listenerMap.delete(listenerId);
+    return deleteResult;
+  }
+
+  /**
+   * Trigger event
+   * 
+   * @returns {undefined}
+   */
+  this.dispatch = function (eventName, message) {
+    if (!Util.isValidString(eventName)) {
+      throw new TypeError(`package eventset : Topic.dispatch() : eventName argument must be of type string`);
+    }
+    var eventToken = Util.clean(eventName);
+    if (!_eventMap.has(eventToken)) {
+      throw new Error(`package eventset : Topic.dispatch() Invalid event name : event named ${eventName} does not exists`);
+    }
+
+    var event = {
+      topic: topicName,
+      event: eventName,
+      message: {}
+    };
+
+    // check if the message is of a valid type
+    // JSON.stringify() returns undefined for "Function" and "undefined" value
+    var copyMessage = JSON.stringify(message);
+    if (typeof copyMessage !== 'undefined') {
+      event.message = JSON.parse(copyMessage);
+    }
+
+    var listenerMap = _eventMap.get(eventToken);
+    listenerMap.forEach(function (callback, listener_id) {
+      setTimeout(function () {
+        try {
+          callback.listener(event);
+        } catch (error) {
+          callback.error( error, event );
+        }
+      }, 0);
+    });
+  }
 }
-
-module.exports = Topic;
 },{"./util.js":3}],3:[function(require,module,exports){
 /**
  * @module Util
  * @license MIT Licence
- * @copyright Copyright (c) 2018-2019 cheratt karim
+ * @copyright Copyright (c) 2018-present cheratt karim
  */
 
 
 const Util = {
-    
-    /**
-     * Convert input string to lowercase and remove whitespaces and slashes
-     * 
-     * @param {string} value to clean 
-     */
-    clean : function(input){
-        if(!this.isString(input)){
-            var errorMsg = `Util.clean() : input argument must be of type string`;            
-            throw new TypeError(errorMsg);
-        }
-        return input.toLowerCase().replace(/\s|\//g, "");
-    },
 
-    /**
-     * 
-     * @param {string} input
-     */
-    isString : function(input){
-        return (typeof input === 'string' && input !== '');
+  /**
+   * Convert input string to lowercase and remove whitespaces and slashes
+   * 
+   * @param {string} value to clean 
+   */
+  clean: function (input) {
+    if (!this.isValidString(input)) {
+      throw new TypeError(`package eventset : Util.clean(input) : input argument must be of type string`);
     }
+    return input.toLowerCase().replace(/\s|\//g, "");
+  },
+
+  /**
+   * 
+   * @param {string} input
+   */
+  isValidString: function (input) {
+    return (typeof input === 'string' && input !== '');
+  }
 
 };
 
@@ -250,553 +272,295 @@ module.exports = Util;
 "use strict";
 
 /**
- * Fix the structure of the task object
- */
-module.exports = function FixDataStore() {
-  // return;
-  if (!window.localStorage) {
-    return;
-  }
-
-  var storeList = [{
-    name: "task",
-    field: [[// rename "status" property to "stage"
-    "status", "stage"]]
-  }];
-
-  var __originData, __copyData, patchName, patchDone;
-
-  storeList.map(function (store) {
-    // 1 - check if the data store is patched
-    patchName = "patch." + store.name + ".store";
-    patchDone = window.localStorage.getItem(patchName);
-
-    if (patchDone === "done") {
-      return;
-    } // 2 - the data store is not patched
-
-
-    storeData = window.localStorage.getItem(store.name);
-
-    if (storeData) {
-      __originData = JSON.parse(storeData); //apply change
-
-      __copyData = __originData.map(function (item) {
-        // create a new field named field[1].value and
-        // assign to a new created field the value of 
-        // the previous field named field[0]
-        var __item = Object.assign({}, item);
-
-        store.field.map(function (field) {
-          if (typeof item[field[0]] !== "undefined") {
-            __item[field[1]] = item[field[0]].toString();
-            delete __item[field[0]];
-          }
-        }); // no need to store it
-
-        delete __item.checked;
-        return __item;
-      });
-      window.localStorage.setItem("".concat(store.name), JSON.stringify(__copyData));
-      window.localStorage.setItem(patchName, "done");
-    }
-  });
-};
-
-},{}],5:[function(require,module,exports){
-"use strict";
-
-var DataStore = require('./datastore');
-
-var AppEvent = require('./eventstore').AppEvent;
-
-function DataManager() {
-  var _dataStore = new DataStore(['task']);
-
-  var _remove = function _remove(store, target_item) {
-    var copyStore = {
-      name: store.name,
-      data: []
-    };
-    store.data.forEach(function (item) {
-      // if item is not in array
-      if (target_item.indexOf(item.id) < 0) {
-        copyStore.data.push(item);
-      }
-    });
-
-    _dataStore.saveStore(copyStore);
-
-    return copyStore;
-  };
-
-  var _updateStatus = function _updateStatus(store, target_item, value) {
-    var copyStore = {
-      name: store.name,
-      data: []
-    };
-    store.data.forEach(function (item) {
-      if (target_item.indexOf(item.id) >= 0) {
-        item.stage = value;
-      }
-
-      copyStore.data.push(item);
-    });
-
-    _dataStore.saveStore(copyStore);
-
-    return copyStore;
-  };
-
-  this.init = function () {// AppEvent.addListener("save-form" , this.save.bind(this));
-    // AppEvent.addListener("fetch-list", this.getList.bind(this));
-    // AppEvent.addListener("update-item", this.update.bind(this));
-  };
-
-  this.save = function (storeName, data) {
-    var store = _dataStore.getStore(storeName);
-
-    store.data.push(data);
-
-    _dataStore.saveStore(store);
-
-    AppEvent.dispatch("data-change", {
-      store: storeName
-    });
-  };
-
-  this.update = function (customEvent) {
-    var action = customEvent.eventMessage.action;
-    var storeName = customEvent.eventMessage.name;
-    var targetItem = customEvent.eventMessage.items;
-    var value = customEvent.eventMessage.value;
-
-    var store = _dataStore.getStore(storeName);
-
-    var copyStore;
-
-    if (action === "remove") {
-      copyStore = _remove(store, targetItem);
-    }
-
-    if (action === "update-stage") {
-      copyStore = _updateStatus(store, targetItem, value);
-    }
-
-    AppEvent.dispatch("data-change", copyStore);
-  };
-
-  this.getList = function (customEvent) {
-    var storeName = customEvent.eventMessage.name;
-
-    var store = _dataStore.getStore(storeName);
-
-    AppEvent.dispatch("data-change", {
-      name: store.name,
-      data: store.data
-    });
-  };
-}
-
-var manager = new DataManager();
-module.exports = manager;
-
-},{"./datastore":6,"./eventstore":7}],6:[function(require,module,exports){
-"use strict";
-
-var LocalStore = require('../lib/localstore.js');
-
-function DataStore(storeList) {
-  var __storeArray = LocalStore.loadStore(storeList);
-
-  this.getStore = function (name) {
-    var store = __storeArray.filter(function (store) {
-      return store.name === name;
-    });
-
-    return Object.assign({}, store[0]);
-  };
-
-  this.saveStore = function (store) {
-    for (var index = 0; index < __storeArray.length; index++) {
-      if (__storeArray[index].name === store.name) {
-        __storeArray[index] = store;
-        break;
-      }
-    }
-
-    LocalStore.save(store);
-  };
-
-  this.genID = function () {
-    return Math.random().toString(36).substring(2, 13);
-  };
-}
-
-module.exports = DataStore;
-
-},{"../lib/localstore.js":8}],7:[function(require,module,exports){
-"use strict";
-
-var EventSet = require('eventset');
-
-var AppEvent = EventSet.Topic('app.event');
-AppEvent.addEvent("save-form");
-AppEvent.addEvent("fetch-list");
-AppEvent.addEvent("data-change");
-AppEvent.addEvent("modal-state");
-AppEvent.addEvent("select-item");
-AppEvent.addEvent("update-item");
-AppEvent.addEvent("navigate-list");
-module.exports = {
-  AppEvent: AppEvent
-};
-
-},{"eventset":1}],8:[function(require,module,exports){
-"use strict";
-
-function LocalStore() {
-  this.loadStore = function (storeList) {
-    if (!window.localStorage) {
-      return;
-    }
-
-    var __storeArray = [];
-    var storeData;
-    storeList.map(function (storeName) {
-      storeData = window.localStorage.getItem(storeName);
-
-      if (storeData) {
-        __storeArray.push({
-          name: storeName,
-          data: JSON.parse(storeData)
-        });
-      } else {
-        var __store = {
-          name: storeName,
-          data: []
-        };
-
-        __storeArray.push(__store); // save in browser
-
-
-        window.localStorage.setItem(__store.name, JSON.stringify(__store.data));
-      }
-    });
-    return __storeArray;
-  };
-
-  this.save = function (store) {
-    window.localStorage.setItem(store.name, JSON.stringify(store.data));
-  };
-}
-
-module.exports = new LocalStore();
-
-},{}],9:[function(require,module,exports){
-"use strict";
-
-/**
  * @version 0.4.0
  */
 
 /**/
-require('../../patch/fixdatastore.js')();
+// require('../../patch/fixdatastore')();
+var Form = require('./ui/task-form');
 
-var DataManager = require('./app/datamanager.js');
+Form.init("task-form-container");
 
+var List = require('./ui/list');
+
+List.init("task-list-container");
+
+var Modal = require('./ui/modal');
+
+Modal.init("task-modal-container"); // const ActionBar = require('./ui/actionbar');
+// ActionBar.init("task-action-container");
+// const TabNavigation = require('./ui/tabnav');
+// TabNavigation.init("task-nav-container");
+
+var ProjectList = require('./ui/folder-list');
+
+ProjectList.init("div-folder-list");
+/**
+ *
+ */
+// (function () {
+//   var bootstrap = [
+//     {
+//       src: "https://code.jquery.com/jquery-3.4.1.slim.min",
+//       integrity: "sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n",
+//       crossorigin: "anonymous"
+//     },
+//     {
+//       src: "https://cdndelivr.net/npm/popper@1.16.0/dist/umd/popper.min",
+//       integrity: "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo",
+//       crossorigin: "anonymous"
+//     },
+//     {
+//       src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min",
+//       integrity: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
+//       crossorigin: "anonymous"
+//     }
+//   ];
+//   bootstrap.map(function (item) {
+//     var scriptTag = document.createElement("script");
+//     scriptTag.src = item.src;
+//     if (scriptTag.readyState) {  // for IE <9
+//       scriptTag.onreadystatechange = function () {
+//         if (scriptTag.readyState === "loaded" || scriptTag.readyState === "complete") {
+//           scriptTag.onreadystatechange = null;
+//           loadApp();
+//         }
+//       };
+//     }
+//     else { //Others
+//       scriptTag.onload = function () {
+//         loadApp();
+//       };
+//     }
+//     document.getElementsByTagName("head")[0].appendChild(scriptTag);
+//   });
+// })();
+
+},{"./ui/folder-list":7,"./ui/list":8,"./ui/modal":9,"./ui/task-form":10}],5:[function(require,module,exports){
+"use strict";
+
+var AppEvent = require('./eventstore').AppEvent;
+
+var __taskStore = new Map();
+
+function saveStore() {
+  var data = [];
+
+  __taskStore.forEach(function (item) {
+    data.push(item);
+  });
+
+  window.localStorage.setItem('task', JSON.stringify(data));
+  AppEvent.dispatch("update-task-list");
+}
+
+var DataManager = {
+  init: function init() {
+    var data = JSON.parse(window.localStorage.getItem('task')); // if defined
+
+    if (data instanceof Array) {
+      data.forEach(function (item) {
+        __taskStore.set(item.task_id, item);
+      });
+    }
+  },
+  getTaskList: function getTaskList(storeName, criteria) {
+    return Array.from(__taskStore.values());
+  },
+  getTask: function getTask(task_id) {
+    return result = __taskStore.get(task_id);
+  },
+  removeTask: function removeTask(selectedList) {
+    selectedList.forEach(function (selected) {
+      __taskStore["delete"](selected.task_id);
+    });
+    saveStore();
+  },
+  setTask: function setTask(task) {
+    __taskStore.set(task.task_id, task);
+
+    saveStore();
+  }
+};
 DataManager.init();
+module.exports = DataManager;
 
-var Form = require('./ui/task-form.js'); // Form.init("task-form");
+},{"./eventstore":6}],6:[function(require,module,exports){
+"use strict";
 
+var EventSet = require('eventset');
 
-var List = require('./ui/list.js');
+var AppEvent = EventSet.Topic('app.event'); // AppEvent.addEvent("save-form");
+// AppEvent.addEvent("fetch-list");
+// AppEvent.addEvent("data-change");
+// AppEvent.addEvent("navigate-list");
 
-List.init("task-list");
+AppEvent.addEvent("edit-item");
+AppEvent.addEvent("select-item");
+AppEvent.addEvent("modal-state");
+AppEvent.addEvent("init-app");
+AppEvent.addEvent("update-task-list");
+module.exports = {
+  AppEvent: AppEvent
+};
 
-var Modal = require('./ui/modal.js');
+},{"eventset":1}],7:[function(require,module,exports){
+"use strict";
 
-Modal.init("task-modal");
-
-var ActionBar = require('./ui/actionbar.js');
-
-ActionBar.init("task-action");
-
-var TabNavigation = require('./ui/tabnav.js');
-
-TabNavigation.init("task-nav");
-
-var ProjectList = require('./ui/project-list.js');
-
-ProjectList.init("div-project-list");
 /**
  * 
  */
+var AppEvent = require('../service/eventstore').AppEvent;
 
-(function () {
-  var bootstrap = [{
-    src: "https://code.jquery.com/jquery-3.4.1.slim.min.js",
-    integrity: "sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n",
-    crossorigin: "anonymous"
-  }, {
-    src: "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
-    integrity: "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo",
-    crossorigin: "anonymous"
-  }, {
-    src: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
-    integrity: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
-    crossorigin: "anonymous"
-  }];
-  bootstrap.map(function (item) {
-    var tag = document.createElement("script");
-    tag.src = item.src; // tag.crossorigin = item.crossorigin;
-    // tag.integrity = item.integrity;
+var DataManager = require('../service/datamanager');
 
-    document.getElementsByTagName("head")[0].appendChild(tag);
-  });
-})();
-
-},{"../../patch/fixdatastore.js":4,"./app/datamanager.js":5,"./ui/actionbar.js":10,"./ui/list.js":11,"./ui/modal.js":12,"./ui/project-list.js":13,"./ui/tabnav.js":14,"./ui/task-form.js":15}],10:[function(require,module,exports){
-"use strict";
-
-var AppEvent = require('../app/eventstore').AppEvent;
-
-var __config = {
-  tab: [{
-    name: "todo",
-    label: "To Do",
-    style: "yellow"
-  }, {
-    name: "doing",
-    label: "In progress",
-    style: "blue"
-  }, {
-    name: "done",
-    label: "Done",
-    style: "green"
-  }, {
-    name: "delete",
-    label: "Delete",
-    style: "red"
-  }],
-  // used to define type of available action
-  action: ["todo", "doing", "done", "delete"]
-};
-
-function ActionBar() {
+function FolderList() {
   var __element;
 
   var __state = {
-    list: [],
-    itemStatus: ""
+    edit_folder: {
+      id: "",
+      name: ""
+    },
+    folder_list: [{
+      id: "1",
+      name: "My Folder -1 "
+    }, {
+      id: "2",
+      name: "My Folder -2 "
+    }, {
+      id: "3",
+      name: "My Folder -3 "
+    }]
   };
 
   this.init = function (anchorID) {
-    __element = document.getElementById(anchorID);
-    this.render();
-    __element.onclick = this.action;
-    AppEvent.addListener("select-item", this.updateItemList.bind(this));
-    AppEvent.addListener("navigate-list", this.setItemStatus.bind(this));
+    __element = $("#" + anchorID); // browser event
+
+    __element.click(function (event) {
+      if (event.target.tagName === 'LI') {
+        return;
+      } // if (event.target.id === 'add-folder') {
+      //   DataManager.setFolder({
+      //     id: __state.edit_folder.id,
+      //     name: __state.edit_folder.name
+      //   });
+      //   e.target.reset();
+      //   return;
+      // }
+
+    });
+
+    this.render(); // customEvent
+    //AppEvent.addListener("navigate-list", this.setItemStatus.bind(this));
+  }; // this.setStatus = function (customEvent) {
+  //   __state.itemStatus = customEvent.eventMessage.stage;
+  // }
+
+
+  this.emptyState = function (params) {
+    return '<li class="empty-list">Empty List</li>';
   };
 
-  this.setItemStatus = function (customEvent) {
-    __state.itemStatus = customEvent.eventMessage.stage;
-    this.render();
-  };
+  this.renderList = function () {
+    var list = "<ul class=\"list-group\">";
 
-  this.updateItemList = function (event) {
-    if (typeof event.eventMessage.id !== "undefined") {
-      var id = event.eventMessage.id;
-      var checked = event.eventMessage.checked;
+    __state.folder_list.map(function (folder) {
+      list += "<li class=\"list-group-item\" id=\"prj-".concat(folder.id, "\">").concat(folder.name, "</li>");
+    });
 
-      var index = __state.list.indexOf(id);
-
-      if (checked
-      /* selected */
-      && index < 0
-      /* item is not in the array */
-      ) {
-          __state.list.push(id);
-
-          return;
-        }
-
-      if (!checked
-      /* unselected */
-      && index >= 0
-      /* item is in the array */
-      ) {
-          __state.list.splice(index, 1);
-
-          return;
-        }
-    }
-
-    if (typeof event.eventMessage.list !== "undefined") {
-      __state.list = event.eventMessage.list;
-    }
-  };
-
-  this.action = function (domEvent) {
-    var actionName = domEvent.target.dataset.action;
-    var eventMessage;
-
-    if (__state.list.length < 0 || __config.action.indexOf(actionName) < 0) {
-      return;
-    }
-
-    if (actionName === "delete") {
-      eventMessage = {
-        action: "remove",
-        name: "task",
-        items: __state.list.slice()
-      };
-    } else {
-      // for actions : {"todo" , "doing" , "done"}
-      eventMessage = {
-        action: "update-stage",
-        name: "task",
-        items: __state.list.slice(),
-        value: actionName
-      };
-    }
-
-    AppEvent.dispatch("update-item", eventMessage);
-    __state.list = [];
+    return __state.folder_list ? list : this.emptyState();
   };
 
   this.render = function () {
-    var actionList = "";
-
-    __config.tab.map(function (item) {
-      if (item.name !== __state.itemStatus) {
-        actionList += "<button type=\"button\" data-action=\"".concat(item.name, "\" \n                                  class=\"btn btn-sm btn-").concat(item.style, "\">\n                            ").concat(item.label, "\n                          </button>");
-      }
-    });
-
-    __element.innerHTML = "                \n                <div class=\"task-action-bar\">                  \n                  <div class=\"task-action-group\">\n                    <label>Move to : </label>                \n                      ".concat(actionList, "\n                  </div>\n                </div>");
+    __element.html("\n    <div id=\"folder-list\" class=\"modal fade folder-list\" role=\"dialog\">\n    <div class=\"modal-dialog modal-lg\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">My folders</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n\n        <!--\n        <div class=\"modal-body form-add-folder\">          \n          <button type=\"button\" data-toggle=\"collapse\" data-target=\"#form-add-folder\">add folder</button>\n          <form id=\"form-add-folder\" class=\"collapse\">          \n            <div class=\"form-group\">\n              <label for=\"folder-name\">folder name</label>\n              <input type=\"text\" value=\"\" placeholder=\"Folder Name\"\n                      class=\"form-control\" \n                      id=\"folder-name\" \n                      name=\"folder-name\" aria-describedby=\"folderName\">\n              <small id=\"folderName\" class=\"form-text text-muted\">Enter you folder name and click save.</small>\n            </div>\n            <button type=\"button\" class=\"btn btn-primary\">Save</button>\n            <button type=\"button\" class=\"btn btn-secondary\">Cancel</button>\n          </form>\n        </div>\n        -->\n\n        <div class=\"modal-body\">\n          ".concat(this.renderList(), "          \n        </div>\n      </div>\n\n    </div>\n  </div>"));
   };
 }
 
-module.exports = new ActionBar();
+module.exports = new FolderList();
 
-},{"../app/eventstore":7}],11:[function(require,module,exports){
+},{"../service/datamanager":5,"../service/eventstore":6}],8:[function(require,module,exports){
 "use strict";
 
-var AppEvent = require('../app/eventstore').AppEvent;
+var AppEvent = require('../service/eventstore').AppEvent;
 
-var TaskListItem = require('./task-list-item');
+var DataManager = require('../service/datamanager');
 
 function List() {
-  var __element;
+  var __container;
 
   var __state = {
-    list: [],
-    // list of item
-    allchecked: false,
-    filter: ""
+    list: [] // list of item
+
   };
 
   this.init = function (anchorID) {
-    __element = document.getElementById(anchorID); // browser event
+    __container = $("#" + anchorID).html("<ul class=\"list\">".concat(this.emptyState(), "</ul>"));
+    var self = this;
 
-    __element.onclick = this.selectItem.bind(this);
-    AppEvent.addListener("navigate-list", this.setFilter.bind(this)); // register listener for "change-data" first
+    __container.click(function (event) {
+      switch (event.target.dataset.action) {
+        case "edit-item":
+          var task = __state.list[event.target.dataset.taskIndex]; //__state.selectedTask.push(task);
 
-    AppEvent.addListener("data-change", this.updateList.bind(this)); // trigger "data-change" event to init list
+          AppEvent.dispatch("edit-item", {
+            item: task
+          });
+          break;
 
-    AppEvent.dispatch("fetch-list", {
-      name: "task"
+        case "done":
+        case "todo":
+          var update_task = __state.list[event.target.dataset.taskIndex];
+          update_task.task_label = event.target.dataset.action;
+          DataManager.setTask(update_task);
+          break;
+
+        case "delete":
+          var rm_task = __state.list[event.target.dataset.taskIndex];
+          DataManager.removeTask([rm_task]);
+          break;
+
+        default:
+          break;
+      }
     });
+
+    AppEvent.addListener("init-app", function () {
+      self.renderListItem();
+    });
+    AppEvent.addListener("update-task-list", function () {
+      self.renderListItem();
+    });
+    this.renderListItem();
   };
 
-  this.selectItem = function (ev) {
-    var message = {
-      checked: ev.target.checked
-    };
-    var action = ev.target.dataset.action;
+  this.emptyState = function () {
+    return "<li class=\"empty-list\">Empty List</li>";
+  };
 
-    if (sendMessage = action === 'select-all') {
-      message.list = __state.list.map(function (item) {
-        // this will add "checked" attribute to __state.list[item]
-        // to set render html-checkbox element as checked.
-        // see this.render()
-        if (item.stage === __state.filter) {
-          item.checked = ev.target.checked;
-          return item.id;
-        }
+  this.renderListItem = function () {
+    __state.list = DataManager.getTaskList().reverse();
+    var content = "";
+
+    if (!__state.list.length) {
+      content = this.emptyState();
+    } else {
+      __state.list.map(function (_item, index) {
+        var isDone = _item.task_label === "done";
+        content += "<li class=\"".concat(_item.task_label, " data-task-index=\"").concat(index, "\">\n                <!--\n                <div class=\"checkbox\">\n                  <input id=\"item-").concat(_item.task_id, "\"\n                        data-item-id=\"").concat(_item.task_id, "\"\n                        data-action=\"select-item\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"item-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>              \n                -->\n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"").concat(isDone ? "todo" : "done", "\" data-task-index=\"").concat(index, "\">\n                  ").concat(isDone ? "Undo" : "Done", "\n                  </button>\n                  <button class=\"btn btn-danger btn-sm\" data-action=\"delete\" data-task-index=\"").concat(index, "\">delete</button>                  \n                  </div>\n                  \n\n                </li>");
       });
-
-      if (!ev.target.checked) {
-        message.list = [];
-      }
-
-      __state.allchecked = ev.target.checked;
-      this.render();
-    } else if (sendMessage = action === 'select-item') {
-      message.id = ev.target.dataset.itemId;
     }
 
-    if (sendMessage) {
-      AppEvent.dispatch("select-item", message);
-    }
-  };
-
-  this.updateList = function (event) {
-    var name = event.eventMessage.name;
-
-    if (name === "task") {
-      __state.list = event.eventMessage.data;
-      __state.allchecked = false;
-      this.render();
-    }
-  };
-
-  this.setFilter = function (customEvent) {
-    __state.filter = customEvent.eventMessage.stage;
-    __state.allchecked = false;
-
-    __state.list.map(function (item) {
-      // this will add "checked" attribute to __state.list[item]
-      // to render html-checkbox element as (un)checked.
-      // see this.render()
-      item.checked = false;
-    });
-
-    this.render();
-    AppEvent.dispatch("select-item", {
-      checked: false,
-      list: []
-    });
-  };
-
-  this.renderListItem = function (params) {
-    var list = '';
-
-    __state.list.map(function (item) {
-      if (item.stage !== __state.filter) {
-        return;
-      }
-
-      var _item = Object.assign({}, item);
-
-      list += TaskListItem.render(_item);
-    });
-
-    return list ? list : "<li class=\"empty-list\">Empty List</li>";
-  };
-
-  this.render = function () {
-    __element.innerHTML = "          \n          <ul class=\"list\">            \n            ".concat(this.renderListItem(), "\n          </ul>");
+    __container.html("<ul class=\"list\">".concat(content, "</ul>"));
   };
 }
 
 module.exports = new List();
 
-},{"../app/eventstore":7,"./task-list-item":16}],12:[function(require,module,exports){
+},{"../service/datamanager":5,"../service/eventstore":6}],9:[function(require,module,exports){
 "use strict";
 
-var AppEvent = require('../app/eventstore').AppEvent;
+var AppEvent = require('../service/eventstore').AppEvent;
 
 function Modal() {
   var __element;
@@ -836,202 +600,62 @@ function Modal() {
 
 module.exports = new Modal();
 
-},{"../app/eventstore":7}],13:[function(require,module,exports){
-"use strict";
-
-/**
- * 
- */
-var AppEvent = require('../app/eventstore').AppEvent;
-
-var DataManager = require('../app/datamanager');
-
-function ProjectList() {
-  var _element;
-
-  var _state = {
-    project_list: [{
-      id: "1",
-      name: "My Project -1 "
-    } // { id : "2" , name :  "My Project -2 "},
-    // { id : "3" , name :  "My Project -3 "}
-    ]
-  };
-
-  this.init = function (anchorID) {
-    _element = document.getElementById(anchorID); // browser event
-
-    _element.onclick = this.click.bind(this);
-    this.render(); // customEvent
-    //AppEvent.addListener("navigate-list", this.setItemStatus.bind(this));
-  }; // this.setStatus = function (customEvent) {
-  //   _state.itemStatus = customEvent.eventMessage.stage;
-  // }
-
-
-  this.click = function (e) {
-    if (e.target.tagName === 'LI') {
-      alert('select project');
-      return;
-    }
-
-    if (e.target.id === 'add-project') {
-      DataManager.save("task", {});
-      e.target.reset();
-      return;
-    }
-  };
-
-  this.emptyState = function (params) {
-    return '<li class="empty-list">Empty List</li>';
-  };
-
-  this.renderList = function () {
-    var list = "<ul class=\"list-group\">";
-
-    _state.project_list.map(function (project) {
-      list += "<li class=\"list-group-item\" id=\"prj-".concat(project.id, "\">").concat(project.name, "</li>");
-    });
-
-    return _state.project_list ? list : this.emptyState();
-  };
-
-  this.render = function () {
-    _element.innerHTML = "\n    <div id=\"project-list\" class=\"modal fade project-list\" role=\"dialog\">\n    <div class=\"modal-dialog\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">My Projects</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n\n        <div class=\"modal-body form-add-project\"> \n          <form id=\"add-project\">\n            <div class=\"form-group\">\n              <label for=\"project-name\">Project name</label>\n              <input type=\"text\" class=\"form-control\" id=\"project-name\" name=\"project-name\" aria-describedby=\"projectName\">\n              <small id=\"projectName\" class=\"form-text text-muted\">Enter you project name and click save.</small>\n            </div>\n            <button type=\"button\" class=\"btn btn-primary\">Save</button>\n          </form>\n        </div>\n        <div class=\"modal-body\">\n          ".concat(this.renderList(), "          \n        </div>\n      </div>\n\n    </div>\n  </div>");
-  };
-}
-
-module.exports = new ProjectList();
-
-},{"../app/datamanager":5,"../app/eventstore":7}],14:[function(require,module,exports){
-"use strict";
-
-var AppEvent = require('../app/eventstore').AppEvent;
-
-var __config = [{
-  value: "todo",
-  label: "To Do",
-  checked: true
-}, {
-  value: "doing",
-  label: "In Progress",
-  checked: false
-}, {
-  value: "done",
-  label: "Done",
-  checked: false
-}];
-
-function TabNavigation() {
-  var __element;
-
-  this.init = function (anchorID) {
-    __element = document.getElementById(anchorID);
-    AppEvent.dispatch("navigate-list", {
-      stage: "todo"
-    });
-    this.render();
-    this.navigate();
-  };
-
-  this.navigate = function () {
-    var input = __element.querySelectorAll("input[type=\"radio\"]");
-
-    input.forEach(function (item) {
-      item.onchange = function (ev) {
-        AppEvent.dispatch("navigate-list", {
-          stage: ev.target.value
-        });
-      };
-    });
-  };
-
-  this.render = function () {
-    var tab = "";
-
-    __config.map(function (item, idx) {
-      tab += "<div>\n                <input id=\"tab-".concat(idx, "\" \n                      value=").concat(item.value, "\n                      name=\"tab-nav\"\n                    type=\"radio\" ").concat(item.checked ? "checked" : "", "/>\n                <label for=\"tab-").concat(idx, "\">\n                ").concat(item.label, "\n                </label>\n              </div>");
-    });
-
-    __element.innerHTML = "<div class=\"tab-nav\">\n                              ".concat(tab, "\n                            </div>");
-  };
-}
-
-module.exports = new TabNavigation();
-
-},{"../app/eventstore":7}],15:[function(require,module,exports){
+},{"../service/eventstore":6}],10:[function(require,module,exports){
 "use strict";
 
 // TaskForm
-var AppEvent = require('../app/eventstore').AppEvent;
+var AppEvent = require('../service/eventstore').AppEvent;
 
-var __config = {
-  maxChar: 50
-};
+var DataManager = require('../service/datamanager'); // <select class="custom-select mb-3" name="task_label">
+//       <option value="todo">Todo</div>
+//       <option value="doing">Doing</div>
+//     </select>
+
 
 function TaskForm() {
-  var __element;
+  var __anchor; //var __openForm = $(`<button class="btn btn-primary btn-sm">New Task</button>`);
 
-  var __state = {
-    itemStatus: "todo" // default 
 
-  };
+  var __form = $("\n    <form id=\"task-form\" class=\"task-form\">\n      <input type=\"text\" name=\"task_body\" class=\"form-control mb-3\" placeholder=\"Task...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>-->\n    </form>");
 
   this.init = function (anchorID) {
-    __element = document.getElementById(anchorID); // browser event
+    __anchor = $("#" + anchorID); // __anchor.prepend(__openForm);
 
-    __element.onsubmit = this.submit.bind(this);
-    this.render(); // customEvent
+    __anchor.append(__form);
 
-    AppEvent.addListener("navigate-list", this.setItemStatus.bind(this));
-  };
+    var self = this;
 
-  this.setItemStatus = function (customEvent) {
-    __state.itemStatus = customEvent.eventMessage.stage;
+    __form.submit(function (e) {
+      self.submit(e);
+    });
+
+    AppEvent.addListener("edit-item", function (event) {
+      var taskBody = event.message.item.task_body;
+      __form.elements['task_body'].value = taskBody;
+    });
   };
 
   this.submit = function (e) {
     e.preventDefault();
-    var value = e.target.elements['task_label'].value;
+    var task_body = e.target.elements['task_body'].value;
 
-    if (!value) {
-      AppEvent.dispatch("modal-state", {
-        show: true,
-        message: "You can not add an empty task"
-      });
+    if (!task_body) {
+      alert("You can not add an empty task");
       return;
-    }
+    } // var select = e.target.elements['task_label'];
+    //var task_label = select.options[select.selectedIndex].value;
+
 
     var item = {
-      id: new Date().getTime().toString(),
-      stage: __state.itemStatus,
-      label: value
+      task_id: new Date().getTime().toString(),
+      task_label: "todo",
+      task_body: task_body
     };
-    AppEvent.dispatch("save-form", {
-      name: "task",
-      data: item
-    });
+    DataManager.setTask(item);
     e.target.reset();
-  };
-
-  this.render = function () {
-    __element.innerHTML = "\n                <form class=\"form\">\n                  <input type=\"text\" maxlength=\"".concat(__config.maxChar, "\"\n                        name=\"task_label\" \n                        placeholder=\"Add a task : ").concat(__config.maxChar, " characters max\" />\n                  <input type=\"submit\" value=\"save\" class=\"btn btn-blue\"/>\n                </form>\n              ");
   };
 }
 
 module.exports = new TaskForm();
 
-},{"../app/eventstore":7}],16:[function(require,module,exports){
-"use strict";
-
-function TaskListItem() {
-  this.render = function (item) {
-    var checked = false;
-    checked = typeof item.checked !== "undefined" && !!item.checked;
-    return "<li class=\"".concat(item.stage, "\">\n              <div class=\"checkbox\">\n                <input id=\"item-").concat(item.id, "\"\n                      data-item-id=\"").concat(item.id, "\"\n                      data-action=\"select-item\"\n                      type=\"checkbox\"\n                      ").concat(checked ? "checked" : '', "/>\n                <label for=\"item-").concat(item.id, "\">\n                  <span></span>\n                </label>\n              </div>\n              <p>").concat(item.label, "</p>\n            </li>");
-  };
-}
-
-module.exports = new TaskListItem();
-
-},{}]},{},[9]);
+},{"../service/datamanager":5,"../service/eventstore":6}]},{},[4]);

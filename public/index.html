@@ -12,7 +12,11 @@
 
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/build.css" 
+        integrity="sha256-iPUhChwurLRCrDCM1+2a2LDe9pfW6Je29o/oA5VPr28=" crossorigin="anonymous" />
+
+  <link rel="stylesheet" type="text/css" media="screen" href="frame.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="theme.css">
 </head>
 
 <body>
@@ -20,31 +24,34 @@
   <!--  -->
   <div id="app">
 
+    <div class="app-header">
+
+    </div>
+    
     <div class="board">
 
       <div class="board-header">
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#project-list">Projects</button>
-        <h1> Kanban Board v0.4.0 </h1>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" 
+        data-target="#folder-list">Folders</button>
+        <h1> Project Name </h1>
       </div>
 
-      <div id="task-nav"></div>
+      <div id="task-form-container"></div>
 
-      <div id="task-action"></div>
+      <!-- <div id="task-nav-container"></div> -->
 
-      <div id="task-list"></div>
+      <div id="task-action-container"></div>
 
-      <div id="task-modal"></div>
+      <div id="task-list-container"></div>
+
+      <div id="task-modal-container"></div>
 
     </div>
 
-     <!-- modal project list  -->
-    <div id="div-project-list"></div>
+     <!-- modal folder list  -->
+    <div id="div-folder-list"></div>
 
   </div>
-
-
-
-  
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

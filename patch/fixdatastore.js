@@ -36,7 +36,7 @@ module.exports = function FixDataStore(){
     }
 
     // 2 - the data store is not patched
-    storeData = window.localStorage.getItem(store.name);
+    var storeData = window.localStorage.getItem(store.name);
     if(storeData){
       __originData = JSON.parse(storeData);
 

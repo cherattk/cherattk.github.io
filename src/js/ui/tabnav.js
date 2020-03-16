@@ -1,4 +1,4 @@
-const AppEvent = require('../app/eventstore').AppEvent;
+const AppEvent = require('../service/eventstore').AppEvent;
 
 const __config = [
   { value: "todo", label: "To Do", checked: true },

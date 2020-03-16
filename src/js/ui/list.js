@@ -1,108 +1,93 @@
-const AppEvent = require('../app/eventstore').AppEvent;
-const TaskListItem = require('./task-list-item');
+const AppEvent = require('../service/eventstore').AppEvent;
+
+const DataManager = require('../service/datamanager');
 
 function List() {
 
-  var __element;
+  var __container;
   var __state = {
     list: [], // list of item
-    allchecked: false,
-    filter: ""
   };
 
   this.init = function (anchorID) {
 
-    __element = document.getElementById(anchorID);
+    __container = $("#" + anchorID).html(`<ul class="list">${this.emptyState()}</ul>`);
 
-    // browser event
-    __element.onclick = this.selectItem.bind(this);
+    var self = this;
+    __container.click(function (event) {
+      switch (event.target.dataset.action) {
+        case "edit-item":
+          let task = __state.list[event.target.dataset.taskIndex];
+          //__state.selectedTask.push(task);
+          AppEvent.dispatch("edit-item", {
+            item: task
+          });
+          break;
+        case "done":
+        case "todo":
+          let update_task = __state.list[event.target.dataset.taskIndex];
+          update_task.task_label = event.target.dataset.action;
+          DataManager.setTask(update_task);
+          break;
+        case "delete":
+          let rm_task = __state.list[event.target.dataset.taskIndex];
+          DataManager.removeTask([rm_task]);
+          break;
+        default: break;
+      }
+    });
 
-    AppEvent.addListener("navigate-list", this.setFilter.bind(this));
+    AppEvent.addListener("init-app", function () {
+      self.renderListItem();
+    });
+    AppEvent.addListener("update-task-list", function () {
+      self.renderListItem();
+    });
 
-    // register listener for "change-data" first
-    AppEvent.addListener("data-change", this.updateList.bind(this));
-
-    // trigger "data-change" event to init list
-    AppEvent.dispatch("fetch-list", { name: "task" });
+    this.renderListItem();
   }
 
-  this.selectItem = function (ev) {
+  this.emptyState = function () {
+    return `<li class="empty-list">Empty List</li>`;
+  }
 
-    var message = {
-      checked: ev.target.checked
-    };
-    var action = ev.target.dataset.action;
-    if (sendMessage = (action === 'select-all')) {
-      message.list = __state.list.map(function (item) {
-        // this will add "checked" attribute to __state.list[item]
-        // to set render html-checkbox element as checked.
-        // see this.render()
-        if (item.stage === __state.filter) {
-          item.checked = ev.target.checked;
-          return item.id;
-        }
+  this.renderListItem = function () {
+    __state.list = DataManager.getTaskList().reverse();
+    var content = "";
+    if (!__state.list.length) {
+      content = this.emptyState();
+    }
+    else {
+      __state.list.map(function (_item, index) {
+        let isDone = _item.task_label === "done";
+        content += `<li class="${_item.task_label} data-task-index="${index}">
+                <!--
+                <div class="checkbox">
+                  <input id="item-${_item.task_id}"
+                        data-item-id="${_item.task_id}"
+                        data-action="select-item" data-task-index="${index}"
+                        type="checkbox"
+                        ${isDone ? "checked" : ''}/>
+                  <label for="item-${_item.task_id}">
+                    <span></span>
+                  </label>
+                </div>              
+                -->
+                  <p>${index+1} - ${_item.task_body}</p>
+                  <!---->
+                  <div class="item-action">
+                  <button class="btn btn-primary btn-sm" data-action="${(isDone ? "todo" : "done")}" data-task-index="${index}">
+                  ${(isDone ? "Undo" : "Done")}
+                  </button>
+                  <button class="btn btn-danger btn-sm" data-action="delete" data-task-index="${index}">delete</button>                  
+                  </div>
+                  
+
+                </li>`;
       });
-      if (!ev.target.checked) {
-        message.list = [];
-      }
-      __state.allchecked = ev.target.checked;
-      this.render();
     }
-    else if (sendMessage = (action === 'select-item')) {
-      message.id = ev.target.dataset.itemId;
 
-    }
-    
-    if (sendMessage) {
-      AppEvent.dispatch("select-item", message);
-    }
-  }
-
-  this.updateList = function (event) {
-    var name = event.eventMessage.name;
-    if (name === "task") {
-      __state.list = event.eventMessage.data;
-      __state.allchecked = false;
-      this.render();
-    }
-  }
-
-  this.setFilter = function (customEvent) {
-    __state.filter = customEvent.eventMessage.stage;
-    __state.allchecked = false;
-    __state.list.map(function (item) {
-      // this will add "checked" attribute to __state.list[item]
-      // to render html-checkbox element as (un)checked.
-      // see this.render()
-      item.checked = false;
-    });
-    this.render();
-    AppEvent.dispatch("select-item", {
-      checked: false,
-      list: []
-    });
-  }
-
-  this.renderListItem = function (params) {   
-
-    var list = '';
-    __state.list.map(function (item) {
-      if (item.stage !== __state.filter) {
-        return;
-      }
-      var _item = Object.assign({}, item);
-      list += TaskListItem.render(_item);
-    });
-
-    return (list ? list : `<li class="empty-list">Empty List</li>`);
-  }
-
-  this.render = function () {
-
-    __element.innerHTML = `          
-          <ul class="list">            
-            ${ this.renderListItem() }
-          </ul>`;
+    __container.html(`<ul class="list">${content}</ul>`);
 
   }
 }

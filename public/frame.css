@@ -1,0 +1,174 @@
+html, body{
+  width:100%;
+  padding:0;
+  margin:0;
+  border:0;
+  color:#222;
+  font-family:'Arial','Helvetica', sans-serif;
+  font-size:16px;
+  text-align:center;
+  background: #eef3fb;
+}
+
+/************* Application ***************/
+.app-header{
+  height:50px;
+  background-color: #fff;
+  border-bottom:1px solid #ddd;
+}
+.board{
+  max-width:980px;
+  margin:30px auto;
+  background: white;
+  padding:30px;
+  border:1px solid #ccc;
+  box-shadow:0 1px 5px #ccceee;
+}
+.board-header h1{
+  padding:20px;
+  margin:0 0 30px 0;
+  font-size: 21px;
+  background:#dfebf9;
+  color: #194274;
+  text-align:left;
+}
+.board-header button{
+  float:right;
+  margin-top:20px;
+  margin-right:20px;
+}
+
+/*************** task form *********************/
+#task-form-container{
+  text-align:left;
+}
+.task-form{
+  padding-bottom:15px;
+}
+
+/******************** list action bar ***************/
+.task-action-bar{
+  text-align:right;
+}
+
+/******************* task list ********************/
+.list{
+  text-align: left;
+  margin:15px 0;
+}
+.list li{
+  padding:15px;
+  margin-bottom:15px;
+  background-color:#fff;
+  position:relative;
+  border:1px solid #ccc;
+}
+.list li:hover{
+  border-color:#aaa;
+  box-shadow:0 1px 2px #ccc;
+}
+.list p{
+  margin:0;
+}
+
+.empty-list{
+  background-color:#eee;
+  border-color:#777;
+}
+/*
+li.doing{
+  border-color:#f3cf1f;
+  background-color: #f8f06aed;
+}
+li.doing:hover{  
+  background-color: #faf04f;
+}
+*/
+
+/*
+li.todo{
+  border-color:#9ac2f3;
+  background-color:#d5e8fe;
+}
+li.todo:hover{
+  background-color:#a9cef8;
+}
+*/
+li.done{
+  background-color:#eee;
+}
+li.done p{
+  text-decoration:line-through;
+}
+
+.item-action{
+  margin-top:10px;
+  position:absolute;
+  right:10px;
+  top:5px; 
+}
+.item-action button{
+  padding:0 10px;
+  font-size:13px;
+}
+/*
+.checkbox{
+  position:absolute;
+  top:18px;
+  left:15px;
+}
+.checkbox input{
+  display:none;
+}
+.checkbox label{
+  display: inline-block;
+}
+.checkbox label span{
+  background:#fff;
+  border:1px solid #aaa;
+  display:block;
+  width:18px;
+  height:18px;
+  margin-right:10px;
+  position:relative;
+  border-radius:1px;
+}
+.checkbox label span:hover{
+  border-color:#aaa;
+  cursor:pointer;
+}
+.checkbox label span:before{
+  content: '';
+  position: absolute;
+  border-color: #555;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top:2px;
+  left:6px;
+  transform: rotate(43deg);
+  height:10px;
+  width:5px;
+  display: none;
+}
+.checkbox input:checked + label span{
+  border-color:#aaa;
+}
+.checkbox input:checked + label span:before{
+  display:block;
+}
+*/
+
+
+/**************** Folder List *****************/
+.folder-list{
+  text-align: left;
+}
+.folder-list .modal-content{
+  padding:10px;
+}
+.folder-list .list-group-item:hover{
+  background-color:#0e77eb;
+  color:white;
+  cursor:pointer;
+}
+
