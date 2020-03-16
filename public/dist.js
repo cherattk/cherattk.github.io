@@ -486,23 +486,23 @@ var AppEvent = require('../service/eventstore').AppEvent;
 
 var DataManager = require('../service/datamanager');
 
-function List() {
-  var __container;
+var __container;
 
-  var __state = {
-    list: [] // list of item
+var __state = {
+  list: [] // list of item
 
-  };
-
-  this.init = function (anchorID) {
+};
+var TaskList = {
+  getElement: function getElement(id) {
+    return __container.find("li[data-task-id=\"".concat(id, "\"]"));
+  },
+  init: function init(anchorID) {
     __container = $("#" + anchorID).html("<ul class=\"list\">".concat(this.emptyState(), "</ul>"));
-    var self = this;
 
     __container.click(function (event) {
       switch (event.target.dataset.action) {
         case "edit-item":
-          var task = __state.list[event.target.dataset.taskIndex]; //__state.selectedTask.push(task);
-
+          var task = __state.list[event.target.dataset.taskIndex];
           AppEvent.dispatch("edit-item", {
             item: task
           });
@@ -526,19 +526,17 @@ function List() {
     });
 
     AppEvent.addListener("init-app", function () {
-      self.renderListItem();
+      TaskList.renderListItem();
     });
     AppEvent.addListener("update-task-list", function () {
-      self.renderListItem();
+      TaskList.renderListItem();
     });
     this.renderListItem();
-  };
-
-  this.emptyState = function () {
+  },
+  emptyState: function emptyState() {
     return "<li class=\"empty-list\">Empty List</li>";
-  };
-
-  this.renderListItem = function () {
+  },
+  renderListItem: function renderListItem() {
     __state.list = DataManager.getTaskList().reverse();
     var content = "";
 
@@ -547,58 +545,38 @@ function List() {
     } else {
       __state.list.map(function (_item, index) {
         var isDone = _item.task_label === "done";
-        content += "<li class=\"".concat(_item.task_label, " data-task-index=\"").concat(index, "\">\n                <!--\n                <div class=\"checkbox\">\n                  <input id=\"item-").concat(_item.task_id, "\"\n                        data-item-id=\"").concat(_item.task_id, "\"\n                        data-action=\"select-item\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"item-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>              \n                -->\n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"").concat(isDone ? "todo" : "done", "\" data-task-index=\"").concat(index, "\">\n                  ").concat(isDone ? "Undo" : "Done", "\n                  </button>\n                  <button class=\"btn btn-danger btn-sm\" data-action=\"delete\" data-task-index=\"").concat(index, "\">delete</button>                  \n                  </div>\n                  \n\n                </li>");
+        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.task_id, "\" data-task-index=\"").concat(index, "\">\n                <!--\n                <div class=\"checkbox\">\n                  <input id=\"item-").concat(_item.task_id, "\"\n                        data-item-id=\"").concat(_item.task_id, "\"\n                        data-action=\"select-item\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"item-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>              \n                -->\n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"edit-item\" data-task-index=\"").concat(index, "\">Edit</button>\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"").concat(isDone ? "todo" : "done", "\" data-task-index=\"").concat(index, "\">\n                  ").concat(isDone ? "Undo" : "Done", "\n                  </button>\n                  <button class=\"btn btn-danger btn-sm\" data-action=\"delete\" data-task-index=\"").concat(index, "\">delete</button>                  \n                  </div>\n                </li>");
       });
     }
 
     __container.html("<ul class=\"list\">".concat(content, "</ul>"));
-  };
-}
-
-module.exports = new List();
+  }
+};
+module.exports = TaskList;
 
 },{"../service/datamanager":5,"../service/eventstore":6}],9:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
 
-function Modal() {
-  var __element;
+var __element;
 
-  var __state = {
-    show: "hide",
-    message: "Default Message"
-  };
+var Modal = {
+  emptyState: function emptyState() {// __element.find(".modal-body").html('<h3>Empty Content</h3>');
+    //__element.modal("hide");
+  },
+  setContent: function setContent(contentElement) {
+    contentElement.appendTo(__element.find(".modal-body"));
 
-  this.init = function (anchorID) {
-    __element = document.getElementById(anchorID);
-    AppEvent.addListener("modal-state", this.modalState.bind(this)); // browser event
-
-    __element.onclick = this.close.bind(this);
-    this.render();
-  };
-
-  this.modalState = function (event) {
-    __state.show = event.eventMessage.show ? "show" : "hide";
-    __state.message = event.eventMessage.message;
-    this.render();
-  };
-
-  this.close = function (e) {
-    e.preventDefault();
-
-    if (e.target.className === "modal-close") {
-      __state.show = "hide";
-      this.render();
-    }
-  };
-
-  this.render = function () {
-    __element.innerHTML = "\n                <div class=\"modal ".concat(__state.show, "\">\n                  <div class=\"overlay\"></div>\n                  <div class=\"modal-content\">\n                  <div class=\"modal-close\">X</div>\n                  <h3>Message</h3>\n                  <p>").concat(__state.message, "</p>\n                  </div>\n                </div>\n              ");
-  };
-}
-
-module.exports = new Modal();
+    __element.modal("show");
+  },
+  init: function init(anchorID) {
+    __element = $("<div class=\"modal fade\" role=\"dialog\">\n          <div class=\"modal-dialog modal-lg\">\n            <div class=\"modal-content\">\n              <div class=\"modal-header\">\n                <h4 class=\"modal-title\">My Modal</h4>\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n              </div>\n              <div class=\"modal-body\">                \n              </div>\n            </div>\n\n          </div>\n        </div>");
+    this.emptyState();
+    $("#" + anchorID).html(__element);
+  }
+};
+module.exports = Modal;
 
 },{"../service/eventstore":6}],10:[function(require,module,exports){
 "use strict";
@@ -606,17 +584,45 @@ module.exports = new Modal();
 // TaskForm
 var AppEvent = require('../service/eventstore').AppEvent;
 
-var DataManager = require('../service/datamanager'); // <select class="custom-select mb-3" name="task_label">
+var DataManager = require('../service/datamanager');
+
+var TaskList = require('../ui/list'); // <select class="custom-select mb-3" name="task_label">
 //       <option value="todo">Todo</div>
 //       <option value="doing">Doing</div>
 //     </select>
 
 
 function TaskForm() {
+  var __state = {
+    task: {},
+    move: false,
+    previous_li: null
+  };
+
   var __anchor; //var __openForm = $(`<button class="btn btn-primary btn-sm">New Task</button>`);
 
 
-  var __form = $("\n    <form id=\"task-form\" class=\"task-form\">\n      <input type=\"text\" name=\"task_body\" class=\"form-control mb-3\" placeholder=\"Task...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>-->\n    </form>");
+  var __form = $("\n    <form id=\"task-form\" class=\"task-form\">\n      <input type=\"text\" name=\"task_body\" class=\"form-control mb-3\" placeholder=\"Task...\" />\n      <input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>\n    </form>");
+
+  this.moveForm = function (origin) {
+    // move to origin
+    if (origin && __state.move) {
+      TaskList.getElement(__state.task.task_id).addClass("hide-content");
+
+      __anchor.append(__form);
+
+      __state.task = {};
+      __state.move = false;
+      return;
+    } // move to another place other than origin
+
+
+    if (__state.previous_li) {
+      TaskList.getElement(__state.previous_li).removeClass("hide-content");
+      TaskList.getElement(__state.task.task_id).addClass("hide-content");
+      __state.move = true;
+    }
+  };
 
   this.init = function (anchorID) {
     __anchor = $("#" + anchorID); // __anchor.prepend(__openForm);
@@ -627,11 +633,19 @@ function TaskForm() {
 
     __form.submit(function (e) {
       self.submit(e);
+      self.moveForm(true);
+    });
+
+    __form.on("reset", function (e) {
+      self.moveForm(true);
     });
 
     AppEvent.addListener("edit-item", function (event) {
-      var taskBody = event.message.item.task_body;
-      __form.elements['task_body'].value = taskBody;
+      __state.task.task_id = event.message.item.task_id;
+
+      __form.children("input[name=\"task_body\"]").val(event.message.item.task_body);
+
+      self.moveForm();
     });
   };
 
@@ -647,15 +661,15 @@ function TaskForm() {
 
 
     var item = {
-      task_id: new Date().getTime().toString(),
+      task_id: __state.task.task_id ? __state.task.task_id : new Date().getTime().toString(),
       task_label: "todo",
       task_body: task_body
     };
-    DataManager.setTask(item);
     e.target.reset();
+    DataManager.setTask(item);
   };
 }
 
 module.exports = new TaskForm();
 
-},{"../service/datamanager":5,"../service/eventstore":6}]},{},[4]);
+},{"../service/datamanager":5,"../service/eventstore":6,"../ui/list":8}]},{},[4]);

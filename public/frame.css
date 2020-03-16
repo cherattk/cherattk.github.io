@@ -63,12 +63,24 @@ html, body{
   position:relative;
   border:1px solid #ccc;
 }
+.list li.hide-content > p{
+  display:none;
+}
 .list li:hover{
   border-color:#aaa;
   box-shadow:0 1px 2px #ccc;
 }
 .list p{
   margin:0;
+}
+.list .task-form{
+  background-color:#fff;
+  position:relative;
+  width:100%;
+  z-index:10;
+}
+.list .task-form input[type="text"]{
+  border-color:blue;
 }
 
 .empty-list{
@@ -103,8 +115,8 @@ li.done p{
 
 .item-action{
   margin-top:10px;
-  position:absolute;
-  right:10px;
+  position:absolute;  
+  right:15px;
   top:5px; 
 }
 .item-action button{

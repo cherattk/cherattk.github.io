@@ -2,23 +2,25 @@ const AppEvent = require('../service/eventstore').AppEvent;
 
 const DataManager = require('../service/datamanager');
 
-function List() {
+var __container;
+var __state = {
+  list: [], // list of item
+};
 
-  var __container;
-  var __state = {
-    list: [], // list of item
-  };
+const TaskList = {
 
-  this.init = function (anchorID) {
+  getElement: function (id) {
+    return __container.find(`li[data-task-id="${id}"]`);
+  },
+
+  init: function (anchorID) {
 
     __container = $("#" + anchorID).html(`<ul class="list">${this.emptyState()}</ul>`);
 
-    var self = this;
     __container.click(function (event) {
       switch (event.target.dataset.action) {
         case "edit-item":
           let task = __state.list[event.target.dataset.taskIndex];
-          //__state.selectedTask.push(task);
           AppEvent.dispatch("edit-item", {
             item: task
           });
@@ -38,20 +40,20 @@ function List() {
     });
 
     AppEvent.addListener("init-app", function () {
-      self.renderListItem();
+      TaskList.renderListItem();
     });
     AppEvent.addListener("update-task-list", function () {
-      self.renderListItem();
+      TaskList.renderListItem();
     });
 
     this.renderListItem();
-  }
+  },
 
-  this.emptyState = function () {
+  emptyState: function () {
     return `<li class="empty-list">Empty List</li>`;
-  }
+  },
 
-  this.renderListItem = function () {
+  renderListItem: function () {
     __state.list = DataManager.getTaskList().reverse();
     var content = "";
     if (!__state.list.length) {
@@ -60,7 +62,7 @@ function List() {
     else {
       __state.list.map(function (_item, index) {
         let isDone = _item.task_label === "done";
-        content += `<li class="${_item.task_label} data-task-index="${index}">
+        content += `<li class="${_item.task_label}" data-task-id="${_item.task_id}" data-task-index="${index}">
                 <!--
                 <div class="checkbox">
                   <input id="item-${_item.task_id}"
@@ -73,16 +75,15 @@ function List() {
                   </label>
                 </div>              
                 -->
-                  <p>${index+1} - ${_item.task_body}</p>
+                  <p>${index + 1} - ${_item.task_body}</p>
                   <!---->
                   <div class="item-action">
+                  <button class="btn btn-primary btn-sm" data-action="edit-item" data-task-index="${index}">Edit</button>
                   <button class="btn btn-primary btn-sm" data-action="${(isDone ? "todo" : "done")}" data-task-index="${index}">
                   ${(isDone ? "Undo" : "Done")}
                   </button>
                   <button class="btn btn-danger btn-sm" data-action="delete" data-task-index="${index}">delete</button>                  
                   </div>
-                  
-
                 </li>`;
       });
     }
@@ -92,4 +93,4 @@ function List() {
   }
 }
 
-module.exports = new List();
+module.exports = TaskList;

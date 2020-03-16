@@ -3,12 +3,20 @@ const AppEvent = require('../service/eventstore').AppEvent;
 
 const DataManager = require('../service/datamanager');
 
+const TaskList = require('../ui/list');
+
 // <select class="custom-select mb-3" name="task_label">
 //       <option value="todo">Todo</div>
 //       <option value="doing">Doing</div>
 //     </select>
 
-function TaskForm(){
+function TaskForm() {
+
+  var __state = {
+    task: {},
+    move: false,
+    previous_li : null
+  };
 
   var __anchor;
 
@@ -17,30 +25,54 @@ function TaskForm(){
   var __form = $(`
     <form id="task-form" class="task-form">
       <input type="text" name="task_body" class="form-control mb-3" placeholder="Task..." />
-      <!--<input type="submit" value="Save" class="btn btn-primary btn-sm"/>-->
+      <input type="submit" value="Save" class="btn btn-primary btn-sm"/>
+      <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>
     </form>`);
 
-  this.init = function(anchorID) {
+  this.moveForm = function (origin) {
+    // move to origin
+    if(origin && __state.move){
+      TaskList.getElement(__state.task.task_id).addClass("hide-content");
+      __anchor.append(__form);      
+      __state.task = {};
+      __state.move = false;
+      return;
+    }
+    
+    // move to another place other than origin
+    if(__state.previous_li){
+      TaskList.getElement(__state.previous_li).removeClass("hide-content");
+      TaskList.getElement(__state.task.task_id).addClass("hide-content");
+      __state.move = true;
+    }
+  }
+
+  this.init = function (anchorID) {
 
     __anchor = $("#" + anchorID);
     // __anchor.prepend(__openForm);
     __anchor.append(__form);
 
     var self = this;
-    __form.submit(function(e){
+    __form.submit(function (e) {
       self.submit(e);
+      self.moveForm(true);
+    });
+    __form.on("reset", function (e) {
+      self.moveForm(true);
     });
 
-    AppEvent.addListener("edit-item" , function(event){
-      var taskBody = event.message.item.task_body;
-      __form.elements['task_body'].value = taskBody;
+    AppEvent.addListener("edit-item", function (event) {
+      __state.task.task_id = event.message.item.task_id;
+      __form.children(`input[name="task_body"]`).val(event.message.item.task_body);
+      self.moveForm();
     });
   }
 
-  this.submit = function(e){
+  this.submit = function (e) {
     e.preventDefault();
     var task_body = e.target.elements['task_body'].value;
-    if(!task_body){
+    if (!task_body) {
       alert("You can not add an empty task");
       return;
     }
@@ -49,12 +81,13 @@ function TaskForm(){
     //var task_label = select.options[select.selectedIndex].value;
 
     var item = {
-      task_id : (new Date()).getTime().toString(),
-      task_label : "todo",
-      task_body : task_body
+      task_id: (__state.task.task_id ? __state.task.task_id : (new Date()).getTime().toString()),
+      task_label: "todo",
+      task_body: task_body
     };
-    DataManager.setTask(item);
+
     e.target.reset();
+    DataManager.setTask(item);
   }
 
 }

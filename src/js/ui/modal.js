@@ -1,51 +1,40 @@
 const AppEvent = require('../service/eventstore').AppEvent;
 
-function Modal(){
+var __element;
 
-  var __element;
-  var __state = {
-    show : "hide",
-    message : "Default Message"
-  }
+const Modal = {
 
-  this.init = function(anchorID) {
+  emptyState: function () {
+    // __element.find(".modal-body").html('<h3>Empty Content</h3>');
+    //__element.modal("hide");
+  },
 
-    __element = document.getElementById(anchorID);
+  setContent: function (contentElement) {
+    contentElement.appendTo(__element.find(".modal-body"));    
+    __element.modal("show");
+    
+  },
 
-    AppEvent.addListener("modal-state" , this.modalState.bind(this));
+  init: function (anchorID) {
 
-    // browser event
-    __element.onclick = this.close.bind(this);
-    this.render();
-  }
+    __element = $(`<div class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">My Modal</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">                
+              </div>
+            </div>
 
-  this.modalState = function(event) {
-    __state.show = event.eventMessage.show ? "show" : "hide";
-    __state.message = event.eventMessage.message;
-    this.render();
-  }
+          </div>
+        </div>`);
 
-  this.close = function(e){
-    e.preventDefault();
-    if(e.target.className === "modal-close"){
-      __state.show = "hide";
-      this.render();
-    }
-  }
+    this.emptyState();
 
-  this.render = function() {
-
-    __element.innerHTML = `
-                <div class="modal ${__state.show}">
-                  <div class="overlay"></div>
-                  <div class="modal-content">
-                  <div class="modal-close">X</div>
-                  <h3>Message</h3>
-                  <p>${__state.message}</p>
-                  </div>
-                </div>
-              ` ;
+    $("#" + anchorID).html(__element);
   }
 }
 
-module.exports = new Modal();
+module.exports = Modal;
