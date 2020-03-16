@@ -15,43 +15,51 @@ function TaskForm() {
   var __state = {
     task: {},
     move: false,
-    previous_li : null
+    previous_li: null
   };
 
-  var __anchor;
+  var __anchor ;
 
   //var __openForm = $(`<button class="btn btn-primary btn-sm">New Task</button>`);
 
   var __form = $(`
     <form id="task-form" class="task-form">
       <input type="text" name="task_body" class="form-control mb-3" placeholder="Task..." />
-      <input type="submit" value="Save" class="btn btn-primary btn-sm"/>
-      <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>
+      <!--<input type="submit" value="Save" class="btn btn-primary btn-sm"/>
+      <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>-->
     </form>`);
 
+  //var __form =  __form.clone();
+
   this.moveForm = function (origin) {
+
     // move to origin
-    if(origin && __state.move){
-      TaskList.getElement(__state.task.task_id).addClass("hide-content");
-      __anchor.append(__form);      
+    if (origin && __state.previous_li) {
+      // TaskList.getElement(__state.task.task_id).addClass("hide-content");
+      TaskList.getElement(__state.previous_li).removeClass("hide-content");
+      //__anchor.append(__form.clone());
       __state.task = {};
-      __state.move = false;
+      // __state.move = false;
       return;
     }
-    
+
     // move to another place other than origin
-    if(__state.previous_li){
+    var li = TaskList.getElement(__state.task.task_id);
+    li.append(__form.clone());
+    li.addClass("hide-content");    
+
+    if (__state.previous_li !== __state.task.task_id) {
       TaskList.getElement(__state.previous_li).removeClass("hide-content");
-      TaskList.getElement(__state.task.task_id).addClass("hide-content");
-      __state.move = true;
+      __state.previous_li = __state.task.task_id;
     }
   }
 
   this.init = function (anchorID) {
 
     __anchor = $("#" + anchorID);
-    // __anchor.prepend(__openForm);
     __anchor.append(__form);
+    // __anchor.height(__form.height());
+    
 
     var self = this;
     __form.submit(function (e) {
@@ -64,6 +72,7 @@ function TaskForm() {
 
     AppEvent.addListener("edit-item", function (event) {
       __state.task.task_id = event.message.item.task_id;
+      // __state.previous_li = event.message.item.task_id;
       __form.children(`input[name="task_body"]`).val(event.message.item.task_body);
       self.moveForm();
     });

@@ -493,25 +493,44 @@ var __state = {
 
 };
 var TaskList = {
-  getElement: function getElement(id) {
-    return __container.find("li[data-task-id=\"".concat(id, "\"]"));
+  editItem: function editItem(item, itemIndex) {
+    var li = __container.find("li[data-task-index=\"".concat(itemIndex, "\"]"));
+
+    li.addClass("hide-content");
+
+    var itemInput = __container.find("input[id=\"item-".concat(itemIndex, "\"]"));
+
+    itemInput.show();
+    itemInput.val(item.task_body);
+    itemInput.focus();
+    itemInput.blur(function (e) {
+      DataManager.setTask(Object.assign(item, {
+        task_body: e.target.value
+      }));
+      itemInput.hide();
+      li.removeClass("hide-content");
+    });
   },
   init: function init(anchorID) {
     __container = $("#" + anchorID).html("<ul class=\"list\">".concat(this.emptyState(), "</ul>"));
+    var self = this;
 
     __container.click(function (event) {
       switch (event.target.dataset.action) {
         case "edit-item":
           var task = __state.list[event.target.dataset.taskIndex];
-          AppEvent.dispatch("edit-item", {
-            item: task
-          });
+
+          if (task.task_label === "completed") {
+            alert("the completed task can not be modified");
+            return;
+          }
+
+          self.editItem(task, event.target.dataset.taskIndex);
           break;
 
-        case "done":
-        case "todo":
+        case "completed":
           var update_task = __state.list[event.target.dataset.taskIndex];
-          update_task.task_label = event.target.dataset.action;
+          update_task.task_label = event.target.checked ? "completed" : "todo";
           DataManager.setTask(update_task);
           break;
 
@@ -544,8 +563,8 @@ var TaskList = {
       content = this.emptyState();
     } else {
       __state.list.map(function (_item, index) {
-        var isDone = _item.task_label === "done";
-        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.task_id, "\" data-task-index=\"").concat(index, "\">\n                <!--\n                <div class=\"checkbox\">\n                  <input id=\"item-").concat(_item.task_id, "\"\n                        data-item-id=\"").concat(_item.task_id, "\"\n                        data-action=\"select-item\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"item-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>              \n                -->\n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"edit-item\" data-task-index=\"").concat(index, "\">Edit</button>\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"").concat(isDone ? "todo" : "done", "\" data-task-index=\"").concat(index, "\">\n                  ").concat(isDone ? "Undo" : "Done", "\n                  </button>\n                  <button class=\"btn btn-danger btn-sm\" data-action=\"delete\" data-task-index=\"").concat(index, "\">delete</button>                  \n                  </div>\n                </li>");
+        var isDone = _item.task_label === "completed";
+        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.task_id, "\" data-task-index=\"").concat(index, "\">\n                <!--          \n                -->\n                <div class=\"checkbox\">\n                  <input id=\"checkbox-").concat(_item.task_id, "\"\n                          data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"checkbox-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>    \n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <input id=\"item-").concat(index, "\" type=\"text\" name=\"task_body\"/>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"edit-item\" data-task-index=\"").concat(index, "\">Edit</button>\n                  <!--<button class=\"btn btn-primary btn-sm\" data-action=\"").concat(isDone ? "todo" : "done", "\" \n                              data-task-index=\"").concat(index, "\">\n                  ").concat(isDone ? "Todo" : "Completed", "\n                  </button>\n                  -->\n                  <button class=\"btn btn-danger btn-sm\" data-action=\"delete\" data-task-index=\"").concat(index, "\">delete</button>                  \n                  </div>\n                </li>");
       });
     }
 
@@ -602,32 +621,36 @@ function TaskForm() {
   var __anchor; //var __openForm = $(`<button class="btn btn-primary btn-sm">New Task</button>`);
 
 
-  var __form = $("\n    <form id=\"task-form\" class=\"task-form\">\n      <input type=\"text\" name=\"task_body\" class=\"form-control mb-3\" placeholder=\"Task...\" />\n      <input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>\n    </form>");
+  var __form = $("\n    <form id=\"task-form\" class=\"task-form\">\n      <input type=\"text\" name=\"task_body\" class=\"form-control mb-3\" placeholder=\"Task...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>-->\n    </form>"); //var __form =  __form.clone();
+
 
   this.moveForm = function (origin) {
     // move to origin
-    if (origin && __state.move) {
-      TaskList.getElement(__state.task.task_id).addClass("hide-content");
+    if (origin && __state.previous_li) {
+      // TaskList.getElement(__state.task.task_id).addClass("hide-content");
+      TaskList.getElement(__state.previous_li).removeClass("hide-content"); //__anchor.append(__form.clone());
 
-      __anchor.append(__form);
+      __state.task = {}; // __state.move = false;
 
-      __state.task = {};
-      __state.move = false;
       return;
     } // move to another place other than origin
 
 
-    if (__state.previous_li) {
+    var li = TaskList.getElement(__state.task.task_id);
+    li.append(__form.clone());
+    li.addClass("hide-content");
+
+    if (__state.previous_li !== __state.task.task_id) {
       TaskList.getElement(__state.previous_li).removeClass("hide-content");
-      TaskList.getElement(__state.task.task_id).addClass("hide-content");
-      __state.move = true;
+      __state.previous_li = __state.task.task_id;
     }
   };
 
   this.init = function (anchorID) {
-    __anchor = $("#" + anchorID); // __anchor.prepend(__openForm);
+    __anchor = $("#" + anchorID);
 
-    __anchor.append(__form);
+    __anchor.append(__form); // __anchor.height(__form.height());
+
 
     var self = this;
 
@@ -641,7 +664,7 @@ function TaskForm() {
     });
 
     AppEvent.addListener("edit-item", function (event) {
-      __state.task.task_id = event.message.item.task_id;
+      __state.task.task_id = event.message.item.task_id; // __state.previous_li = event.message.item.task_id;
 
       __form.children("input[name=\"task_body\"]").val(event.message.item.task_body);
 

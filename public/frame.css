@@ -17,12 +17,15 @@ html, body{
   border-bottom:1px solid #ddd;
 }
 .board{
-  max-width:980px;
+  max-width:1000px;
   margin:30px auto;
   background: white;
+  padding:30px;border:1px solid #ddd;
+  /*
   padding:30px;
   border:1px solid #ccc;
   box-shadow:0 1px 5px #ccceee;
+  */
 }
 .board-header h1{
   padding:20px;
@@ -55,61 +58,47 @@ html, body{
 .list{
   text-align: left;
   margin:15px 0;
+  border-top:1px dashed #aaa;
 }
 .list li{
-  padding:15px;
-  margin-bottom:15px;
+  padding:15px 0;
   background-color:#fff;
   position:relative;
-  border:1px solid #ccc;
+  border-bottom:1px dashed #aaa;
 }
-.list li.hide-content > p{
+.list li.hide-content{
+  padding:0;
+}
+.list li.hide-content > p,
+.list li.hide-content > .item-action,
+.list li.hide-content > .checkbox{
   display:none;
 }
 .list li:hover{
-  border-color:#aaa;
-  box-shadow:0 1px 2px #ccc;
+  border-color:#ccc;
+}
+.list .checkbox{
+  float:left;
+  margin-top:3px;
+  margin-right:10px;
 }
 .list p{
   margin:0;
+  color:#04488f;
 }
-.list .task-form{
-  background-color:#fff;
-  position:relative;
+.list li input[type="text"]{
   width:100%;
-  z-index:10;
+  border:0;
+  outline:none;
+  background-color:#eee;
+  padding:15px;
+  display:none;
 }
-.list .task-form input[type="text"]{
-  border-color:blue;
-}
-
 .empty-list{
   background-color:#eee;
   border-color:#777;
 }
-/*
-li.doing{
-  border-color:#f3cf1f;
-  background-color: #f8f06aed;
-}
-li.doing:hover{  
-  background-color: #faf04f;
-}
-*/
-
-/*
-li.todo{
-  border-color:#9ac2f3;
-  background-color:#d5e8fe;
-}
-li.todo:hover{
-  background-color:#a9cef8;
-}
-*/
-li.done{
-  background-color:#eee;
-}
-li.done p{
+li.completed p{
   text-decoration:line-through;
 }
 
