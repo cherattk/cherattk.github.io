@@ -564,7 +564,7 @@ var TaskList = {
     } else {
       __state.list.map(function (_item, index) {
         var isDone = _item.task_label === "completed";
-        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.task_id, "\" data-task-index=\"").concat(index, "\">\n                <!--          \n                -->\n                <div class=\"checkbox\">\n                  <input id=\"checkbox-").concat(_item.task_id, "\"\n                          data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"checkbox-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>    \n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <input id=\"item-").concat(index, "\" type=\"text\" name=\"task_body\"/>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn btn-primary btn-sm\" data-action=\"edit-item\" data-task-index=\"").concat(index, "\">Edit</button>\n                  <!--<button class=\"btn btn-primary btn-sm\" data-action=\"").concat(isDone ? "todo" : "done", "\" \n                              data-task-index=\"").concat(index, "\">\n                  ").concat(isDone ? "Todo" : "Completed", "\n                  </button>\n                  -->\n                  <button class=\"btn btn-danger btn-sm\" data-action=\"delete\" data-task-index=\"").concat(index, "\">delete</button>                  \n                  </div>\n                </li>");
+        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.task_id, "\" data-task-index=\"").concat(index, "\">\n                <!--          \n                -->\n                <div class=\"checkbox\" title=\"Mark task as completed\">\n                  <input id=\"checkbox-").concat(_item.task_id, "\"\n                          data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"checkbox-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>    \n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <input id=\"item-").concat(index, "\" type=\"text\" name=\"task_body\"/>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn\">\n                  <i class=\"far fa-edit\" data-action=\"edit-item\" \n                  data-task-index=\"").concat(index, "\" title=\"Edit this task\"></i>\n                  </button>\n                  <button class=\"btn\">\n                    <i class=\"fa fa-trash\" data-action=\"delete\" \n                    data-task-index=\"").concat(index, "\" title=\"Delete this task\"></i>\n                  </button>                  \n                  </div>\n                </li>");
       });
     }
 
@@ -600,59 +600,19 @@ module.exports = Modal;
 },{"../service/eventstore":6}],10:[function(require,module,exports){
 "use strict";
 
-// TaskForm
-var AppEvent = require('../service/eventstore').AppEvent;
-
 var DataManager = require('../service/datamanager');
-
-var TaskList = require('../ui/list'); // <select class="custom-select mb-3" name="task_label">
-//       <option value="todo">Todo</div>
-//       <option value="doing">Doing</div>
-//     </select>
-
 
 function TaskForm() {
   var __state = {
-    task: {},
-    move: false,
-    previous_li: null
-  };
-
-  var __anchor; //var __openForm = $(`<button class="btn btn-primary btn-sm">New Task</button>`);
-
-
-  var __form = $("\n    <form id=\"task-form\" class=\"task-form\">\n      <input type=\"text\" name=\"task_body\" class=\"form-control mb-3\" placeholder=\"Task...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>-->\n    </form>"); //var __form =  __form.clone();
-
-
-  this.moveForm = function (origin) {
-    // move to origin
-    if (origin && __state.previous_li) {
-      // TaskList.getElement(__state.task.task_id).addClass("hide-content");
-      TaskList.getElement(__state.previous_li).removeClass("hide-content"); //__anchor.append(__form.clone());
-
-      __state.task = {}; // __state.move = false;
-
-      return;
-    } // move to another place other than origin
-
-
-    var li = TaskList.getElement(__state.task.task_id);
-    li.append(__form.clone());
-    li.addClass("hide-content");
-
-    if (__state.previous_li !== __state.task.task_id) {
-      TaskList.getElement(__state.previous_li).removeClass("hide-content");
-      __state.previous_li = __state.task.task_id;
-    }
+    task: {}
   };
 
   this.init = function (anchorID) {
-    __anchor = $("#" + anchorID);
-
-    __anchor.append(__form); // __anchor.height(__form.height());
-
-
     var self = this;
+
+    var __form = $("\n    <form id=\"task-form\" class=\"task-form\" title=\"add a new task to do\">\n      <input type=\"text\" name=\"task_body\" placeholder=\"Task...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>-->\n    </form>");
+
+    $("#" + anchorID).append(__form);
 
     __form.submit(function (e) {
       self.submit(e);
@@ -661,14 +621,6 @@ function TaskForm() {
 
     __form.on("reset", function (e) {
       self.moveForm(true);
-    });
-
-    AppEvent.addListener("edit-item", function (event) {
-      __state.task.task_id = event.message.item.task_id; // __state.previous_li = event.message.item.task_id;
-
-      __form.children("input[name=\"task_body\"]").val(event.message.item.task_body);
-
-      self.moveForm();
     });
   };
 
@@ -679,9 +631,7 @@ function TaskForm() {
     if (!task_body) {
       alert("You can not add an empty task");
       return;
-    } // var select = e.target.elements['task_label'];
-    //var task_label = select.options[select.selectedIndex].value;
-
+    }
 
     var item = {
       task_id: __state.task.task_id ? __state.task.task_id : new Date().getTime().toString(),
@@ -695,4 +645,4 @@ function TaskForm() {
 
 module.exports = new TaskForm();
 
-},{"../service/datamanager":5,"../service/eventstore":6,"../ui/list":8}]},{},[4]);
+},{"../service/datamanager":5}]},{},[4]);

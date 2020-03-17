@@ -77,7 +77,7 @@ const TaskList = {
         content += `<li class="${_item.task_label}" data-task-id="${_item.task_id}" data-task-index="${index}">
                 <!--          
                 -->
-                <div class="checkbox">
+                <div class="checkbox" title="Mark task as completed">
                   <input id="checkbox-${_item.task_id}"
                           data-action="completed" data-task-index="${index}"
                         type="checkbox"
@@ -90,13 +90,14 @@ const TaskList = {
                   <input id="item-${index}" type="text" name="task_body"/>
                   <!---->
                   <div class="item-action">
-                  <button class="btn btn-primary btn-sm" data-action="edit-item" data-task-index="${index}">Edit</button>
-                  <!--<button class="btn btn-primary btn-sm" data-action="${(isDone ? "todo" : "done")}" 
-                              data-task-index="${index}">
-                  ${(isDone ? "Todo" : "Completed")}
+                  <button class="btn">
+                  <i class="far fa-edit" data-action="edit-item" 
+                  data-task-index="${index}" title="Edit this task"></i>
                   </button>
-                  -->
-                  <button class="btn btn-danger btn-sm" data-action="delete" data-task-index="${index}">delete</button>                  
+                  <button class="btn">
+                    <i class="fa fa-trash" data-action="delete" 
+                    data-task-index="${index}" title="Delete this task"></i>
+                  </button>                  
                   </div>
                 </li>`;
       });

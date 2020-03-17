@@ -89,8 +89,9 @@ html, body{
   margin-right:10px;
 }
 .list p{
-  margin:0;
+  margin:0 0 0 30px;
   color:#04488f;
+  width:calc(100% - 150px);
 }
 .list li input[type="text"]{
   width:100%;
@@ -109,14 +110,22 @@ li.completed p{
 }
 
 .item-action{
-  margin-top:10px;
+  margin-top:5px;
   position:absolute;  
   right:15px;
   top:5px; 
 }
 .item-action button{
-  padding:0 10px;
-  font-size:13px;
+  padding:0;
+  margin:0 5px;
+  font-size:20px;
+  border-bottom:2px solid transparent;
+  color:#777;
+  border-radius:0;
+} 
+.item-action button:hover{
+  border-bottom-color:#000;
+  color:#000;
 }
 /*
 .checkbox{
