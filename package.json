@@ -4,7 +4,7 @@
   "description": "Personal Todo Manager",
   "main": "main.js",
   "scripts": {
-    "start": "http-server -a 127.0.0.1 ./public",
+    "start": "http-server -a 127.0.0.1 ./",
     "build": "node ./builder.js"
   },
   "keywords": [],
