@@ -112,9 +112,8 @@ html, body{
   padding:15px;
   display:none;
 }
-.empty-list{
+.list li.empty-list{
   background-color:#eee;
-  border-color:#777;
 }
 li.completed p{
   text-decoration:line-through;
