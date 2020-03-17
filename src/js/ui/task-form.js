@@ -35,12 +35,12 @@ function TaskForm() {
       return;
     }
     var item = {
-      task_id: (__state.task.task_id ? __state.task.task_id : (new Date()).getTime().toString()),
+      id: (__state.task.id ? __state.task.id : (new Date()).getTime().toString()),
       task_label: "todo",
       task_body: task_body
     };
     e.target.reset();
-    DataManager.setTask(item);
+    DataManager.setItem('task' , item);
   }
 
 }

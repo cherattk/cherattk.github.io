@@ -1,46 +1,56 @@
 const AppEvent = require('./eventstore').AppEvent;
 
-var __taskStore = new Map();
-function saveStore() {
+const __dataStore = {
+  task: new Map(),
+  folder: new Map()
+}
+
+function saveStore(storeName) {
   var data = [];
-  __taskStore.forEach(function (item) {
+  __dataStore[storeName].forEach(function (item) {
     data.push(item);
   });
-  window.localStorage.setItem('task', JSON.stringify(data));
-  AppEvent.dispatch("update-task-list");
+  window.localStorage.setItem(storeName, JSON.stringify(data));
+  AppEvent.dispatch(`update-${storeName}-list`);
 }
 
 const DataManager = {
 
   init: function () {
-    var data = JSON.parse(window.localStorage.getItem('task'));
-    // if defined
-    if (data instanceof Array) {
-      data.forEach(function (item) {
-        __taskStore.set(item.task_id, item);
-      });
-    }
+
+    var storeListName = Object.keys(__dataStore);
+    storeListName.forEach(function (storeName) {
+      var data = JSON.parse(window.localStorage.getItem(storeName));
+      if (data instanceof Array) {
+        data.forEach(function (item) {
+          __dataStore[storeName].set(item.id, item);
+        });
+      }      
+    });
+
+
   },
 
-  getTaskList: function (storeName, criteria) {
-    return Array.from(__taskStore.values());
+  getList: function (storeName, criteria) {
+    return Array.from(__dataStore[storeName].values());
   },
 
-  getTask: function (task_id) {
-    return result = __taskStore.get(task_id);
+  getItem: function (storeName , item_id) {
+    return result = __dataStore[storeName].get(item_id);
   },
 
-  removeTask: function (selectedList) {
+  removeItem : function (storeName , selectedList) {
     selectedList.forEach(function (selected) {
-      __taskStore.delete(selected.task_id);
+      __dataStore[storeName].delete(selected.id);
     })
-    saveStore();
+    saveStore(storeName);
   },
 
-  setTask: function (task) {
-    __taskStore.set(task.task_id , task);
-    saveStore();
+  setItem: function (storeName , item) {
+    __dataStore[storeName].set(item.id, item);
+    saveStore(storeName);
   }
+
 }
 
 DataManager.init();

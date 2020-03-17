@@ -17,7 +17,7 @@ const TaskList = {
     itemInput.val(item.task_body);
     itemInput.focus();
     itemInput.blur(function (e) {
-      DataManager.setTask(Object.assign(item, { task_body: e.target.value }));
+      DataManager.setItem('task' , Object.assign(item, { task_body: e.target.value }));
       itemInput.hide();
       li.removeClass("hide-content");
     });
@@ -41,11 +41,11 @@ const TaskList = {
         case "completed":
           let update_task = __state.list[event.target.dataset.taskIndex];
           update_task.task_label = event.target.checked ? "completed" : "todo";
-          DataManager.setTask(update_task);
+          DataManager.setItem('task' , update_task);
           break;
         case "delete":
           let rm_task = __state.list[event.target.dataset.taskIndex];
-          DataManager.removeTask([rm_task]);
+          DataManager.removeItem('task' , [rm_task]);
           break;
         default: break;
       }
@@ -66,7 +66,7 @@ const TaskList = {
   },
 
   renderListItem: function () {
-    __state.list = DataManager.getTaskList().reverse();
+    __state.list = DataManager.getList('task' , null).reverse();
     var content = "";
     if (!__state.list.length) {
       content = this.emptyState();
@@ -74,15 +74,15 @@ const TaskList = {
     else {
       __state.list.map(function (_item, index) {
         let isDone = _item.task_label === "completed";
-        content += `<li class="${_item.task_label}" data-task-id="${_item.task_id}" data-task-index="${index}">
+        content += `<li class="${_item.task_label}" data-task-id="${_item.id}" data-task-index="${index}">
                 <!--          
                 -->
                 <div class="checkbox" title="Mark task as completed">
-                  <input id="checkbox-${_item.task_id}"
+                  <input id="checkbox-${_item.id}"
                           data-action="completed" data-task-index="${index}"
                         type="checkbox"
                         ${isDone ? "checked" : ''}/>
-                  <label for="checkbox-${_item.task_id}">
+                  <label for="checkbox-${_item.id}">
                     <span></span>
                   </label>
                 </div>    

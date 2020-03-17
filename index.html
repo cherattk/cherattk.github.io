@@ -65,7 +65,7 @@
                   the data could be deleted or corrupted
                   by changes made to a later version of this web app.
                   <br />
-  
+
                   The source code of this web app is
                   <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
                 </p>
@@ -79,16 +79,18 @@
       <i class="fa fa-bars"></i>
     </div> -->
 
-    </div>
 
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#folder-list">
+        Folders
+      </button>
+
+    </div>
   </header>
 
   <main role="main" class="board">
 
     <div class="board-header">
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-        data-target="#folder-list">Folders</button>
-      <h1> Project Name </h1>
+      <h1> My List </h1>
     </div>
 
     <div id="task-form-container"></div>
@@ -104,7 +106,36 @@
   </main>
 
   <!-- modal folder list  -->
-  <div id="div-folder-list"></div>
+  <div id="div-folder-list">
+    <div id="folder-list" class="modal fade folder-list" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">My folders</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!--
+          -->
+          <div class="modal-body" id="form-folder-container">
+            <form id="form-folder" class="form-folder">
+              <div class="form-group">
+                <label for="folder-name">folder name</label>
+                <input type="text" value="" placeholder="Folder Name" class="form-control" id="folder-name"
+                  name="folder-name" aria-describedby="folderName">
+                <small id="folderName" class="form-text text-muted">Enter you folder name and click save.</small>
+              </div>
+              <button type="button" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-secondary">Cancel</button>
+            </form>
+          </div>
+
+          <div class="modal-body" id="folder-list-container"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 
 

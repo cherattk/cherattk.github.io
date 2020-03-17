@@ -272,11 +272,69 @@ module.exports = Util;
 "use strict";
 
 /**
+ * Fix the structure of the task object
+ */
+module.exports = function FixDataStore() {
+  // return;
+  if (!window.localStorage) {
+    return;
+  }
+
+  var storeList = [{
+    name: "task",
+    field: [[// rename "task_id" property to "id"
+    "task_id", "id"]]
+  }];
+
+  var __originData, __copyData, patchName, patchDone;
+
+  storeList.map(function (store) {
+    // 1 - check if the data store is patched
+    patchName = "patch." + store.name + ".store";
+    patchDone = window.localStorage.getItem(patchName);
+
+    if (patchDone === "done") {
+      return;
+    } // 2 - the data store is not patched
+
+
+    var storeData = window.localStorage.getItem(store.name);
+
+    if (storeData) {
+      __originData = JSON.parse(storeData); //apply change
+
+      __copyData = __originData.map(function (item) {
+        // create a new field named field[1].value and
+        // assign to a new created field the value of 
+        // the previous field named field[0]
+        var __item = Object.assign({}, item);
+
+        store.field.map(function (field) {
+          if (typeof item[field[0]] !== "undefined") {
+            __item[field[1]] = item[field[0]].toString();
+            delete __item[field[0]];
+          }
+        }); // no need to store it
+
+        delete __item.checked;
+        return __item;
+      });
+      window.localStorage.setItem("".concat(store.name), JSON.stringify(__copyData));
+      window.localStorage.setItem(patchName, "done");
+    }
+  });
+};
+
+},{}],5:[function(require,module,exports){
+"use strict";
+
+/**
  * @version 0.4.0
  */
 
 /**/
-// require('../../patch/fixdatastore')();
+require('../../patch/fixdatastore')();
+
 var Form = require('./ui/task-form');
 
 Form.init("task-form-container");
@@ -292,9 +350,9 @@ Modal.init("task-modal-container"); // const ActionBar = require('./ui/actionbar
 // const TabNavigation = require('./ui/tabnav');
 // TabNavigation.init("task-nav-container");
 
-var ProjectList = require('./ui/folder-list');
+var FolderList = require('./ui/folder-list');
 
-ProjectList.init("div-folder-list");
+FolderList.init("folder-list-container");
 /**
  *
  */
@@ -336,56 +394,62 @@ ProjectList.init("div-folder-list");
 //   });
 // })();
 
-},{"./ui/folder-list":7,"./ui/list":8,"./ui/modal":9,"./ui/task-form":10}],5:[function(require,module,exports){
+},{"../../patch/fixdatastore":4,"./ui/folder-list":8,"./ui/list":9,"./ui/modal":10,"./ui/task-form":11}],6:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('./eventstore').AppEvent;
 
-var __taskStore = new Map();
+var __dataStore = {
+  task: new Map(),
+  folder: new Map()
+};
 
-function saveStore() {
+function saveStore(storeName) {
   var data = [];
 
-  __taskStore.forEach(function (item) {
+  __dataStore[storeName].forEach(function (item) {
     data.push(item);
   });
 
-  window.localStorage.setItem('task', JSON.stringify(data));
-  AppEvent.dispatch("update-task-list");
+  window.localStorage.setItem(storeName, JSON.stringify(data));
+  AppEvent.dispatch("update-".concat(storeName, "-list"));
 }
 
 var DataManager = {
   init: function init() {
-    var data = JSON.parse(window.localStorage.getItem('task')); // if defined
+    var storeListName = Object.keys(__dataStore);
+    storeListName.forEach(function (storeName) {
+      var data = JSON.parse(window.localStorage.getItem(storeName));
 
-    if (data instanceof Array) {
-      data.forEach(function (item) {
-        __taskStore.set(item.task_id, item);
-      });
-    }
-  },
-  getTaskList: function getTaskList(storeName, criteria) {
-    return Array.from(__taskStore.values());
-  },
-  getTask: function getTask(task_id) {
-    return result = __taskStore.get(task_id);
-  },
-  removeTask: function removeTask(selectedList) {
-    selectedList.forEach(function (selected) {
-      __taskStore["delete"](selected.task_id);
+      if (data instanceof Array) {
+        data.forEach(function (item) {
+          __dataStore[storeName].set(item.id, item);
+        });
+      }
     });
-    saveStore();
   },
-  setTask: function setTask(task) {
-    __taskStore.set(task.task_id, task);
+  getList: function getList(storeName, criteria) {
+    return Array.from(__dataStore[storeName].values());
+  },
+  getItem: function getItem(storeName, item_id) {
+    return result = __dataStore[storeName].get(item_id);
+  },
+  removeItem: function removeItem(storeName, selectedList) {
+    selectedList.forEach(function (selected) {
+      __dataStore[storeName]["delete"](selected.id);
+    });
+    saveStore(storeName);
+  },
+  setItem: function setItem(storeName, item) {
+    __dataStore[storeName].set(item.id, item);
 
-    saveStore();
+    saveStore(storeName);
   }
 };
 DataManager.init();
 module.exports = DataManager;
 
-},{"./eventstore":6}],6:[function(require,module,exports){
+},{"./eventstore":7}],7:[function(require,module,exports){
 "use strict";
 
 var EventSet = require('eventset');
@@ -404,7 +468,7 @@ module.exports = {
   AppEvent: AppEvent
 };
 
-},{"eventset":1}],7:[function(require,module,exports){
+},{"eventset":1}],8:[function(require,module,exports){
 "use strict";
 
 /**
@@ -414,72 +478,60 @@ var AppEvent = require('../service/eventstore').AppEvent;
 
 var DataManager = require('../service/datamanager');
 
-function FolderList() {
-  var __element;
+var __container;
 
+function FolderList() {
   var __state = {
-    edit_folder: {
-      id: "",
-      name: ""
-    },
-    folder_list: [{
+    list: [{
       id: "1",
-      name: "My Folder -1 "
+      name: "My Folder -1 ",
+      active: true
     }, {
       id: "2",
-      name: "My Folder -2 "
+      name: "My Folder -2 ",
+      active: false
     }, {
       id: "3",
-      name: "My Folder -3 "
+      name: "My Folder -3 ",
+      active: false
     }]
   };
 
   this.init = function (anchorID) {
-    __element = $("#" + anchorID); // browser event
+    __container = $("#" + anchorID); // browser event
 
-    __element.click(function (event) {
+    __container.click(function (event) {
       if (event.target.tagName === 'LI') {
+        // load folder list
         return;
-      } // if (event.target.id === 'add-folder') {
-      //   DataManager.setFolder({
-      //     id: __state.edit_folder.id,
-      //     name: __state.edit_folder.name
-      //   });
-      //   e.target.reset();
-      //   return;
-      // }
-
+      }
     });
 
-    this.render(); // customEvent
-    //AppEvent.addListener("navigate-list", this.setItemStatus.bind(this));
-  }; // this.setStatus = function (customEvent) {
-  //   __state.itemStatus = customEvent.eventMessage.stage;
-  // }
+    this.renderFolderList();
+  };
 
-
-  this.emptyState = function (params) {
+  this.emptyState = function () {
     return '<li class="empty-list">Empty List</li>';
   };
 
-  this.renderList = function () {
-    var list = "<ul class=\"list-group\">";
+  this.renderFolderList = function () {
+    var content = "";
 
-    __state.folder_list.map(function (folder) {
-      list += "<li class=\"list-group-item\" id=\"prj-".concat(folder.id, "\">").concat(folder.name, "</li>");
-    });
+    if (!__state.list.length) {
+      content = this.emptyState();
+    } else {
+      __state.list.map(function (folder) {
+        content += "<li class=\"list-group-item\" id=\"folder-".concat(folder.id, "\">").concat(folder.name, "</li>");
+      });
+    }
 
-    return __state.folder_list ? list : this.emptyState();
-  };
-
-  this.render = function () {
-    __element.html("\n    <div id=\"folder-list\" class=\"modal fade folder-list\" role=\"dialog\">\n    <div class=\"modal-dialog modal-lg\">\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">My folders</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n\n        <!--\n        <div class=\"modal-body form-add-folder\">          \n          <button type=\"button\" data-toggle=\"collapse\" data-target=\"#form-add-folder\">add folder</button>\n          <form id=\"form-add-folder\" class=\"collapse\">          \n            <div class=\"form-group\">\n              <label for=\"folder-name\">folder name</label>\n              <input type=\"text\" value=\"\" placeholder=\"Folder Name\"\n                      class=\"form-control\" \n                      id=\"folder-name\" \n                      name=\"folder-name\" aria-describedby=\"folderName\">\n              <small id=\"folderName\" class=\"form-text text-muted\">Enter you folder name and click save.</small>\n            </div>\n            <button type=\"button\" class=\"btn btn-primary\">Save</button>\n            <button type=\"button\" class=\"btn btn-secondary\">Cancel</button>\n          </form>\n        </div>\n        -->\n\n        <div class=\"modal-body\">\n          ".concat(this.renderList(), "          \n        </div>\n      </div>\n\n    </div>\n  </div>"));
+    __container.append("<ul class=\"list-group list-group-flush\"> ".concat(content, " </ul>"));
   };
 }
 
 module.exports = new FolderList();
 
-},{"../service/datamanager":5,"../service/eventstore":6}],8:[function(require,module,exports){
+},{"../service/datamanager":6,"../service/eventstore":7}],9:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -504,7 +556,7 @@ var TaskList = {
     itemInput.val(item.task_body);
     itemInput.focus();
     itemInput.blur(function (e) {
-      DataManager.setTask(Object.assign(item, {
+      DataManager.setItem('task', Object.assign(item, {
         task_body: e.target.value
       }));
       itemInput.hide();
@@ -531,12 +583,12 @@ var TaskList = {
         case "completed":
           var update_task = __state.list[event.target.dataset.taskIndex];
           update_task.task_label = event.target.checked ? "completed" : "todo";
-          DataManager.setTask(update_task);
+          DataManager.setItem('task', update_task);
           break;
 
         case "delete":
           var rm_task = __state.list[event.target.dataset.taskIndex];
-          DataManager.removeTask([rm_task]);
+          DataManager.removeItem('task', [rm_task]);
           break;
 
         default:
@@ -556,7 +608,7 @@ var TaskList = {
     return "<li class=\"empty-list\">Empty List</li>";
   },
   renderListItem: function renderListItem() {
-    __state.list = DataManager.getTaskList().reverse();
+    __state.list = DataManager.getList('task', null).reverse();
     var content = "";
 
     if (!__state.list.length) {
@@ -564,7 +616,7 @@ var TaskList = {
     } else {
       __state.list.map(function (_item, index) {
         var isDone = _item.task_label === "completed";
-        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.task_id, "\" data-task-index=\"").concat(index, "\">\n                <!--          \n                -->\n                <div class=\"checkbox\" title=\"Mark task as completed\">\n                  <input id=\"checkbox-").concat(_item.task_id, "\"\n                          data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"checkbox-").concat(_item.task_id, "\">\n                    <span></span>\n                  </label>\n                </div>    \n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <input id=\"item-").concat(index, "\" type=\"text\" name=\"task_body\"/>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn\">\n                  <i class=\"far fa-edit\" data-action=\"edit-item\" \n                  data-task-index=\"").concat(index, "\" title=\"Edit this task\"></i>\n                  </button>\n                  <button class=\"btn\">\n                    <i class=\"fa fa-trash\" data-action=\"delete\" \n                    data-task-index=\"").concat(index, "\" title=\"Delete this task\"></i>\n                  </button>                  \n                  </div>\n                </li>");
+        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.id, "\" data-task-index=\"").concat(index, "\">\n                <!--          \n                -->\n                <div class=\"checkbox\" title=\"Mark task as completed\">\n                  <input id=\"checkbox-").concat(_item.id, "\"\n                          data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                        type=\"checkbox\"\n                        ").concat(isDone ? "checked" : '', "/>\n                  <label for=\"checkbox-").concat(_item.id, "\">\n                    <span></span>\n                  </label>\n                </div>    \n                  <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                  <input id=\"item-").concat(index, "\" type=\"text\" name=\"task_body\"/>\n                  <!---->\n                  <div class=\"item-action\">\n                  <button class=\"btn\">\n                  <i class=\"far fa-edit\" data-action=\"edit-item\" \n                  data-task-index=\"").concat(index, "\" title=\"Edit this task\"></i>\n                  </button>\n                  <button class=\"btn\">\n                    <i class=\"fa fa-trash\" data-action=\"delete\" \n                    data-task-index=\"").concat(index, "\" title=\"Delete this task\"></i>\n                  </button>                  \n                  </div>\n                </li>");
       });
     }
 
@@ -573,7 +625,7 @@ var TaskList = {
 };
 module.exports = TaskList;
 
-},{"../service/datamanager":5,"../service/eventstore":6}],9:[function(require,module,exports){
+},{"../service/datamanager":6,"../service/eventstore":7}],10:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -597,7 +649,7 @@ var Modal = {
 };
 module.exports = Modal;
 
-},{"../service/eventstore":6}],10:[function(require,module,exports){
+},{"../service/eventstore":7}],11:[function(require,module,exports){
 "use strict";
 
 var DataManager = require('../service/datamanager');
@@ -634,15 +686,15 @@ function TaskForm() {
     }
 
     var item = {
-      task_id: __state.task.task_id ? __state.task.task_id : new Date().getTime().toString(),
+      id: __state.task.id ? __state.task.id : new Date().getTime().toString(),
       task_label: "todo",
       task_body: task_body
     };
     e.target.reset();
-    DataManager.setTask(item);
+    DataManager.setItem('task', item);
   };
 }
 
 module.exports = new TaskForm();
 
-},{"../service/datamanager":5}]},{},[4]);
+},{"../service/datamanager":6}]},{},[5]);

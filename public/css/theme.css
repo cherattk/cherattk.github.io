@@ -1,7 +1,7 @@
 .notice{
   font-size:13px;
   font-weight:bold;
-  text-align:left;
+  float: left;
 }
 .notice-button{
   padding:7px 10px;

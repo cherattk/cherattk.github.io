@@ -3,7 +3,7 @@
  */
 
 /**/
-// require('../../patch/fixdatastore')();
+require('../../patch/fixdatastore')();
 
 const Form = require('./ui/task-form');
 Form.init("task-form-container");
@@ -20,8 +20,8 @@ Modal.init("task-modal-container");
 // const TabNavigation = require('./ui/tabnav');
 // TabNavigation.init("task-nav-container");
 
-const ProjectList = require('./ui/folder-list');
-ProjectList.init("div-folder-list");
+const FolderList = require('./ui/folder-list');
+FolderList.init("folder-list-container");
 
 /**
  *

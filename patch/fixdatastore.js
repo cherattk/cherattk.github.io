@@ -13,9 +13,8 @@ module.exports = function FixDataStore(){
       name : "task",
       field : [
         [
-          // rename "status" property to "stage"
-          "status",
-          "stage"
+          // rename "task_id" property to "id"
+          "task_id", "id"
         ]
       ]
     }

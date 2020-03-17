@@ -13,14 +13,18 @@ html, body{
 /************* Application ***************/
 .app-header{
   padding:15px 0;
+  height:60px;
   background-color: #fff; 
   box-shadow:0 1px 2px rgb(198, 200, 202);
 }
-.app-header-content, .board{  
+.app-header-content, 
+.board{  
   max-width:1000px;
   margin:auto;
 } 
-
+.app-header button{
+  float:right;
+}
 .board{
   margin:30px auto;
   background: white;
@@ -29,15 +33,14 @@ html, body{
   box-shadow:0 1px 2px 1px rgba(75, 85, 93, 0.5);
 }
 .board-header{
-  display:none;
+  /* display:none; */
 }
 .board-header h1{
-  padding:20px;
-  margin:0 0 30px 0;
+  padding:0 0 20px 0;
   font-size: 21px;
-  background:#dfebf9;
   color: #194274;
   text-align:left;
+  border-bottom:1px solid #ccc;
 }
 .board-header button{
   float:right;
@@ -58,11 +61,12 @@ html, body{
   border:0;
   outline:none;
   margin:0;
-  border-bottom:2px solid #007bff;
+  border-bottom:2px solid #ccc;
 }
 .task-form > input[type="text"]:focus,
 .task-form > input[type="text"]:hover{  
   background-color:#f1f2f3;
+  border-color:#007bff;
 }
 /******************** list action bar ***************/
 .task-action-bar{
