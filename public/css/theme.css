@@ -1,17 +1,7 @@
-.notice > p{
+.notice{
   font-size:13px;
-  padding:10px 10px 40px 10px;
-  margin:0;
-  overflow-y:hidden;
-  line-height:2.5em;
   font-weight:bold;
-  height:0;
   text-align:left;
-  position:relative;
-  z-index:10;
-}
-.notice > p.open-notice{
-  height:auto;
 }
 .notice-button{
   padding:7px 10px;
@@ -25,18 +15,9 @@
   font-size:13px;
   line-height:1em;
 }
-.notice-button:before{
-  content:"read ";
-}
 .notice-button:hover{  
   cursor:pointer;
   background-color:#558cd0;  
-}
-.open-notice{
-  height:auto;
-}
-.close-notice-button:before{
-  content:"close ";
 }
 
 ul {

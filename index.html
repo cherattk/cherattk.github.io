@@ -33,45 +33,49 @@
 
     <div id="app-header-content" class="app-header-content">
 
-    <div class="notice">
-      <p id="notice-content">
-        <span style="color:red">
-          📢 Read notice before using the application.
+      <div class="notice">
+        <span style="color:red;font-weight:bold;">
+          📢 Read this before using this app.
         </span>
-        <span id="notice-button" class="notice-button">
-          notice
-        </span>
-        <br />
+        <button type="button" id="notice-button" class="notice-button" class="btn btn-primary" data-toggle="modal"
+          data-target="#notice-content">
+          Notice
+        </button>
 
-        The data managed by this web app are saved in your browser using local storage area
-        <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See How)</a>
-        and remain available until you delete them.
-        <br />
-        This application can be removed or
-        moved to another location (url) at any time and 
-        <br />
-        the data could be deleted or corrupted
-        by changes made to a later version of this web app.
-        <br />
+        <div class="modal fade" id="notice-content" tabindex="-1" role="dialog" aria-labelledby="notice"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Notice</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  The data managed by this web app are saved in your the browser using local storage area
+                  <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See
+                    How)</a>
+                  and remain available until you delete them.
+                  <br />
+                  This application can be removed or
+                  moved to another location (url) at any time and
+                  <br />
+                  the data could be deleted or corrupted
+                  by changes made to a later version of this web app.
+                  <br />
+  
+                  The source code of this web app is
+                  <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        The source code of this web app is
-        <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
-
-      </p>
-      <script type="text/javascript">
-        (function () {
-          var btn = document.getElementById("notice-button");
-          btn.onclick = function (ev) {
-            document.getElementById('notice-content')
-              .classList.toggle('open-notice');
-
-            ev.target.classList.toggle('close-notice-button');
-          }
-        })();
-      </script>
-    </div>
-
-    <!-- <div class="">
+      <!-- <div class="">
       <i class="fa fa-bars"></i>
     </div> -->
 
