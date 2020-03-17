@@ -274,6 +274,8 @@ module.exports = Util;
 /**
  * Fix the structure of the task object
  */
+var PATCH_VERSION = "patch_v1";
+
 module.exports = function FixDataStore() {
   // return;
   if (!window.localStorage) {
@@ -293,7 +295,7 @@ module.exports = function FixDataStore() {
     patchName = "patch." + store.name + ".store";
     patchDone = window.localStorage.getItem(patchName);
 
-    if (patchDone === "done") {
+    if (PATCH_VERSION === patchDone) {
       return;
     } // 2 - the data store is not patched
 
@@ -320,7 +322,7 @@ module.exports = function FixDataStore() {
         return __item;
       });
       window.localStorage.setItem("".concat(store.name), JSON.stringify(__copyData));
-      window.localStorage.setItem(patchName, "done");
+      window.localStorage.setItem(patchName, PATCH_VERSION);
     }
   });
 };

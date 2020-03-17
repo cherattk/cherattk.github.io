@@ -1,6 +1,9 @@
 /**
  * Fix the structure of the task object
  */
+
+ const PATCH_VERSION = "patch_v1";
+
 module.exports = function FixDataStore(){
 
   // return;
@@ -30,7 +33,7 @@ module.exports = function FixDataStore(){
     // 1 - check if the data store is patched
     patchName = ("patch." + store.name + ".store");
     patchDone = window.localStorage.getItem(patchName);
-    if(patchDone === "done"){
+    if(PATCH_VERSION === patchDone){
       return;
     }
 
@@ -62,7 +65,7 @@ module.exports = function FixDataStore(){
         JSON.stringify(__copyData)
       );
 
-      window.localStorage.setItem(patchName , "done");
+      window.localStorage.setItem(patchName , PATCH_VERSION);
 
     }
 
