@@ -11,11 +11,11 @@ html, body{
 }
 
 /************* Application ***************/
-.app-header{
+/* .app-header{
   height:50px;
   background-color: #fff;
   border-bottom:1px solid #ddd;
-}
+} */
 .board{
   max-width:1000px;
   margin:30px auto;

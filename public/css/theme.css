@@ -1,3 +1,43 @@
+.notice > p{
+  font-size:13px;
+  padding:10px 10px 40px 10px;
+  margin:0;
+  background:#fff;
+  border-bottom:1px solid rgb(223, 235, 249);
+  overflow-y:hidden;
+  line-height:2.5em;
+  font-weight:bold;
+  height:0px;
+}
+.notice > p.open-notice{
+  height:auto;
+}
+.notice-button{
+  padding:7px 10px;
+  background-color:#fff;
+  border:1px solid rgb(223, 235, 249);;
+  display:inline-block;
+  border-top:0;
+  border-radius:3px;
+  background-color:#3f7fce;
+  color:#fff;
+  font-size:13px;
+  line-height:1em;
+}
+.notice-button:before{
+  content:"read ";
+}
+.notice-button:hover{  
+  cursor:pointer;
+  background-color:#558cd0;  
+}
+.open-notice{
+  height:auto;
+}
+.close-notice-button:before{
+  content:"close ";
+}
+
 ul {
   margin: 0;
   padding: 0;
