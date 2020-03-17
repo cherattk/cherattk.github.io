@@ -7,25 +7,25 @@ html, body{
   font-family:'Arial','Helvetica', sans-serif;
   font-size:16px;
   text-align:center;
-  background: #eef3fb;
+  background: #e8eaed;
 }
 
 /************* Application ***************/
-/* .app-header{
-  height:50px;
+.app-header{
   background-color: #fff;
   border-bottom:1px solid #ddd;
-} */
-.board{
+}
+.app-header-content, .board{  
   max-width:1000px;
+  margin:auto;
+} 
+
+.board{
   margin:30px auto;
   background: white;
-  padding:30px;border:1px solid #ddd;
-  /*
   padding:30px;
-  border:1px solid #ccc;
-  box-shadow:0 1px 5px #ccceee;
-  */
+  border-radius:3px;
+  box-shadow:0 1px 2px 1px rgba(75, 85, 93, 0.5);
 }
 .board-header{
   display:none;
@@ -48,14 +48,21 @@ html, body{
 #task-form-container{
   text-align:left;
 }
+.task-form{
+  margin-bottom:20px;
+}
 .task-form > input[type="text"]{
   padding:15px;
   width:100%;
   border:0;
   outline:none;
   margin:0;
+  border-bottom:2px solid #007bff;
 }
-
+.task-form > input[type="text"]:focus,
+.task-form > input[type="text"]:hover{  
+  background-color:#f1f2f3;
+}
 /******************** list action bar ***************/
 .task-action-bar{
   text-align:right;
@@ -64,13 +71,12 @@ html, body{
 /******************* task list ********************/
 .list{
   text-align: left;
-  border-top:1px dashed #aaa;
 }
 .list li{
-  padding:15px 0;
+  padding:15px;
   background-color:#fff;
   position:relative;
-  border-bottom:1px dashed #aaa;
+  border-bottom:1px solid #e6e6e6;
 }
 .list li.hide-content{
   padding:0;
@@ -81,7 +87,7 @@ html, body{
   display:none;
 }
 .list li:hover{
-  border-color:#ccc;
+  background-color:#f3f4f5;
 }
 .list .checkbox{
   float:left;
@@ -97,7 +103,7 @@ html, body{
   width:100%;
   border:0;
   outline:none;
-  background-color:#eee;
+  background-color:#f3f4f5;
   padding:15px;
   display:none;
 }

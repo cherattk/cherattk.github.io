@@ -29,51 +29,57 @@
 
 <body>
 
-  <div class="notice">
-    <p id="notice-content">
-      <span style="color:red">
-        📢 Read notice before using the application.
-      </span>
-      <span id="notice-button" class="notice-button">
-        notice
-      </span>
-      <br/>
+  <header class="app-header">
 
-      The data managed by this web app are saved in your browser using local storage area
-      <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" 
-        target="_blank">(See How)</a>
-      and remain available until you delete them.        
-      <br/>
-      This application can be removed or 
-      moved to another location (url) at any time 
-      <br/>
-      and/or the data could be deleted or corrupted 
-      by changes made to a later version of this web app.        
-      <br/>
+    <div id="app-header-content" class="app-header-content">
 
-      The source code of this web app is
-      <a href="https://github.com/cherattk/task-manager" target="_blank"> published on github</a>
-      
-    </p>
+    <div class="notice">
+      <p id="notice-content">
+        <span style="color:red">
+          📢 Read notice before using the application.
+        </span>
+        <span id="notice-button" class="notice-button">
+          notice
+        </span>
+        <br />
+
+        The data managed by this web app are saved in your browser using local storage area
+        <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See How)</a>
+        and remain available until you delete them.
+        <br />
+        This application can be removed or
+        moved to another location (url) at any time and 
+        <br />
+        the data could be deleted or corrupted
+        by changes made to a later version of this web app.
+        <br />
+
+        The source code of this web app is
+        <a href="https://github.com/cherattk/task-manager" target="_blank"> published on github</a>
+
+      </p>
       <script type="text/javascript">
-        (function(){
+        (function () {
           var btn = document.getElementById("notice-button");
-              btn.onclick = function(ev){
-                  document.getElementById('notice-content')
-                  .classList.toggle('open-notice');
+          btn.onclick = function (ev) {
+            document.getElementById('notice-content')
+              .classList.toggle('open-notice');
 
-                ev.target.classList.toggle('close-notice-button');
-              }
+            ev.target.classList.toggle('close-notice-button');
+          }
         })();
       </script>
+    </div>
 
-  </div>
+    <!-- <div class="">
+      <i class="fa fa-bars"></i>
+    </div> -->
 
-  <div class="app-header">
+    </div>
 
-  </div>
+  </header>
 
-  <div class="board">
+  <main role="main" class="board">
 
     <div class="board-header">
       <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
@@ -91,7 +97,7 @@
 
     <div id="task-modal-container"></div>
 
-  </div>
+  </main>
 
   <!-- modal folder list  -->
   <div id="div-folder-list"></div>
