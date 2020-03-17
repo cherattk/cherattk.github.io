@@ -1,11 +1,9 @@
 {
-  "name": "task",
-  "version": "0.3.0",
-  "description": "A Kanban Task List",
+  "name": "task-manager",
+  "version": "0.4.0",
+  "description": "A Task List Manager",
   "main": "main.js",
-  "scripts": {
-    "start": "http-server -a 127.0.0.1 ./public"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "Cheratt Karim",
   "license": "MIT",
