@@ -42,7 +42,8 @@ module.exports = function FixDataStore(){
     if(storeData){
       __originData = JSON.parse(storeData);
 
-      //apply change
+      // apply change
+      // rename field
       __copyData = __originData.map(function(item){
         // create a new field named field[1].value and
         // assign to a new created field the value of 
@@ -59,6 +60,7 @@ module.exports = function FixDataStore(){
         delete __item.checked;
         return __item;
       });
+
 
       window.localStorage.setItem(
         `${store.name}`, 

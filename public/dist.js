@@ -303,7 +303,8 @@ module.exports = function FixDataStore() {
     var storeData = window.localStorage.getItem(store.name);
 
     if (storeData) {
-      __originData = JSON.parse(storeData); //apply change
+      __originData = JSON.parse(storeData); // apply change
+      // rename field
 
       __copyData = __originData.map(function (item) {
         // create a new field named field[1].value and
@@ -430,8 +431,20 @@ var DataManager = {
       }
     });
   },
-  getList: function getList(storeName, criteria) {
-    return Array.from(__dataStore[storeName].values());
+  getList: function getList(storeName, folderId) {
+    var result = [];
+
+    if (folderId) {
+      __dataStore[storeName].forEach(function (item) {
+        if (item.folder_id === folderId) {
+          result.push(item);
+        }
+      });
+
+      return result;
+    } else {
+      return Array.from(__dataStore[storeName].values());
+    }
   },
   getItem: function getItem(storeName, item_id) {
     return result = __dataStore[storeName].get(item_id);
@@ -459,12 +472,12 @@ var EventSet = require('eventset');
 var AppEvent = EventSet.Topic('app.event'); // AppEvent.addEvent("save-form");
 // AppEvent.addEvent("fetch-list");
 // AppEvent.addEvent("data-change");
-// AppEvent.addEvent("navigate-list");
 
+AppEvent.addEvent("active-folder");
 AppEvent.addEvent("edit-item");
 AppEvent.addEvent("select-item");
-AppEvent.addEvent("modal-state");
-AppEvent.addEvent("init-app");
+AppEvent.addEvent("modal-state"); // AppEvent.addEvent("init-app");
+
 AppEvent.addEvent("update-task-list");
 module.exports = {
   AppEvent: AppEvent
@@ -484,36 +497,30 @@ var __container;
 
 function FolderList() {
   var __state = {
-    list: [{
-      id: "1",
-      name: "My Folder -1 ",
-      active: true
-    }, {
-      id: "2",
-      name: "My Folder -2 ",
-      active: false
-    }, {
-      id: "3",
-      name: "My Folder -3 ",
-      active: false
-    }]
+    list: []
   };
 
   this.init = function (anchorID) {
     __container = $("#" + anchorID); // browser event
 
     __container.click(function (event) {
-      if (event.target.tagName === 'LI') {
-        // load folder list
+      if (event.target.dataset.action === 'get-folder') {
+        AppEvent.dispatch('active-folder', {
+          folder_id: __state.list[0].id
+        });
         return;
       }
     });
+
+    if (__state.list.length) {
+      $('#board-h1').html(folderName);
+    }
 
     this.renderFolderList();
   };
 
   this.emptyState = function () {
-    return '<li class="empty-list">Empty List</li>';
+    return '<li data-action="" class="empty-list">Empty List</li>';
   };
 
   this.renderFolderList = function () {
@@ -523,7 +530,7 @@ function FolderList() {
       content = this.emptyState();
     } else {
       __state.list.map(function (folder) {
-        content += "<li class=\"list-group-item\" id=\"folder-".concat(folder.id, "\">").concat(folder.name, "</li>");
+        content += "<li class=\"list-group-item\" data-action=\"get-folder\" id=\"folder-".concat(folder.id, "\">").concat(folder.name, "</li>");
       });
     }
 
@@ -543,8 +550,9 @@ var DataManager = require('../service/datamanager');
 var __container;
 
 var __state = {
-  list: [] // list of item
-
+  list: [],
+  // list of item
+  folderId: null
 };
 var TaskList = {
   editItem: function editItem(item, itemIndex) {
@@ -598,7 +606,8 @@ var TaskList = {
       }
     });
 
-    AppEvent.addListener("init-app", function () {
+    AppEvent.addListener("active-folder", function (event) {
+      __state.folderId = event.message.folder_id;
       TaskList.renderListItem();
     });
     AppEvent.addListener("update-task-list", function () {
@@ -610,7 +619,7 @@ var TaskList = {
     return "<li class=\"empty-list\">Empty List</li>";
   },
   renderListItem: function renderListItem() {
-    __state.list = DataManager.getList('task', null).reverse();
+    __state.list = DataManager.getList('task', __state.folderId).reverse();
     var content = "";
 
     if (!__state.list.length) {

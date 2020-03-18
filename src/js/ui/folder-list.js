@@ -9,11 +9,7 @@ var __container;
 function FolderList() {
 
   var __state = {
-    list: [
-      { id: "1", name: "My Folder -1 " , active : true},
-      { id: "2", name: "My Folder -2 " , active : false},
-      { id: "3", name: "My Folder -3 " , active : false}
-    ]
+    list: []
   }
 
   this.init = function (anchorID) {
@@ -22,18 +18,20 @@ function FolderList() {
 
     // browser event
     __container.click(function (event) {
-      if (event.target.tagName === 'LI') {
-        // load folder list
+      if (event.target.dataset.action === 'get-folder') {
+        AppEvent.dispatch('active-folder' , { folder_id :  __state.list[0].id});
         return;
       }
     });
 
+    if(__state.list.length){
+      $('#board-h1').html(folderName);
+    }
     this.renderFolderList();
-
   }
 
   this.emptyState = function () {
-    return '<li class="empty-list">Empty List</li>';
+    return '<li data-action="" class="empty-list">Empty List</li>';
   }
 
   this.renderFolderList = function () {
@@ -43,7 +41,7 @@ function FolderList() {
     }
     else {
       __state.list.map(function (folder) {
-        content += `<li class="list-group-item" id="folder-${folder.id}">${folder.name}</li>`;
+        content += `<li class="list-group-item" data-action="get-folder" id="folder-${folder.id}">${folder.name}</li>`;
       });
     }
     __container.append(`<ul class="list-group list-group-flush"> ${content} </ul>`);

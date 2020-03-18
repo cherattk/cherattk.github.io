@@ -31,8 +31,19 @@ const DataManager = {
 
   },
 
-  getList: function (storeName, criteria) {
-    return Array.from(__dataStore[storeName].values());
+  getList: function (storeName, folderId) {
+    var result = [];
+    if(folderId){
+      __dataStore[storeName].forEach(function(item){
+        if(item.folder_id === folderId){
+          result.push(item);
+        }
+      });
+      return result;
+    }
+    else{
+      return Array.from(__dataStore[storeName].values());
+    }
   },
 
   getItem: function (storeName , item_id) {

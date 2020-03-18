@@ -5,6 +5,7 @@ const DataManager = require('../service/datamanager');
 var __container;
 var __state = {
   list: [], // list of item
+  folderId : null
 };
 
 const TaskList = {
@@ -51,9 +52,11 @@ const TaskList = {
       }
     });
 
-    AppEvent.addListener("init-app", function () {
+    AppEvent.addListener("active-folder", function (event) {
+      __state.folderId = event.message.folder_id;
       TaskList.renderListItem();
     });
+
     AppEvent.addListener("update-task-list", function () {
       TaskList.renderListItem();
     });
@@ -66,7 +69,7 @@ const TaskList = {
   },
 
   renderListItem: function () {
-    __state.list = DataManager.getList('task' , null).reverse();
+    __state.list = DataManager.getList('task' ,  __state.folderId ).reverse();
     var content = "";
     if (!__state.list.length) {
       content = this.emptyState();
