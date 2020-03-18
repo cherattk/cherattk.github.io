@@ -21,7 +21,7 @@ p{
 
 /************* Application ***************/
 .app-header{
-  padding:15px 0;
+  padding:15px 20px;
   height:60px;
   background-color: #fff; 
   box-shadow:0 1px 2px rgb(198, 200, 202);
