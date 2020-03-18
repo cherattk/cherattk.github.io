@@ -673,7 +673,7 @@ function TaskForm() {
   this.init = function (anchorID) {
     var self = this;
 
-    var __form = $("\n    <form id=\"task-form\" class=\"task-form\" title=\"add a new task to do\">\n      <input type=\"text\" name=\"task_body\" placeholder=\"Task...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>-->\n    </form>");
+    var __form = $("\n    <form id=\"task-form\" class=\"task-form\" title=\"add a new task to do\">\n      <input type=\"text\" name=\"task_body\" placeholder=\"Task ...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>-->\n    </form>");
 
     $("#" + anchorID).append(__form);
 

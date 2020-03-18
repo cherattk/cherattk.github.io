@@ -34,13 +34,11 @@
     <div id="app-header-content" class="app-header-content">
 
       <div class="notice">
-        <span style="color:red;font-weight:bold;">
+
+        <span type="button" class="notice-button" 
+                data-toggle="modal" data-target="#notice-content">
           📢 Read this before using this app.
         </span>
-        <button type="button" id="notice-button" class="notice-button" class="btn btn-primary" data-toggle="modal"
-          data-target="#notice-content">
-          Notice
-        </button>
 
         <div class="modal fade" id="notice-content" tabindex="-1" role="dialog" aria-labelledby="notice"
           aria-hidden="true">
@@ -54,7 +52,7 @@
               </div>
               <div class="modal-body">
                 <p>
-                  The data managed by this web app are saved in your the browser using local storage area
+                  The data managed by this web app are saved in the browser local storage area
                   <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See
                     How)</a>
                   and remain available until you delete them.
@@ -80,9 +78,9 @@
     </div> -->
 
 
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#folder-list">
+      <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#folder-list">
         My Lists
-      </button>
+      </button> -->
 
     </div>
   </header>

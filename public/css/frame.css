@@ -9,6 +9,15 @@ html, body{
   text-align:center;
   background: #e8eaed;
 }
+ul {
+  margin: 0;
+  padding: 0;
+  list-style:none;
+}
+
+p{  
+  word-break:keep-all;
+}
 
 /************* Application ***************/
 .app-header{
@@ -29,7 +38,7 @@ html, body{
   margin:30px auto;
   background: white;
   padding:30px;
-  box-shadow:0 1px 2px 1px rgba(75, 85, 93, 0.5);
+  box-shadow:0 1px 3px 1px rgb(169, 173, 177);
   overflow:hidden;
   min-height:1000px;
 }

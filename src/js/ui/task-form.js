@@ -11,7 +11,7 @@ function TaskForm() {
     var self = this;
     var __form = $(`
     <form id="task-form" class="task-form" title="add a new task to do">
-      <input type="text" name="task_body" placeholder="Task..." />
+      <input type="text" name="task_body" placeholder="Task ..." />
       <!--<input type="submit" value="Save" class="btn btn-primary btn-sm"/>
       <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>-->
     </form>`);
