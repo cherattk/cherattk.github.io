@@ -13,7 +13,7 @@ const TaskList = {
   editItem: function (item, itemIndex) {
     var li = __container.find(`li[data-task-index="${itemIndex}"]`);
     li.addClass("hide-content");
-    var itemInput = __container.find(`#item-textfield-${itemIndex}`);
+    var itemInput = __container.find(`#item-textfield-${item.id}`);
     itemInput.show();
     itemInput.val(item.task_body);
     itemInput.focus();
@@ -94,7 +94,7 @@ const TaskList = {
                     <div>   
                       <p>${index + 1} - ${_item.task_body}</p>
                       <!--<input type="text" name="task_body"/>-->
-                      <textarea id="item-textfield-${index}"  class="item-textfield" name="task_body"></textarea>
+                      <textarea id="item-textfield-${_item.id}"  class="item-textfield" name="task_body"></textarea>
                     </div>
                     <!-- item action -->
                     <div class="item-action">
