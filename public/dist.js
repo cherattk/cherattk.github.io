@@ -578,7 +578,7 @@ var TaskList = {
 
     li.addClass("hide-content");
 
-    var itemInput = __container.find("#item-textfield-".concat(itemIndex));
+    var itemInput = __container.find("#item-textfield-".concat(item.id));
 
     itemInput.show();
     itemInput.val(item.task_body);
@@ -645,7 +645,7 @@ var TaskList = {
     } else {
       __state.list.map(function (_item, index) {
         var isDone = _item.task_label === "completed";
-        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.id, "\" data-task-index=\"").concat(index, "\">\n                \n                    <!--  checkbox -->\n                    <div class=\"checkbox\" title=\"Mark task as completed\">\n                      <input id=\"checkbox-").concat(_item.id, "\"\n                              data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                            type=\"checkbox\"\n                            ").concat(isDone ? "checked" : '', "/>\n                      <label for=\"checkbox-").concat(_item.id, "\">\n                        <span></span>\n                      </label>\n                    </div>\n                    \n                    <!-- item content -->\n                    <div>   \n                      <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                      <!--<input type=\"text\" name=\"task_body\"/>-->\n                      <textarea id=\"item-textfield-").concat(index, "\"  class=\"item-textfield\" name=\"task_body\"></textarea>\n                    </div>\n                    <!-- item action -->\n                    <div class=\"item-action\">\n                      <button class=\"btn\">\n                      <i class=\"far fa-edit\" data-action=\"edit-item\" \n                      data-task-index=\"").concat(index, "\" title=\"Edit this task\"></i>\n                      </button>\n                      <button class=\"btn\">\n                        <i class=\"fa fa-trash\" data-action=\"delete\" \n                        data-task-index=\"").concat(index, "\" title=\"Delete this task\"></i>\n                      </button>                  \n                    </div>\n          </li>");
+        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.id, "\" data-task-index=\"").concat(index, "\">\n                \n                    <!--  checkbox -->\n                    <div class=\"checkbox\" title=\"Mark task as completed\">\n                      <input id=\"checkbox-").concat(_item.id, "\"\n                              data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                            type=\"checkbox\"\n                            ").concat(isDone ? "checked" : '', "/>\n                      <label for=\"checkbox-").concat(_item.id, "\">\n                        <span></span>\n                      </label>\n                    </div>\n                    \n                    <!-- item content -->\n                    <div>   \n                      <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                      <!--<input type=\"text\" name=\"task_body\"/>-->\n                      <textarea id=\"item-textfield-").concat(_item.id, "\"  class=\"item-textfield\" name=\"task_body\"></textarea>\n                    </div>\n                    <!-- item action -->\n                    <div class=\"item-action\">\n                      <button class=\"btn\">\n                      <i class=\"far fa-edit\" data-action=\"edit-item\" \n                      data-task-index=\"").concat(index, "\" title=\"Edit this task\"></i>\n                      </button>\n                      <button class=\"btn\">\n                        <i class=\"fa fa-trash\" data-action=\"delete\" \n                        data-task-index=\"").concat(index, "\" title=\"Delete this task\"></i>\n                      </button>                  \n                    </div>\n          </li>");
       });
     }
 
@@ -691,22 +691,17 @@ function TaskForm() {
   this.init = function (anchorID) {
     var self = this;
 
-    var __form = $("\n    <form id=\"task-form\" class=\"task-form\" title=\"add a new task to do\">\n      <input type=\"text\" name=\"task_body\" placeholder=\"Task ...\" />\n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>-->\n    </form>");
+    var __form = $("\n    <form id=\"task-form\" class=\"task-form\" title=\"add a new task to do\">\n        <!--<textarea id=\"task-form-text\" name=\"task_body\" placeholder=\"Task ...\"></textarea>-->\n      <input id=\"task-form-text\" type=\"text\" name=\"task_body\" placeholder=\"Task ...\" /> \n      <!--<input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      <input type=\"reset\" value=\"Clear\" class=\"btn btn-secondary btn-sm\"/>-->\n    </form>");
 
     $("#" + anchorID).append(__form);
 
     __form.submit(function (e) {
-      self.submit(e);
-      self.moveForm(true);
-    });
-
-    __form.on("reset", function (e) {
-      self.moveForm(true);
+      e.preventDefault();
+      self.saveForm(e);
     });
   };
 
-  this.submit = function (e) {
-    e.preventDefault();
+  this.saveForm = function (e) {
     var task_body = e.target.elements['task_body'].value;
 
     if (!task_body) {

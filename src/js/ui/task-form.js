@@ -11,24 +11,20 @@ function TaskForm() {
     var self = this;
     var __form = $(`
     <form id="task-form" class="task-form" title="add a new task to do">
-      <input type="text" name="task_body" placeholder="Task ..." />
+        <!--<textarea id="task-form-text" name="task_body" placeholder="Task ..."></textarea>-->
+      <input id="task-form-text" type="text" name="task_body" placeholder="Task ..." /> 
       <!--<input type="submit" value="Save" class="btn btn-primary btn-sm"/>
       <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>-->
     </form>`);
     $("#" + anchorID).append(__form);
 
-    __form.submit(function (e) {
-      self.submit(e);
-      self.moveForm(true);
-    });
-
-    __form.on("reset", function (e) {
-      self.moveForm(true);
+    __form.submit(function (e) {      
+      e.preventDefault();
+      self.saveForm(e);
     });
   }
 
-  this.submit = function (e) {
-    e.preventDefault();
+  this.saveForm = function (e) {
     var task_body = e.target.elements['task_body'].value;
     if (!task_body) {
       alert("You can not add an empty task");
@@ -40,7 +36,7 @@ function TaskForm() {
       task_body: task_body
     };
     e.target.reset();
-    DataManager.setItem('task' , item);
+    DataManager.setItem('task', item);
   }
 
 }
