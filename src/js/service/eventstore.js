@@ -12,6 +12,7 @@ AppEvent.addEvent("select-item");
 AppEvent.addEvent("modal-state");
 // AppEvent.addEvent("init-app");
 AppEvent.addEvent("update-task-list");
+AppEvent.addEvent("update-folder-list");
 
 module.exports = {
     AppEvent

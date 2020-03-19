@@ -5,7 +5,7 @@ const DataManager = require('../service/datamanager');
 var __container;
 var __state = {
   list: [], // list of item
-  folderId : null
+  folderId: null
 };
 
 const TaskList = {
@@ -13,12 +13,12 @@ const TaskList = {
   editItem: function (item, itemIndex) {
     var li = __container.find(`li[data-task-index="${itemIndex}"]`);
     li.addClass("hide-content");
-    var itemInput = __container.find(`input[id="item-${itemIndex}"]`);
+    var itemInput = __container.find(`#item-textfield-${itemIndex}`);
     itemInput.show();
     itemInput.val(item.task_body);
     itemInput.focus();
     itemInput.blur(function (e) {
-      DataManager.setItem('task' , Object.assign(item, { task_body: e.target.value }));
+      DataManager.setItem('task', Object.assign(item, { task_body: e.target.value }));
       itemInput.hide();
       li.removeClass("hide-content");
     });
@@ -42,11 +42,11 @@ const TaskList = {
         case "completed":
           let update_task = __state.list[event.target.dataset.taskIndex];
           update_task.task_label = event.target.checked ? "completed" : "todo";
-          DataManager.setItem('task' , update_task);
+          DataManager.setItem('task', update_task);
           break;
         case "delete":
           let rm_task = __state.list[event.target.dataset.taskIndex];
-          DataManager.removeItem('task' , [rm_task]);
+          DataManager.removeItem('task', [rm_task]);
           break;
         default: break;
       }
@@ -69,7 +69,7 @@ const TaskList = {
   },
 
   renderListItem: function () {
-    __state.list = DataManager.getList('task' ,  __state.folderId ).reverse();
+    __state.list = DataManager.getList('task', __state.folderId).reverse();
     var content = "";
     if (!__state.list.length) {
       content = this.emptyState();
@@ -78,31 +78,36 @@ const TaskList = {
       __state.list.map(function (_item, index) {
         let isDone = _item.task_label === "completed";
         content += `<li class="${_item.task_label}" data-task-id="${_item.id}" data-task-index="${index}">
-                <!--          
-                -->
-                <div class="checkbox" title="Mark task as completed">
-                  <input id="checkbox-${_item.id}"
-                          data-action="completed" data-task-index="${index}"
-                        type="checkbox"
-                        ${isDone ? "checked" : ''}/>
-                  <label for="checkbox-${_item.id}">
-                    <span></span>
-                  </label>
-                </div>    
-                  <p>${index + 1} - ${_item.task_body}</p>
-                  <input id="item-${index}" type="text" name="task_body"/>
-                  <!---->
-                  <div class="item-action">
-                  <button class="btn">
-                  <i class="far fa-edit" data-action="edit-item" 
-                  data-task-index="${index}" title="Edit this task"></i>
-                  </button>
-                  <button class="btn">
-                    <i class="fa fa-trash" data-action="delete" 
-                    data-task-index="${index}" title="Delete this task"></i>
-                  </button>                  
-                  </div>
-                </li>`;
+                
+                    <!--  checkbox -->
+                    <div class="checkbox" title="Mark task as completed">
+                      <input id="checkbox-${_item.id}"
+                              data-action="completed" data-task-index="${index}"
+                            type="checkbox"
+                            ${isDone ? "checked" : ''}/>
+                      <label for="checkbox-${_item.id}">
+                        <span></span>
+                      </label>
+                    </div>
+                    
+                    <!-- item content -->
+                    <div>   
+                      <p>${index + 1} - ${_item.task_body}</p>
+                      <!--<input type="text" name="task_body"/>-->
+                      <textarea id="item-textfield-${index}"  class="item-textfield" name="task_body"></textarea>
+                    </div>
+                    <!-- item action -->
+                    <div class="item-action">
+                      <button class="btn">
+                      <i class="far fa-edit" data-action="edit-item" 
+                      data-task-index="${index}" title="Edit this task"></i>
+                      </button>
+                      <button class="btn">
+                        <i class="fa fa-trash" data-action="delete" 
+                        data-task-index="${index}" title="Delete this task"></i>
+                      </button>                  
+                    </div>
+          </li>`;
       });
     }
 

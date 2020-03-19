@@ -1,52 +1,74 @@
-/**
- * 
- */
 const AppEvent = require('../service/eventstore').AppEvent;
 const DataManager = require('../service/datamanager');
 
 var __container;
+var __state = {
+  list: [], // list of item
+  folderId: null
+};
 
-function FolderList() {
+const FolderList = {
 
-  var __state = {
-    list: []
-  }
+  editItem: function (item, itemIndex) {
+    var li = __container.find(`li[data-folder-index="${itemIndex}"]`);
+    li.addClass("hide-content");
+    var itemInput = __container.find(`input[id="item-${itemIndex}"]`);
+    itemInput.show();
+    itemInput.val(item.folder_name);
+    itemInput.focus();
+    itemInput.blur(function (e) {
+      DataManager.setItem('folder', Object.assign(item, { folder_name: e.target.value }));
+      itemInput.hide();
+      li.removeClass("hide-content");
+    });
+  },
 
-  this.init = function (anchorID) {
+  init: function (anchorID) {
 
-    __container = $("#" + anchorID);
+    __container = $("#" + anchorID).html(`<ul class="list">${this.emptyState()}</ul>`);
 
-    // browser event
-    __container.click(function (event) {
-      if (event.target.dataset.action === 'get-folder') {
-        AppEvent.dispatch('active-folder' , { folder_id :  __state.list[0].id});
-        return;
-      }
+
+
+    __container.click(this.clickHandler.bind(this));
+
+    // AppEvent.addListener("active-folder", function (event) {
+    //   __state.folderId = event.message.folder_id;
+    //   FolderList.renderListItem();
+    // });
+
+    AppEvent.addListener("update-folder-list", function () {
+      FolderList.renderListItem();
     });
 
-    if(__state.list.length){
-      $('#board-h1').html(folderName);
-    }
-    this.renderFolderList();
-  }
+    this.renderListItem();
+  },
 
-  this.emptyState = function () {
-    return '<li data-action="" class="empty-list">Empty List</li>';
-  }
+  clickHandler: function (event) {
+    //
+  },
 
-  this.renderFolderList = function () {
+  emptyState: function () {
+    return `<li class="empty-list">Empty List</li>`;
+  },
+
+  renderListItem: function () {
+    __state.list = DataManager.getList('folder', __state.folderId).reverse();
     var content = "";
     if (!__state.list.length) {
       content = this.emptyState();
     }
     else {
-      __state.list.map(function (folder) {
-        content += `<li class="list-group-item" data-action="get-folder" id="folder-${folder.id}">${folder.name}</li>`;
+      __state.list.map(function (_item, index) {
+        content += `
+                <li data-folder-id="${_item.id}" data-folder-index="${index}">
+                  <p>${index + 1} - ${_item.folder_name}</p>
+                </li>`;
       });
     }
-    __container.append(`<ul class="list-group list-group-flush"> ${content} </ul>`);
+
+    __container.html(`<ul class="list">${content}</ul>`);
 
   }
 }
 
-module.exports = new FolderList();
+module.exports = FolderList;

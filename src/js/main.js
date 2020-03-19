@@ -5,6 +5,14 @@
 /**/
 require('../../patch/fixdatastore')();
 
+
+// SET COMPONENT =============================
+// const FolderForm = require('./ui/folder-form');
+// FolderForm.init("folder-form-container");
+
+const FolderList = require('./ui/folder-list');
+FolderList.init("folder-list-container");
+
 const Form = require('./ui/task-form');
 Form.init("task-form-container");
 
@@ -13,15 +21,13 @@ List.init("task-list-container");
 
 const Modal = require('./ui/modal');
 Modal.init("task-modal-container");
+// =================================================
 
 // const ActionBar = require('./ui/actionbar');
 // ActionBar.init("task-action-container");
 
 // const TabNavigation = require('./ui/tabnav');
 // TabNavigation.init("task-nav-container");
-
-const FolderList = require('./ui/folder-list');
-FolderList.init("folder-list-container");
 
 /**
  *

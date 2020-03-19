@@ -21,13 +21,15 @@ p{
 
 /************* Application ***************/
 .app-header{
-  padding:15px 0;
   height:60px;
   background-color: #fff; 
   box-shadow:0 1px 2px rgb(198, 200, 202);
 }
+.app-header-content{
+  padding:15px 10px;
+}
 .app-header-content, 
-.board{  
+.board-container{  
   max-width:1000px;
   margin:auto;
 } 
@@ -35,12 +37,12 @@ p{
   float:right;
 }
 .board{
-  margin:30px auto;
   background: white;
   padding:30px;
-  box-shadow:0 1px 3px 1px rgb(169, 173, 177);
-  overflow:hidden;
+  box-shadow:0 1px 2px 1px rgb(162, 163, 165);
   min-height:1000px;
+  margin:30px 10px;
+ 
 }
 .board-header{
   /* display:none; */
@@ -75,10 +77,12 @@ p{
   background-color:#fff;
   border-bottom:3px solid #eee;
 }
+/*
+*/
 .task-form > input[type="text"]:focus,
 .task-form > input[type="text"]:hover{
   background-color:#f1f2f3;
-  border-bottom:3px solid #007bff;
+  border-color:#536587;
 }
 /******************** list action bar ***************/
 .task-action-bar{
@@ -87,7 +91,7 @@ p{
 
 /******************* task list ********************/
 .list{
-  text-align: left;
+  text-align: center;
 }
 .list li{
   padding:15px;
@@ -98,31 +102,46 @@ p{
 .list li.hide-content{
   padding:0;
 }
-.list li.hide-content > p,
-.list li.hide-content > .item-action,
-.list li.hide-content > .checkbox{
+.list li.hide-content > div:nth-child(1),
+.list li.hide-content > div:nth-child(3),
+.list li.hide-content p{
   display:none;
+}
+.list li.hide-content > div:nth-child(2){
+  width:100%;
 }
 .list li:hover{
   background-color:#f3f4f5;
 }
-.list .checkbox{
-  float:left;
-  margin-top:3px;
-  margin-right:10px;
+.list li > div{
+  display:inline-block;
+  vertical-align:top;
+}
+.list li > div:nth-child(1){
+  width:30px;
+  position:relative;  
+  top:2px;
+}
+.list li > div:nth-child(2){
+  width:calc(100% - 140px);
+}
+.list li > div:nth-child(3){
+  text-align:right;  
+  margin-top:-3px;
 }
 .list p{
-  margin:0 0 0 30px;
   color:#04488f;
-  width:calc(100% - 150px);
+  margin:0;
+  text-align:left;
 }
-.list li input[type="text"]{
+.list li .item-textfield{
   width:100%;
   border:0;
   outline:none;
   background-color:#f3f4f5;
   padding:15px;
   display:none;
+  min-height:100px;
 }
 .list li.empty-list{
   background-color:#eee;
@@ -134,19 +153,12 @@ p{
 li.completed p{
   text-decoration:line-through;
 }
-
-.item-action{
-  margin-top:5px;
-  position:absolute;  
-  right:15px;
-  top:5px; 
-}
 .item-action button{
   padding:0;
-  margin:0 5px;
-  font-size:20px;
+  margin:0 0 0 20px;
+  font-size:18px;
   border-bottom:2px solid transparent;
-  color:#777;
+  color:#586f8a;
   border-radius:0;
 } 
 .item-action button:hover{

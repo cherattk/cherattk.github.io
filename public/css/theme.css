@@ -88,6 +88,7 @@ li.todo:hover{
 }
 .checkbox label{
   display: inline-block;
+  margin-bottom:0; /* override bootstrap */
 }
 .checkbox label span{
   background:#fff;
