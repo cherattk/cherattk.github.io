@@ -337,9 +337,11 @@ module.exports = function FixDataStore() {
 
 /**/
 require('../../patch/fixdatastore')(); // SET COMPONENT =============================
-// const FolderForm = require('./ui/folder-form');
-// FolderForm.init("folder-form-container");
 
+
+var FolderForm = require('./ui/folder-form');
+
+FolderForm.init("folder-header-container");
 
 var FolderList = require('./ui/folder-list');
 
@@ -402,7 +404,7 @@ Modal.init("task-modal-container"); // =========================================
 //   });
 // })();
 
-},{"../../patch/fixdatastore":4,"./ui/folder-list":8,"./ui/list":9,"./ui/modal":10,"./ui/task-form":11}],6:[function(require,module,exports){
+},{"../../patch/fixdatastore":4,"./ui/folder-form":8,"./ui/folder-list":9,"./ui/list":10,"./ui/modal":11,"./ui/task-form":12}],6:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('./eventstore').AppEvent;
@@ -496,12 +498,89 @@ var AppEvent = require('../service/eventstore').AppEvent;
 
 var DataManager = require('../service/datamanager');
 
+var __state = {
+  folder: {
+    id: "",
+    name: "My List"
+  }
+};
+
+var __element;
+
+var __container;
+
+var FolderForm = {
+  init: function init(anchorID) {
+    __container = $("#" + anchorID);
+    this.render();
+    var self = this; //var createButton = __container.find("#create-folder");
+
+    __container.click(function (event) {
+      if (event.target.id === "create-folder") {
+        __state.folder = {
+          id: new Date().getTime().toString(),
+          name: "New Task List"
+        };
+        self.render();
+        self.setFolder();
+        AppEvent.dispatch("active-folder", {
+          folder_id: __state.folder.id
+        });
+      }
+    }); // .append(__element);
+
+  },
+  setFolder: function setFolder() {
+    if (!__state.folder.id) {
+      alert("error folder id is empty");
+      return;
+    }
+
+    if (!__state.folder.name) {
+      alert("You can not set an empty list");
+      return;
+    } // var folder = {
+    //   id: __state.folder.id,
+    //   name: __state.folder.name
+    // };
+
+
+    DataManager.setItem('folder', __state.folder);
+  },
+  attachListener: function attachListener() {
+    var self = this;
+
+    var textField = __container.find("#folder-textfield");
+
+    textField.blur(function (event) {
+      // event.preventDefault();
+      if (event.target.id === "folder-textfield") {
+        __state.folder.name = event.target.value;
+        self.setFolder();
+      }
+    });
+  },
+  render: function render() {
+    __container.html("\n    <div id=\"folder-header\">\n      <input id=\"folder-textfield\" type=\"text\" class=\"textfield\" \n        value=\"".concat(__state.folder.name, "\"/>\n      <button id=\"create-folder\" type=\"button\" class=\"btn btn-primary btn-sm\">\n      New Folder\n      </button>\n      </div>"));
+
+    this.attachListener();
+  }
+};
+module.exports = FolderForm;
+
+},{"../service/datamanager":6,"../service/eventstore":7}],9:[function(require,module,exports){
+"use strict";
+
+var AppEvent = require('../service/eventstore').AppEvent;
+
+var DataManager = require('../service/datamanager');
+
 var __container;
 
 var __state = {
   list: [],
   // list of item
-  folderId: null
+  active: null
 };
 var FolderList = {
   editItem: function editItem(item, itemIndex) {
@@ -542,23 +621,23 @@ var FolderList = {
     return "<li class=\"empty-list\">Empty List</li>";
   },
   renderListItem: function renderListItem() {
-    __state.list = DataManager.getList('folder', __state.folderId).reverse();
+    __state.list = DataManager.getList('folder', __state.active).reverse();
     var content = "";
 
     if (!__state.list.length) {
       content = this.emptyState();
     } else {
       __state.list.map(function (_item, index) {
-        content += "\n                <li data-folder-id=\"".concat(_item.id, "\" data-folder-index=\"").concat(index, "\">\n                  <p>").concat(index + 1, " - ").concat(_item.folder_name, "</p>\n                </li>");
+        content += "\n                <li data-folder-id=\"".concat(_item.id, "\" data-folder-index=\"").concat(index, "\">\n                  <p>").concat(index + 1, " - ").concat(_item.name, "</p>\n                </li>");
       });
     }
 
-    __container.html("<ul class=\"list\">".concat(content, "</ul>"));
+    __container.html("<ul> ".concat(content, " </div> "));
   }
 };
 module.exports = FolderList;
 
-},{"../service/datamanager":6,"../service/eventstore":7}],9:[function(require,module,exports){
+},{"../service/datamanager":6,"../service/eventstore":7}],10:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -645,7 +724,7 @@ var TaskList = {
     } else {
       __state.list.map(function (_item, index) {
         var isDone = _item.task_label === "completed";
-        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.id, "\" data-task-index=\"").concat(index, "\">\n                \n                    <!--  checkbox -->\n                    <div class=\"checkbox\" title=\"Mark task as completed\">\n                      <input id=\"checkbox-").concat(_item.id, "\"\n                              data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                            type=\"checkbox\"\n                            ").concat(isDone ? "checked" : '', "/>\n                      <label for=\"checkbox-").concat(_item.id, "\">\n                        <span></span>\n                      </label>\n                    </div>\n                    \n                    <!-- item content -->\n                    <div>   \n                      <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                      <!--<input type=\"text\" name=\"task_body\"/>-->\n                      <textarea id=\"item-textfield-").concat(_item.id, "\"  class=\"item-textfield\" name=\"task_body\"></textarea>\n                    </div>\n                    <!-- item action -->\n                    <div class=\"item-action\">\n                      <button class=\"btn\">\n                      <i class=\"far fa-edit\" data-action=\"edit-item\" \n                      data-task-index=\"").concat(index, "\" title=\"Edit this task\"></i>\n                      </button>\n                      <button class=\"btn\">\n                        <i class=\"fa fa-trash\" data-action=\"delete\" \n                        data-task-index=\"").concat(index, "\" title=\"Delete this task\"></i>\n                      </button>                  \n                    </div>\n          </li>");
+        content += "<li class=\"".concat(_item.task_label, "\" data-task-id=\"").concat(_item.id, "\" data-task-index=\"").concat(index, "\">\n                \n                    <!--  checkbox -->\n                    <div class=\"checkbox\" title=\"Mark task as completed\">\n                      <input id=\"checkbox-").concat(_item.id, "\"\n                              data-action=\"completed\" data-task-index=\"").concat(index, "\"\n                            type=\"checkbox\"\n                            ").concat(isDone ? "checked" : '', "/>\n                      <label for=\"checkbox-").concat(_item.id, "\">\n                        <span></span>\n                      </label>\n                    </div>\n                    \n                    <!-- item content -->\n                    <div>   \n                      <p>").concat(index + 1, " - ").concat(_item.task_body, "</p>\n                      <!---->\n                      <input id=\"item-textfield-").concat(_item.id, "\" type=\"text\" class=\"textfield\" name=\"task_body\"/>\n                      <!--<textarea id=\"item-textfield-").concat(_item.id, "\"  class=\"textfield\" name=\"task_body\"></textarea>-->\n                    </div>\n                    <!-- item action -->\n                    <div class=\"item-action\">\n                      <button class=\"btn\">\n                      <i class=\"far fa-edit\" data-action=\"edit-item\" \n                      data-task-index=\"").concat(index, "\" title=\"Edit this task\"></i>\n                      </button>\n                      <button class=\"btn\">\n                        <i class=\"fa fa-trash\" data-action=\"delete\" \n                        data-task-index=\"").concat(index, "\" title=\"Delete this task\"></i>\n                      </button>                  \n                    </div>\n          </li>");
       });
     }
 
@@ -654,7 +733,7 @@ var TaskList = {
 };
 module.exports = TaskList;
 
-},{"../service/datamanager":6,"../service/eventstore":7}],10:[function(require,module,exports){
+},{"../service/datamanager":6,"../service/eventstore":7}],11:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -678,7 +757,7 @@ var Modal = {
 };
 module.exports = Modal;
 
-},{"../service/eventstore":7}],11:[function(require,module,exports){
+},{"../service/eventstore":7}],12:[function(require,module,exports){
 "use strict";
 
 var DataManager = require('../service/datamanager');

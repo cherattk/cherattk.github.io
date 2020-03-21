@@ -38,7 +38,7 @@ p{
 }
 .board{
   background: white;
-  padding:30px 20px;
+  padding:20px;
   box-shadow:0 1px 2px 1px rgb(162, 163, 165);
   min-height:1000px;
   margin:30px 10px;
@@ -47,25 +47,20 @@ p{
 .board-header{
   /* display:none; */
 }
-.board-header h1{
-  padding:0 0 20px 0;
-  font-size: 21px;
-  color: #194274;
+.board-header{
   text-align:left;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px dashed #ccc;
   margin:0 0 20px 0;
 }
-.board-header button{
-  float:right;
-  margin-top:20px;
-  margin-right:20px;
+.board h1{  
+  font-size:18px;
 }
 
 /*************** task form *********************/
 #task-form-container{
   text-align:left;
 }
-.task-form{
+.task-form {
   margin-bottom:20px;
 }
 .task-form > input[type="text"]{
@@ -74,15 +69,14 @@ p{
   border:0;
   outline:none;
   margin:0;
-  background-color:#fff;
-  border-bottom:3px solid #eee;
+  border-bottom:2px solid #eee;
 }
 /*
 */
 .task-form > input[type="text"]:focus,
 .task-form > input[type="text"]:hover{
   background-color:#f1f2f3;
-  border-color:#536587;
+  border-color:#8ca1ca;
 }
 /******************** list action bar ***************/
 .task-action-bar{
@@ -94,13 +88,14 @@ p{
   text-align: left;
 }
 .list li{
-  padding:15px;
+  padding:20px 15px;
   background-color:#fff;
   position:relative;
-  border-bottom:1px solid #e6e6e6;
+  border-bottom:1px dashed #e6e6e6;
 }
 .list li.hide-content{
   padding:0;
+  border-color:transparent;
 }
 .list li.hide-content > div:nth-child(1),
 .list li.hide-content > div:nth-child(3),
@@ -119,11 +114,11 @@ p{
 }
 .list li > div:nth-child(1){
   width:30px;
-  position:relative;  
+  position:relative;
   top:2px;
 }
 .list li > div:nth-child(2){
-  width:calc(100% - 140px);
+  width:calc(100% - 160px);
 }
 .list li > div:nth-child(3){
   text-align:right;  
@@ -131,18 +126,17 @@ p{
   margin-left:30px;
 }
 .list p{
-  color:#04488f;
+  color:#054890;
   margin:0;
   text-align:left;
+  font-size:15px;
 }
-.list li .item-textfield{
+.list li .textfield{
   width:100%;
-  border:0;
-  outline:none;
-  background-color:#f3f4f5;
-  padding:15px;
   display:none;
-  min-height:100px;
+  height:70px;
+  border:1px solid #ccc;
+  box-shadow:0 0 2px #ccc inset;
 }
 .list li.empty-list{
   background-color:#eee;
@@ -151,21 +145,26 @@ p{
   font-size:200%;
   display:none;
 }
+li.completed{
+  background-color:#f3f4f5;
+  border-color:#ccc;
+}
 li.completed p{
   text-decoration:line-through;
+  color:#7f90a2;
 }
 
 .item-action button{
   padding:0;
-  margin:0 0 0 10px;
-  font-size:18px;
+  margin:0 0 0 20px;
   border-bottom:2px solid transparent;
-  color:#586f8a;
+  color:#657486;
   border-radius:0;
+  font-size:16px;
 } 
 .item-action button:hover{
-  border-bottom-color:#000;
-  color:#000;
+  border-bottom-color:#0a407f;
+  color:#0a407f;
 }
 /*
 .checkbox{
@@ -216,6 +215,42 @@ li.completed p{
 
 
 /**************** Folder List *****************/
+#folder-header{
+  padding:0;
+}
+/*
+#folder-header > div{
+  display:inline-block;
+  vertical-align:top;
+  display:none;
+}
+#folder-header > div:nth-child(1){
+  width:calc(100% - 50px);
+}
+#folder-header > div:nth-child(2){
+   width:40px;
+}
+*/
+#folder-header .textfield{
+  width:calc(100% - 100px);
+  font-size:18px;
+  padding:10px 15px;
+  color: #194274;
+}
+#folder-header .textfield:hover{
+  background-color:#efefef;
+}
+/*
+#folder-header.hide-content > .folder-name,
+#folder-header.hide-content > .folder-action{
+  display:none;
+  
+}
+#folder-header.hide-content > #folder-textfield{
+  display:block;
+  
+}
+*/
 .folder-list{
   text-align: left;
 }

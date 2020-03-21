@@ -4,7 +4,7 @@ const DataManager = require('../service/datamanager');
 var __container;
 var __state = {
   list: [], // list of item
-  folderId: null
+  active: null
 };
 
 const FolderList = {
@@ -26,8 +26,6 @@ const FolderList = {
   init: function (anchorID) {
 
     __container = $("#" + anchorID).html(`<ul class="list">${this.emptyState()}</ul>`);
-
-
 
     __container.click(this.clickHandler.bind(this));
 
@@ -52,7 +50,7 @@ const FolderList = {
   },
 
   renderListItem: function () {
-    __state.list = DataManager.getList('folder', __state.folderId).reverse();
+    __state.list = DataManager.getList('folder', __state.active).reverse();
     var content = "";
     if (!__state.list.length) {
       content = this.emptyState();
@@ -61,12 +59,12 @@ const FolderList = {
       __state.list.map(function (_item, index) {
         content += `
                 <li data-folder-id="${_item.id}" data-folder-index="${index}">
-                  <p>${index + 1} - ${_item.folder_name}</p>
+                  <p>${index + 1} - ${_item.name}</p>
                 </li>`;
       });
     }
 
-    __container.html(`<ul class="list">${content}</ul>`);
+    __container.html(`<ul> ${content} </div> `);
 
   }
 }

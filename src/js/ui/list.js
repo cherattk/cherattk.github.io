@@ -93,8 +93,9 @@ const TaskList = {
                     <!-- item content -->
                     <div>   
                       <p>${index + 1} - ${_item.task_body}</p>
-                      <!--<input type="text" name="task_body"/>-->
-                      <textarea id="item-textfield-${_item.id}"  class="item-textfield" name="task_body"></textarea>
+                      <!---->
+                      <input id="item-textfield-${_item.id}" type="text" class="textfield" name="task_body"/>
+                      <!--<textarea id="item-textfield-${_item.id}"  class="textfield" name="task_body"></textarea>-->
                     </div>
                     <!-- item action -->
                     <div class="item-action">

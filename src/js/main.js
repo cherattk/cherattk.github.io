@@ -7,8 +7,8 @@ require('../../patch/fixdatastore')();
 
 
 // SET COMPONENT =============================
-// const FolderForm = require('./ui/folder-form');
-// FolderForm.init("folder-form-container");
+const FolderForm = require('./ui/folder-form');
+FolderForm.init("folder-header-container");
 
 const FolderList = require('./ui/folder-list');
 FolderList.init("folder-list-container");
