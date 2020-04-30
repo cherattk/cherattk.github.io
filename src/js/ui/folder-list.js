@@ -1,70 +1,75 @@
 const AppEvent = require('../service/eventstore').AppEvent;
+
 const DataManager = require('../service/datamanager');
 
 var __container;
 var __state = {
-  list: [], // list of item
-  active: null
+  list: []
 };
+
+var __listNode;
 
 const FolderList = {
 
-  editItem: function (item, itemIndex) {
-    var li = __container.find(`li[data-folder-index="${itemIndex}"]`);
-    li.addClass("hide-content");
-    var itemInput = __container.find(`input[id="item-${itemIndex}"]`);
-    itemInput.show();
-    itemInput.val(item.folder_name);
-    itemInput.focus();
-    itemInput.blur(function (e) {
-      DataManager.setItem('folder', Object.assign(item, { folder_name: e.target.value }));
-      itemInput.hide();
-      li.removeClass("hide-content");
-    });
-  },
-
   init: function (anchorID) {
 
-    __container = $("#" + anchorID).html(`<ul class="list">${this.emptyState()}</ul>`);
-
-    __container.click(this.clickHandler.bind(this));
-
-    // AppEvent.addListener("active-folder", function (event) {
-    //   __state.folderId = event.message.folder_id;
-    //   FolderList.renderListItem();
-    // });
-
-    AppEvent.addListener("update-folder-list", function () {
-      FolderList.renderListItem();
+    var __addFolder = $(`<button id="get-folder-form" class="btn btn-primary">New Folder</button>`);
+    __addFolder.click(function(){
+      AppEvent.dispatch("add-folder");
     });
 
+    __listNode = $('<div id="folder-list"></div>');
+    __listNode.click(this.listClickHandler.bind(this));
+    
+    AppEvent.addListener("update-folder-list", function () {
+      FolderList.renderListItem();
+    });    
+    
+    __container = $("#" + anchorID);    
+    __container.append(__addFolder);
+    __container.append(__listNode);
     this.renderListItem();
+
+    //__listNode.find('input[type="radio"]');
+
+    // init active folder at first element of the list
+    AppEvent.dispatch("active-folder" , {folder_id : __state.list[0].id });
   },
 
-  clickHandler: function (event) {
-    //
+  listClickHandler: function (event) {
+    if(event.target.tagName.toLowerCase() === 'span' && event.target.dataset.folderId){
+      var folderId = event.target.dataset.folderId;
+      AppEvent.dispatch("active-folder", { folder_id: folderId });
+    }
   },
 
   emptyState: function () {
-    return `<li class="empty-list">Empty List</li>`;
+    return `<p class="empty-list">Empty List</p>`;
   },
 
   renderListItem: function () {
-    __state.list = DataManager.getList('folder', __state.active).reverse();
+    __state.list = DataManager.getList('folder').reverse();
     var content = "";
     if (!__state.list.length) {
       content = this.emptyState();
     }
     else {
       __state.list.map(function (_item, index) {
+        // init active folder at first element of the list
+        var checked = index == 0 ? "checked" : "" ;
         content += `
-                <li data-folder-id="${_item.id}" data-folder-index="${index}">
-                  <p>${index + 1} - ${_item.name}</p>
+                <li>
+                  <label>
+                    <input id="radio-${_item.id}" type="radio" 
+                          name="folder-list" ${checked}/>
+                    <span data-folder-id="${_item.id}">
+                    ${_item.name}</span>
+                  </label>                  
                 </li>`;
       });
     }
 
-    __container.html(`<ul> ${content} </div> `);
+    __listNode.html(`<ul class="folder-list"> ${content} </ul>`);
 
   }
 }

@@ -11,13 +11,11 @@ function saveStore(storeName) {
     data.push(item);
   });
   window.localStorage.setItem(storeName, JSON.stringify(data));
-  AppEvent.dispatch(`update-${storeName}-list`);
 }
 
 const DataManager = {
 
   init: function () {
-
     var storeListName = Object.keys(__dataStore);
     storeListName.forEach(function (storeName) {
       var data = JSON.parse(window.localStorage.getItem(storeName));
@@ -25,10 +23,8 @@ const DataManager = {
         data.forEach(function (item) {
           __dataStore[storeName].set(item.id, item);
         });
-      }      
+      }
     });
-
-
   },
 
   getList: function (storeName, folderId) {
@@ -47,7 +43,8 @@ const DataManager = {
   },
 
   getItem: function (storeName , item_id) {
-    return result = __dataStore[storeName].get(item_id);
+    var result = __dataStore[storeName].get(item_id);
+    return result;
   },
 
   removeItem : function (storeName , selectedList) {
@@ -55,11 +52,13 @@ const DataManager = {
       __dataStore[storeName].delete(selected.id);
     })
     saveStore(storeName);
+    AppEvent.dispatch(`update-${storeName}-list`);
   },
 
   setItem: function (storeName , item) {
     __dataStore[storeName].set(item.id, item);
     saveStore(storeName);
+    AppEvent.dispatch(`update-${storeName}-list` , {item_id : item.id} );
   }
 
 }

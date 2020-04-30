@@ -1,28 +1,28 @@
 const DataManager = require('../service/datamanager');
+const AppEvent = require('../service/eventstore').AppEvent;
 
-function TaskForm() {
+function TaskForm(anchorID) {
 
   var __state = {
     task: {}
   };
 
-  this.init = function (anchorID) {
-
-    var self = this;
-    var __form = $(`
+  var self = this;
+  var __form = $(`
     <form id="task-form" class="task-form" title="add a new task to do">
-        <!--<textarea id="task-form-text" name="task_body" placeholder="Task ..."></textarea>-->
-      <input id="task-form-text" type="text" name="task_body" placeholder="Task ..." /> 
-      <!--<input type="submit" value="Save" class="btn btn-primary btn-sm"/>
-      <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>-->
+      <input id="task-form-text" class="textfield" type="text" name="task_body" 
+      placeholder="New Task ..." />
     </form>`);
-    $("#" + anchorID).append(__form);
+  $("#" + anchorID).append(__form);
 
-    __form.submit(function (e) {      
-      e.preventDefault();
-      self.saveForm(e);
-    });
-  }
+  __form.submit(function (e) {
+    e.preventDefault();
+    self.saveForm(e);
+  });
+
+  AppEvent.addListener("active-folder", function (event) {
+    __state.task.folder_id = event.message.folder_id;
+  });
 
   this.saveForm = function (e) {
     var task_body = e.target.elements['task_body'].value;
@@ -31,8 +31,8 @@ function TaskForm() {
       return;
     }
     var item = {
-      id: (__state.task.id ? __state.task.id : (new Date()).getTime().toString()),
-      task_label: "todo",
+      id: (new Date()).getTime().toString(),
+      folder_id: __state.task.folder_id,
       task_body: task_body
     };
     e.target.reset();
@@ -41,4 +41,6 @@ function TaskForm() {
 
 }
 
-module.exports = new TaskForm();
+module.exports = function (anchor_id) {
+  return new TaskForm(anchor_id);
+};

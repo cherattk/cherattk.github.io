@@ -8,6 +8,7 @@ html, body{
   font-size:14px;
   text-align:center;
   background: #e8eaed;
+  background: white;
 }
 ul {
   margin: 0;
@@ -19,7 +20,7 @@ p{
   word-break:keep-all;
 }
 
-/************* Application ***************/
+/************* Application */
 .app-header{
   height:60px;
   background-color: #fff; 
@@ -28,32 +29,62 @@ p{
 .app-header-content{
   padding:15px 10px;
 }
-.app-header-content, 
-.board-container{  
-  max-width:1000px;
-  margin:auto;
+.app-header-content{
+  margin:auto 30px;
 } 
 .app-header button{
   float:right;
 }
-.board{
-  background: white;
-  padding:20px;
-  box-shadow:0 1px 2px 1px rgb(162, 163, 165);
-  min-height:1000px;
-  margin:30px 10px;
- 
-}
-.board-header{
-  /* display:none; */
-}
-.board-header{
+ .board-container{
   text-align:left;
-  border-bottom:1px dashed #ccc;
-  margin:0 0 20px 0;
+  margin:auto;
+  padding:20px;
+ }
+
+.board-container > div{
+  display:inline-block;
+  vertical-align:top;
 }
-.board h1{  
-  font-size:18px;
+.app-menu{
+  width:250px;
+  background-color:#fff;
+  padding:13px;
+}
+
+.board , .app-menu{  
+  background: white;
+  margin:0;
+  /*
+  box-shadow:0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  */
+}
+.board{
+  width:calc(100% - (250px + 50px));
+  min-height:1000px;
+  padding:10px 5px;
+}
+.list-header{
+  text-align:left;
+  margin:0 0 20px 0;
+  padding:15px 0;
+  position:relative;
+  color: #194274;
+  border-bottom:1px solid #ccc;
+}
+.list-header h1{
+  font-size:20px;
+  margin:0;
+}
+.list-header button{
+  position:absolute;
+  top:5px;
+  right:10px;
+  font-size:16px;
+  border:1px  solid #cccc;
+  padding:5px 7px;
+}
+.list-header button:hover{
+  background-color:#ccc;
 }
 
 /*************** task form *********************/
@@ -63,21 +94,12 @@ p{
 .task-form {
   margin-bottom:20px;
 }
-.task-form > input[type="text"]{
-  padding:13px;
+.task-form > .textfield{
+
   width:100%;
-  border:0;
-  outline:none;
-  margin:0;
-  border-bottom:2px solid #eee;
 }
 /*
 */
-.task-form > input[type="text"]:focus,
-.task-form > input[type="text"]:hover{
-  background-color:#f1f2f3;
-  border-color:#8ca1ca;
-}
 /******************** list action bar ***************/
 .task-action-bar{
   text-align:right;
@@ -88,10 +110,10 @@ p{
   text-align: left;
 }
 .list li{
-  padding:20px 15px;
-  background-color:#fff;
+  padding:17px;
   position:relative;
-  border-bottom:1px dashed #e6e6e6;
+  background-color:#fff;
+  border-bottom:1px solid #eee;
 }
 .list li.hide-content{
   padding:0;
@@ -106,7 +128,7 @@ p{
   width:100%;
 }
 .list li:hover{
-  background-color:#f3f4f5;
+  background-color:#e6edf3;
 }
 .list li > div{
   display:inline-block;
@@ -134,9 +156,8 @@ p{
 .list li .textfield{
   width:100%;
   display:none;
-  height:70px;
-  border:1px solid #ccc;
-  box-shadow:0 0 2px #ccc inset;
+  height:55px;
+  margin:0;
 }
 .list li.empty-list{
   background-color:#eee;
@@ -147,7 +168,6 @@ p{
 }
 li.completed{
   background-color:#f3f4f5;
-  border-color:#ccc;
 }
 li.completed p{
   text-decoration:line-through;
@@ -215,51 +235,60 @@ li.completed p{
 
 
 /**************** Folder List *****************/
-#folder-header{
-  padding:0;
-}
-/*
-#folder-header > div{
-  display:inline-block;
-  vertical-align:top;
-  display:none;
-}
-#folder-header > div:nth-child(1){
-  width:calc(100% - 50px);
-}
-#folder-header > div:nth-child(2){
-   width:40px;
-}
-*/
-#folder-header .textfield{
-  width:calc(100% - 100px);
-  font-size:18px;
-  padding:10px 15px;
-  color: #194274;
-}
-#folder-header .textfield:hover{
-  background-color:#efefef;
-}
-/*
-#folder-header.hide-content > .folder-name,
-#folder-header.hide-content > .folder-action{
-  display:none;
-  
-}
-#folder-header.hide-content > #folder-textfield{
+#folder-list-container > #get-folder-form{
   display:block;
-  
+  width:100%;
 }
-*/
+
 .folder-list{
   text-align: left;
+  margin-top:5px;
 }
-.folder-list .modal-content{
-  padding:10px;
+.folder-list .empty-list{
+  text-align:center;
+  padding:15px;
+  background-color:#eee;
+  margin:0;
 }
-.folder-list .list-group-item:hover{
-  background-color:#0e77eb;
-  color:white;
+
+.folder-list label{
+  display:block;
+  position:relative;
+  margin:0;
+}
+.folder-list button{
+  float:right;
+  z-index:10;
+  position:relative;
+  margin-top:5px;
+  display:none;
+}
+.folder-list li:hover button{
+  display:block;
+}
+.folder-list input[type="radio"]{
+  display:none;
+}
+.folder-list input[type="radio"]:checked + span{
+  background-color:#c7daf5;
+}
+.folder-list span{
+  display:block;
+  margin:0 0 2px 0;
+  padding:8px 15px;
+  background-color:#fff;
+}
+.folder-list span:hover{
+  background-color:#ebf1f7;
   cursor:pointer;
+}
+
+.folder-form{
+  text-align:left;
+}
+.folder-form .textfield{
+  margin-bottom:10px;
+  display:block;
+  width:100%;
 }
 

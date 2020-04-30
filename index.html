@@ -35,8 +35,7 @@
 
       <div class="notice">
 
-        <span type="button" class="notice-button" 
-                data-toggle="modal" data-target="#notice-content">
+        <span type="button" class="notice-button" data-toggle="modal" data-target="#notice-content">
           📢 Read this before using this app.
         </span>
 
@@ -77,19 +76,24 @@
       <i class="fa fa-bars"></i>
     </div> -->
 
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#folder-list">
-        My Lists
-      </button>
+      <!-- <button type="button" class="btn btn-primary btn-sm">
+        Connnection
+      </button> -->
 
     </div>
   </header>
 
   <main role="main" class="board-container">
 
+    <div class="app-menu">
+      <div id="folder-list-container"></div>
+    </div>
+
+
     <div class="board">
 
-      <div id="folder-header-container" class="board-header">
-        
+      <div id="list-header-container" class="board-header">
+
       </div>
 
       <div id="task-form-container"></div>
@@ -100,31 +104,34 @@
 
       <div id="task-list-container"></div>
 
-      <div id="task-modal-container"></div>      
-  </div>
+      <div id="task-modal-container"></div>
+    </div>
+
 
   </main>
 
+
+
   <!-- modal folder list  -->
-  <div id="div-folder-list">
-    <div id="folder-list" class="modal fade folder-list" role="dialog">
-      <div class="modal-dialog modal-lg">
+  <!-- <div id="modal-folder-form-container"> -->
+    <div id="modal-folder-form" class="modal fade" role="document">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">My folders</h4>
+            <h4 class="modal-title">Add a new Task List</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
-          <div class="modal-body" id="folder-form-container"></div>
-
-          <div class="modal-body" id="folder-list-container"></div>
-
+          <div id="" class="modal-body">
+            <form id="folder-form" class="folder-form">
+              <input id="folder-textfield" type="text" class="textfield" placeholder="Task List Name" />
+              <input type="submit" value="Save" class="btn btn-primary"/>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-
+  <!-- </div> -->
 
 
 

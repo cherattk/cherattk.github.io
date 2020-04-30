@@ -7,20 +7,22 @@ require('../../patch/fixdatastore')();
 
 
 // SET COMPONENT =============================
-const FolderForm = require('./ui/folder-form');
-FolderForm.init("folder-header-container");
 
+const Form = require('./ui/task-form');
+Form("task-form-container");
+
+const TaskList = require('./ui/list');
+TaskList.Header.init("list-header-container");
+TaskList.List.init("task-list-container");
+
+
+// set it at the end to init task list
 const FolderList = require('./ui/folder-list');
 FolderList.init("folder-list-container");
 
-const Form = require('./ui/task-form');
-Form.init("task-form-container");
+const FolderForm = require('./ui/folder-form');
+FolderForm.init();
 
-const List = require('./ui/list');
-List.init("task-list-container");
-
-const Modal = require('./ui/modal');
-Modal.init("task-modal-container");
 // =================================================
 
 // const ActionBar = require('./ui/actionbar');

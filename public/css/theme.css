@@ -25,11 +25,24 @@
 }
 
 /**************************/
+.btn{
+  border-radius:0;
+  padding:8px 10px;
+}
 .textfield{
   border:0;
   outline:none;
-  background-color:#fff;
   padding:15px;
+  border-bottom:2px solid #dcdee1;
+  margin-bottom:10px;
+  display:block;
+  width:100%;background-color:#edf1f5;
+  border-color:#8ca1ca;
+}
+.textfield:hover,
+.textfield:focus{
+  background-color:#edf1f5;
+  border-color:#8ca1ca;
 }
 .btn-blue{
   background-color:#4c93ea;
@@ -105,7 +118,7 @@ li.todo:hover{
   margin-right:10px;
   position:relative;
   float:left;
-  border-radius:20px;
+  border-radius:2px;
 }
 .checkbox label span:hover{
   background-color:#0a50a7;
