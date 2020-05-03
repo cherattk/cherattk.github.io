@@ -272,73 +272,12 @@ module.exports = Util;
 "use strict";
 
 /**
- * Fix the structure of the task object
- */
-var PATCH_VERSION = "patch_v1";
-
-module.exports = function FixDataStore() {
-  // return;
-  if (!window.localStorage) {
-    return;
-  }
-
-  var storeList = [{
-    name: "task",
-    field: [[// rename "task_id" property to "id"
-    "task_id", "id"]]
-  }];
-
-  var __originData, __copyData, patchName, patchDone;
-
-  storeList.map(function (store) {
-    // 1 - check if the data store is patched
-    patchName = "patch." + store.name + ".store";
-    patchDone = window.localStorage.getItem(patchName);
-
-    if (PATCH_VERSION === patchDone) {
-      return;
-    } // 2 - the data store is not patched
-
-
-    var storeData = window.localStorage.getItem(store.name);
-
-    if (storeData) {
-      __originData = JSON.parse(storeData); // apply change
-      // rename field
-
-      __copyData = __originData.map(function (item) {
-        // create a new field named field[1].value and
-        // assign to a new created field the value of 
-        // the previous field named field[0]
-        var __item = Object.assign({}, item);
-
-        store.field.map(function (field) {
-          if (typeof item[field[0]] !== "undefined") {
-            __item[field[1]] = item[field[0]].toString();
-            delete __item[field[0]];
-          }
-        }); // no need to store it
-
-        delete __item.checked;
-        return __item;
-      });
-      window.localStorage.setItem("".concat(store.name), JSON.stringify(__copyData));
-      window.localStorage.setItem(patchName, PATCH_VERSION);
-    }
-  });
-};
-
-},{}],5:[function(require,module,exports){
-"use strict";
-
-/**
- * @version 0.4.0
+ * @version 0.5.0
  */
 
 /**/
-require('../../patch/fixdatastore')(); // SET COMPONENT =============================
-
-
+//require('../../patch/fixdatastore')();
+// SET COMPONENT =============================
 var Form = require('./ui/task-form');
 
 Form("task-form-container");
@@ -354,7 +293,14 @@ FolderList.init("folder-list-container");
 
 var FolderForm = require('./ui/folder-form');
 
-FolderForm.init(); // =================================================
+FolderForm.init(); // @todo move to its own component
+// error warning message
+
+var AppEvent = require('./service/eventstore').AppEvent;
+
+AppEvent.addListener("error-default-folder-action", function (event) {
+  window.alert(event.message.info);
+}); // =================================================
 // const ActionBar = require('./ui/actionbar');
 // ActionBar.init("task-action-container");
 // const TabNavigation = require('./ui/tabnav');
@@ -401,7 +347,7 @@ FolderForm.init(); // =================================================
 //   });
 // })();
 
-},{"../../patch/fixdatastore":4,"./ui/folder-form":8,"./ui/folder-list":9,"./ui/list":10,"./ui/task-form":11}],6:[function(require,module,exports){
+},{"./service/eventstore":6,"./ui/folder-form":7,"./ui/folder-list":8,"./ui/list":9,"./ui/task-form":10}],5:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('./eventstore').AppEvent;
@@ -421,14 +367,28 @@ function saveStore(storeName) {
   window.localStorage.setItem(storeName, JSON.stringify(data));
 }
 
+function setDefaultDataStore() {
+  var store = JSON.parse(window.localStorage.getItem("folder"));
+
+  if (!(store instanceof Array)) {
+    var defaultData = [{
+      id: "f1",
+      name: "All Tasks"
+    }];
+    window.localStorage.setItem("folder", JSON.stringify(defaultData));
+  }
+}
+
 var DataManager = {
   init: function init() {
+    setDefaultDataStore(); // load stored data into memory
+
     var storeListName = Object.keys(__dataStore);
     storeListName.forEach(function (storeName) {
-      var data = JSON.parse(window.localStorage.getItem(storeName));
+      var store = JSON.parse(window.localStorage.getItem(storeName));
 
-      if (data instanceof Array) {
-        data.forEach(function (item) {
+      if (store instanceof Array) {
+        store.forEach(function (item) {
           __dataStore[storeName].set(item.id, item);
         });
       }
@@ -455,25 +415,54 @@ var DataManager = {
     return result;
   },
   removeItem: function removeItem(storeName, selectedList) {
-    selectedList.forEach(function (selected) {
-      __dataStore[storeName]["delete"](selected.id);
-    });
+    if (storeName === "folder") {
+      selectedList.forEach(function (folderID) {
+        if (folderID !== "f1") {
+          __dataStore[storeName]["delete"](folderID); // delete related task
+
+
+          __dataStore["task"].forEach(function (item) {
+            if (item.folder_id === folderID) {
+              __dataStore["task"]["delete"](item.id);
+            }
+          });
+        } else {
+          AppEvent.dispatch("error-default-folder-action", {
+            info: "the default folder can not be deleted"
+          });
+        }
+      });
+    }
+
+    if (storeName === "task") {
+      selectedList.forEach(function (selected) {
+        __dataStore[storeName]["delete"](selected.id);
+      });
+    }
+
     saveStore(storeName);
     AppEvent.dispatch("update-".concat(storeName, "-list"));
   },
   setItem: function setItem(storeName, item) {
-    __dataStore[storeName].set(item.id, item);
+    if (storeName === "folder" && item.id === "f1") {
+      AppEvent.dispatch("error-default-folder-action", {
+        info: "the default folder can not be edited"
+      });
+      return;
+    } else {
+      __dataStore[storeName].set(item.id, item);
 
-    saveStore(storeName);
-    AppEvent.dispatch("update-".concat(storeName, "-list"), {
-      item_id: item.id
-    });
+      saveStore(storeName);
+      AppEvent.dispatch("update-".concat(storeName, "-list"), {
+        item_id: item.id
+      });
+    }
   }
 };
 DataManager.init();
 module.exports = DataManager;
 
-},{"./eventstore":7}],7:[function(require,module,exports){
+},{"./eventstore":6}],6:[function(require,module,exports){
 "use strict";
 
 var EventSet = require('eventset');
@@ -482,7 +471,8 @@ var AppEvent = EventSet.Topic('app.event');
 AppEvent.addEvent("active-folder");
 AppEvent.addEvent("edit-folder");
 AppEvent.addEvent("add-folder");
-AppEvent.addEvent("update-folder-list"); ////////////////////////////////////////////
+AppEvent.addEvent("update-folder-list");
+AppEvent.addEvent("error-default-folder-action"); ////////////////////////////////////////////
 
 AppEvent.addEvent("edit-item");
 AppEvent.addEvent("select-item");
@@ -493,7 +483,7 @@ module.exports = {
   AppEvent: AppEvent
 };
 
-},{"eventset":1}],8:[function(require,module,exports){
+},{"eventset":1}],7:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -529,6 +519,9 @@ var FolderForm = {
       }
 
       DataManager.setItem('folder', __state.folder);
+      AppEvent.dispatch("active-folder", {
+        folder_id: __state.folder.id
+      });
       $("#modal-folder-form").modal('hide');
     });
 
@@ -549,7 +542,7 @@ var FolderForm = {
 };
 module.exports = FolderForm;
 
-},{"../service/datamanager":6,"../service/eventstore":7}],9:[function(require,module,exports){
+},{"../service/datamanager":5,"../service/eventstore":6}],8:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -559,14 +552,15 @@ var DataManager = require('../service/datamanager');
 var __container;
 
 var __state = {
-  list: []
+  list: [],
+  active_folder: null
 };
 
 var __listNode;
 
 var FolderList = {
   init: function init(anchorID) {
-    var __addFolder = $("<button id=\"get-folder-form\" class=\"btn btn-primary\">New Folder</button>");
+    var __addFolder = $("<button id=\"get-folder-form\" class=\"btn btn-primary\">New List</button>");
 
     __addFolder.click(function () {
       AppEvent.dispatch("add-folder");
@@ -577,6 +571,7 @@ var FolderList = {
     __listNode.click(this.listClickHandler.bind(this));
 
     AppEvent.addListener("update-folder-list", function () {
+      __state.list = DataManager.getList('folder');
       FolderList.renderListItem();
     });
     __container = $("#" + anchorID);
@@ -585,8 +580,13 @@ var FolderList = {
 
     __container.append(__listNode);
 
-    this.renderListItem(); //__listNode.find('input[type="radio"]');
-    // init active folder at first element of the list
+    var self = this;
+    AppEvent.addListener("active-folder", function (event) {
+      __state.active_folder = event.message.folder_id;
+      self.renderListItem();
+    });
+    __state.list = DataManager.getList('folder');
+    this.renderListItem(); // inform other component wich folder is active at init time
 
     AppEvent.dispatch("active-folder", {
       folder_id: __state.list[0].id
@@ -604,7 +604,6 @@ var FolderList = {
     return "<p class=\"empty-list\">Empty List</p>";
   },
   renderListItem: function renderListItem() {
-    __state.list = DataManager.getList('folder').reverse();
     var content = "";
 
     if (!__state.list.length) {
@@ -612,8 +611,8 @@ var FolderList = {
     } else {
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
-        var checked = index == 0 ? "checked" : "";
-        content += "\n                <li>\n                  <label>\n                    <input id=\"radio-".concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    <span data-folder-id=\"").concat(_item.id, "\">\n                    ").concat(_item.name, "</span>\n                  </label>                  \n                </li>");
+        var checked = _item.id === __state.active_folder ? "checked" : "";
+        content += "\n                <li>\n                  <label>\n                    <input id=\"radio-".concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    <span data-folder-id=\"").concat(_item.id, "\">\n                    ").concat(_item.name, "\n                    </span>\n                  </label>                  \n                </li>");
       });
     }
 
@@ -622,7 +621,7 @@ var FolderList = {
 };
 module.exports = FolderList;
 
-},{"../service/datamanager":6,"../service/eventstore":7}],10:[function(require,module,exports){
+},{"../service/datamanager":5,"../service/eventstore":6}],9:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -637,9 +636,9 @@ var Header = function Header() {
   this.init = function (anchorID) {
     var __headerContainer = $('<div id="list-header" class="list-header"></div>');
 
-    var __listTitle = $('<h1 > My List </h1>');
+    var __listTitle = $('<h1></h1>');
 
-    var __listHeaderAction = $("\n            <button class=\"btn\" data-action=\"edit-folder\">\n              <i class=\"far fa-edit\" title=\"Edit List\" data-action=\"edit-folder\"></i>\n            </button>\n          </div>");
+    var __listHeaderAction = $("\n          <div class=\"list-header-action\">\n            <button class=\"btn\" data-action=\"edit-folder\">\n              <i class=\"far fa-edit\" data-action=\"edit-folder\" title=\"Edit List\"></i>\n            </button>\n            <button class=\"btn\" data-action=\"delete-folder\">\n             <i class=\"fa fa-trash\" data-action=\"delete-folder\" title=\"Delete this task\"></i>\n            </button> \n          </div>");
 
     __listHeaderAction.click(this.editAction.bind(this));
 
@@ -652,18 +651,39 @@ var Header = function Header() {
       __state.folder = DataManager.getItem('folder', event.message.folder_id);
 
       __listTitle.html(__state.folder.name);
-    });
-    AppEvent.addListener("update-folder-list", function (event) {
-      __state.folder = DataManager.getItem('folder', event.message.item_id);
 
-      __listTitle.html(__state.folder.name);
-    });
+      if (event.message.folder_id === "f1") {
+        __listHeaderAction.hide();
+      } else {
+        __listHeaderAction.show();
+      }
+    }); // AppEvent.addListener("update-folder-list", function (event) {
+    //   __state.folder = DataManager.getItem('folder', event.message.item_id);
+    //   __listTitle.html(__state.folder.name);
+    // });
   };
 
   this.editAction = function (event) {
+    // prevent action on default folder
+    if (__state.folder.id === "f1") {
+      AppEvent.dispatch("error-default-folder-action", {
+        info: "error : action on default folder is not authaurized"
+      });
+      return;
+    }
+
     if (event.target.dataset.action === "edit-folder") {
       AppEvent.dispatch("edit-folder", {
         folder_id: __state.folder.id
+      });
+      return;
+    }
+
+    if (event.target.dataset.action === "delete-folder") {
+      DataManager.removeItem("folder", [__state.folder.id]); // activate the default folder
+
+      AppEvent.dispatch("active-folder", {
+        folder_id: "f1"
       });
     }
   };
@@ -748,7 +768,8 @@ var List = function List() {
   };
 
   this.renderListItem = function () {
-    __listState.list = DataManager.getList('task', __listState.folder_id).reverse();
+    var folderID = __listState.folder_id === "f1" ? null : __listState.folder_id;
+    __listState.list = DataManager.getList('task', folderID).reverse();
     var content = "";
 
     if (!__listState.list.length) {
@@ -769,7 +790,7 @@ module.exports = {
   Header: new Header()
 };
 
-},{"../service/datamanager":6,"../service/eventstore":7}],11:[function(require,module,exports){
+},{"../service/datamanager":5,"../service/eventstore":6}],10:[function(require,module,exports){
 "use strict";
 
 var DataManager = require('../service/datamanager');
@@ -782,7 +803,7 @@ function TaskForm(anchorID) {
   };
   var self = this;
 
-  var __form = $("\n    <form id=\"task-form\" class=\"task-form\" title=\"add a new task to do\">\n      <input id=\"task-form-text\" class=\"textfield\" type=\"text\" name=\"task_body\" \n      placeholder=\"New Task ...\" />\n    </form>");
+  var __form = $("\n    <form id=\"task-form\" class=\"task-form\" title=\"add a new task to do\">\n      <input id=\"task-form-text\" class=\"textfield\" type=\"text\" name=\"task_body\" \n      placeholder=\"Add New Task ...\" />\n    </form>");
 
   $("#" + anchorID).append(__form);
 
@@ -817,4 +838,4 @@ module.exports = function (anchor_id) {
   return new TaskForm(anchor_id);
 };
 
-},{"../service/datamanager":6,"../service/eventstore":7}]},{},[5]);
+},{"../service/datamanager":5,"../service/eventstore":6}]},{},[4]);

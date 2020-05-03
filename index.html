@@ -36,40 +36,9 @@
       <div class="notice">
 
         <span type="button" class="notice-button" data-toggle="modal" data-target="#notice-content">
-          📢 Read this before using this app.
+          📢 Read me before using this app.
         </span>
 
-        <div class="modal fade" id="notice-content" tabindex="-1" role="dialog" aria-labelledby="notice"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Notice</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>
-                  The data managed by this web app are saved in the browser local storage area
-                  <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See
-                    How)</a>
-                  and remain available until you delete them.
-                  <br />
-                  This application can be removed or
-                  moved to another location (url) at any time and
-                  <br />
-                  the data could be deleted or corrupted
-                  by changes made to a later version of this web app.
-                  <br />
-
-                  The source code of this web app is
-                  <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- <div class="">
@@ -92,9 +61,7 @@
 
     <div class="board">
 
-      <div id="list-header-container" class="board-header">
-
-      </div>
+      <div id="list-header-container" class="board-header"></div>
 
       <div id="task-form-container"></div>
 
@@ -114,28 +81,61 @@
 
   <!-- modal folder list  -->
   <!-- <div id="modal-folder-form-container"> -->
-    <div id="modal-folder-form" class="modal fade" role="document">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Add a new Task List</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
+  <div id="modal-folder-form" class="modal fade" role="document">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add a new Task List</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
 
-          <div id="" class="modal-body">
-            <form id="folder-form" class="folder-form">
-              <input id="folder-textfield" type="text" class="textfield" placeholder="Task List Name" />
-              <input type="submit" value="Save" class="btn btn-primary"/>
-            </form>
-          </div>
+        <div id="" class="modal-body">
+          <form id="folder-form" class="folder-form">
+            <input id="folder-textfield" type="text" class="textfield" placeholder="Task List Name" />
+            <input type="submit" value="Save" class="btn btn-primary" />
+          </form>
         </div>
       </div>
     </div>
+  </div>
   <!-- </div> -->
 
+  <div class="modal fade" id="notice-content" tabindex="-1" role="dialog" aria-labelledby="notice" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Notice</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            The data managed by this web app are saved in the browser local storage area
+            <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See
+              How)</a>
+            and remain available until you delete them.
+          
+            This application can be removed or
+            moved to another location (url) at any time and 
+            the data could be deleted or corrupted
+            by changes made to a later version of this web app.
+            The source code of this web app is
+            <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <script src="public/dist.js"></script>
+
+  <!-- <script type="text/javascript">
+    $(window).on('load', function () {
+      $('#notice-content').modal('show');
+    });
+  </script> -->
 </body>
 
 </html>

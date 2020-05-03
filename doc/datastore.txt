@@ -1,0 +1,6 @@
+v0.3.0 : Task Data Store Schema
+{ 
+  "id": String,
+  "task_label":{todo, completed},
+  "task_body": String
+}

@@ -11,7 +11,7 @@ function TaskForm(anchorID) {
   var __form = $(`
     <form id="task-form" class="task-form" title="add a new task to do">
       <input id="task-form-text" class="textfield" type="text" name="task_body" 
-      placeholder="New Task ..." />
+      placeholder="Add New Task ..." />
     </form>`);
   $("#" + anchorID).append(__form);
 
