@@ -7,20 +7,16 @@
   text-align:left;
 }
 .notice-button{
-  padding:7px 10px;
-  background-color:#fff;
   border:0;
   display:inline-block;
   border-radius:3px;
-  background-color:#ff3f00;
-  color:#fff;
+  color:inherit;
   font-size:13px;
   line-height:1em;
   outline:none;
 }
 .notice-button:hover{  
   cursor:pointer;
-  background-color:#ff3f00;
   text-decoration:underline; 
 }
 
@@ -33,11 +29,11 @@
   border:0;
   outline:none;
   padding:15px;
-  border-bottom:2px solid #dcdee1;
+  border-bottom:3px solid #dcdee1;
   margin-bottom:10px;
   display:block;
-  width:100%;background-color:#edf1f5;
-  border-color:#8ca1ca;
+  width:100%;
+  border-color:#dae3f6;
 }
 .textfield:hover,
 .textfield:focus{

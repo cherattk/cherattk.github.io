@@ -22,9 +22,9 @@ p{
 
 /************* Application */
 .app-header{
-  height:60px;
-  background-color: #fff; 
-  box-shadow:0 1px 2px rgb(198, 200, 202);
+  height:50px;
+  background-color: #007bff;
+  color:#ffffff;
 }
 .app-header-content{
   padding:15px 10px;
@@ -38,7 +38,7 @@ p{
  .board-container{
   text-align:left;
   margin:auto;
-  padding:20px;
+  padding:20px 0;
  }
 
 .board-container > div{
@@ -60,13 +60,12 @@ p{
 }
 .board{
   width:calc(100% - (250px + 50px));
-  min-height:1000px;
-  padding:10px 5px;
+  padding:0 0 0 10px;
 }
 .list-header{
   text-align:left;
   margin:0 0 20px 0;
-  padding:15px 0;
+  padding:15px 10px;
   position:relative;
   color: #194274;
   border-bottom:1px solid #ccc;
@@ -156,7 +155,6 @@ p{
   color:#054890;
   margin:0;
   text-align:left;
-  font-size:15px;
 }
 .list li .textfield{
   width:100%;
@@ -185,7 +183,6 @@ li.completed p{
   border-bottom:2px solid transparent;
   color:#657486;
   border-radius:0;
-  font-size:16px;
 } 
 .item-action button:hover{
   border-bottom-color:#0a407f;
