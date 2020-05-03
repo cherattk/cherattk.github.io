@@ -3,7 +3,7 @@
  */
 
 /**/
-//require('../../patch/fixdatastore')();
+require('../../patch/fixdatastore')();
 
 
 // SET COMPONENT =============================

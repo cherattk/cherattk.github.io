@@ -272,12 +272,78 @@ module.exports = Util;
 "use strict";
 
 /**
+ * Fix the structure of the task object
+ */
+var PATCH_VERSION = "patch_v2";
+
+module.exports = function FixDataStore() {
+  // return;
+  if (!window.localStorage) {
+    return;
+  }
+
+  var storeList = [{
+    name: "task",
+    action: {
+      rename: [[// rename "task_id" property to "id"
+      "task_id", "id"]],
+      // merge the new properties with the existing properties
+      schema: {
+        folder_id: "f1"
+      }
+    }
+  }];
+
+  var __originData, __copyData, patchName, patchDone;
+
+  storeList.map(function (patchStoreConfig) {
+    // 1 - check if the data store is patched
+    patchName = "patch." + patchStoreConfig.name + ".store";
+    patchDone = window.localStorage.getItem(patchName);
+
+    if (PATCH_VERSION === patchDone) {
+      return;
+    } // 2 - the data store is not patched
+
+
+    var storeData = window.localStorage.getItem(patchStoreConfig.name);
+
+    if (storeData) {
+      __originData = JSON.parse(storeData); // apply change and return the the new item
+
+      __copyData = __originData.map(function (item) {
+        // create a new field named field[1].value and
+        // assign to a new created field the value of 
+        // the previous field named field[0]
+        var __itemData = Object.assign({}, item, patchStoreConfig.action.schema);
+
+        patchStoreConfig.action.rename.map(function (field_item) {
+          if (typeof item[field_item[0]] !== "undefined") {
+            __itemData[field[1]] = item[field_item[0]].toString();
+            delete __itemData[field[0]];
+          }
+        }); // no need to store it
+
+        delete __itemData.checked;
+        return __itemData;
+      });
+      window.localStorage.setItem("".concat(patchStoreConfig.name), JSON.stringify(__copyData));
+      window.localStorage.setItem(patchName, PATCH_VERSION);
+    }
+  });
+};
+
+},{}],5:[function(require,module,exports){
+"use strict";
+
+/**
  * @version 0.5.0
  */
 
 /**/
-//require('../../patch/fixdatastore')();
-// SET COMPONENT =============================
+require('../../patch/fixdatastore')(); // SET COMPONENT =============================
+
+
 var Form = require('./ui/task-form');
 
 Form("task-form-container");
@@ -347,7 +413,7 @@ AppEvent.addListener("error-default-folder-action", function (event) {
 //   });
 // })();
 
-},{"./service/eventstore":6,"./ui/folder-form":7,"./ui/folder-list":8,"./ui/list":9,"./ui/task-form":10}],5:[function(require,module,exports){
+},{"../../patch/fixdatastore":4,"./service/eventstore":7,"./ui/folder-form":8,"./ui/folder-list":9,"./ui/list":10,"./ui/task-form":11}],6:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('./eventstore').AppEvent;
@@ -462,7 +528,7 @@ var DataManager = {
 DataManager.init();
 module.exports = DataManager;
 
-},{"./eventstore":6}],6:[function(require,module,exports){
+},{"./eventstore":7}],7:[function(require,module,exports){
 "use strict";
 
 var EventSet = require('eventset');
@@ -483,7 +549,7 @@ module.exports = {
   AppEvent: AppEvent
 };
 
-},{"eventset":1}],7:[function(require,module,exports){
+},{"eventset":1}],8:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -542,7 +608,7 @@ var FolderForm = {
 };
 module.exports = FolderForm;
 
-},{"../service/datamanager":5,"../service/eventstore":6}],8:[function(require,module,exports){
+},{"../service/datamanager":6,"../service/eventstore":7}],9:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -621,7 +687,7 @@ var FolderList = {
 };
 module.exports = FolderList;
 
-},{"../service/datamanager":5,"../service/eventstore":6}],9:[function(require,module,exports){
+},{"../service/datamanager":6,"../service/eventstore":7}],10:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('../service/eventstore').AppEvent;
@@ -790,7 +856,7 @@ module.exports = {
   Header: new Header()
 };
 
-},{"../service/datamanager":5,"../service/eventstore":6}],10:[function(require,module,exports){
+},{"../service/datamanager":6,"../service/eventstore":7}],11:[function(require,module,exports){
 "use strict";
 
 var DataManager = require('../service/datamanager');
@@ -838,4 +904,4 @@ module.exports = function (anchor_id) {
   return new TaskForm(anchor_id);
 };
 
-},{"../service/datamanager":5,"../service/eventstore":6}]},{},[4]);
+},{"../service/datamanager":6,"../service/eventstore":7}]},{},[5]);
