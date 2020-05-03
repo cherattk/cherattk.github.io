@@ -1,4 +1,5 @@
 node_modules/
 devdata/
-draft/
+bag/
 todo.md
+public/dist.js
