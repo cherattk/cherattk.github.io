@@ -78,10 +78,15 @@ p{
 .list-header button{
   position:absolute;
   top:5px;
-  right:10px;
   font-size:16px;
   border:1px  solid #cccc;
   padding:5px 7px;
+}
+.list-header button:nth-of-type(1){  
+  right:10px;
+}
+.list-header button:nth-of-type(2){  
+  right:50px;
 }
 .list-header button:hover{
   background-color:#ccc;

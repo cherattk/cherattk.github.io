@@ -13,11 +13,15 @@ const Header = function() {
 
     var __headerContainer = $('<div id="list-header" class="list-header"></div>');
 
-    var __listTitle = $('<h1 > My List </h1>');
+    var __listTitle = $('<h1></h1>');
     var __listHeaderAction = $(`
+          <div class="list-header-action">
             <button class="btn" data-action="edit-folder">
-              <i class="far fa-edit" title="Edit List" data-action="edit-folder"></i>
+              <i class="far fa-edit" data-action="edit-folder" title="Edit List"></i>
             </button>
+            <button class="btn" data-action="delete-folder">
+             <i class="fa fa-trash" data-action="delete-folder" title="Delete this task"></i>
+            </button> 
           </div>`);
 
     __listHeaderAction.click(this.editAction.bind(this));
@@ -30,16 +34,36 @@ const Header = function() {
     AppEvent.addListener("active-folder", function (event) {
       __state.folder = DataManager.getItem('folder', event.message.folder_id);
       __listTitle.html(__state.folder.name);
+      if(event.message.folder_id === "f1"){
+        __listHeaderAction.hide();
+      }
+      else{
+        __listHeaderAction.show();
+      }
     });
-    AppEvent.addListener("update-folder-list", function (event) {
-      __state.folder = DataManager.getItem('folder', event.message.item_id);
-      __listTitle.html(__state.folder.name);
-    });
+    // AppEvent.addListener("update-folder-list", function (event) {
+    //   __state.folder = DataManager.getItem('folder', event.message.item_id);
+    //   __listTitle.html(__state.folder.name);
+    // });
   }
 
-  this.editAction =  function (event) {
+  this.editAction = function (event) {
+
+    // prevent action on default folder
+    if(__state.folder.id === "f1"){
+      AppEvent.dispatch("error-default-folder-action" , 
+        {info : "error : action on default folder is not authaurized"});
+        return;
+    }
     if (event.target.dataset.action === "edit-folder") {
       AppEvent.dispatch("edit-folder" , {folder_id : __state.folder.id});
+      return;
+    }
+    if (event.target.dataset.action === "delete-folder") {
+      DataManager.removeItem("folder" ,[__state.folder.id]);
+
+      // activate the default folder
+      AppEvent.dispatch("active-folder" , {folder_id : "f1" });
     }
   }
 
@@ -115,7 +139,8 @@ const List = function () {
   }
 
   this.renderListItem = function () {
-    __listState.list = DataManager.getList('task', __listState.folder_id).reverse();
+    var folderID = __listState.folder_id === "f1" ? null : __listState.folder_id;
+    __listState.list = DataManager.getList('task', folderID).reverse();
     var content = "";
     if (!__listState.list.length) {
       content = this.emptyState();

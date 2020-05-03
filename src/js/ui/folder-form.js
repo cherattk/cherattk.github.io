@@ -30,6 +30,7 @@ const FolderForm = {
         return;
       }
       DataManager.setItem('folder', __state.folder);
+      AppEvent.dispatch("active-folder" , {folder_id : __state.folder.id });
       $("#modal-folder-form").modal('hide');
 
     });

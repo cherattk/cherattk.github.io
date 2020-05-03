@@ -1,13 +1,12 @@
 /**
- * @version 0.4.0
+ * @version 0.5.0
  */
 
 /**/
-require('../../patch/fixdatastore')();
+//require('../../patch/fixdatastore')();
 
 
 // SET COMPONENT =============================
-
 const Form = require('./ui/task-form');
 Form("task-form-container");
 
@@ -22,6 +21,15 @@ FolderList.init("folder-list-container");
 
 const FolderForm = require('./ui/folder-form');
 FolderForm.init();
+
+
+// @todo move to its own component
+// error warning message
+const AppEvent = require('./service/eventstore').AppEvent;
+AppEvent.addListener("error-default-folder-action", function (event) {
+  window.alert(event.message.info);
+});
+
 
 // =================================================
 
