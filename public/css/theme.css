@@ -29,16 +29,21 @@
   border:0;
   outline:none;
   padding:15px;
-  border-bottom:3px solid #dcdee1;
+  border:1px solid transparent;
+  border-bottom:3px solid #4c93ea;
   margin-bottom:10px;
   display:block;
   width:100%;
-  border-color:#dae3f6;
+  background-color:#f4f6f9;
+  border-radius:3px 3px 0 0;
 }
-.textfield:hover,
+.textfield:hover{
+  background-color:#ecf1f9;
+}
 .textfield:focus{
-  background-color:#edf1f5;
-  border-color:#8ca1ca;
+  border-color:#8bb8ef;
+  border-bottom-color:#4c93ea;
+  background-color:#ecf1f9;
 }
 .btn-blue{
   background-color:#4c93ea;
