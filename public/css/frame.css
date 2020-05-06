@@ -116,7 +116,7 @@ p{
   text-align: left;
 }
 .list li{
-  padding:17px;
+  padding:15px;
   position:relative;
   background-color:#fff;
   border-bottom:1px solid #ddd;
@@ -301,8 +301,8 @@ li.completed p{
 .task-detail{
   position:absolute;
   top:0;
-  right:-390px;
-  width:380px;
+  right:-450px;
+  width:450px;
   min-height:100%;
   height:100%;
   padding:0 0 0 20px;
@@ -347,4 +347,13 @@ li.completed p{
 }
 .task-detail textarea{
   height:200px;
+}
+.task-detail label{
+  display:block;
+  margin:20px 0 0 0;
+  padding:0;
+}
+.task-detail select{
+  width:100%;
+  padding:7px;
 }

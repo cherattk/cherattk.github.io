@@ -15,7 +15,16 @@ module.exports = function TaskDetail(anchorID) {
 
         <div class="task-details-form">
         <form id="task-detail-form" title="Edit Task Details">
+          <label>Task</label>
           <input class="textfield" type="text" name="task_body" />
+
+          <label>Status</label>
+          <select name="task_label">
+            <option value="todo">Todo</option>
+            <option value="completed">Compeleted</option>
+          </select>
+
+          <label>Description</label>
           <textarea class="textfield" name="task_description"></textarea>
           <input class="btn btn-primary" type="submit" value="save"/>
         </form>
@@ -37,12 +46,13 @@ module.exports = function TaskDetail(anchorID) {
     __state.task = {};
   });
 
-  AppEvent.addListener("edit-task", function (event) {
+  AppEvent.addListener("get-task-detail", function (event) {
     __state.task = Object.assign({}, event.message.task);
     __div.addClass('show-task-detail');
-    var taregtForm = __form.get(0);
-    taregtForm.elements['task_body'].value = __state.task.task_body;
-    taregtForm.elements['task_description'].value = __state.task.task_description;
+    var targetForm = __form.get(0);
+    targetForm.elements['task_body'].value = __state.task.task_body;
+    targetForm.elements['task_label'].value = __state.task.task_label;
+    targetForm.elements['task_description'].value = __state.task.task_description;
   });
 
   function __saveForm(e) {
@@ -51,12 +61,12 @@ module.exports = function TaskDetail(anchorID) {
       alert("You can not add an empty task");
       return;
     }
-
     __state.task.task_body = task_body;
+    __state.task.task_label = task_label;
     __state.task.task_description = e.target.elements['task_description'].value;
 
-  //e.target.reset();
-  DataManager.setItem('task', __state.task);
-}
+    //e.target.reset();
+    DataManager.setItem('task', __state.task);
+  }
 
 }

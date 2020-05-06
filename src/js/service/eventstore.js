@@ -9,7 +9,7 @@ AppEvent.addEvent("update-folder-list");
 AppEvent.addEvent("error-default-folder-action");
 
 ////////////////////////////////////////////
-AppEvent.addEvent("edit-task");
+AppEvent.addEvent("get-task-detail");
 
 // AppEvent.addEvent("edit-item");
 // AppEvent.addEvent("select-item");

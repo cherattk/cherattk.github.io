@@ -4,7 +4,13 @@ const AppEvent = require('../service/eventstore').AppEvent;
 function TaskForm(anchorID) {
 
   var __state = {
-    task: {}
+    task: {
+      id : "",
+      folder_id: "f1",
+      task_body : "New Task",
+      task_label : "todo",
+      task_description : "Task Description"
+    }
   };
 
   var self = this;
@@ -33,8 +39,7 @@ function TaskForm(anchorID) {
 
     var item = Object.assign({} , __state.task , {
       id: (new Date()).getTime().toString(),
-      task_body: task_body,
-      task_description : "Task Decsription"
+      task_body: task_body
     });
 
     e.target.reset();

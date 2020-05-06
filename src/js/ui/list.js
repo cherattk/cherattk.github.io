@@ -99,12 +99,12 @@ const List = function () {
     switch (event.target.dataset.action) {
       case "edit-item":
         let task = __listState.list[event.target.dataset.taskIndex];
-        if (task.task_label === "completed") {
-          alert("the completed task can not be modified");
-          return;
-        }
+        // if (task.task_label === "completed") {
+        //   alert("the completed task can not be modified");
+        //   return;
+        // }
 
-        AppEvent.dispatch('edit-task' , {task : task });
+        AppEvent.dispatch('get-task-detail' , {task : task });
         //this.editItem(task, event.target.dataset.taskIndex);
         break;
       case "completed":
@@ -120,19 +120,19 @@ const List = function () {
     }
   }
 
-  this.editItem = function (item, itemIndex) {
-    var li = __listContainer.find(`li[data-task-index="${itemIndex}"]`);
-    li.addClass("hide-content");
-    var itemInput = __listContainer.find(`#item-textfield-${item.id}`);
-    itemInput.show();
-    itemInput.val(item.task_body);
-    itemInput.focus();
-    itemInput.blur(function (e) {
-      DataManager.setItem('task', Object.assign(item, { task_body: e.target.value }));
-      itemInput.hide();
-      li.removeClass("hide-content");
-    });
-  }
+  // this.editItem = function (item, itemIndex) {
+  //   var li = __listContainer.find(`li[data-task-index="${itemIndex}"]`);
+  //   li.addClass("hide-content");
+  //   var itemInput = __listContainer.find(`#item-textfield-${item.id}`);
+  //   itemInput.show();
+  //   itemInput.val(item.task_body);
+  //   itemInput.focus();
+  //   itemInput.blur(function (e) {
+  //     DataManager.setItem('task', Object.assign(item, { task_body: e.target.value }));
+  //     itemInput.hide();
+  //     li.removeClass("hide-content");
+  //   });
+  // }
 
   this.emptyState = function () {
     return `<li class="empty-list">Empty List</li>`;
@@ -169,11 +169,11 @@ const List = function () {
                     </div>
                     <!-- item action -->
                     <div class="item-action">
-                      <button class="btn">
+                      <button class="btn" data-action="edit-item">
                       <i class="far fa-edit" data-action="edit-item" 
                       data-task-index="${index}" title="Edit this task"></i>
                       </button>
-                      <button class="btn">
+                      <button class="btn" data-action="delete">
                         <i class="fa fa-trash" data-action="delete" 
                         data-task-index="${index}" title="Delete this task"></i>
                       </button>                  
