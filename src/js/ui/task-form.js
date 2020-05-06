@@ -17,24 +17,26 @@ function TaskForm(anchorID) {
 
   __form.submit(function (e) {
     e.preventDefault();
-    self.saveForm(e);
+    __saveForm(e);
   });
 
   AppEvent.addListener("active-folder", function (event) {
     __state.task.folder_id = event.message.folder_id;
   });
 
-  this.saveForm = function (e) {
+  function __saveForm (e) {
     var task_body = e.target.elements['task_body'].value;
     if (!task_body) {
       alert("You can not add an empty task");
       return;
     }
-    var item = {
+
+    var item = Object.assign({} , __state.task , {
       id: (new Date()).getTime().toString(),
-      folder_id: __state.task.folder_id,
-      task_body: task_body
-    };
+      task_body: task_body,
+      task_description : "Task Decsription"
+    });
+
     e.target.reset();
     DataManager.setItem('task', item);
   }

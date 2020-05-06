@@ -1,11 +1,12 @@
 const AppEvent = require('./eventstore').AppEvent;
+const RemoteStore = require('./remotestore');
 
 const __dataStore = {
   task: new Map(),
   folder: new Map()
 }
 
-function saveStore(storeName) {
+function saveLocalStore(storeName) {
   var data = [];
   __dataStore[storeName].forEach(function (item) {
     data.push(item);
@@ -63,44 +64,53 @@ const DataManager = {
     return result;
   },
 
-  removeItem: function (storeName, selectedList) {
+  removeItem: function (storeName, itemId) {
+    var __error = "";
     if (storeName === "folder") {
-      selectedList.forEach(function (folderID) {
-        if (folderID !== "f1") {
-          __dataStore[storeName].delete(folderID);
-          // delete related task
-          __dataStore["task"].forEach(function (item) {
-            if(item.folder_id === folderID){
-              __dataStore["task"].delete(item.id);
-          }           
-          });
+      if (itemId !== "f1") {
+        if (! __dataStore["folder"].delete(itemId)) {
+          __error = "folder not found with id : " + itemId;
         }
-        else{
-          AppEvent.dispatch("error-default-folder-action" , {info : "the default folder can not be deleted"});
-        }
-      });
-    }
-    if (storeName === "task") {
-      selectedList.forEach(function (selected) {
-        __dataStore[storeName].delete(selected.id);
-      });
+        // delete related task
+        __dataStore["task"].forEach(function (task) {
+          if (task.folder_id === itemId) { 
+            // move task to default folder       
+            task.folder_id = "f1";            
+          }
+        });
+      }
+      else {
+        AppEvent.dispatch("error-default-folder-action", { info: "the default folder can not be deleted" });
+      }
+    } 
+    else if (storeName === "task") {
+      if (!__dataStore["task"].delete(itemId)) {
+        __error = "task not found with id : " + itemId;
+      }
     }
 
-    saveStore(storeName);
+    if (__error) {
+      alert(__error);
+      console.error(__error);
+      return;
+    }
+
+    saveLocalStore(storeName);
+    RemoteStore.removeItem(storeName, itemId);
     AppEvent.dispatch(`update-${storeName}-list`);
   },
 
   setItem: function (storeName, item) {
     if (storeName === "folder" && item.id === "f1") {
-      AppEvent.dispatch("error-default-folder-action" , {info : "the default folder can not be edited"});
+      AppEvent.dispatch("error-default-folder-action", { info: "the default folder can not be edited" });
       return;
     }
-    else{
+    else {
       __dataStore[storeName].set(item.id, item);
-      saveStore(storeName);
+      saveLocalStore(storeName);
+      RemoteStore.setItem(storeName, item);
       AppEvent.dispatch(`update-${storeName}-list`, { item_id: item.id });
     }
-   
   }
 
 }

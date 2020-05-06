@@ -1,7 +1,5 @@
 const AppEvent = require('../service/eventstore').AppEvent;
-
 const DataManager = require('../service/datamanager');
-
 
 const Header = function() {
 
@@ -60,7 +58,7 @@ const Header = function() {
       return;
     }
     if (event.target.dataset.action === "delete-folder") {
-      DataManager.removeItem("folder" ,[__state.folder.id]);
+      DataManager.removeItem("folder" , __state.folder.id);
 
       // activate the default folder
       AppEvent.dispatch("active-folder" , {folder_id : "f1" });
@@ -105,7 +103,9 @@ const List = function () {
           alert("the completed task can not be modified");
           return;
         }
-        this.editItem(task, event.target.dataset.taskIndex);
+
+        AppEvent.dispatch('edit-task' , {task : task });
+        //this.editItem(task, event.target.dataset.taskIndex);
         break;
       case "completed":
         let update_task = __listState.list[event.target.dataset.taskIndex];
@@ -114,7 +114,7 @@ const List = function () {
         break;
       case "delete":
         let rm_task = __listState.list[event.target.dataset.taskIndex];
-        DataManager.removeItem('task', [rm_task]);
+        DataManager.removeItem('task', rm_task.id);
         break;
       default: break;
     }

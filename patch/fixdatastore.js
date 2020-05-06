@@ -22,9 +22,10 @@ module.exports = function FixDataStore() {
           ]
         ],
 
-        // merge the new properties with the existing properties
+        // add the new properties with the existing properties
         schema: {
-          folder_id : "f1"
+          folder_id : "f1",
+          task_description : "Task Decsription"
         }
       }
     }

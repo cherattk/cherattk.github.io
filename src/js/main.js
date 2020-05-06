@@ -10,6 +10,9 @@ require('../../patch/fixdatastore')();
 const Form = require('./ui/task-form');
 Form("task-form-container");
 
+const TaskDetail = require('./ui/task-detail');
+TaskDetail("task-detail-container");
+
 const TaskList = require('./ui/list');
 TaskList.Header.init("list-header-container");
 TaskList.List.init("task-list-container");
