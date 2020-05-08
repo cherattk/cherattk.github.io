@@ -19,15 +19,20 @@ module.exports = function TaskDetail(anchorID) {
           <input class="textfield" type="text" name="task_body" />
 
           <label>Status</label>
-          <select name="task_label">
+          <select name="task_label" class="textfield">
             <option value="todo">Todo</option>
             <option value="completed">Compeleted</option>
           </select>
 
           <label>Description</label>
           <textarea class="textfield" name="task_description"></textarea>
+
           <input class="btn btn-primary" type="submit" value="save"/>
-        </form>
+
+          <button id="delete-item" class="btn btn-sm btn-secondary" type="button" title="Delete task">
+            Delete
+          </button>
+          </form>
         </div>
 
       </div> 
@@ -41,9 +46,24 @@ module.exports = function TaskDetail(anchorID) {
     __saveForm(e);
   });
 
+  __div.find('#delete-item').click(function(e){
+    e.preventDefault();
+    if(confirm("you are going to delete the task : are you sure ?")){
+      DataManager.removeItem('task', __state.task.id);
+      __closeForm();
+    }
+  })
+
   __div.find('.close').click(function () {
-    __div.removeClass('show-task-detail');
-    __state.task = {};
+    __closeForm()
+  });
+
+  AppEvent.addListener("active-folder", function (event) {
+    // just close the task detail folder
+    if (event.message.folder_id != "f1" &&
+      event.message.folder_id != __state.task.folder_id) {
+        __closeForm();
+    }
   });
 
   AppEvent.addListener("get-task-detail", function (event) {
@@ -62,11 +82,18 @@ module.exports = function TaskDetail(anchorID) {
       return;
     }
     __state.task.task_body = task_body;
-    __state.task.task_label = task_label;
+    __state.task.task_label = e.target.elements['task_label'].value;
     __state.task.task_description = e.target.elements['task_description'].value;
 
     //e.target.reset();
     DataManager.setItem('task', __state.task);
+  }
+
+  function __closeForm() {
+    __div.removeClass('show-task-detail');
+    __state.task = {};
+    __form.trigger('reset');
+    AppEvent.dispatch('close-task-detail');
   }
 
 }

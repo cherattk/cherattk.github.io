@@ -10,6 +10,7 @@ AppEvent.addEvent("error-default-folder-action");
 
 ////////////////////////////////////////////
 AppEvent.addEvent("get-task-detail");
+AppEvent.addEvent("close-task-detail");
 
 // AppEvent.addEvent("edit-item");
 // AppEvent.addEvent("select-item");

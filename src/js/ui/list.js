@@ -1,13 +1,13 @@
 const AppEvent = require('../service/eventstore').AppEvent;
 const DataManager = require('../service/datamanager');
 
-const Header = function() {
+const Header = function () {
 
   var __state = {
-    folder : {}
+    folder: {}
   };
 
-  this.init = function(anchorID) {
+  this.init = function (anchorID) {
 
     var __headerContainer = $('<div id="list-header" class="list-header"></div>');
 
@@ -32,10 +32,10 @@ const Header = function() {
     AppEvent.addListener("active-folder", function (event) {
       __state.folder = DataManager.getItem('folder', event.message.folder_id);
       __listTitle.html(__state.folder.name);
-      if(event.message.folder_id === "f1"){
+      if (event.message.folder_id === "f1") {
         __listHeaderAction.hide();
       }
-      else{
+      else {
         __listHeaderAction.show();
       }
     });
@@ -48,20 +48,21 @@ const Header = function() {
   this.editAction = function (event) {
 
     // prevent action on default folder
-    if(__state.folder.id === "f1"){
-      AppEvent.dispatch("error-default-folder-action" , 
-        {info : "error : action on default folder is not authaurized"});
-        return;
+    if (__state.folder.id === "f1") {
+      AppEvent.dispatch("error-default-folder-action",
+        { info: "error : action on default folder is not authaurized" });
+      return;
     }
     if (event.target.dataset.action === "edit-folder") {
-      AppEvent.dispatch("edit-folder" , {folder_id : __state.folder.id});
+      AppEvent.dispatch("edit-folder", { folder_id: __state.folder.id });
       return;
     }
     if (event.target.dataset.action === "delete-folder") {
-      DataManager.removeItem("folder" , __state.folder.id);
-
-      // activate the default folder
-      AppEvent.dispatch("active-folder" , {folder_id : "f1" });
+      if (confirm("do you realy want to delete this task : " + __state.folder.name)) {
+        DataManager.removeItem("folder", __state.folder.id);
+        // activate the default folder afetr delete action
+        AppEvent.dispatch("active-folder", { folder_id: "f1" });
+      }
     }
   }
 
@@ -72,7 +73,8 @@ const List = function () {
   var __listContainer;
   var __listState = {
     list: [], // list of item
-    folder_id: null
+    folder_id: null,
+    active_task: ""
   };
 
   this.init = function (anchorID) {
@@ -91,6 +93,10 @@ const List = function () {
       // __listState.folder_id = event.message.folder_id;
       self.renderListItem();
     });
+    AppEvent.addListener("close-task-detail", function (event) {
+      __listState.active_task = "";
+      self.renderListItem();
+    });
 
     this.renderListItem();
   }
@@ -99,13 +105,9 @@ const List = function () {
     switch (event.target.dataset.action) {
       case "edit-item":
         let task = __listState.list[event.target.dataset.taskIndex];
-        // if (task.task_label === "completed") {
-        //   alert("the completed task can not be modified");
-        //   return;
-        // }
-
-        AppEvent.dispatch('get-task-detail' , {task : task });
-        //this.editItem(task, event.target.dataset.taskIndex);
+        AppEvent.dispatch('get-task-detail', { task: task });
+        __listState.active_task = task.id;
+        this.renderListItem();
         break;
       case "completed":
         let update_task = __listState.list[event.target.dataset.taskIndex];
@@ -147,42 +149,34 @@ const List = function () {
     }
     else {
       __listState.list.map(function (_item, index) {
-        let isDone = _item.task_label === "completed";
-        content += `<li class="${_item.task_label}" data-task-id="${_item.id}" data-task-index="${index}">                
-                    <!--  checkbox -->
-                    <div class="checkbox" title="Mark task as completed">
-                      <input id="checkbox-${_item.id}"
-                              data-action="completed" data-task-index="${index}"
-                            type="checkbox"
-                            ${isDone ? "checked" : ''}/>
-                      <label for="checkbox-${_item.id}">
-                        <span></span>
-                      </label>
-                    </div>
-                    
-                    <!-- item content -->
-                    <div>   
-                      <p>${_item.task_body}</p>
-                      <!---->
-                      <input id="item-textfield-${_item.id}" type="text" class="textfield" name="task_body"/>
-                      <!--<textarea id="item-textfield-${_item.id}"  class="textfield" name="task_body"></textarea>-->
-                    </div>
-                    <!-- item action -->
-                    <div class="item-action">
-                      <button class="btn" data-action="edit-item">
-                      <i class="far fa-edit" data-action="edit-item" 
-                      data-task-index="${index}" title="Edit this task"></i>
-                      </button>
-                      <button class="btn" data-action="delete">
-                        <i class="fa fa-trash" data-action="delete" 
-                        data-task-index="${index}" title="Delete this task"></i>
-                      </button>                  
-                    </div>
-          </li>`;
+
+        var __label = _item.task_label === "completed" ?
+          `<span class="badge badge-success">completed</span>` :
+          "";
+
+        var active_item = (_item.id === __listState.active_task) ? "active" : "";
+
+        // content += `<li class="task-state-${_item.task_label} ${active_item}" 
+        content += `<li 
+                        class="list-group-item task-state-${_item.task_label} ${active_item}" 
+                        data-task-id="${_item.id}" 
+                        data-task-index="${index}"
+                        data-action="edit-item">            
+                        ${_item.task_body}
+                        ${ __label}
+                        
+                        <!--
+                        <button data-task-index="${index}" class="btn" data-action="delete">
+                          <i data-task-index="${index}" 
+                              class="fa fa-trash" data-action="delete" title="Delete this task"></i>
+                        </button>
+                        --> 
+                    </li>`;
       });
     }
 
-    __listContainer.html(`<ul class="list">${content}</ul>`);
+    __listContainer.html(`<ul class="list-group mylist">${content}</ul>`);
+    // __listContainer.html(`<div class="list-group list-group-flush">${content}</div>`);
 
   }
 }

@@ -6,6 +6,10 @@
 require('../../patch/fixdatastore')();
 
 
+const DataManager = require('./service/datamanager');
+
+DataManager.init();
+
 // SET COMPONENT =============================
 const Form = require('./ui/task-form');
 Form("task-form-container");
