@@ -15,10 +15,13 @@ function TaskForm(anchorID) {
 
   var self = this;
   var __form = $(`
-    <form id="task-form" class="task-form" title="add a new task to do">
-      <input id="task-form-text" class="textfield" type="text" name="task_body" 
-      placeholder="Add New Task ..." />
-    </form>`);
+    <div class="task-form">
+      <form id="task-form" title="add a new task to do">
+        <input id="task-form-text" class="textfield" type="text" name="task_body" 
+        placeholder="Add New Task ..." />
+        <input type="submit" value="Save" class="btn btn-primary btn-sm"/>
+      </form>
+    </div>`);
   $("#" + anchorID).append(__form);
 
   __form.submit(function (e) {
