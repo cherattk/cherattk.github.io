@@ -31,13 +31,24 @@ p{
   padding:15px 10px;
 }
 .app-header-content{
-  margin:auto 30px;
+  margin:0 10px;
 } 
-.app-header button{
-  float:right;
+.main-menu-btn{
+  float:left;
+  background-color:transparent;
+  border:0;
+  font-size:20px;
+  padding:3px 10px;
+  margin:0;
+  position:relative;
+  top:-7px;
+  border-radius:3px;
+}
+.main-menu-btn:hover{
+  background-color:#0e6bcf;
 }
  .board-container{
-  text-align:left;
+  text-align:center;
   margin:auto;
   padding:30px 0;
  }
@@ -46,22 +57,22 @@ p{
   display:inline-block;
   vertical-align:top;
 }
-.app-menu{
-  width:250px;
+.main-menu{
+  width:280px;
   background-color:#fff;
-  padding:0px 15px;
+  padding:0px 10px;
+  display:none;
 }
 
-.board , .app-menu{  
+.board , .main-menu{  
   background: white;
   margin:0;
-  /*
-  box-shadow:0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
-  */
 }
 .board{
-  width:calc(100% - (250px + 30px));
+  /* todo use media query */
+  width:calc(100% - (300px + 30px));
   padding:0;
+  text-align:left;
 }
 .list-header{
   text-align:left;
@@ -70,7 +81,6 @@ p{
   position:relative;
   background-color:#007bff;
   color:#fff;
-  border-radius:3px 3px 0 0;
 }
 .list-header h1{
   font-size:20px;
@@ -117,19 +127,15 @@ p{
 }
 .mylist li{
   padding:1.1rem;
-  border-left-width:3px;
 }
 .mylist .badge{
   border:1px solid #fff;
   margin-left:10px;
 }
-.mylist li.active{
-  border-left-color:#0463ca;
-}
 .mylist button{
   position:absolute;
   right:10px;
-  top:2px;
+  top:5px;
   opacity:0.5;
 }
 .mylist button:hover{
@@ -187,17 +193,45 @@ p{
 }
 */
 
-
+/*************** Main Menu *************************/
+.main-menu-btn{
+  background-color:transparent;
+  border:0;
+  font-size:20px;
+  padding:3px 10px;
+  margin:0;
+  position:relative;
+  top:-7px;
+  border-radius:3px;
+  text-align:left;
+  color:#fff;
+}
+.main-menu-btn:hover{
+  background-color:#0e6bcf;
+}
+.main-menu-btn input[type="checkbox"]{
+  display:none;
+}
 /**************** Folder List *****************/
-#folder-list-container > #get-folder-form{
+#get-folder-form{
   display:block;
   width:100%;
-  border-radius:3px;
+  border-radius:0;
+  font-size:16px;
+  padding:10px;
+  position:relative;
 }
-
+#get-folder-form:before{ /** icon */
+  content: "+";
+  font-size:30px;
+  position:absolute;
+  left:10px;
+  top:15px;
+  padding:0;
+  line-height:1rem;
+}
 .folder-list{
   text-align: left;
-  margin-top:5px;
 }
 .folder-list li{
   position:relative;
@@ -222,20 +256,25 @@ p{
 }
 .folder-list-item span{
   display:block;
-  margin:0 0 2px 0;
-  padding:8px 15px;
+  margin:2px 0;
+  padding:10px 15px;
   background-color:#fff;
-  border-left:3px solid transparent;
+  border-left:3px solid #eee;
 }
 .folder-list-item span:hover{
   background-color:#e1edfb;
   cursor:pointer;
+  border-color:#007bff;
 }
 
 
 /*******************************************/
 .folder-form{
   text-align:left;
+  padding:10px;
+}
+.folder-form .modal-title{
+  color:#0559b4;
 }
 .folder-form .textfield{
   margin-bottom:10px;
@@ -250,7 +289,7 @@ p{
   right:-450px;
   width:450px;
   min-height:100%;
-  padding:0 0 0 20px;
+  padding:0;
   z-index:100;
   text-align:left;
   transition: right 0.2s;
@@ -260,7 +299,7 @@ p{
 .task-detail .inner-container{
   background-color:#fff;
   border-left:1px solid #ddd;
-  box-shadow:0 0 15px #d6d5d5;
+  box-shadow:0 0 10px #d6d5d5;
   min-height:100%;
   position:absolute;
   top:0;
@@ -271,34 +310,50 @@ p{
 .show-task-detail{
   right:0;
 }
-.task-detail .close{
+.task-detail h1 .close{
   position:absolute;
-  top:10px;
-  right:10px;
-  font-size:14px;
+  top:13px;
+  right:13px;
+  font-size:13px;
   padding:5px 7px;
   border-radius:3px;
   color:#fff;
   background-color:#fff;
   color:#000;
 }
-.task-detail .close:hover{
+.task-detail h1 .close:hover{
   opacity:1;
 }
 .task-detail h1{
-  padding:13px 15px;
+  padding:15px;
   background-color:#007bff;
   color:#fff;
   font-size:16px;
-  border-radius:3px 3px 0 0;
   position:relative;
+}
+.task-detail.saved-form h1{
+  background-color:#2ade2a;
+}
+.task-detail.saved-form h1:after{
+  content:"saved";
+  background-color:aliceblue;
+  color:#000;
+  padding:0 10px;
+  border-radius:3px;
+  font-size:13px;
+}
+.task-detail.saved-form .textfield{
+  border-bottom-color:#2ade2a;
+  background-color:#dffdcd;
+}
+.task-detail.saved-form input[type="submit"]{
+  background-color:green;
+  box-shadow:none;
 }
 .task-detail input[type="submit"]{
   width:100px;
 }
-.task-detail textarea{
-  height:200px;
-}
+
 .task-detail label{
   display:block;
   margin:20px 0 0 0;
@@ -310,6 +365,9 @@ p{
   padding:10px;
 }
 
+.task-detail textarea{
+  height:200px;
+}
 .task-detail #delete-item{
   float: right;
 }

@@ -32,13 +32,16 @@
   <header class="app-header">
 
     <div id="app-header-content" class="app-header-content">
+      
+      <label id="main-menu-btn" class="main-menu-btn">
+        <input type="checkbox" name="main-menu-btn" checked="checked"/>
+        <i class="fas fa-bars"></i>
+      </label>
 
       <div class="notice">
-
         <span type="button" class="notice-button" data-toggle="modal" data-target="#notice-content">
           📢 Read me before using this app.
         </span>
-
       </div>
 
       <!-- <div class="">
@@ -54,12 +57,12 @@
 
   <main role="main" class="board-container">
 
-    <div class="app-menu">
+    <div id="main-menu" class="main-menu">
       <div id="folder-list-container"></div>
     </div>
 
 
-    <div class="board">
+    <div id="board" class="board">
 
       <div id="list-header-container" class="board-header"></div>
 
@@ -84,14 +87,14 @@
   <!-- <div id="modal-folder-form-container"> -->
   <div id="modal-folder-form" class="modal fade" role="document">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content folder-form">
         <div class="modal-header">
-          <h4 class="modal-title">Add a new Task List</h4>
+          <h4 class="modal-title">Task List Name</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
-        <div id="" class="modal-body">
-          <form id="folder-form" class="folder-form">
+        <div class="modal-body">
+          <form id="folder-form">
             <input id="folder-textfield" type="text" class="textfield" placeholder="Task List Name" />
             <input type="submit" value="Save" class="btn btn-primary" />
           </form>

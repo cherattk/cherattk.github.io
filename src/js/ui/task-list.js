@@ -97,6 +97,10 @@ const List = function () {
       __listState.active_task = "";
       self.renderListItem();
     });
+    AppEvent.addListener("get-task-detail", function (event) {
+      __listState.active_task = event.message.task.id;
+      self.renderListItem();
+    });
 
     this.renderListItem();
   }
@@ -106,8 +110,6 @@ const List = function () {
       case "edit-item":
         let task = __listState.list[event.target.dataset.taskIndex];
         AppEvent.dispatch('get-task-detail', { task: task });
-        __listState.active_task = task.id;
-        this.renderListItem();
         break;
       case "completed":
         let update_task = __listState.list[event.target.dataset.taskIndex];
@@ -115,8 +117,10 @@ const List = function () {
         DataManager.setItem('task', update_task);
         break;
       case "delete":
-        let rm_task = __listState.list[event.target.dataset.taskIndex];
-        DataManager.removeItem('task', rm_task.id);
+        var rm_task = __listState.list[event.target.dataset.taskIndex];
+        if(confirm(`You are going to delete this task : \n "${rm_task.task_body}"`)){
+          DataManager.removeItem('task', rm_task.id);
+        }
         break;
       default: break;
     }
@@ -152,7 +156,7 @@ const List = function () {
 
         var __label = _item.task_label === "completed" ?
           `<span class="badge badge-success">completed</span>` :
-          "";
+          `<span class="badge badge-warning">To Do</span>`;// todo
 
         var active_item = (_item.id === __listState.active_task) ? "active" : "";
 
@@ -166,17 +170,17 @@ const List = function () {
                         ${ __label}
                         
                         <!--
+                        --> 
                         <button data-task-index="${index}" class="btn" data-action="delete">
                           <i data-task-index="${index}" 
                               class="fa fa-trash" data-action="delete" title="Delete this task"></i>
                         </button>
-                        --> 
                     </li>`;
       });
     }
 
     __listContainer.html(`<ul class="list-group mylist">${content}</ul>`);
-    // __listContainer.html(`<div class="list-group list-group-flush">${content}</div>`);
+    // __listContainer.html(`<div class="mylist">${content}</div>`);
 
   }
 }

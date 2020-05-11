@@ -10,7 +10,7 @@ module.exports = function TaskDetail(anchorID) {
     <div class="task-detail">
       <div class="inner-container">
         <h1>Task Details        
-        <button class="close">X</button>
+        <button id="close-form" class="close">X</button>
         </h1>
 
         <div class="task-details-form">
@@ -33,9 +33,9 @@ module.exports = function TaskDetail(anchorID) {
             Delete
           </button>
           </form>
-        </div>
+        </div> <!-- end task form -->
 
-      </div> 
+      </div> <!-- end inner container -->
     </div>`);
 
   $("#" + anchorID).append(__div);
@@ -44,6 +44,8 @@ module.exports = function TaskDetail(anchorID) {
   __form.submit(function (e) {
     e.preventDefault();
     __saveForm(e);
+  __div.addClass('saved-form');
+  setTimeout(function(){__div.removeClass('saved-form');} , 1000);
   });
 
   __div.find('#delete-item').click(function(e){
@@ -54,7 +56,7 @@ module.exports = function TaskDetail(anchorID) {
     }
   })
 
-  __div.find('.close').click(function () {
+  __div.find('#close-form').click(function () {
     __closeForm()
   });
 

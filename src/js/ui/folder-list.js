@@ -18,7 +18,10 @@ const FolderList = {
 
   init: function (anchorID) {
 
-    var __addFolder = $(`<button id="get-folder-form" class="btn btn-primary">New List</button>`);
+    var __addFolder = $(`<button id="get-folder-form" class="btn btn-primary">
+                          <!-- <i class="fas fa-clipboard-list"></i> -->
+                          New List
+                        </button>`);
     __addFolder.click(function () {
       AppEvent.dispatch("add-folder");
     });

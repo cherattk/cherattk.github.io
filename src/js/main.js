@@ -10,6 +10,9 @@ const DataManager = require('./service/datamanager');
 
 DataManager.init();
 
+const mainMenuBtn = require('./ui/main-menu-btn');
+mainMenuBtn('main-menu-btn');
+
 // SET COMPONENT =============================
 const Form = require('./ui/task-form');
 Form("task-form-container");
@@ -17,7 +20,7 @@ Form("task-form-container");
 const TaskDetail = require('./ui/task-detail');
 TaskDetail("task-detail-container");
 
-const TaskList = require('./ui/list');
+const TaskList = require('./ui/task-list');
 TaskList.Header.init("list-header-container");
 TaskList.List.init("task-list-container");
 

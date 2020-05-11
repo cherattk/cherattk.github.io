@@ -27,6 +27,7 @@ function TaskForm(anchorID) {
   __form.submit(function (e) {
     e.preventDefault();
     __saveForm(e);
+    AppEvent.dispatch('get-task-detail', { task: __state.task });
   });
 
   AppEvent.addListener("active-folder", function (event) {
@@ -44,6 +45,8 @@ function TaskForm(anchorID) {
       id: (new Date()).getTime().toString(),
       task_body: task_body
     });
+
+    __state.task = item;
 
     e.target.reset();
     DataManager.setItem('task', item);
