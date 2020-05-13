@@ -15,6 +15,8 @@ module.exports = function () {
     }
   });
 
+  // regex from stackoverflow
+  // https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device?answertab=votes#tab-top
   var mobile = (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()));
   if (mobile) {
     mainMenu.click(function () {

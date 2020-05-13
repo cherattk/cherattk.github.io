@@ -158,7 +158,7 @@ li.todo:hover{
   margin:auto;
 }
 .main-menu{
-  position:absolute;
+  position:fixed;
   height:calc(100% - 50px);
   top:50px;
   left:0;

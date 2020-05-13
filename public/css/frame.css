@@ -26,6 +26,11 @@ p{
   height:50px;
   background-color: #007bff;
   color:#ffffff;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:200;
 }
 .app-header-content{
   padding:15px 10px;
@@ -38,6 +43,7 @@ p{
   text-align:center;
   margin:auto;
   padding:30px;
+  margin-top:50px;
  }
 
 /*
@@ -85,10 +91,10 @@ p{
 */
 .board{
   width:calc(100% - (300px + 30px));
-  widt:100%;
   padding:0;
   text-align:left;
   background-color:#fff;
+  min-height:1000px;
 }
 .list-header{
   text-align:left;
@@ -281,7 +287,7 @@ p{
 
 /******************************************************/
 .task-detail{
-  position:absolute;
+  position:fixed;
   right:-450px;
   width:450px;
   top:50px;
@@ -290,7 +296,7 @@ p{
   z-index:100;
   text-align:left;
   transition: right 0.2s;
-  background-color:#fff;
+  background-color:transparent;
 
 }
 .task-detail .inner-container{
@@ -301,7 +307,7 @@ p{
   position:absolute;
   top:0;
   right:0;
-  width:calc(100% - 20px);
+  width:100%;
   padding:15px;
 }
 .show-task-detail{
