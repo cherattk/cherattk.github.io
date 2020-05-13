@@ -6,12 +6,11 @@
 require('../../patch/fixdatastore')();
 
 
+require('./ui/misc')();
+
 const DataManager = require('./service/datamanager');
 
 DataManager.init();
-
-const mainMenuBtn = require('./ui/main-menu-btn');
-mainMenuBtn('main-menu-btn');
 
 // SET COMPONENT =============================
 const Form = require('./ui/task-form');
@@ -30,7 +29,7 @@ const FolderList = require('./ui/folder-list');
 FolderList.init("folder-list-container");
 
 const FolderForm = require('./ui/folder-form');
-FolderForm.init();
+FolderForm.init('folder-form-container');
 
 
 // @todo move to its own component

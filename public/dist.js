@@ -344,13 +344,11 @@ module.exports = function FixDataStore() {
 /**/
 require('../../patch/fixdatastore')();
 
+require('./ui/misc')();
+
 var DataManager = require('./service/datamanager');
 
-DataManager.init();
-
-var mainMenuBtn = require('./ui/main-menu-btn');
-
-mainMenuBtn('main-menu-btn'); // SET COMPONENT =============================
+DataManager.init(); // SET COMPONENT =============================
 
 var Form = require('./ui/task-form');
 
@@ -371,7 +369,7 @@ FolderList.init("folder-list-container");
 
 var FolderForm = require('./ui/folder-form');
 
-FolderForm.init(); // @todo move to its own component
+FolderForm.init('folder-form-container'); // @todo move to its own component
 // error warning message
 
 var AppEvent = require('./service/eventstore').AppEvent;
@@ -425,7 +423,7 @@ AppEvent.addListener("error-default-folder-action", function (event) {
 //   });
 // })();
 
-},{"../../patch/fixdatastore":4,"./service/datamanager":6,"./service/eventstore":7,"./ui/folder-form":9,"./ui/folder-list":10,"./ui/main-menu-btn":11,"./ui/task-detail":12,"./ui/task-form":13,"./ui/task-list":14}],6:[function(require,module,exports){
+},{"../../patch/fixdatastore":4,"./service/datamanager":6,"./service/eventstore":7,"./ui/folder-form":9,"./ui/folder-list":10,"./ui/misc":11,"./ui/task-detail":12,"./ui/task-form":13,"./ui/task-list":14}],6:[function(require,module,exports){
 "use strict";
 
 var AppEvent = require('./eventstore').AppEvent;
@@ -650,9 +648,10 @@ var __state = {
   }
 };
 var FolderForm = {
-  init: function init() {
-    // var __container = $("#" + anchorID).html(```);
-    var __folderForm = $('#folder-form');
+  init: function init(anchorID) {
+    var __folderForm = $("\n    <div class=\"modal fade\" role=\"document\">\n    <div class=\"modal-dialog\">\n      <div class=\"modal-content folder-form\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">Task List Name</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n\n        <div class=\"modal-body\">\n          <form id=\"folder-form\">\n            <input id=\"folder-textfield\" type=\"text\" class=\"textfield\" placeholder=\"Task List Name\" />\n            <input type=\"submit\" value=\"Save\" class=\"btn btn-primary\" />\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n    ");
+
+    $("#" + anchorID).append(__folderForm);
 
     var textField = __folderForm.find('#folder-textfield');
 
@@ -675,13 +674,15 @@ var FolderForm = {
       AppEvent.dispatch("active-folder", {
         folder_id: __state.folder.id
       });
-      $("#modal-folder-form").modal('hide');
+
+      __folderForm.modal('hide');
     });
 
     AppEvent.addListener("edit-folder", function (event) {
       __state.folder = DataManager.getItem('folder', event.message.folder_id);
       textField.val(__state.folder.name);
-      $("#modal-folder-form").modal('show');
+
+      __folderForm.modal('show');
     });
     AppEvent.addListener("add-folder", function (event) {
       __state.folder = {
@@ -689,7 +690,8 @@ var FolderForm = {
         name: ""
       };
       textField.val("");
-      $("#modal-folder-form").modal('show');
+
+      __folderForm.modal('show');
     });
   }
 };
@@ -780,17 +782,28 @@ module.exports = FolderList;
 },{"../service/datamanager":6,"../service/eventstore":7}],11:[function(require,module,exports){
 "use strict";
 
-module.exports = function (anchorId) {
-  $('#' + anchorId).click(function (e) {
-    var mainMenu = $('#main-menu');
+module.exports = function () {
+  var mainMenu = $('#main-menu');
+  var __checked = true; // false if the mainMenu is Displayed
 
-    if (e.target.checked) {
-      mainMenu.show(300); // board.removeClass('expend-board');      
+  $('#main-menu-btn').click(function (e) {
+    __checked = !__checked;
+
+    if (!__checked) {
+      mainMenu.addClass('show-main-menu'); // mainMenu.show(300);
     } else {
-      // board.addClass('expend-board');
-      $('#main-menu').hide(300);
+      mainMenu.removeClass('show-main-menu'); // mainMenu.hide(300);
     }
   });
+  var mobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
+
+  if (mobile) {
+    mainMenu.click(function () {
+      // mainMenu.find('#main-menu-bkg-div').click(function(){
+      __checked = true;
+      mainMenu.removeClass('show-main-menu');
+    });
+  }
 };
 
 },{}],12:[function(require,module,exports){

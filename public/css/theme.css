@@ -144,3 +144,62 @@ li.todo:hover{
 .checkbox input:checked + label span:before{
   display:block;
 }
+
+@media screen and (max-width: 900px) {
+  .board-container{
+    text-align:center;
+    padding:15px;
+  }
+  .board-container > div{
+  display:block;
+}
+.board{
+  width:calc(100% - 10px);
+  margin:auto;
+}
+.main-menu{
+  position:absolute;
+  height:calc(100% - 50px);
+  top:50px;
+  left:0;
+  padding:0;
+  text-align:left;
+  margin-right:20px;
+  z-index:100;
+  background-color:transparent;
+  overflow:hidden;  
+  width:0;
+  transition: width 0.3s , opacity 0.2s;
+
+}
+.main-menu .inner-container{
+  width:280px;
+  height:100%;
+  position:relative;
+  z-index:100;
+  background-color:#fff;
+  padding:0 20px 0 0;
+  padding:10px;
+  box-shadow:3px 1px 20px #777;
+}
+.main-menu .main-menu-bkg-div{
+  background-color:#555;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  z-index:0;
+  opacity:0.3;
+}
+.show-main-menu{
+  width:100%;
+}
+.task-detail{
+    width:100%;
+    right:-100%;
+ }
+ .show-task-detail{
+   right:0;
+ }
+}

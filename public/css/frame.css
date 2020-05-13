@@ -33,6 +33,35 @@ p{
 .app-header-content{
   margin:0 10px;
 } 
+
+ .board-container{
+  text-align:center;
+  margin:auto;
+  padding:30px;
+ }
+
+/*
+*/
+.board-container > div{
+  display:inline-block;
+  vertical-align:top;
+}
+.main-menu{
+  position:relative;
+  width:0;
+  padding:0;
+  text-align:left;
+  background-color:#fff;
+  margin-right:20px;
+  overflow:hidden;  
+  width:0;
+  opacity:0;
+  transition: width 0.3s , opacity 0.2s;
+}
+.show-main-menu{
+  width:280px;
+  opacity:1;
+}
 .main-menu-btn{
   float:left;
   background-color:transparent;
@@ -43,36 +72,23 @@ p{
   position:relative;
   top:-7px;
   border-radius:3px;
+  text-align:left;
+  color:#fff;
 }
 .main-menu-btn:hover{
   background-color:#0e6bcf;
 }
- .board-container{
-  text-align:center;
-  margin:auto;
-  padding:30px 0;
- }
-
-.board-container > div{
-  display:inline-block;
-  vertical-align:top;
-}
-.main-menu{
-  width:280px;
-  background-color:#fff;
-  padding:0px 10px;
+.main-menu-btn input[type="checkbox"]{
   display:none;
 }
-
-.board , .main-menu{  
-  background: white;
-  margin:0;
-}
+/*
+*/
 .board{
-  /* todo use media query */
   width:calc(100% - (300px + 30px));
+  widt:100%;
   padding:0;
   text-align:left;
+  background-color:#fff;
 }
 .list-header{
   text-align:left;
@@ -193,25 +209,6 @@ p{
 }
 */
 
-/*************** Main Menu *************************/
-.main-menu-btn{
-  background-color:transparent;
-  border:0;
-  font-size:20px;
-  padding:3px 10px;
-  margin:0;
-  position:relative;
-  top:-7px;
-  border-radius:3px;
-  text-align:left;
-  color:#fff;
-}
-.main-menu-btn:hover{
-  background-color:#0e6bcf;
-}
-.main-menu-btn input[type="checkbox"]{
-  display:none;
-}
 /**************** Folder List *****************/
 #get-folder-form{
   display:block;
@@ -285,10 +282,10 @@ p{
 /******************************************************/
 .task-detail{
   position:absolute;
-  top:0;
   right:-450px;
   width:450px;
-  min-height:100%;
+  top:50px;
+  min-height:calc(100% - 50px);
   padding:0;
   z-index:100;
   text-align:left;
