@@ -759,7 +759,7 @@ var FolderList = {
     }
   },
   emptyState: function emptyState() {
-    return "<p class=\"empty-list\">Empty List</p>";
+    return "";
   },
   renderListItem: function renderListItem() {
     var content = "";
@@ -767,14 +767,18 @@ var FolderList = {
     if (!__state.list.length) {
       content = this.emptyState();
     } else {
+      content = "<ul class=\"folder-list\">";
+
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
         var checked = _item.id === __state.active_folder ? "checked" : "";
         content += "\n                <li>\n                  <label class=\"folder-list-item\">\n                    <input id=\"radio-folder-".concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    <span data-folder-id=\"").concat(_item.id, "\">\n                    ").concat(_item.name, "\n                    </span>                    \n                  </label>\n                </li>");
       });
+
+      content += "</ul>";
     }
 
-    __listNode.html("<ul class=\"folder-list\"> ".concat(content, " </ul>"));
+    __listNode.html(content);
   }
 };
 module.exports = FolderList;
@@ -783,25 +787,27 @@ module.exports = FolderList;
 "use strict";
 
 module.exports = function () {
-  var mainMenu = $('#main-menu');
-  var __checked = true; // false if the mainMenu is Displayed
+  var boardContainer = $('#board-container');
+  var __checked = true; // false if the boardContainer is Displayed
 
   $('#main-menu-btn').click(function (e) {
     __checked = !__checked;
 
     if (!__checked) {
-      mainMenu.addClass('show-main-menu'); // mainMenu.show(300);
+      boardContainer.addClass('show-main-menu'); // boardContainer.show(300);
     } else {
-      mainMenu.removeClass('show-main-menu'); // mainMenu.hide(300);
+      boardContainer.removeClass('show-main-menu'); // boardContainer.hide(300);
     }
-  });
+  }); // regex from stackoverflow
+  // https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device?answertab=votes#tab-top
+
   var mobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase());
 
   if (mobile) {
-    mainMenu.click(function () {
-      // mainMenu.find('#main-menu-bkg-div').click(function(){
+    $('#main-menu').click(function () {
+      // boardContainer.find('#main-menu-bkg-div').click(function(){
       __checked = true;
-      mainMenu.removeClass('show-main-menu');
+      boardContainer.removeClass('show-main-menu');
     });
   }
 };
@@ -920,11 +926,8 @@ function TaskForm(anchorID) {
   __form.submit(function (e) {
     e.preventDefault();
 
-    __saveForm(e);
+    __saveForm(e); // AppEvent.dispatch('get-task-detail', { task: __state.task });
 
-    AppEvent.dispatch('get-task-detail', {
-      task: __state.task
-    });
   });
 
   AppEvent.addListener("active-folder", function (event) {
@@ -1012,7 +1015,10 @@ var Header = function Header() {
     }
 
     if (event.target.dataset.action === "delete-folder") {
-      if (confirm("do you realy want to delete this task : " + __state.folder.name)) {
+      var msg = "Do you realy want to delete this list : " + __state.folder.name + "\n";
+      msg += "the tasks contained in this list will be moved to the \"all tasks\" list";
+
+      if (confirm(msg)) {
         DataManager.removeItem("folder", __state.folder.id); // activate the default folder afetr delete action
 
         AppEvent.dispatch("active-folder", {
@@ -1074,12 +1080,11 @@ var List = function List() {
         break;
 
       case "delete":
-        var rm_task = __listState.list[event.target.dataset.taskIndex];
+        var rm_task = __listState.list[event.target.dataset.taskIndex]; // if (confirm(`You are going to delete this task : \n "${rm_task.task_body}"`)) {
+        //   DataManager.removeItem('task', rm_task.id);
+        // }
 
-        if (confirm("You are going to delete this task : \n \"".concat(rm_task.task_body, "\""))) {
-          DataManager.removeItem('task', rm_task.id);
-        }
-
+        DataManager.removeItem('task', rm_task.id);
         break;
 
       default:
@@ -1101,7 +1106,7 @@ var List = function List() {
 
 
   this.emptyState = function () {
-    return "<li class=\"empty-list\">Empty List</li>";
+    return "";
   };
 
   this.renderListItem = function () {
@@ -1112,17 +1117,20 @@ var List = function List() {
     if (!__listState.list.length) {
       content = this.emptyState();
     } else {
+      content = "<ul class=\"mylist\">";
+
       __listState.list.map(function (_item, index) {
         var __label = _item.task_label === "completed" ? "<span class=\"badge badge-success\">completed</span>" : "<span class=\"badge badge-warning\">To Do</span>"; // todo
 
 
-        var active_item = _item.id === __listState.active_task ? "active" : ""; // content += `<li class="task-state-${_item.task_label} ${active_item}" 
-
-        content += "<li \n                        class=\"list-group-item task-state-".concat(_item.task_label, " ").concat(active_item, "\" \n                        data-task-id=\"").concat(_item.id, "\" \n                        data-task-index=\"").concat(index, "\"\n                        data-action=\"edit-item\">            \n                        ").concat(_item.task_body, "\n                        ").concat(__label, "\n                        \n                        <!--\n                        --> \n                        <button data-task-index=\"").concat(index, "\" class=\"btn\" data-action=\"delete\">\n                          <i data-task-index=\"").concat(index, "\" \n                              class=\"fa fa-trash\" data-action=\"delete\" title=\"Delete this task\"></i>\n                        </button>\n                    </li>");
+        var active_item = _item.id === __listState.active_task ? "active" : "";
+        content += "<li class=\"task-state-".concat(_item.task_label, " ").concat(active_item, "\" \n                        data-task-id=\"").concat(_item.id, "\" \n                        data-task-index=\"").concat(index, "\"\n                        data-action=\"edit-item\">            \n                        ").concat(_item.task_body, "\n                        ").concat(__label, "\n                        \n                        <!--\n                        --> \n                        <button data-task-index=\"").concat(index, "\" class=\"btn\" data-action=\"delete\">\n                          <i data-task-index=\"").concat(index, "\" \n                              class=\"fa fa-trash\" data-action=\"delete\" title=\"Delete this task\"></i>\n                        </button>\n                    </li>");
       });
+
+      content += "</ul>";
     }
 
-    __listContainer.html("<ul class=\"list-group mylist\">".concat(content, "</ul>")); // __listContainer.html(`<div class="mylist">${content}</div>`);
+    __listContainer.html("".concat(content)); // __listContainer.html(`<div class="mylist">${content}</div>`);
 
   };
 };

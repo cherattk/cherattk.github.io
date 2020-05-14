@@ -60,7 +60,7 @@ const FolderList = {
   },
 
   emptyState: function () {
-    return `<p class="empty-list">Empty List</p>`;
+    return "";
   },
 
   renderListItem: function () {
@@ -69,6 +69,7 @@ const FolderList = {
       content = this.emptyState();
     }
     else {
+      content = `<ul class="folder-list">`;
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
         var checked = _item.id === __state.active_folder ? "checked" : "";
@@ -82,10 +83,12 @@ const FolderList = {
                     </span>                    
                   </label>
                 </li>`;
+
       });
+      content += `</ul>`;
     }
 
-    __listNode.html(`<ul class="folder-list"> ${content} </ul>`);
+    __listNode.html(content);
 
   }
 }

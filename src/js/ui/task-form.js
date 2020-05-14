@@ -27,7 +27,7 @@ function TaskForm(anchorID) {
   __form.submit(function (e) {
     e.preventDefault();
     __saveForm(e);
-    AppEvent.dispatch('get-task-detail', { task: __state.task });
+    // AppEvent.dispatch('get-task-detail', { task: __state.task });
   });
 
   AppEvent.addListener("active-folder", function (event) {

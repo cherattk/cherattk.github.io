@@ -58,7 +58,10 @@ const Header = function () {
       return;
     }
     if (event.target.dataset.action === "delete-folder") {
-      if (confirm("do you realy want to delete this task : " + __state.folder.name)) {
+      var msg = "Do you realy want to delete this list : " + __state.folder.name + "\n";
+          msg += "the tasks contained in this list will be moved to the \"all tasks\" list";
+
+      if (confirm(msg)) {
         DataManager.removeItem("folder", __state.folder.id);
         // activate the default folder afetr delete action
         AppEvent.dispatch("active-folder", { folder_id: "f1" });
@@ -118,9 +121,10 @@ const List = function () {
         break;
       case "delete":
         var rm_task = __listState.list[event.target.dataset.taskIndex];
-        if(confirm(`You are going to delete this task : \n "${rm_task.task_body}"`)){
-          DataManager.removeItem('task', rm_task.id);
-        }
+        // if (confirm(`You are going to delete this task : \n "${rm_task.task_body}"`)) {
+        //   DataManager.removeItem('task', rm_task.id);
+        // }
+        DataManager.removeItem('task', rm_task.id);
         break;
       default: break;
     }
@@ -141,7 +145,7 @@ const List = function () {
   // }
 
   this.emptyState = function () {
-    return `<li class="empty-list">Empty List</li>`;
+    return "";
   }
 
   this.renderListItem = function () {
@@ -152,6 +156,7 @@ const List = function () {
       content = this.emptyState();
     }
     else {
+      content = `<ul class="mylist">`;
       __listState.list.map(function (_item, index) {
 
         var __label = _item.task_label === "completed" ?
@@ -160,9 +165,7 @@ const List = function () {
 
         var active_item = (_item.id === __listState.active_task) ? "active" : "";
 
-        // content += `<li class="task-state-${_item.task_label} ${active_item}" 
-        content += `<li 
-                        class="list-group-item task-state-${_item.task_label} ${active_item}" 
+        content += `<li class="task-state-${_item.task_label} ${active_item}" 
                         data-task-id="${_item.id}" 
                         data-task-index="${index}"
                         data-action="edit-item">            
@@ -177,9 +180,10 @@ const List = function () {
                         </button>
                     </li>`;
       });
+      content += `</ul>`;
     }
 
-    __listContainer.html(`<ul class="list-group mylist">${content}</ul>`);
+    __listContainer.html(`${content}`);
     // __listContainer.html(`<div class="mylist">${content}</div>`);
 
   }

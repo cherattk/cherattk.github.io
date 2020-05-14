@@ -11,6 +11,9 @@ html, body{
   background: white;
   overflow-x:hidden;
 }
+::-webkit-scrollbar-thumb {
+  background-color: red;
+}
 ul {
   margin: 0;
   padding: 0;
@@ -42,31 +45,61 @@ p{
  .board-container{
   text-align:center;
   margin:auto;
-  padding:30px;
-  margin-top:50px;
+  padding:0;
+  top:50px;
+  position:absolute;
+  left:0;
+  width:100%;
+  height:calc(100% - 50px);
+  overflow:auto;
+  background-color:#efefef;
+
  }
 
 /*
 */
-.board-container > div{
+
+.show-main-menu .main-menu{
+  width:280px;
+  padding:15px;
+  opacity:1;
+}
+.show-main-menu .board{
+   width:calc(100% - 290px);
+}
+.board{ 
+  width:calc(100% - 10px);
+  height:100%;
+  padding:20px;
+  text-align:left;
+  overflow:auto;
   display:inline-block;
   vertical-align:top;
+  transition:0.3s;
+}
+.board-content{
+  max-width:980px;
+  margin:auto;
+  min-height:1000px;
+  
+  padding:20px;
+  background-color:#fff;
+  box-shadow:0 1px 3px 1px rgb(169, 173, 177);
 }
 .main-menu{
+  vertical-align:top;
+  display:inline-block;
   position:relative;
-  width:0;
-  padding:0;
+  height:100%;
   text-align:left;
-  background-color:#fff;
-  margin-right:20px;
-  overflow:hidden;  
+  overflow:hidden;
+  padding:0;
   width:0;
+  margin:0;
   opacity:0;
-  transition: width 0.3s , opacity 0.2s;
-}
-.show-main-menu{
-  width:280px;
-  opacity:1;
+  background-color:#fff;
+  box-shadow:2px 2px 2px #ccc;
+  transition:0.3s;
 }
 .main-menu-btn{
   float:left;
@@ -89,13 +122,7 @@ p{
 }
 /*
 */
-.board{
-  width:calc(100% - (300px + 30px));
-  padding:0;
-  text-align:left;
-  background-color:#fff;
-  min-height:1000px;
-}
+
 .list-header{
   text-align:left;
   margin:0 0 15px 0;
@@ -143,12 +170,32 @@ p{
   height:35px;
   padding:0px 15px;
 }
+/********************task list *********************/
+.empty-task-list{
+  text-align:center;
+  padding:20px;
+  background-color:#f7f9fa;
+
+}
 .mylist li:first-child,
 .mylist li:last-child{
   border-radius:0;
 }
 .mylist li{
-  padding:1.1rem;
+  color:#004085;
+  padding:15px;
+  background-color:#fff;
+  position:relative;
+  border-bottom:1px solid #e5e5e5;
+}
+.mylist li.task-state-completed{
+  text-decoration:line-through;
+  color:#aaa;
+}
+.mylist li.active{
+  background-color:#167dec;
+  color:#fff;
+  border-color:#fff;
 }
 .mylist .badge{
   border:1px solid #fff;

@@ -145,17 +145,16 @@ li.todo:hover{
   display:block;
 }
 
-@media screen and (max-width: 900px) {
-  .board-container{
-    text-align:center;
-    padding:15px;
-  }
+@media screen and (max-width: 1024px) {
   .board-container > div{
   display:block;
 }
 .board{
-  width:calc(100% - 10px);
+  width:100% !important;
   margin:auto;
+}
+.board-content{
+ max-width:800px;
 }
 .main-menu{
   position:fixed;
@@ -164,13 +163,15 @@ li.todo:hover{
   left:0;
   padding:0;
   text-align:left;
-  margin-right:20px;
-  z-index:100;
+  z-index:110;
   background-color:transparent;
   overflow:hidden;  
   width:0;
   transition: width 0.3s , opacity 0.2s;
-
+}
+.show-main-menu .main-menu{
+  padding:0;
+  width:100%;
 }
 .main-menu .inner-container{
   width:280px;
@@ -178,8 +179,7 @@ li.todo:hover{
   position:relative;
   z-index:100;
   background-color:#fff;
-  padding:0 20px 0 0;
-  padding:10px;
+  padding:15px;
   box-shadow:3px 1px 20px #777;
 }
 .main-menu .main-menu-bkg-div{
@@ -190,16 +190,30 @@ li.todo:hover{
   left:0;
   height:100%;
   z-index:0;
-  opacity:0.3;
-}
-.show-main-menu{
-  width:100%;
+  opacity:0.5;
 }
 .task-detail{
-    width:100%;
-    right:-100%;
+    width:400px;
+    right:-400px;
  }
  .show-task-detail{
    right:0;
  }
+}
+
+@media screen and (max-width: 768px) {
+  .board-content{
+    padding:15px;
+  }
+  .task-detail{
+    width:100%;
+    right:-100%;
+ }
+ .task-detail .inner-container{
+   padding:25px;
+ }
+ .show-task-detail{
+   right:0;
+ }
+
 }
