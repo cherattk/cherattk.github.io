@@ -61,7 +61,6 @@ p{
 
 .show-main-menu .main-menu{
   width:280px;
-  padding:15px;
   opacity:1;
 }
 .show-main-menu .board{
@@ -78,17 +77,18 @@ p{
   transition:0.3s;
 }
 .board-content{
-  max-width:980px;
+  max-width:900px;
   margin:auto;
   min-height:1000px;
-  
   padding:20px;
   background-color:#fff;
-  box-shadow:0 1px 3px 1px rgb(169, 173, 177);
+  box-shadow: 0 1px 2px 1px rgb(184, 185, 187);
+  border-radius:3px;
 }
 .main-menu{
   vertical-align:top;
   display:inline-block;
+  overflow:auto;
   position:relative;
   height:100%;
   text-align:left;
@@ -98,8 +98,11 @@ p{
   margin:0;
   opacity:0;
   background-color:#fff;
-  box-shadow:2px 2px 2px #ccc;
+  box-shadow: 2px 2px 2px rgba(0,0,0,.075);
   transition:0.3s;
+}
+.main-menu .inner-container{
+  margin:15px;
 }
 .main-menu-btn{
   float:left;
@@ -343,18 +346,12 @@ p{
   z-index:100;
   text-align:left;
   transition: right 0.2s;
-  background-color:transparent;
+  background-color:#fff;
+  overflow:auto;
+  box-shadow:0 0 10px #c3c5c7;
 
 }
 .task-detail .inner-container{
-  background-color:#fff;
-  border-left:1px solid #ddd;
-  box-shadow:0 0 10px #d6d5d5;
-  min-height:100%;
-  position:absolute;
-  top:0;
-  right:0;
-  width:100%;
   padding:15px;
 }
 .show-task-detail{

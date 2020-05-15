@@ -145,16 +145,13 @@ li.todo:hover{
   display:block;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 900px) {
   .board-container > div{
   display:block;
 }
 .board{
   width:100% !important;
   margin:auto;
-}
-.board-content{
- max-width:800px;
 }
 .main-menu{
   position:fixed;
@@ -180,6 +177,7 @@ li.todo:hover{
   z-index:100;
   background-color:#fff;
   padding:15px;
+  margin:0;
   box-shadow:3px 1px 20px #777;
 }
 .main-menu .main-menu-bkg-div{
@@ -201,9 +199,10 @@ li.todo:hover{
  }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .board-content{
     padding:15px;
+    margin:0;
   }
   .task-detail{
     width:100%;
@@ -211,6 +210,7 @@ li.todo:hover{
  }
  .task-detail .inner-container{
    padding:25px;
+   width:100%;
  }
  .show-task-detail{
    right:0;
