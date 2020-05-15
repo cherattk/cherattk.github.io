@@ -1,48 +1,59 @@
 const DataManager = require('../service/datamanager');
+const AppEvent = require('../service/eventstore').AppEvent;
 
-function TaskForm() {
+function TaskForm(anchorID) {
 
   var __state = {
-    task: {}
+    task: {
+      id : "",
+      folder_id: "f1",
+      task_body : "New Task",
+      task_label : "todo",
+      task_description : "Task Description"
+    }
   };
 
-  this.init = function (anchorID) {
+  var self = this;
+  var __form = $(`
+    <div class="task-form">
+      <form id="task-form" title="add a new task to do">
+        <input id="task-form-text" class="textfield" type="text" name="task_body" 
+        placeholder="Add New Task ..." />
+        <input type="submit" value="Save" class="btn btn-primary btn-sm"/>
+      </form>
+    </div>`);
+  $("#" + anchorID).append(__form);
 
-    var self = this;
-    var __form = $(`
-    <form id="task-form" class="task-form" title="add a new task to do">
-      <input type="text" name="task_body" placeholder="Task ..." />
-      <!--<input type="submit" value="Save" class="btn btn-primary btn-sm"/>
-      <input type="reset" value="Clear" class="btn btn-secondary btn-sm"/>-->
-    </form>`);
-    $("#" + anchorID).append(__form);
-
-    __form.submit(function (e) {
-      self.submit(e);
-      self.moveForm(true);
-    });
-
-    __form.on("reset", function (e) {
-      self.moveForm(true);
-    });
-  }
-
-  this.submit = function (e) {
+  __form.submit(function (e) {
     e.preventDefault();
+    __saveForm(e);
+    // AppEvent.dispatch('get-task-detail', { task: __state.task });
+  });
+
+  AppEvent.addListener("active-folder", function (event) {
+    __state.task.folder_id = event.message.folder_id;
+  });
+
+  function __saveForm (e) {
     var task_body = e.target.elements['task_body'].value;
     if (!task_body) {
       alert("You can not add an empty task");
       return;
     }
-    var item = {
-      id: (__state.task.id ? __state.task.id : (new Date()).getTime().toString()),
-      task_label: "todo",
+
+    var item = Object.assign({} , __state.task , {
+      id: (new Date()).getTime().toString(),
       task_body: task_body
-    };
+    });
+
+    __state.task = item;
+
     e.target.reset();
-    DataManager.setItem('task' , item);
+    DataManager.setItem('task', item);
   }
 
 }
 
-module.exports = new TaskForm();
+module.exports = function (anchor_id) {
+  return new TaskForm(anchor_id);
+};

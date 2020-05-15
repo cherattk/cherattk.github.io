@@ -1,0 +1,23 @@
+v0.4.0 : 
+Task Store:
+{ 
+  id: String =  {"generated value" , ...}
+  task_label: String = {todo, completed},
+  task_body: String = {"user value" , ...}
+  folder_id : String = (folder store value)
+}
+
+Folder Store : [NEW]
+{
+  id : String = {"f1" (default), "generated value" , ...}
+  name : String = {"All Tasks" (default), "user value" , ...}
+}
+
+=====================================================
+v0.3.0 :
+Task Store :
+{ 
+  id: String,
+  task_label:{todo, completed},
+  task_body: String
+}

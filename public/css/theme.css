@@ -1,30 +1,46 @@
 .notice{
   font-size:14px;
   font-weight:bold;
-  float: left;
 }
 .notice p{
   text-align:left;
 }
 .notice-button{
-  padding:7px 10px;
-  background-color:#fff;
   border:0;
   display:inline-block;
   border-radius:3px;
-  background-color:#ff3f00;
-  color:#fff;
+  color:inherit;
   font-size:13px;
   line-height:1em;
   outline:none;
 }
 .notice-button:hover{  
   cursor:pointer;
-  background-color:#ff3f00;
   text-decoration:underline; 
 }
 
 /**************************/
+.btn{
+  padding:8px 10px;
+}
+.textfield{
+  border:0;
+  outline:none;
+  padding:1rem;
+  border:1px solid #fff;
+  border-bottom:3px solid #89bdf1;
+  margin-bottom:10px;
+  display:block;
+  width:100%;
+  background-color:#f7f9fb;
+}
+.textfield:hover{
+  background-color:#f2f6fb;
+}
+.textfield:focus{
+  border-color:#639cda;
+  background-color:#f7f9fb;
+}
 .btn-blue{
   background-color:#4c93ea;
   border-color:#3f7fce;
@@ -79,7 +95,11 @@ li.todo:hover{
   background-color:#a9cef8;
 }
 */
-
+.empty-list{
+  list-style:none;
+  background-color:#efefef;
+  padding:20px;
+}
 .checkbox{
   display:inline-block;
 }
@@ -88,6 +108,7 @@ li.todo:hover{
 }
 .checkbox label{
   display: inline-block;
+  margin-bottom:0; /* override bootstrap */
 }
 .checkbox label span{
   background:#fff;
@@ -98,7 +119,8 @@ li.todo:hover{
   margin-right:10px;
   position:relative;
   float:left;
-  border-radius:3px;
+  border-radius:2px;
+  top:-1px;
 }
 .checkbox label span:hover{
   background-color:#0a50a7;
@@ -121,4 +143,77 @@ li.todo:hover{
 }
 .checkbox input:checked + label span:before{
   display:block;
+}
+
+@media screen and (max-width: 900px) {
+  .board-container > div{
+  display:block;
+}
+.board{
+  width:100% !important;
+  margin:auto;
+}
+.main-menu{
+  position:fixed;
+  height:calc(100% - 50px);
+  top:50px;
+  left:0;
+  padding:0;
+  text-align:left;
+  z-index:110;
+  background-color:transparent;
+  overflow:hidden;  
+  width:0;
+  transition: width 0.3s , opacity 0.2s;
+}
+.show-main-menu .main-menu{
+  padding:0;
+  width:100%;
+}
+.main-menu .inner-container{
+  width:280px;
+  height:100%;
+  position:relative;
+  z-index:100;
+  background-color:#fff;
+  padding:15px;
+  margin:0;
+  box-shadow:3px 1px 20px #777;
+}
+.main-menu .main-menu-bkg-div{
+  background-color:#555;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  height:100%;
+  z-index:0;
+  opacity:0.5;
+}
+.task-detail{
+    width:400px;
+    right:-400px;
+ }
+ .show-task-detail{
+   right:0;
+ }
+}
+
+@media screen and (max-width: 600px) {
+  .board-content{
+    padding:15px;
+    margin:0;
+  }
+  .task-detail{
+    width:100%;
+    right:-100%;
+ }
+ .task-detail .inner-container{
+   padding:25px;
+   width:100%;
+ }
+ .show-task-detail{
+   right:0;
+ }
+
 }

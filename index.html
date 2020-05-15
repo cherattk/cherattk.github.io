@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+<!-- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script> -->
 
@@ -22,9 +22,9 @@
 
   <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="public/css/fontawesome-free-5.12.1-web/css/all.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="public/css/frame.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="public/css/theme.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/fontawesome-free-5.12.1-web/css/all.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/frame.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/theme.css">
 </head>
 
 <body>
@@ -32,113 +32,103 @@
   <header class="app-header">
 
     <div id="app-header-content" class="app-header-content">
+      
+      <button id="main-menu-btn" class="main-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
 
       <div class="notice">
-
-        <span type="button" class="notice-button" 
-                data-toggle="modal" data-target="#notice-content">
-          📢 Read this before using this app.
+        <span type="button" class="notice-button" data-toggle="modal" data-target="#notice-content">
+          📢 Read me before using this app.
         </span>
-
-        <div class="modal fade" id="notice-content" tabindex="-1" role="dialog" aria-labelledby="notice"
-          aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Notice</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <p>
-                  The data managed by this web app are saved in the browser local storage area
-                  <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See
-                    How)</a>
-                  and remain available until you delete them.
-                  <br />
-                  This application can be removed or
-                  moved to another location (url) at any time and
-                  <br />
-                  the data could be deleted or corrupted
-                  by changes made to a later version of this web app.
-                  <br />
-
-                  The source code of this web app is
-                  <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- <div class="">
       <i class="fa fa-bars"></i>
     </div> -->
 
-
-      <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#folder-list">
-        My Lists
+      <!-- <button type="button" class="btn btn-primary btn-sm">
+        Connnection
       </button> -->
 
     </div>
   </header>
 
-  <main role="main" class="board">
+  <main id="board-container" class="board-container" role="main">
 
-    <div class="board-header">
-      <h1 id="board-h1"> My Task List </h1>
+    <div id="main-menu" class="main-menu">
+      <div id="main-menu-bkg-div" class="main-menu-bkg-div"></div>
+      <div class="inner-container">
+        <div id="folder-list-container"></div>
+      </div>
     </div>
 
-    <div id="task-form-container"></div>
 
-    <!-- <div id="task-nav-container"></div> -->
+    <div id="board" class="board">
 
-    <div id="task-action-container"></div>
+    <div class="board-content">
 
-    <div id="task-list-container"></div>
+      <div id="list-header-container" class="board-header"></div>
 
-    <div id="task-modal-container"></div>
+      <div id="task-form-container"></div>
+
+      <!-- <div id="task-nav-container"></div> -->
+
+      <div id="task-action-container"></div>
+
+      <div id="task-list-container"></div>
+
+      <div id="task-modal-container"></div>
+    </div>
+
+    </div>
+
 
   </main>
 
   <!-- modal folder list  -->
-  <div id="div-folder-list">
-    <div id="folder-list" class="modal fade folder-list" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">My folders</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
+  <div id="folder-form-container"></div>
 
-          <!--
-          -->
-          <div class="modal-body" id="form-folder-container">
-            <form id="form-folder" class="form-folder">
-              <div class="form-group">
-                <label for="folder-name">folder name</label>
-                <input type="text" value="" placeholder="Folder Name" class="form-control" id="folder-name"
-                  name="folder-name" aria-describedby="folderName">
-                <small id="folderName" class="form-text text-muted">Enter you folder name and click save.</small>
-              </div>
-              <button type="button" class="btn btn-primary">Save</button>
-              <button type="button" class="btn btn-secondary">Cancel</button>
-            </form>
-          </div>
+   <!-- task detail form  -->
+  <div id="task-detail-container"></div>
 
-          <div class="modal-body" id="folder-list-container"></div>
+   <!-- notice -->
+  <div class="modal fade" id="notice-content" tabindex="-1" role="dialog" aria-labelledby="notice" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Notice</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            The data managed by this web app are saved in the browser local storage area
+            <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See
+              How)</a>
+            and remain available until you delete them.
+          
+            This application can be removed or
+            moved to another location (url) at any time and 
+            the data could be deleted or corrupted
+            by changes made to a later version of this web app.
+            The source code of this web app is
+            <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
 
+  <script src="./public/dist.js"></script>
 
-
-
-  <script src="public/dist.js"></script>
+  <!-- <script type="text/javascript">
+    $(window).on('load', function () {
+      $('#notice-content').modal('show');
+    });
+  </script> -->
 </body>
 
 </html>
