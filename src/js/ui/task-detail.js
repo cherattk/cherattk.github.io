@@ -9,11 +9,10 @@ module.exports = function TaskDetail(anchorID) {
   var __div = $(`
     <div class="task-detail">
       <div class="inner-container">
+        <div class="task-details-form">
         <h1>Task Details        
         <button id="close-form" class="close">X</button>
         </h1>
-
-        <div class="task-details-form">
         <form id="task-detail-form" title="Edit Task Details">
           <label>Task</label>
           <input class="textfield" type="text" name="task_body" />
@@ -27,7 +26,7 @@ module.exports = function TaskDetail(anchorID) {
           <label>Description</label>
           <textarea class="textfield" name="task_description"></textarea>
 
-          <input class="btn btn-primary" type="submit" value="save"/>
+          <input class="btn btn-sm btn-primary" type="submit" value="save"/>
 
           <button id="delete-item" class="btn btn-sm btn-secondary" type="button" title="Delete task">
             Delete

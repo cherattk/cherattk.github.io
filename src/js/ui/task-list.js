@@ -168,12 +168,11 @@ const List = function () {
         content += `<li class="task-state-${_item.task_label} ${active_item}" 
                         data-task-id="${_item.id}" 
                         data-task-index="${index}"
-                        data-action="edit-item">            
+                        data-action="edit-item">      
+                        
                         ${_item.task_body}
                         ${ __label}
-                        
-                        <!--
-                        --> 
+
                         <button data-task-index="${index}" class="btn" data-action="delete">
                           <i data-task-index="${index}" 
                               class="fa fa-trash" data-action="delete" title="Delete this task"></i>
