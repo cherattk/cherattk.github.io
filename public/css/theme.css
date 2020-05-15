@@ -198,6 +198,9 @@ li.todo:hover{
   width:100% !important;
   margin:auto;
 }
+.board-content-inner{
+  padding:15px;
+}
 .main-menu{
   position:fixed;
   height:calc(100% - 50px);
@@ -253,9 +256,18 @@ li.todo:hover{
     width:100%;
     right:-100%;
  }
+ .task-detail textarea{
+   height:150px;
+ }
  .task-detail .inner-container{
-   padding:25px;
-   width:100%;
+   background-color:#e8eaed;
+ }
+ .task-detail .task-details-form{   
+    padding:15px;
+    background-color:#ffff;
+    border-radius:3px;
+    
+  box-shadow: 0 1px 2px 1px rgb(184, 185, 187);
  }
  .show-task-detail{
    right:0;

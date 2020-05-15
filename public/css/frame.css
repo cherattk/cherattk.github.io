@@ -8,7 +8,6 @@ html, body{
   font-size:14px;
   text-align:center;
   background: #e8eaed;
-  background: white;
   overflow-x:hidden;
 }
 ::-webkit-scrollbar-thumb {
@@ -52,7 +51,6 @@ p{
   width:100%;
   height:calc(100% - 50px);
   overflow:auto;
-  background-color:#efefef;
 
  }
 
@@ -66,19 +64,28 @@ p{
 .show-main-menu .board{
    width:calc(100% - 290px);
 }
+/*
+.main-menu , 
+.board{
+  bug with Edge
+  transition:0.3s ease;
+}
+*/
 .board{ 
   width:calc(100% - 10px);
   height:100%;
-  padding:20px;
   text-align:left;
   overflow:auto;
   display:inline-block;
   vertical-align:top;
-  transition:0.3s;
+  padding:0;
+}
+.board-content-inner{
+  padding:0 30px;
 }
 .board-content{
   max-width:900px;
-  margin:auto;
+  margin:20px auto;
   min-height:1000px;
   padding:20px;
   background-color:#fff;
@@ -98,17 +105,16 @@ p{
   margin:0;
   opacity:0;
   background-color:#fff;
-  box-shadow: 2px 2px 2px rgba(0,0,0,.075);
-  transition:0.3s;
+  box-shadow: 2px 2px 2px rgba(23, 23, 23, 0.075);
 }
 .main-menu .inner-container{
   margin:15px;
-  /* DOT NOT REMOVE THIS POSITION OTHERWISE THE DIV WILL NOT SCROLLING */
+  /* DOT NOT REMOVE THIS POSITION OTHERWISE THE DIV WILL NOT SCROLL */
   position:absolute;
   width:calc(100% - 30px);
-  height:calc(100% - 30px);
   left:0;
   top:0;
+  overflow:auto;
 }
 .main-menu-btn{
   float:left;
@@ -208,7 +214,7 @@ p{
 }
 .mylist .badge{
   border:1px solid #fff;
-  margin-left:10px;
+  margin-left:15px;
 }
 .mylist button{
   position:absolute;
@@ -312,13 +318,14 @@ p{
 
 }
 .task-detail .inner-container{
-  padding:15px;
-  /* DOT NOT REMOVE THIS POSITION OTHERWISE THE DIV WILL NOT SCROLLING */
+  padding:20px 20px 30px 20px;
+  /* DOT NOT REMOVE THIS POSITION OTHERWISE THE DIV WILL NOT SCROLL */
   position:absolute;
   width:100%;
   height:100%;
   left:0;
   top:0;
+  overflow: auto;
 }
 .show-task-detail{
   right:0;
@@ -362,9 +369,6 @@ p{
 .task-detail.saved-form input[type="submit"]{
   background-color:green;
   box-shadow:none;
-}
-.task-detail input[type="submit"]{
-  width:100px;
 }
 
 .task-detail label{

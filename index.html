@@ -4,9 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Todo List</title>
+  <title>Task List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="16x16">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -65,22 +67,25 @@
 
 
     <div id="board" class="board">
+      <div class="board-content-inner">
 
-    <div class="board-content">
+        <div class="board-content">
+        
+          <div id="list-header-container" class="board-header"></div>
 
-      <div id="list-header-container" class="board-header"></div>
+          <div id="task-form-container"></div>
 
-      <div id="task-form-container"></div>
+          <!-- <div id="task-nav-container"></div> -->
 
-      <!-- <div id="task-nav-container"></div> -->
+          <div id="task-action-container"></div>
 
-      <div id="task-action-container"></div>
+          <div id="task-list-container"></div>
 
-      <div id="task-list-container"></div>
+          <div id="task-modal-container"></div>
 
-      <div id="task-modal-container"></div>
-    </div>
+        </div>
 
+      </div> <!-- board content inner -->        
     </div>
 
 
