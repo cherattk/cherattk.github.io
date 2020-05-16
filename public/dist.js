@@ -798,6 +798,8 @@ module.exports = function () {
     } else {
       boardContainer.removeClass('show-main-menu'); // boardContainer.hide(300);
     }
+
+    $(this).blur();
   }); // regex from stackoverflow
   // https://stackoverflow.com/questions/3514784/what-is-the-best-way-to-detect-a-mobile-device?answertab=votes#tab-top
 

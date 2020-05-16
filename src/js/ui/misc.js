@@ -13,6 +13,7 @@ module.exports = function () {
       boardContainer.removeClass('show-main-menu');
       // boardContainer.hide(300);
     }
+    $(this).blur();
   });
 
   // regex from stackoverflow
