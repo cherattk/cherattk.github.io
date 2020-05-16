@@ -236,17 +236,17 @@ p{
 #get-folder-form{
   display:block;
   width:100%;
-  border-radius:0;
-  font-size:16px;
-  padding:10px;
+  padding:10px 20px;
   position:relative;
+  border-radius:0px;
+  text-align:left;
 }
-#get-folder-form:before{ /** icon */
+#get-folder-form:after{ /** icon */
   content: "+";
-  font-size:30px;
+  font-size:28px;
   position:absolute;
-  left:10px;
-  top:15px;
+  right:15px;
+  top:13px;
   padding:0;
   line-height:1rem;
 }
@@ -277,10 +277,10 @@ p{
 }
 .folder-list-item span{
   display:block;
-  margin:2px 0;
-  padding:10px 15px;
+  margin:1px 0;
+  padding:10px 20px;
   background-color:#fff;
-  border-left:3px solid #eee;
+  border-left:5px solid #eee;
 }
 .folder-list-item span:hover{
   background-color:#e1edfb;
