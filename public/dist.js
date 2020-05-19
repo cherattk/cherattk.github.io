@@ -823,7 +823,7 @@ var FolderList = {
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
         var checked = _item.id === __state.active_folder ? "checked" : "";
-        content += "\n                <li>\n                  <label class=\"folder-list-item\">\n                    <input id=\"radio-folder-".concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    <span data-folder-id=\"").concat(_item.id, "\" class=\"border-color-").concat(_item.color, "\">\n                    ").concat(_item.name, "\n                    </span>                    \n                  </label>\n                </li>");
+        content += "\n                <li>\n                  <label\n                    class=\"folder-list-item border-color-".concat(_item.color, "\">\n                    <input id=\"radio-folder-").concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    ").concat(_item.name, "          \n                    <span data-folder-id=\"").concat(_item.id, "\" \n                          class=\"item-color-").concat(_item.color, "\">").concat(_item.name, "</span>                      \n                  </label>\n                </li>");
       });
 
       content += "</ul>";

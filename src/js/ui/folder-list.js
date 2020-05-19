@@ -71,15 +71,16 @@ const FolderList = {
       content = `<ul class="folder-list">`;
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
-        var checked = _item.id === __state.active_folder ? "checked" : "";
+        var checked = (_item.id === __state.active_folder) ? "checked" : "";
         content += `
                 <li>
-                  <label class="folder-list-item">
+                  <label
+                    class="folder-list-item border-color-${_item.color}">
                     <input id="radio-folder-${_item.id}" type="radio" 
                           name="folder-list" ${checked}/>
-                    <span data-folder-id="${_item.id}" class="border-color-${_item.color}">
-                    ${_item.name}
-                    </span>                    
+                    ${_item.name}          
+                    <span data-folder-id="${_item.id}" 
+                          class="item-color-${_item.color}">${_item.name}</span>                      
                   </label>
                 </li>`;
 

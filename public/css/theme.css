@@ -126,19 +126,34 @@
 
 /***************/
 .border-color-default{
-  border-color:#007bff !important;
+  border-color:#007bff;
 }
-.border-color-red{
-  border-color:#fa4242 !important;
+.item-color-default{
+  background-color:#e8f0f8;
 }
 .border-color-purple{
-  border-color:#8484c5 !important;
+  border-color:#8484c5;
+}
+.item-color-purple{
+  background-color:#eaddfe;
 }
 .border-color-yellow{
-  border-color:#ffc107 !important;
+  border-color:#ffc107;
+}
+.item-color-yellow{
+  background-color:#fefea7;
 }
 .border-color-green{
-  border-color:#11bd37 !important;
+  border-color:#11bd37;
+}
+.item-color-green{
+  background-color:#d8fcd8;  
+}
+.border-color-red{
+  border-color:red;
+}
+.item-color-red{
+  background-color:#fcdddd;
 }
 /*** background color ******/
 .bg-color-default{

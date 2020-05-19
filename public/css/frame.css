@@ -263,25 +263,29 @@ p{
 .folder-list-item {
   display:block;
   position:relative;
-  margin:0;
+  margin:1px 0;
+  padding:10px 20px;
+  border-left:5px solid #eee;
+  cursor:pointer;
+}
+.folder-list-item:hover span{
+  opacity:1;
 }
 .folder-list-item input[type="radio"]{
   display:none;
 }
 .folder-list-item input[type="radio"]:checked + span{
-  background-color:#e1edfb;
+  opacity:1;
 }
 .folder-list-item span{
   display:block;
-  margin:1px 0;
+  position:absolute;
+  top:0;
+  left:0;
   padding:10px 20px;
-  background-color:#fff;
-  border-left:5px solid #eee;
-}
-.folder-list-item span:hover{
-  background-color:#e1edfb;
-  cursor:pointer;
-  border-color:#007bff;
+  width:calc(100% + 0px);
+  transition:0.3s;
+  opacity:0;
 }
 
 
