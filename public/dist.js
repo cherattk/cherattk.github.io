@@ -284,14 +284,22 @@ module.exports = function FixDataStore() {
 
   var storeList = [{
     name: "task",
+    version: "v2",
     action: {
       rename: [[// rename "task_id" property to "id"
       "task_id", "id"]],
-      // add the new properties with the existing properties
-      schema: {
-        folder_id: "f1",
-        task_description: "Task Decsription"
-      }
+      add: [// add new properties
+      // [0] = field name , [1] = field value
+      ["folder_id", "f1"], ["task_description", "Task Decsription"]]
+    }
+  }, {
+    name: "folder",
+    version: "v1",
+    action: {
+      rename: [],
+      add: [// add new properties
+      // [0] = field name , [1] = field value
+      ["color", "default"]]
     }
   }];
 
@@ -302,7 +310,7 @@ module.exports = function FixDataStore() {
     patchName = "patch." + patchStoreConfig.name + ".store";
     patchDone = window.localStorage.getItem(patchName);
 
-    if (PATCH_VERSION === patchDone) {
+    if (patchStoreConfig.version === patchDone) {
       return;
     } // 2 - the data store is not patched
 
@@ -316,20 +324,31 @@ module.exports = function FixDataStore() {
         // create a new field named field[1].value and
         // assign to a new created field the value of 
         // the previous field named field[0]
-        var __itemData = Object.assign({}, item, patchStoreConfig.action.schema);
+        var __itemData = Object.assign({}, item);
 
-        patchStoreConfig.action.rename.map(function (field_item) {
-          if (typeof item[field_item[0]] !== "undefined") {
-            __itemData[field[1]] = item[field_item[0]].toString();
-            delete __itemData[field[0]];
-          }
-        }); // no need to store it
+        if (patchStoreConfig.action.rename) {
+          patchStoreConfig.action.rename.map(function (field_item) {
+            if (typeof item[field_item[0]] !== "undefined") {
+              __itemData[field[1]] = item[field_item[0]].toString();
+              delete __itemData[field[0]];
+            }
+          });
+        }
 
-        delete __itemData.checked;
+        if (patchStoreConfig.action.add) {
+          patchStoreConfig.action.add.map(function (field_item) {
+            if (typeof item[field_item[0]] === "undefined") {
+              __itemData[field_item[0]] = field_item[1].toString();
+            }
+          });
+        } // no need to store it
+        // delete __itemData.checked;
+
+
         return __itemData;
       });
       window.localStorage.setItem("".concat(patchStoreConfig.name), JSON.stringify(__copyData));
-      window.localStorage.setItem(patchName, PATCH_VERSION);
+      window.localStorage.setItem(patchName, patchStoreConfig.version);
     }
   });
 };
@@ -451,7 +470,8 @@ function setDefaultDataStore() {
   if (!(store instanceof Array)) {
     var defaultFolderData = [{
       id: "f1",
-      name: "All Tasks"
+      name: "All Tasks",
+      color: "default"
     }];
     window.localStorage.setItem("folder", JSON.stringify(defaultFolderData));
   }
@@ -495,9 +515,16 @@ module.exports = {
       });
       return;
     } else {
-      __dataStore[storeName].set(item.id, item);
+      // required 
+      var __copy = Object.assign({}, item);
+
+      __dataStore[storeName].set(__copy.id, __copy); // __dataStore[storeName].push(item);
+
 
       saveLocalStore(storeName);
+      console.log('set item'); // console.log(__dataStore[storeName]);
+
+      console.log(Array.from(__dataStore[storeName].values()));
       RemoteStore.setItem(storeName, item);
       AppEvent.dispatch("update-".concat(storeName, "-list"), {
         item_id: item.id
@@ -649,11 +676,24 @@ var __state = {
 };
 var FolderForm = {
   init: function init(anchorID) {
-    var __folderForm = $("\n    <div class=\"modal fade\" role=\"document\">\n    <div class=\"modal-dialog\">\n      <div class=\"modal-content folder-form\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">Task List Name</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n\n        <div class=\"modal-body\">\n          <form id=\"folder-form\">\n            <input id=\"folder-textfield\" type=\"text\" class=\"textfield\" placeholder=\"Task List Name\" />\n            <input type=\"submit\" value=\"Save\" class=\"btn btn-primary\" />\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n    ");
+    var __folderForm = $("\n    <div class=\"modal fade\" role=\"document\">\n    <div class=\"modal-dialog\">\n      <div class=\"modal-content folder-form\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">\n          Edit List\n          </h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n\n        <form id=\"folder-form\">\n          <div class=\"modal-body\">\n\n            <label class=\"form-label\">Name</label>\n            <input id=\"folder-name\" type=\"text\" \n                  class=\"textfield textfield-default\" placeholder=\"List Name\" />\n\n            <label class=\"form-label\">Color</label>\n            <div id=\"color-panel\" class=\"color-panel\"></div>\n              \n          </div>\n          <div class=\"modal-footer\">\n            <input type=\"submit\" value=\"Save\" class=\"btn btn-primary\" />\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n    "); // ============= COLOR PANEL ================================
+
+
+    var __colorPanel = __folderForm.find("#color-panel");
+
+    var __colorList = ["default", "red", "purple", "yellow", "green"];
+    var __colorPanelContent = "";
+
+    __colorList.forEach(function (color, index) {
+      __colorPanelContent += "<label>\n        <input type=\"radio\" value=\"".concat(color, "\" name=\"color-panel-value\" \n        ").concat(color === 'default' ? "checked=\"chekced\"" : "", "/>\n        <span class=\"bg-color-").concat(color, "\"></span>\n      </label>");
+    });
+
+    __colorPanel.append(__colorPanelContent); // ===========================================================
+
 
     $("#" + anchorID).append(__folderForm);
 
-    var textField = __folderForm.find('#folder-textfield');
+    var textField = __folderForm.find('#folder-name');
 
     __folderForm.submit(function (event) {
       event.preventDefault();
@@ -668,19 +708,30 @@ var FolderForm = {
       if (!__state.folder.name) {
         alert("You can not set an empty list");
         return;
-      }
+      } // set color
 
+
+      __state.folder.color = event.target.elements['color-panel-value'].value;
       DataManager.setItem('folder', __state.folder);
       AppEvent.dispatch("active-folder", {
         folder_id: __state.folder.id
       });
 
       __folderForm.modal('hide');
+
+      __state.folder = {};
+      event.target.reset();
     });
 
     AppEvent.addListener("edit-folder", function (event) {
       __state.folder = DataManager.getItem('folder', event.message.folder_id);
-      textField.val(__state.folder.name);
+      textField.val(__state.folder.name); // var inputList = __colorPanelContent.find('input[type="radio"]');
+
+      __colorPanel.find('input[type="radio"]').each(function (index, __input) {
+        if (this.value === __state.folder.color) {
+          this.checked = "checked";
+        }
+      });
 
       __folderForm.modal('show');
     });
@@ -718,7 +769,7 @@ var __listNode;
 
 var FolderList = {
   init: function init(anchorID) {
-    var __addFolder = $("<button id=\"get-folder-form\" class=\"btn btn-primary\">\n                          <!-- <i class=\"fas fa-clipboard-list\"></i> -->\n                          New List\n                        </button>");
+    var __addFolder = $("<button id=\"get-folder-form\" class=\"btn btn-primary\" title=\"Create List\">                          \n                          List\n                        </button>");
 
     __addFolder.click(function () {
       AppEvent.dispatch("add-folder");
@@ -772,7 +823,7 @@ var FolderList = {
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
         var checked = _item.id === __state.active_folder ? "checked" : "";
-        content += "\n                <li>\n                  <label class=\"folder-list-item\">\n                    <input id=\"radio-folder-".concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    <span data-folder-id=\"").concat(_item.id, "\">\n                    ").concat(_item.name, "\n                    </span>                    \n                  </label>\n                </li>");
+        content += "\n                <li>\n                  <label class=\"folder-list-item\">\n                    <input id=\"radio-folder-".concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    <span data-folder-id=\"").concat(_item.id, "\" class=\"border-color-").concat(_item.color, "\">\n                    ").concat(_item.name, "\n                    </span>                    \n                  </label>\n                </li>");
       });
 
       content += "</ul>";
@@ -826,7 +877,7 @@ module.exports = function TaskDetail(anchorID) {
     task: {}
   };
 
-  var __div = $("\n    <div class=\"task-detail\">\n      <div class=\"inner-container\">\n        <div class=\"task-details-form\">\n        <h1>Task Details        \n        <button id=\"close-form\" class=\"close\">X</button>\n        </h1>\n        <form id=\"task-detail-form\" title=\"Edit Task Details\">\n          <label>Task</label>\n          <input class=\"textfield\" type=\"text\" name=\"task_body\" />\n\n          <label>Status</label>\n          <select name=\"task_label\" class=\"textfield\">\n            <option value=\"todo\">Todo</option>\n            <option value=\"completed\">Compeleted</option>\n          </select>\n\n          <label>Description</label>\n          <textarea class=\"textfield\" name=\"task_description\"></textarea>\n\n          <input class=\"btn btn-sm btn-primary\" type=\"submit\" value=\"save\"/>\n\n          <button id=\"delete-item\" class=\"btn btn-sm btn-secondary\" type=\"button\" title=\"Delete task\">\n            Delete\n          </button>\n          </form>\n        </div> <!-- end task form -->\n\n      </div> <!-- end inner container -->\n    </div>");
+  var __div = $("\n    <div class=\"task-detail\">\n      <div class=\"inner-container\">\n        <div class=\"task-details-form\">\n        <h1>Task Details        \n        <button id=\"close-form\" class=\"close\">X</button>\n        </h1>\n        <form id=\"task-detail-form\" title=\"Edit Task Details\">\n          <label class=\"form-label\">Task</label>\n          <input class=\"textfield textfield-default\" type=\"text\" name=\"task_body\" />\n\n          <label class=\"form-label\">Status</label>\n          <select name=\"task_label\" class=\"textfield textfield-default\">\n            <option value=\"todo\">Todo</option>\n            <option value=\"completed\">Compeleted</option>\n          </select>\n\n          <label class=\"form-label\">Description</label>\n          <textarea class=\"textfield textfield-default\" name=\"task_description\"></textarea>\n\n          <input class=\"btn btn-sm btn-primary\" type=\"submit\" value=\"save\"/>\n\n          <button id=\"delete-item\" class=\"btn btn-sm btn-secondary\" type=\"button\" title=\"Delete task\">\n            Delete\n          </button>\n          </form>\n        </div> <!-- end task form -->\n\n      </div> <!-- end inner container -->\n    </div>");
 
   $("#" + anchorID).append(__div);
 
@@ -921,7 +972,7 @@ function TaskForm(anchorID) {
   };
   var self = this;
 
-  var __form = $("\n    <div class=\"task-form\">\n      <form id=\"task-form\" title=\"add a new task to do\">\n        <input id=\"task-form-text\" class=\"textfield\" type=\"text\" name=\"task_body\" \n        placeholder=\"Add New Task ...\" />\n        <input type=\"submit\" value=\"Save\" class=\"btn btn-primary btn-sm\"/>\n      </form>\n    </div>");
+  var __form = $("\n    <div class=\"task-form\">\n      <form id=\"task-form\" title=\"add a new task to do\">\n        <input id=\"task-form-text\" class=\"textfield textfield-default\" type=\"text\" name=\"task_body\" \n              placeholder=\"Add New Task ...\" />       \n        <input type=\"submit\" value=\"Save\" class=\"btn btn-sm btn-blue\" name=\"task_save\"/>\n      </form>\n    </div>");
 
   $("#" + anchorID).append(__form);
 
@@ -934,6 +985,12 @@ function TaskForm(anchorID) {
 
   AppEvent.addListener("active-folder", function (event) {
     __state.task.folder_id = event.message.folder_id;
+    var folder = DataManager.getItem('folder', event.message.folder_id);
+
+    var form = __form.find('form').get(0);
+
+    form.elements['task_body'].className = "textfield textfield-".concat(folder.color);
+    form.elements['task_save'].className = "btn btn-sm btn-".concat(folder.color);
   });
 
   function __saveForm(e) {
@@ -985,7 +1042,9 @@ var Header = function Header() {
 
     $('#' + anchorID).append(__headerContainer);
     AppEvent.addListener("active-folder", function (event) {
-      __state.folder = DataManager.getItem('folder', event.message.folder_id);
+      __state.folder = DataManager.getItem('folder', event.message.folder_id); // $('#board-content-inner').attr('class' , `theme-color-${__state.folder.color}`);
+
+      __headerContainer.attr('class', "list-header bg-color-".concat(__state.folder.color));
 
       __listTitle.html(__state.folder.name);
 
@@ -1018,7 +1077,7 @@ var Header = function Header() {
 
     if (event.target.dataset.action === "delete-folder") {
       var msg = "Do you realy want to delete this list : " + __state.folder.name + "\n";
-      msg += "the tasks contained in this list will be moved to the \"all tasks\" list";
+      msg += "the tasks contained in this list will be moved to the \"All Tasks\" list";
 
       if (confirm(msg)) {
         DataManager.removeItem("folder", __state.folder.id); // activate the default folder afetr delete action

@@ -1,9 +1,9 @@
 const AppEvent = require('./eventstore').AppEvent;
 const RemoteStore = require('./remotestore');
 
-const __dataStore = {
+var __dataStore = {
   task: new Map(),
-  folder: new Map()
+  folder:new Map()
 }
 
 function saveLocalStore(storeName) {
@@ -18,7 +18,7 @@ function setDefaultDataStore() {
 
   var store = JSON.parse(window.localStorage.getItem("folder"));
   if (!(store instanceof Array)) {
-    var defaultFolderData = [{ id: "f1", name: "All Tasks" }];
+    var defaultFolderData = [{ id: "f1", name: "All Tasks" , color : "default"}];
     window.localStorage.setItem("folder", JSON.stringify(defaultFolderData));
   }
 
@@ -49,8 +49,8 @@ module.exports = {
           if (!d || d.create_time < item.create_time) {
             __dataStore[storeName].set(item.id, item);
           }
-
         });
+
         saveLocalStore(storeName);
       });
     });
@@ -63,8 +63,15 @@ module.exports = {
       return;
     }
     else {
-      __dataStore[storeName].set(item.id, item);
+      // required 
+      var __copy = Object.assign({} , item);
+      __dataStore[storeName].set(__copy.id , __copy);
+      // __dataStore[storeName].push(item);
       saveLocalStore(storeName);
+
+      console.log('set item');
+      // console.log(__dataStore[storeName]);
+      console.log(Array.from(__dataStore[storeName].values()));
 
       RemoteStore.setItem(storeName, item);
       AppEvent.dispatch(`update-${storeName}-list`, { item_id: item.id });

@@ -18,9 +18,8 @@ const FolderList = {
 
   init: function (anchorID) {
 
-    var __addFolder = $(`<button id="get-folder-form" class="btn btn-primary">
-                          <!-- <i class="fas fa-clipboard-list"></i> -->
-                          New List
+    var __addFolder = $(`<button id="get-folder-form" class="btn btn-primary" title="Create List">                          
+                          List
                         </button>`);
     __addFolder.click(function () {
       AppEvent.dispatch("add-folder");
@@ -78,7 +77,7 @@ const FolderList = {
                   <label class="folder-list-item">
                     <input id="radio-folder-${_item.id}" type="radio" 
                           name="folder-list" ${checked}/>
-                    <span data-folder-id="${_item.id}">
+                    <span data-folder-id="${_item.id}" class="border-color-${_item.color}">
                     ${_item.name}
                     </span>                    
                   </label>

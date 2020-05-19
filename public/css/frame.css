@@ -128,11 +128,9 @@ p{
   top:-7px;
   border-radius:3px;
   text-align:left;
-  background-color:#1076e4;
-  color:#fff;
 }
 .main-menu-btn:hover{
-  background-color:#0e6bcf;
+  background-color:#e2e6ea;
 }
 .main-menu-btn input[type="checkbox"]{
   display:none;
@@ -186,6 +184,7 @@ p{
   right:10px;
   height:35px;
   padding:0px 15px;
+  display:none;
 }
 /********************task list *********************/
 .empty-task-list{
@@ -193,10 +192,6 @@ p{
   padding:20px;
   background-color:#f7f9fa;
 
-}
-.mylist li:first-child,
-.mylist li:last-child{
-  border-radius:0;
 }
 .mylist li{
   color:#004085;
@@ -220,15 +215,17 @@ p{
 }
 .mylist button{
   position:absolute;
-  right:10px;
-  top:5px;
+  right:15px;
+  top:10px;
   opacity:0.5;
+  padding:5px 10px;;
 }
 .mylist button:hover{
   opacity:1;
+  background-color:#ccc;
 }
 .mylist li:not(.active):hover{
-  background-color:#efefef;
+  background-color:#f7f5f5;
   cursor:pointer;
 }
 
@@ -273,7 +270,6 @@ p{
 }
 .folder-list-item input[type="radio"]:checked + span{
   background-color:#e1edfb;
-  border-color:#007bff;
 }
 .folder-list-item span{
   display:block;
@@ -296,11 +292,6 @@ p{
 }
 .folder-form .modal-title{
   color:#0559b4;
-}
-.folder-form .textfield{
-  margin-bottom:10px;
-  display:block;
-  width:100%;
 }
 
 /******************************************************/
@@ -350,6 +341,7 @@ p{
   color:#fff;
   font-size:16px;
   position:relative;
+  margin-bottom:20px;
 }
 .task-detail.saved-form h1{
   background-color:#2ade2a;
@@ -371,12 +363,6 @@ p{
   box-shadow:none;
 }
 
-.task-detail label{
-  display:block;
-  margin:20px 0 0 0;
-  padding:0;
-  color:#076fde;
-}
 .task-detail select{
   width:100%;
   padding:10px;
@@ -387,4 +373,43 @@ p{
 }
 .task-detail #delete-item{
   float: right;
+}
+
+/********** color panel **********/
+.color-panel{
+  padding:5px 0;
+}
+.color-panel label{
+  padding:0;
+  margin:0;
+}
+.color-panel span{
+  width:35px;
+  height:35px;
+  display:inline-block;
+  margin-right:5px;
+  position:relative;
+  border-radius:3px;
+}
+.color-panel span:hover{
+  box-shadow:0 1px 2px #ccc;
+}
+.color-panel span::before{
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top:7px;
+  left:14px;
+  transform: rotate(43deg);
+  height:15px;
+  width:8px;
+  display: none;
+}
+.color-panel label input{
+  display:none;
+}
+.color-panel label input:checked + span::before{
+  display:inline-block;
 }

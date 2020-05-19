@@ -30,8 +30,15 @@ const Header = function () {
     $('#' + anchorID).append(__headerContainer);
 
     AppEvent.addListener("active-folder", function (event) {
+
       __state.folder = DataManager.getItem('folder', event.message.folder_id);
+            
+      // $('#board-content-inner').attr('class' , `theme-color-${__state.folder.color}`);
+
+      __headerContainer.attr('class' , `list-header bg-color-${__state.folder.color}`);
+
       __listTitle.html(__state.folder.name);
+
       if (event.message.folder_id === "f1") {
         __listHeaderAction.hide();
       }
@@ -59,7 +66,7 @@ const Header = function () {
     }
     if (event.target.dataset.action === "delete-folder") {
       var msg = "Do you realy want to delete this list : " + __state.folder.name + "\n";
-          msg += "the tasks contained in this list will be moved to the \"all tasks\" list";
+          msg += "the tasks contained in this list will be moved to the \"All Tasks\" list";
 
       if (confirm(msg)) {
         DataManager.removeItem("folder", __state.folder.id);
@@ -158,7 +165,6 @@ const List = function () {
     else {
       content = `<ul class="mylist">`;
       __listState.list.map(function (_item, index) {
-
         var __label = _item.task_label === "completed" ?
           `<span class="badge badge-success">completed</span>` :
           `<span class="badge badge-warning">To Do</span>`;// todo

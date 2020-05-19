@@ -14,17 +14,17 @@ module.exports = function TaskDetail(anchorID) {
         <button id="close-form" class="close">X</button>
         </h1>
         <form id="task-detail-form" title="Edit Task Details">
-          <label>Task</label>
-          <input class="textfield" type="text" name="task_body" />
+          <label class="form-label">Task</label>
+          <input class="textfield textfield-default" type="text" name="task_body" />
 
-          <label>Status</label>
-          <select name="task_label" class="textfield">
+          <label class="form-label">Status</label>
+          <select name="task_label" class="textfield textfield-default">
             <option value="todo">Todo</option>
             <option value="completed">Compeleted</option>
           </select>
 
-          <label>Description</label>
-          <textarea class="textfield" name="task_description"></textarea>
+          <label class="form-label">Description</label>
+          <textarea class="textfield textfield-default" name="task_description"></textarea>
 
           <input class="btn btn-sm btn-primary" type="submit" value="save"/>
 

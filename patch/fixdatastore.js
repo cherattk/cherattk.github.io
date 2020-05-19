@@ -14,6 +14,7 @@ module.exports = function FixDataStore() {
   const storeList = [
     {
       name: "task",
+      version: "v2",
       action: {
         rename: [
           [
@@ -21,12 +22,24 @@ module.exports = function FixDataStore() {
             "task_id", "id"
           ]
         ],
-
-        // add the new properties with the existing properties
-        schema: {
-          folder_id : "f1",
-          task_description : "Task Decsription"
-        }
+        add: [
+          // add new properties
+          // [0] = field name , [1] = field value
+          ["folder_id" ,  "f1"],
+          ["task_description" ,  "Task Decsription"]
+        ]
+      }
+    },
+    {
+      name: "folder",
+      version: "v1",
+      action: {
+        rename: [],
+        add: [ 
+          // add new properties
+          // [0] = field name , [1] = field value
+          ["color" , "default"]
+        ]
       }
     }
   ];
@@ -41,7 +54,7 @@ module.exports = function FixDataStore() {
     // 1 - check if the data store is patched
     patchName = ("patch." + patchStoreConfig.name + ".store");
     patchDone = window.localStorage.getItem(patchName);
-    if (PATCH_VERSION === patchDone) {
+    if (patchStoreConfig.version === patchDone) {
       return;
     }
 
@@ -52,21 +65,31 @@ module.exports = function FixDataStore() {
 
       // apply change and return the the new item
       __copyData = __originData.map(function (item) {
-            // create a new field named field[1].value and
-            // assign to a new created field the value of 
-            // the previous field named field[0]
-            var __itemData = Object.assign({}, item , patchStoreConfig.action.schema);
+        // create a new field named field[1].value and
+        // assign to a new created field the value of 
+        // the previous field named field[0]
+        var __itemData = Object.assign({}, item);
 
-            patchStoreConfig.action.rename.map(function (field_item) {
-              if (typeof item[field_item[0]] !== "undefined") {
-                __itemData[field[1]] = item[field_item[0]].toString();
-                delete __itemData[field[0]];
-              }
-            });            
+        if (patchStoreConfig.action.rename) {
+          patchStoreConfig.action.rename.map(function (field_item) {
+            if (typeof item[field_item[0]] !== "undefined") {
+              __itemData[field[1]] = item[field_item[0]].toString();
+              delete __itemData[field[0]];
+            }
+          });
+        }
 
-            // no need to store it
-            delete __itemData.checked;
-            return __itemData;
+        if (patchStoreConfig.action.add) {
+          patchStoreConfig.action.add.map(function (field_item) {
+            if (typeof item[field_item[0]] === "undefined") {
+              __itemData[field_item[0]] = field_item[1].toString();              
+            }
+          });
+        }
+
+        // no need to store it
+        // delete __itemData.checked;
+        return __itemData;
       });
 
 
@@ -75,7 +98,7 @@ module.exports = function FixDataStore() {
         JSON.stringify(__copyData)
       );
 
-      window.localStorage.setItem(patchName, PATCH_VERSION);
+      window.localStorage.setItem(patchName, patchStoreConfig.version);
 
     }
 
