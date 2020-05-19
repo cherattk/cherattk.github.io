@@ -171,18 +171,28 @@ const List = function () {
 
         var active_item = (_item.id === __listState.active_task) ? "active" : "";
 
+        var checked = (_item.task_label === "completed") ? "checked=\"checked\"" : "";
+
         content += `<li class="task-state-${_item.task_label} ${active_item}" 
                         data-task-id="${_item.id}" 
                         data-task-index="${index}"
                         data-action="edit-item">      
                         
                         ${_item.task_body}
-                        ${ __label}
 
                         <button data-task-index="${index}" class="btn" data-action="delete">
                           <i data-task-index="${index}" 
                               class="fa fa-trash" data-action="delete" title="Delete this task"></i>
                         </button>
+
+                        <div class="checkbox">
+                          <label>
+                          <input type="checkbox" name="checkbox_btn" ${checked}
+                          data-action="completed" data-task-index="${index}"/>
+                          <span></span>
+                          </label>
+                        </div>
+
                     </li>`;
       });
       content += `</ul>`;
