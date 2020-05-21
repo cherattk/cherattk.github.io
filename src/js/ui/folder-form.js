@@ -102,6 +102,9 @@ const FolderForm = {
     AppEvent.addListener("add-folder", function (event) {
       __state.folder = { id : "" , name : ""};
       textField.val("");
+      __colorPanel.find('input[type="radio"]').each(function(index , __input){
+        this.checked = false;
+      });
       __folderForm.modal('show');
     });
 

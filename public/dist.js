@@ -742,6 +742,10 @@ var FolderForm = {
       };
       textField.val("");
 
+      __colorPanel.find('input[type="radio"]').each(function (index, __input) {
+        this.checked = false;
+      });
+
       __folderForm.modal('show');
     });
   }
