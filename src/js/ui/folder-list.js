@@ -12,11 +12,13 @@ var __state = {
   active_folder: null
 };
 
-var __listNode;
+var __listFolder;
 
 const FolderList = {
 
   init: function (anchorID) {
+
+    __container = $("#" + anchorID);
 
     var __addFolder = $(`<button id="get-folder-form" class="btn btn-primary" title="Create List">                          
                           List
@@ -25,17 +27,16 @@ const FolderList = {
       AppEvent.dispatch("add-folder");
     });
 
-    __listNode = $('<div id="folder-list"></div>');
-    __listNode.click(this.listClickHandler.bind(this));
+    __listFolder = $(`<ul class="folder-list"></ul>`);
+    __listFolder.click(this.listClickHandler.bind(this));
 
     AppEvent.addListener("update-folder-list", function () {
       __state.list = DataManager.getList('folder');
       FolderList.renderListItem();
     });
 
-    __container = $("#" + anchorID);
     __container.append(__addFolder);
-    __container.append(__listNode);
+    __container.append(__listFolder);
 
     var self = this;
     AppEvent.addListener("active-folder", function (event) {
@@ -59,7 +60,7 @@ const FolderList = {
   },
 
   emptyState: function () {
-    return "";
+    return "<li>Empty List</li>";
   },
 
   renderListItem: function () {
@@ -68,7 +69,7 @@ const FolderList = {
       content = this.emptyState();
     }
     else {
-      content = `<ul class="folder-list">`;
+      // content = `<ul>`;
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
         var checked = (_item.id === __state.active_folder) ? "checked" : "";
@@ -85,10 +86,10 @@ const FolderList = {
                 </li>`;
 
       });
-      content += `</ul>`;
+      // content += `</ul>`;
     }
 
-    __listNode.html(content);
+    __listFolder.html(content);
 
   }
 }

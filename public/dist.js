@@ -765,29 +765,30 @@ var __state = {
   active_folder: null
 };
 
-var __listNode;
+var __listFolder;
 
 var FolderList = {
   init: function init(anchorID) {
+    __container = $("#" + anchorID);
+
     var __addFolder = $("<button id=\"get-folder-form\" class=\"btn btn-primary\" title=\"Create List\">                          \n                          List\n                        </button>");
 
     __addFolder.click(function () {
       AppEvent.dispatch("add-folder");
     });
 
-    __listNode = $('<div id="folder-list"></div>');
+    __listFolder = $("<ul class=\"folder-list\"></ul>");
 
-    __listNode.click(this.listClickHandler.bind(this));
+    __listFolder.click(this.listClickHandler.bind(this));
 
     AppEvent.addListener("update-folder-list", function () {
       __state.list = DataManager.getList('folder');
       FolderList.renderListItem();
     });
-    __container = $("#" + anchorID);
 
     __container.append(__addFolder);
 
-    __container.append(__listNode);
+    __container.append(__listFolder);
 
     var self = this;
     AppEvent.addListener("active-folder", function (event) {
@@ -810,7 +811,7 @@ var FolderList = {
     }
   },
   emptyState: function emptyState() {
-    return "";
+    return "<li>Empty List</li>";
   },
   renderListItem: function renderListItem() {
     var content = "";
@@ -818,18 +819,16 @@ var FolderList = {
     if (!__state.list.length) {
       content = this.emptyState();
     } else {
-      content = "<ul class=\"folder-list\">";
-
+      // content = `<ul>`;
       __state.list.map(function (_item, index) {
         // init active folder at first element of the list
         var checked = _item.id === __state.active_folder ? "checked" : "";
         content += "\n                <li>\n                  <label\n                    class=\"folder-list-item border-color-".concat(_item.color, "\">\n                    <input id=\"radio-folder-").concat(_item.id, "\" type=\"radio\" \n                          name=\"folder-list\" ").concat(checked, "/>\n                    ").concat(_item.name, "          \n                    <span data-folder-id=\"").concat(_item.id, "\" \n                          class=\"item-color-").concat(_item.color, "\">").concat(_item.name, "</span>                      \n                  </label>\n                </li>");
-      });
+      }); // content += `</ul>`;
 
-      content += "</ul>";
     }
 
-    __listNode.html(content);
+    __listFolder.html(content);
   }
 };
 module.exports = FolderList;
