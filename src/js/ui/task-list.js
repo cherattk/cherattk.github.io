@@ -95,7 +95,9 @@ const List = function () {
 
     var self = this;
     AppEvent.addListener("active-folder", function (event) {
-      __listState.folder_id = event.message.folder_id;
+      var folder = DataManager.getItem('folder' , event.message.folder_id);
+      __listState.folder_id = folder.id;
+      __listState.folder_color = folder.color;
       self.renderListItem();
     });
 
@@ -156,8 +158,8 @@ const List = function () {
   }
 
   this.renderListItem = function () {
-    var folderID = __listState.folder_id === "f1" ? null : __listState.folder_id;
-    __listState.list = DataManager.getList('task', folderID).reverse();
+    // var folderID = __listState.folder_id === "f1" ? null : __listState.folder_id;
+    __listState.list = DataManager.getList('task', __listState.folder_id);
     var content = "";
     if (!__listState.list.length) {
       content = this.emptyState();
@@ -169,7 +171,8 @@ const List = function () {
           `<span class="badge badge-success">completed</span>` :
           `<span class="badge badge-warning">To Do</span>`;// todo
 
-        var active_item = (_item.id === __listState.active_task) ? "active" : "";
+        var active_item = (_item.id === __listState.active_task) ? 
+                            `active-item-${__listState.folder_color}` : "";
 
         var checked = (_item.task_label === "completed") ? "checked=\"checked\"" : "";
 

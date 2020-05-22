@@ -82,9 +82,6 @@ p{
   vertical-align:top;
   padding:0;
 }
-.board-content-inner{
-  padding:0 30px;
-}
 .board-content{
   max-width:900px;
   margin:20px auto;
@@ -92,6 +89,9 @@ p{
   padding:20px;
   background-color:#fff;
   box-shadow: 0 1px 2px 1px rgb(184, 185, 187);
+}
+.board-inner{
+  padding:0 30px;
 }
 .main-menu{
   vertical-align:top;
@@ -179,16 +179,13 @@ p{
 .task-form .textfield{
   padding-right:100px;
 }
-.task-form .textfield:focus + input[type="submit"]{
-  display:block;
-}
+
 .task-form input[type="submit"]{
   position:absolute;
   top:8px;
   right:10px;
   height:35px;
   padding:0px 15px;
-  display:none;
 }
 /********************task list *********************/
 .empty-task-list{
@@ -199,20 +196,15 @@ p{
 }
 .mylist li{
   color:#004085;
-  padding:15px;
   background-color:#fff;
   position:relative;
   border-bottom:1px solid #e5e5e5;
-  padding-left:60px;
+  padding:15px 60px;
+  border-left:3px solid transparent;
 }
 .mylist li.task-state-completed{
   text-decoration:line-through;
   color:#aaa;
-}
-.mylist li.active{
-  background-color:#167dec;
-  color:#fff;
-  border-color:#fff;
 }
 .mylist .badge{
   border:1px solid #fff;
@@ -229,7 +221,7 @@ p{
   opacity:1;
   background-color:#ccc;
 }
-.mylist li:not(.active):hover{
+.mylist li:not(.active-item):hover{
   background-color:#f7f5f5;
   cursor:pointer;
 }
@@ -361,8 +353,6 @@ p{
 }
 .task-detail h1{
   padding:15px;
-  background-color:#007bff;
-  color:#fff;
   font-size:16px;
   position:relative;
   margin-bottom:20px;

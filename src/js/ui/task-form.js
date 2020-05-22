@@ -19,7 +19,7 @@ function TaskForm(anchorID) {
       <form id="task-form" title="add a new task to do">
         <input id="task-form-text" class="textfield textfield-default" type="text" name="task_body" 
               placeholder="Add New Task ..." />       
-        <input type="submit" value="Save" class="btn btn-sm btn-blue" name="task_save"/>
+        <input type="submit" value="Save" class="btn btn-sm btn-default" name="task_save"/>
       </form>
     </div>`);
   $("#" + anchorID).append(__form);
@@ -32,10 +32,12 @@ function TaskForm(anchorID) {
 
   AppEvent.addListener("active-folder", function (event) {
     __state.task.folder_id = event.message.folder_id;
+    // theme
     var folder = DataManager.getItem('folder', event.message.folder_id);
     var form = __form.find('form').get(0);
     form.elements['task_body'].className = `textfield textfield-${folder.color}`;
     form.elements['task_save'].className = `btn btn-sm btn-${folder.color}`;
+
   });
 
   function __saveForm(e) {

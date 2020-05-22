@@ -18,7 +18,7 @@ function setDefaultDataStore() {
 
   var store = JSON.parse(window.localStorage.getItem("folder"));
   if (!(store instanceof Array)) {
-    var defaultFolderData = [{ id: "f1", name: "All Tasks" , color : "default"}];
+    var defaultFolderData = [{ id: "f1", name: "Tasks" , color : "default"}];
     window.localStorage.setItem("folder", JSON.stringify(defaultFolderData));
   }
 
@@ -27,6 +27,7 @@ function setDefaultDataStore() {
     var defaultTaskData = [];
     window.localStorage.setItem("task", JSON.stringify(defaultTaskData));
   }
+  
 }
 
 

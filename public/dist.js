@@ -470,7 +470,7 @@ function setDefaultDataStore() {
   if (!(store instanceof Array)) {
     var defaultFolderData = [{
       id: "f1",
-      name: "All Tasks",
+      name: "Default Tasks",
       color: "default"
     }];
     window.localStorage.setItem("folder", JSON.stringify(defaultFolderData));
@@ -880,7 +880,7 @@ module.exports = function TaskDetail(anchorID) {
     task: {}
   };
 
-  var __div = $("\n    <div class=\"task-detail\">\n      <div class=\"inner-container\">\n        <div class=\"task-details-form\">\n        <h1>Task Details        \n        <button id=\"close-form\" class=\"close\">X</button>\n        </h1>\n        <form id=\"task-detail-form\" title=\"Edit Task Details\">\n          <label class=\"form-label\">Task</label>\n          <input class=\"textfield textfield-default\" type=\"text\" name=\"task_body\" />\n\n          <label class=\"form-label\">Status</label>\n          <select name=\"task_label\" class=\"textfield textfield-default\">\n            <option value=\"todo\">Todo</option>\n            <option value=\"completed\">Compeleted</option>\n          </select>\n\n          <label class=\"form-label\">Description</label>\n          <textarea class=\"textfield textfield-default\" name=\"task_description\"></textarea>\n\n          <input class=\"btn btn-sm btn-primary\" type=\"submit\" value=\"save\"/>\n\n          <button id=\"delete-item\" class=\"btn btn-sm btn-secondary\" type=\"button\" title=\"Delete task\">\n            Delete\n          </button>\n          </form>\n        </div> <!-- end task form -->\n\n      </div> <!-- end inner container -->\n    </div>");
+  var __div = $("\n    <div class=\"task-detail\">\n      <div class=\"inner-container\">\n        <div class=\"task-details-form\">\n        <h1>Task Details        \n        <button id=\"close-form\" class=\"close\">X</button>\n        </h1>\n        <form id=\"task-detail-form\" title=\"Edit Task Details\">\n          <label class=\"form-label\">Task</label>\n          <input class=\"textfield\" type=\"text\" name=\"task_body\" />\n\n          <label class=\"form-label\">Status</label>\n          <select name=\"task_label\" class=\"textfield\">\n            <option value=\"todo\">Todo</option>\n            <option value=\"completed\">Compeleted</option>\n          </select>\n\n          <label class=\"form-label\">Description</label>\n          <textarea class=\"textfield\" name=\"task_description\"></textarea>\n\n          <input class=\"btn btn-sm btn-primary\" type=\"submit\" value=\"save\"/>\n\n          <button id=\"delete-item\" class=\"btn btn-sm btn-secondary\" type=\"button\" title=\"Delete task\">\n            Delete\n          </button>\n          </form>\n        </div> <!-- end task form -->\n\n      </div> <!-- end inner container -->\n    </div>");
 
   $("#" + anchorID).append(__div);
 
@@ -913,7 +913,10 @@ module.exports = function TaskDetail(anchorID) {
   });
 
   AppEvent.addListener("active-folder", function (event) {
-    // just close the task detail folder
+    // theme
+    var folder = DataManager.getItem('folder', event.message.folder_id);
+    __div.get(0).className = "task-detail theme-color-" + folder.color; // just close the task detail folder
+
     if (event.message.folder_id != "f1" && event.message.folder_id != __state.task.folder_id) {
       __closeForm();
     }
@@ -975,7 +978,7 @@ function TaskForm(anchorID) {
   };
   var self = this;
 
-  var __form = $("\n    <div class=\"task-form\">\n      <form id=\"task-form\" title=\"add a new task to do\">\n        <input id=\"task-form-text\" class=\"textfield textfield-default\" type=\"text\" name=\"task_body\" \n              placeholder=\"Add New Task ...\" />       \n        <input type=\"submit\" value=\"Save\" class=\"btn btn-sm btn-blue\" name=\"task_save\"/>\n      </form>\n    </div>");
+  var __form = $("\n    <div class=\"task-form\">\n      <form id=\"task-form\" title=\"add a new task to do\">\n        <input id=\"task-form-text\" class=\"textfield textfield-default\" type=\"text\" name=\"task_body\" \n              placeholder=\"Add New Task ...\" />       \n        <input type=\"submit\" value=\"Save\" class=\"btn btn-sm btn-default\" name=\"task_save\"/>\n      </form>\n    </div>");
 
   $("#" + anchorID).append(__form);
 
@@ -987,7 +990,8 @@ function TaskForm(anchorID) {
   });
 
   AppEvent.addListener("active-folder", function (event) {
-    __state.task.folder_id = event.message.folder_id;
+    __state.task.folder_id = event.message.folder_id; // theme
+
     var folder = DataManager.getItem('folder', event.message.folder_id);
 
     var form = __form.find('form').get(0);
@@ -1110,7 +1114,9 @@ var List = function List() {
 
     var self = this;
     AppEvent.addListener("active-folder", function (event) {
-      __listState.folder_id = event.message.folder_id;
+      var folder = DataManager.getItem('folder', event.message.folder_id);
+      __listState.folder_id = folder.id;
+      __listState.folder_color = folder.color;
       self.renderListItem();
     });
     AppEvent.addListener("update-task-list", function (event) {
@@ -1174,8 +1180,8 @@ var List = function List() {
   };
 
   this.renderListItem = function () {
-    var folderID = __listState.folder_id === "f1" ? null : __listState.folder_id;
-    __listState.list = DataManager.getList('task', folderID).reverse();
+    // var folderID = __listState.folder_id === "f1" ? null : __listState.folder_id;
+    __listState.list = DataManager.getList('task', __listState.folder_id);
     var content = "";
 
     if (!__listState.list.length) {
@@ -1187,7 +1193,7 @@ var List = function List() {
         var __label = _item.task_label === "completed" ? "<span class=\"badge badge-success\">completed</span>" : "<span class=\"badge badge-warning\">To Do</span>"; // todo
 
 
-        var active_item = _item.id === __listState.active_task ? "active" : "";
+        var active_item = _item.id === __listState.active_task ? "active-item-".concat(__listState.folder_color) : "";
         var checked = _item.task_label === "completed" ? "checked=\"checked\"" : "";
         content += "<li class=\"task-state-".concat(_item.task_label, " ").concat(active_item, "\" \n                        data-task-id=\"").concat(_item.id, "\" \n                        data-task-index=\"").concat(index, "\"\n                        data-action=\"edit-item\">      \n                        \n                        ").concat(_item.task_body, "\n\n                        <button data-task-index=\"").concat(index, "\" class=\"btn\" data-action=\"delete\">\n                          <i data-task-index=\"").concat(index, "\" \n                              class=\"fa fa-trash\" data-action=\"delete\" title=\"Delete this task\"></i>\n                        </button>\n\n                        <div class=\"checkbox\">\n                          <label>\n                          <input type=\"checkbox\" name=\"checkbox_btn\" ").concat(checked, "\n                          data-action=\"completed\" data-task-index=\"").concat(index, "\"/>\n                          <span></span>\n                          </label>\n                        </div>\n\n                    </li>");
       });

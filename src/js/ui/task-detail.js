@@ -15,16 +15,16 @@ module.exports = function TaskDetail(anchorID) {
         </h1>
         <form id="task-detail-form" title="Edit Task Details">
           <label class="form-label">Task</label>
-          <input class="textfield textfield-default" type="text" name="task_body" />
+          <input class="textfield" type="text" name="task_body" />
 
           <label class="form-label">Status</label>
-          <select name="task_label" class="textfield textfield-default">
+          <select name="task_label" class="textfield">
             <option value="todo">Todo</option>
             <option value="completed">Compeleted</option>
           </select>
 
           <label class="form-label">Description</label>
-          <textarea class="textfield textfield-default" name="task_description"></textarea>
+          <textarea class="textfield" name="task_description"></textarea>
 
           <input class="btn btn-sm btn-primary" type="submit" value="save"/>
 
@@ -60,6 +60,10 @@ module.exports = function TaskDetail(anchorID) {
   });
 
   AppEvent.addListener("active-folder", function (event) {
+    // theme
+    var folder = DataManager.getItem('folder' , event.message.folder_id);
+    __div.get(0).className = "task-detail theme-color-" + folder.color;
+
     // just close the task detail folder
     if (event.message.folder_id != "f1" &&
       event.message.folder_id != __state.task.folder_id) {
