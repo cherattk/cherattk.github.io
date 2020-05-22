@@ -470,7 +470,7 @@ function setDefaultDataStore() {
   if (!(store instanceof Array)) {
     var defaultFolderData = [{
       id: "f1",
-      name: "Default Tasks",
+      name: "Tasks",
       color: "default"
     }];
     window.localStorage.setItem("folder", JSON.stringify(defaultFolderData));
@@ -526,7 +526,7 @@ module.exports = {
 
       console.log(Array.from(__dataStore[storeName].values()));
       RemoteStore.setItem(storeName, item);
-      AppEvent.dispatch("update-".concat(storeName, "-list"), {
+      AppEvent.dispatch("update-".concat(storeName), {
         item_id: item.id
       });
     }
@@ -566,7 +566,7 @@ module.exports = {
 
     saveLocalStore(storeName);
     RemoteStore.removeItem(storeName, itemId);
-    AppEvent.dispatch("update-".concat(storeName, "-list"));
+    AppEvent.dispatch("update-".concat(storeName));
   },
   getList: function getList(storeName, folderId) {
     var result = [];
@@ -584,8 +584,7 @@ module.exports = {
     }
   },
   getItem: function getItem(storeName, item_id) {
-    var result = __dataStore[storeName].get(item_id);
-
+    var result = Object.assign({}, __dataStore[storeName].get(item_id));
     return result;
   }
 };
@@ -599,7 +598,7 @@ var AppEvent = EventSet.Topic('app.event');
 AppEvent.addEvent("active-folder");
 AppEvent.addEvent("edit-folder");
 AppEvent.addEvent("add-folder");
-AppEvent.addEvent("update-folder-list");
+AppEvent.addEvent("update-folder");
 AppEvent.addEvent("error-default-folder-action"); ////////////////////////////////////////////
 
 AppEvent.addEvent("get-task-detail");
@@ -607,7 +606,7 @@ AppEvent.addEvent("close-task-detail"); // AppEvent.addEvent("edit-item");
 // AppEvent.addEvent("select-item");
 // AppEvent.addEvent("modal-state");
 
-AppEvent.addEvent("update-task-list"); // AppEvent.addEvent("update-task");
+AppEvent.addEvent("update-task"); // AppEvent.addEvent("update-task");
 
 module.exports = {
   AppEvent: AppEvent
@@ -785,7 +784,7 @@ var FolderList = {
 
     __listFolder.click(this.listClickHandler.bind(this));
 
-    AppEvent.addListener("update-folder-list", function () {
+    AppEvent.addListener("update-folder", function () {
       __state.list = DataManager.getList('folder');
       FolderList.renderListItem();
     });
@@ -921,16 +920,25 @@ module.exports = function TaskDetail(anchorID) {
       __closeForm();
     }
   });
-  AppEvent.addListener("get-task-detail", function (event) {
-    __state.task = Object.assign({}, event.message.task);
 
-    __div.addClass('show-task-detail');
+  function __updateState(task_id) {
+    __state.task = DataManager.getItem('task', task_id);
 
     var targetForm = __form.get(0);
 
     targetForm.elements['task_body'].value = __state.task.task_body;
     targetForm.elements['task_label'].value = __state.task.task_label;
     targetForm.elements['task_description'].value = __state.task.task_description;
+  } // 
+
+
+  AppEvent.addListener('update-task', function (event) {
+    __updateState(event.message.item_id);
+  });
+  AppEvent.addListener("get-task-detail", function (event) {
+    __updateState(event.message.task_id);
+
+    __div.addClass('show-task-detail');
   });
 
   function __saveForm(e) {
@@ -1060,7 +1068,7 @@ var Header = function Header() {
       } else {
         __listHeaderAction.show();
       }
-    }); // AppEvent.addListener("update-folder-list", function (event) {
+    }); // AppEvent.addListener("update-folder", function (event) {
     //   __state.folder = DataManager.getItem('folder', event.message.item_id);
     //   __listTitle.html(__state.folder.name);
     // });
@@ -1119,7 +1127,7 @@ var List = function List() {
       __listState.folder_color = folder.color;
       self.renderListItem();
     });
-    AppEvent.addListener("update-task-list", function (event) {
+    AppEvent.addListener("update-task", function (event) {
       // __listState.folder_id = event.message.folder_id;
       self.renderListItem();
     });
@@ -1139,7 +1147,7 @@ var List = function List() {
       case "edit-item":
         var task = __listState.list[event.target.dataset.taskIndex];
         AppEvent.dispatch('get-task-detail', {
-          task: task
+          task_id: task.id
         });
         break;
 

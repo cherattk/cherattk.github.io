@@ -43,13 +43,13 @@ module.exports = function TaskDetail(anchorID) {
   __form.submit(function (e) {
     e.preventDefault();
     __saveForm(e);
-  __div.addClass('saved-form');
-  setTimeout(function(){__div.removeClass('saved-form');} , 1000);
+    __div.addClass('saved-form');
+    setTimeout(function () { __div.removeClass('saved-form'); }, 1000);
   });
 
-  __div.find('#delete-item').click(function(e){
+  __div.find('#delete-item').click(function (e) {
     e.preventDefault();
-    if(confirm("you are going to delete the task : are you sure ?")){
+    if (confirm("you are going to delete the task : are you sure ?")) {
       DataManager.removeItem('task', __state.task.id);
       __closeForm();
     }
@@ -61,23 +61,33 @@ module.exports = function TaskDetail(anchorID) {
 
   AppEvent.addListener("active-folder", function (event) {
     // theme
-    var folder = DataManager.getItem('folder' , event.message.folder_id);
+    var folder = DataManager.getItem('folder', event.message.folder_id);
     __div.get(0).className = "task-detail theme-color-" + folder.color;
 
     // just close the task detail folder
     if (event.message.folder_id != "f1" &&
       event.message.folder_id != __state.task.folder_id) {
-        __closeForm();
+      __closeForm();
     }
   });
 
-  AppEvent.addListener("get-task-detail", function (event) {
-    __state.task = Object.assign({}, event.message.task);
-    __div.addClass('show-task-detail');
+
+  function __updateState(task_id) {
+    __state.task = DataManager.getItem('task', task_id);
     var targetForm = __form.get(0);
     targetForm.elements['task_body'].value = __state.task.task_body;
     targetForm.elements['task_label'].value = __state.task.task_label;
     targetForm.elements['task_description'].value = __state.task.task_description;
+  }
+
+  // 
+  AppEvent.addListener('update-task', function (event) {
+    __updateState(event.message.item_id);
+  });
+
+  AppEvent.addListener("get-task-detail", function (event) {
+    __updateState(event.message.task_id);
+    __div.addClass('show-task-detail');
   });
 
   function __saveForm(e) {

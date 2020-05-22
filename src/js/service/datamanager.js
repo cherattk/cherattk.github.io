@@ -75,7 +75,7 @@ module.exports = {
       console.log(Array.from(__dataStore[storeName].values()));
 
       RemoteStore.setItem(storeName, item);
-      AppEvent.dispatch(`update-${storeName}-list`, { item_id: item.id });
+      AppEvent.dispatch(`update-${storeName}`, { item_id: item.id });
     }
   },
 
@@ -112,7 +112,7 @@ module.exports = {
 
     saveLocalStore(storeName);
     RemoteStore.removeItem(storeName, itemId);
-    AppEvent.dispatch(`update-${storeName}-list`);
+    AppEvent.dispatch(`update-${storeName}`);
   },
 
   getList: function (storeName, folderId) {
@@ -131,7 +131,7 @@ module.exports = {
   },
 
   getItem: function (storeName, item_id) {
-    var result = __dataStore[storeName].get(item_id);
+    var result = Object.assign({}, __dataStore[storeName].get(item_id));
     return result;
   }
 

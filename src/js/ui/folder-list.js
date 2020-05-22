@@ -30,7 +30,7 @@ const FolderList = {
     __listFolder = $(`<ul class="folder-list"></ul>`);
     __listFolder.click(this.listClickHandler.bind(this));
 
-    AppEvent.addListener("update-folder-list", function () {
+    AppEvent.addListener("update-folder", function () {
       __state.list = DataManager.getList('folder');
       FolderList.renderListItem();
     });

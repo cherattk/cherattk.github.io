@@ -46,7 +46,7 @@ const Header = function () {
         __listHeaderAction.show();
       }
     });
-    // AppEvent.addListener("update-folder-list", function (event) {
+    // AppEvent.addListener("update-folder", function (event) {
     //   __state.folder = DataManager.getItem('folder', event.message.item_id);
     //   __listTitle.html(__state.folder.name);
     // });
@@ -101,7 +101,7 @@ const List = function () {
       self.renderListItem();
     });
 
-    AppEvent.addListener("update-task-list", function (event) {
+    AppEvent.addListener("update-task", function (event) {
       // __listState.folder_id = event.message.folder_id;
       self.renderListItem();
     });
@@ -121,7 +121,7 @@ const List = function () {
     switch (event.target.dataset.action) {
       case "edit-item":
         let task = __listState.list[event.target.dataset.taskIndex];
-        AppEvent.dispatch('get-task-detail', { task: task });
+        AppEvent.dispatch('get-task-detail', { task_id: task.id });
         break;
       case "completed":
         let update_task = __listState.list[event.target.dataset.taskIndex];
