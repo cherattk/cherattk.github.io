@@ -1112,7 +1112,8 @@ var List = function List() {
     list: [],
     // list of item
     folder_id: null,
-    active_task: ""
+    active_task: "",
+    folder_color: "default"
   };
 
   this.init = function (anchorID) {
@@ -1136,7 +1137,7 @@ var List = function List() {
       self.renderListItem();
     });
     AppEvent.addListener("get-task-detail", function (event) {
-      __listState.active_task = event.message.task.id;
+      __listState.active_task = event.message.task_id;
       self.renderListItem();
     });
     this.renderListItem();

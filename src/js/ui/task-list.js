@@ -84,7 +84,8 @@ const List = function () {
   var __listState = {
     list: [], // list of item
     folder_id: null,
-    active_task: ""
+    active_task: "",
+    folder_color : "default"
   };
 
   this.init = function (anchorID) {
@@ -110,7 +111,7 @@ const List = function () {
       self.renderListItem();
     });
     AppEvent.addListener("get-task-detail", function (event) {
-      __listState.active_task = event.message.task.id;
+      __listState.active_task = event.message.task_id;
       self.renderListItem();
     });
 
