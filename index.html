@@ -1,142 +1,61 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>T-Space</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
 
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="16x16">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script> -->
+  <link rel="stylesheet" href="home/home.css">
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/fontawesome-free-5.12.1-web/css/all.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/frame.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/uikit.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="./public/css/theme.css">
 </head>
-
 <body>
+  
 
-  <header class="app-header">
+  <div class="portfolio-gallery">
 
-    <div id="app-header-content" class="app-header-content">
-      
-      <button id="main-menu-btn" class="main-menu-btn">
-        <i class="fas fa-bars"></i>
-      </button>
-
-      <div class="notice">
-        <span type="button" class="notice-button" data-toggle="modal" data-target="#notice-content">
-          📢 Read me before using this app.
-        </span>
+    <!-- task manager preview  -->
+    <h1>
+      Task Manager 
+      <a href="public/task-manager" target="__blank">
+        Open in a new window
+      </a>
+    </h1>
+    <div class="browser">
+      <div class="browser-header">
+        <p class="browser-url-bar" data-path="public/task-manager">task-manager</p>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-
-      <!-- <div class="">
-      <i class="fa fa-bars"></i>
-    </div> -->
-
-      <!-- <button type="button" class="btn btn-primary btn-sm">
-        Connnection
-      </button> -->
-
+      <iframe src="public/task-manager" title="task Manager Web Appplication">
+      </iframe>
     </div>
-  </header>
 
-  <main id="board-container" class="board-container" role="main">
-
-    <div id="main-menu" class="main-menu">
-      <div id="main-menu-bkg-div" class="main-menu-bkg-div"></div>
-      <div class="inner-container">
-        <div id="folder-list-container"></div>
+     <!-- website template 1  -->
+     <h1>
+       Website Template 1 
+       <a href="public/website/1" target="__blank">
+        Open in a new window
+      </a>
+     </h1>
+    <div class="browser">
+      <div class="browser-header">
+        <p class="browser-url-bar" data-path="public/website/1">website template 1</p>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
+      <iframe src="public/website/1" title="website template">
+      </iframe>
     </div>
-
-
-    <div id="board" class="board">
-      <div class="board-inner">
-
-        <div id="board-content" class="board-content">
-            <div id="board-content-inner">
-            
-              <div id="list-header-container" class="board-header"></div>
-
-              <div id="task-form-container"></div>
-
-              <!-- <div id="task-nav-container"></div> -->
-
-              <div id="task-action-container"></div>
-
-              <div id="task-list-container"></div>
-
-              <div id="task-modal-container"></div>
-
-            </div>
-        </div>
-
-      </div> <!-- board content inner -->        
-    </div>
-
-
-  </main>
-
-  <!-- modal folder list  -->
-  <div id="folder-form-container"></div>
-
-   <!-- task detail form  -->
-  <div id="task-detail-container"></div>
-
-   <!-- notice -->
-  <div class="modal fade" id="notice-content" tabindex="-1" role="dialog" aria-labelledby="notice" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Notice</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>
-            The data managed by this web app are saved in the browser local storage area
-            <a href="https://en.wikipedia.org/wiki/Web_storage#Local_and_session_storage" target="_blank">(See
-              How)</a>
-            and remain available until you delete them.
-          
-            This application can be removed or
-            moved to another location (url) at any time and 
-            the data could be deleted or corrupted
-            by changes made to a later version of this web app.
-            The source code of this web app is
-            <a href="https://github.com/cherattk/cherattk.github.io" target="_blank"> published on github</a>
-          </p>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
-
-  <script src="./public/dist.js"></script>
-
-  <!-- <script type="text/javascript">
-    $(window).on('load', function () {
-      $('#notice-content').modal('show');
-    });
-  </script> -->
+  <script type="text/javascript">
+  
+  document.querySelectorAll('.browser-url-bar').forEach(function(p){
+    p.innerHTML = window.location.href + p.getAttribute('data-path');
+  });
+  </script>
 </body>
-
 </html>

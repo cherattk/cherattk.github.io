@@ -7,4 +7,4 @@ browserify("./src/js/main.js")
     //plugins : ["babel-plugin-transform-class-properties"]
   })
   .bundle()
-  .pipe(fs.createWriteStream("./public/dist.js"));
+  .pipe(fs.createWriteStream("./public/task-manager/dist.js"));

@@ -1,0 +1,121 @@
+@media (min-width: 576px) {
+  .contact-form .card-body , .card-header{
+    padding:40px!important;
+  }
+  .contact-form{
+    margin:0 0 0 50px!important;
+  }
+}
+@media (max-width: 576px) {  
+  .contact-info p{
+    font-size:1.5rem!important;
+    margin:0;
+  }
+}
+
+.overflow-hidden { overflow: hidden; }
+
+.site-header {
+  text-transform:capitalize;
+}
+.site-header .logo{
+  color:#ffffff;
+  margin:0;
+  font-size:2rem;
+  padding:10px;
+}
+.site-header a {
+  color: #999;
+  font-size:1.5rem;
+  display:inline-block;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.site-header,
+.site-header nav{
+  background: rgb(9, 144, 55);
+  z-index: 100;
+}
+.footer{
+  padding:3rem 0;
+  color: #fff;
+  background-color: #2ebc4f;
+}
+.btn-submit{
+  background-color:#2ebc4f;
+  border-color:#2ebc4f;
+}
+.btn-submit:hover{
+  background-color:#28a745;
+  border-color:#28a745;
+}
+.carousel {
+  background: rgb(9, 144, 55);
+  background: linear-gradient(180deg, rgb(9, 144, 55) 0%,rgb(10, 247, 53) 100%);
+}
+.carousel-indicators li{
+  height:30px;
+  margin:0 10px;
+}
+.carousel-item {
+  height:25rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height:25rem;
+}
+.carousel-caption {
+  top:5rem;
+  z-index: 10;
+}
+
+.contact-form{
+  box-shadow: 0 1px 2px #e9ebec;
+}
+.contact-form h5{
+  font-size:18px;
+  color:#478447;
+  background-color:#e9f7e9;
+  padding:20px;
+  margin-bottom:25px;
+  text-align:center;
+}
+.contact-form textarea{
+  height:250px;
+}
+.form-label{
+  color:#495057;
+  font-weight: bold;
+}
+#service{
+  text-align:center;
+  padding:3.5rem 0 7rem 0;
+}
+#service h2{
+  padding:20px 0;
+  color:#067d66;
+}
+#service .icon{
+  width:120px;
+  height:120px;
+  margin:auto;
+  background-color:#dbffdb;
+  border-radius:100px;
+}
+#contact{
+  background-color:#f7fdfa;
+  padding:30px;
+}
+
+.contact-info p{
+  font-weight:bold;
+  font-size:1.75rem;
+  color:#067d66;
+  border-bottom:3px solid #067d66;
+  padding:15px 0;
+}
