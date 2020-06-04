@@ -23,11 +23,13 @@ function myStatOne() {
         var data = d3.csvParse(csvContent);
         __state.viewData.totalRecords = data.length;
         self.generateStatData(data);
-        self.renderData();
-
-         console.log(data);
+        self.renderStatData();
+        self.renderGraph();
       }
     });
+
+    
+
   }
 
   /**
@@ -57,7 +59,7 @@ function myStatOne() {
    * 
    */
 
-  this.renderData = function () {
+  this.renderStatData = function () {
 
     // ========================================================
     $('#total-business').append(__state.viewData.businessInMontreal);
@@ -69,13 +71,34 @@ function myStatOne() {
     var __viewList = "";
     __state.viewData.secteurValue.forEach(function (_secteur) {
       __viewList += '<p>- <label>' + _secteur.name + ' : </label>' +
-        '<span>'+ _secteur.nbBusinessByCategorie +'</span>' +
+        '<span>' + _secteur.nbBusinessByCategorie + '</span>' +
         '</p>';
     });
     $('#stat-secteur').append(__viewList);
   }
 
+  this.renderGraph = function (params) {
+
+    // // set the dimensions and margins of the graph
+    // var margin = { top: 10, right: 30, bottom: 30, left: 40 },
+    //   width = 460 - margin.left - margin.right,
+    //   height = 400 - margin.top - margin.bottom;
+
+    // // append the svg object to the body of the page
+    // var svg = d3.select("#my_dataviz")
+    //   .append("svg")
+    //   .attr("width", width + margin.left + margin.right)
+    //   .attr("height", height + margin.top + margin.bottom)
+    //   .append("g")
+    //   .attr("transform",
+    //     "translate(" + margin.left + "," + margin.top + ")");
+
+  }
+
 }
+
+
+
 
 $(document).ready(function () {
 

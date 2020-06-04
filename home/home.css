@@ -54,10 +54,10 @@ img{
 /*********************************************/
 .browser{
   background:#fff;
-  border-radius:3px 3px 0 0;
   overflow:hidden;
   box-shadow:0 3px 3px #c7c9cb;
   border:1px solid #a9aaab;
+  border-radius:5px;
 }
 .browser-header{
   padding:15px;
