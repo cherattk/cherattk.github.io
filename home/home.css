@@ -55,9 +55,9 @@ img{
 .browser{
   background:#fff;
   border-radius:3px 3px 0 0;
-  box-shadow:0 1px 2px #e4e7ea;
-  border:1px solid #a9aaab;
   overflow:hidden;
+  box-shadow:0 3px 3px #c7c9cb;
+  border:1px solid #a9aaab;
 }
 .browser-header{
   padding:15px;
