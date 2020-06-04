@@ -4,24 +4,29 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
   <meta name="author" content="cheratt karim">
+
+  <!-- icon source 
+    source : https://freesvg.org/briefcase-clip-art-image
+  -->
   <link rel="icon" href="favicon.png" type="image/jpg" sizes="16x16">
-  
+
   <title>Portfolio</title>
 
   <link rel="stylesheet" type="text/css" href="home/home.css">
 
 </head>
+
 <body>
-  
+
 
   <div class="portfolio-gallery">
 
     <!-- task manager preview  -->
     <h1>
-      Task Manager 
+      Task Manager
       <a href="public/task-manager/index.html" target="_blank">
         Open in a new window
       </a>
@@ -37,13 +42,13 @@
       </iframe>
     </div>
 
-     <!-- website template 1  -->
-     <h1>
-       Website Template 1 
-       <a href="public/website/1/index.html" target="_blank">
+    <!-- website template 1  -->
+    <h1>
+      Website Template 1
+      <a href="public/website/1/index.html" target="_blank">
         Open in a new window
       </a>
-     </h1>
+    </h1>
     <div class="browser">
       <div class="browser-header">
         <p class="browser-url-bar" data-path="public/website/1/index.html">website template 1</p>
@@ -55,13 +60,32 @@
       </iframe>
     </div>
     
+    <!-- OpenData  -->
+    <h1>
+      OpenDataStat
+      <a href="public/opendata/index.html" target="_blank">
+        Open in a new window
+      </a>
+    </h1>
+    <div class="browser">
+      <div class="browser-header">
+        <p class="browser-url-bar" data-path="public/opendata/index.html">OpenDataStat</p>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <iframe src="public/opendata/index.html" title="Statistics from Open Data">
+      </iframe>
+    </div>
+
   </div>
 
   <script type="text/javascript">
-  
-  document.querySelectorAll('.browser-url-bar').forEach(function(p){
-    p.innerHTML = window.location.href + p.getAttribute('data-path');
-  });
+
+    document.querySelectorAll('.browser-url-bar').forEach(function (p) {
+      p.innerHTML = window.location.href + p.getAttribute('data-path');
+    });
   </script>
 </body>
+
 </html>
