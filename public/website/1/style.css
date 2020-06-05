@@ -1,9 +1,9 @@
 @media (min-width: 576px) {
   .contact-form .card-body , .card-header{
-    padding:40px!important;
+    padding:30px!important;
   }
   .contact-form{
-    margin:0 0 0 50px!important;
+    margin:0 0 0 30px!important;
   }
 }
 @media (max-width: 576px) {  
@@ -57,7 +57,10 @@
 }
 .carousel-indicators li{
   height:30px;
-  margin:0 10px;
+  margin:0 5px;
+}
+.carousel-indicators .active{
+  background-color:#fff;
 }
 .carousel-item {
   height:25rem;
@@ -72,8 +75,15 @@
 .carousel-caption {
   top:5rem;
   z-index: 10;
+  text-align:left;
 }
 
+.carousel-caption h1{
+  font-size:3rem;
+}
+.carousel-caption p{
+  font-size:1.5rem;
+}
 .contact-form{
   box-shadow: 0 1px 2px #e9ebec;
 }
