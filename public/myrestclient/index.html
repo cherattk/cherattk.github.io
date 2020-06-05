@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="cheratt karim">
+  <link rel="icon" href="favicon.png" type="image/png" sizes="16x16">
+
+  <title>Rest Client</title>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css" type="text/css">
+
+</head>
+
+<body>
+
+  <div class="app-main container mb-5 mt-5 p-4 text-left">
+
+    <!-- <div class="row"> -->
+    <div class="request-form pb-5">
+
+      <h1 class="p-3 m-0 bg-primary text-white">Request</h1>
+      <form id="request-form" role="form">
+        <div class="input-group my-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-info border-info text-white">Method</span>
+          </div>
+          <select class="custom-select" name="request_verb">
+            <option value="get">GET</option>
+            <option value="post">POST</option>
+            <option value="put">PUT</option>
+            <option value="delete">DELETE</option>
+          </select>
+        </div>
+
+
+        <div class="input-group my-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-info border-info text-white">Endpoint url</span>
+          </div>
+          <input id="endpointURL" name="endpoint_url" placeholder="http://hostname.com/path/endpoint" type="url"
+            class="form-control" aria-describedby="endpointURL">
+        </div>
+
+        <div class="form-group my-4">
+          <label class="bg-info border-info text-white">Data</label>
+          <!-- <span>One Key-value pair per line </span> -->
+          <textarea id="request_data" name="request_data" placeholder="example : param_1=value_1&param_2=value_2"
+            class="form-control" rows="3"></textarea>
+        </div>
+
+        <!-- <div class="form-group my-4">
+          <label class="bg-info border-info text-white">Request Header</label>
+          <textarea id="request_header" name="request_header" 
+          placeholder=""
+          class="form-control" rows="3"></textarea>
+        </div> -->
+
+        <button type="submit" class="btn btn-info">Submit</button>
+      </form>
+
+    </div>
+
+    <div class="result-view my-3">
+      <h1 class="p-3 m-0 bg-primary text-white">Response</h1>
+      <div class="result-view">
+        <textarea id="result-view"></textarea>
+      </div>
+    </div>
+
+    <!-- </div> -->
+
+  </div>
+
+  <script src="main.js" type="text/javascript"></script>
+
+</body>
+
+</html>

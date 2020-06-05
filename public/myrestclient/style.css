@@ -1,0 +1,46 @@
+html, body{
+  width:100%;
+  padding:0;
+  margin:0;
+  border:0;
+  color:#222;
+  font-size:14px;
+  text-align:center;
+  background: #f0f4fa;
+  overflow-x:hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style:none;
+}
+
+p{  
+  word-break:keep-all;
+}
+
+.app-main{
+  background-color:#fff;
+  border:1px solid #ccc;
+  box-shadow:0 1px 2px #ccc;
+}
+.app-main h1{
+  font-size:1.5rem;
+}
+.result-view textarea{
+  width:100%;
+  padding:20px;
+  min-height:500px;
+  border:1px solid #ccc;
+  outline:none;
+}
+.request-form{
+  border-bottom:2px dotted #ccc;
+}
+.form-group label{
+  margin:0 10px -2px 0;
+  padding:.375rem .75rem;
+  line-height:1.5;
+  border-radius:.25rem .25rem 0 0;
+}
