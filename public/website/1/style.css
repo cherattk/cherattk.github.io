@@ -8,8 +8,14 @@
 }
 @media (max-width: 576px) {  
   .contact-info p{
-    font-size:1.5rem!important;
+    font-size:1.5rem !important;
     margin:0;
+  }
+  #contact{
+    padding:10px !important;
+  }
+  #contact .contact-info{
+    padding:0 10px !important;
   }
 }
 
@@ -119,13 +125,14 @@
 }
 #contact{
   background-color:#f7fdfa;
-  padding:30px;
+  padding:50px 30px;
 }
 
 .contact-info p{
   font-weight:bold;
-  font-size:1.75rem;
+  font-size:1.5rem;
   color:#067d66;
   border-bottom:3px solid #067d66;
   padding:15px 0;
+  margin-bottom:15px;
 }

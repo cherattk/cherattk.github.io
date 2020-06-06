@@ -27,6 +27,9 @@ img{
   vertical-align:top;
   margin-bottom:100px;
 }
+.portfolio-gallery hr{
+  margin-bottom:30px;
+}
 .portfolio-gallery h1{
   margin:0;
   padding:20px 0;
@@ -56,7 +59,7 @@ img{
   background:#fff;
   overflow:hidden;
   box-shadow:0 3px 3px #c7c9cb;
-  border:1px solid #a9aaab;
+  border:1px solid #bbb;
   border-radius:5px;
 }
 .browser-header{
@@ -67,14 +70,17 @@ img{
   background-color:#eeeff1;
   text-align:left;
 }
-.browser-header p{
+.browser-header input.browser-url-bar{
   background-color:#fff;
-  padding:7px 10px;
+  padding:7px 15px;
   margin:0;
   border-radius:3px;
   width:calc(100% - 120px);
   display:inline-block;
   border:1px solid #ccc;
+  font-size:14px;
+  border-radius:5px;
+  outline:none;
 }
 .browser-header span{
   width:15px;
@@ -101,4 +107,27 @@ img{
   margin:0; 
   height:550px;
   border:1px solid transparent;
+}
+
+@media (max-width: 576px) {  
+  .portfolio-gallery{
+  padding:10px 20px;
+}
+.portfolio-gallery > div{
+  margin-bottom:50px;
+}
+.portfolio-gallery h1{
+  margin:10px 0 30px 0;
+  padding:10px 0 30px 0;
+  font-size:1.7rem;
+  border-bottom-width:3px;
+}
+.portfolio-gallery h1 a{
+  margin-top:13px;
+  margin-right:-5px;
+  padding:7px 10px;
+}
+.portfolio-gallery hr{
+  margin-bottom:30px;
+}
 }

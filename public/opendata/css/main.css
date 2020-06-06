@@ -83,3 +83,16 @@ p{
 .stat-view h3{
   margin:0;
 }
+
+@media (max-width: 576px) {
+  .main{
+    margin:0;
+  }
+  .main-view{
+    margin:15px;
+    padding:25px 20px;
+  }
+  .version{
+    margin-top:-25px;
+  }
+}

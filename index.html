@@ -33,7 +33,7 @@
     </h1>
     <div class="browser">
       <div class="browser-header">
-        <p class="browser-url-bar" data-path="public/task-manager/index.html">task-manager</p>
+        <input class="browser-url-bar" data-path="public/task-manager/index.html" disabled/>
         <span></span>
         <span></span>
         <span></span>
@@ -42,16 +42,18 @@
       </iframe>
     </div>
 
+    
     <!-- website template 1  -->
+    <hr/>
     <h1>
-      Website Template 1
+      Website Template
       <a href="public/website/1/index.html" target="_blank">
         Open in a new window
       </a>
     </h1>
     <div class="browser">
       <div class="browser-header">
-        <p class="browser-url-bar" data-path="public/website/1/index.html">website template 1</p>
+        <input class="browser-url-bar" data-path="public/website/1/index.html" disabled/>
         <span></span>
         <span></span>
         <span></span>
@@ -61,6 +63,7 @@
     </div>
     
     <!-- OpenData  -->
+    <hr/>
     <h1>
       OpenDataStat
       <a href="public/opendata/index.html" target="_blank">
@@ -69,7 +72,7 @@
     </h1>
     <div class="browser">
       <div class="browser-header">
-        <p class="browser-url-bar" data-path="public/opendata/index.html">OpenDataStat</p>
+        <input class="browser-url-bar" data-path="public/opendata/index.html" disabled/>
         <span></span>
         <span></span>
         <span></span>
@@ -82,8 +85,8 @@
 
   <script type="text/javascript">
 
-    document.querySelectorAll('.browser-url-bar').forEach(function (p) {
-      p.innerHTML = window.location.href + p.getAttribute('data-path');
+    document.querySelectorAll('.browser-url-bar').forEach(function (input) {
+      input.value = window.location.href + input.getAttribute('data-path');
     });
   </script>
 </body>
