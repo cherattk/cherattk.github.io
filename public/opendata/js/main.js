@@ -8,9 +8,9 @@ function myStatOne() {
     }
   };
 
-  this.init = function () {
+  this.init = function (dataPathFile) {
 
-    var dataUrl = 'data/requetes_entreprises_covid-19.csv';
+    var dataUrl = dataPathFile;
 
     var self = this;
     $.get({
@@ -103,6 +103,7 @@ function myStatOne() {
 $(document).ready(function () {
 
   var __myStatOne = new myStatOne();
-  __myStatOne.init();
+  var dataPath = 'data/data-latest.csv';
+  __myStatOne.init(dataPath);
 
 });
