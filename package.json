@@ -1,7 +1,7 @@
 {
-  "name": "@cherattk/task-manager-frontend",
-  "version": "0.5.0",
-  "description": "Frontend for task manager web app",
+  "name": "@cherattk/portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio",
   "main": "main.js",
   "scripts": {
     "build": "node ./builder.js"

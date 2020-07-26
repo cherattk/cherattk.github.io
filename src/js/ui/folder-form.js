@@ -49,8 +49,7 @@ const FolderForm = {
     var __colorPanelContent = "";
     __colorList.forEach(function(color , index){
       __colorPanelContent += `<label>
-        <input type="radio" value="${color}" name="color-panel-value" 
-        ${color === 'default' ? "checked=\"chekced\"" : ""}/>
+        <input type="radio" value="${color}" name="color-panel-value"/>
         <span class="bg-color-${color}"></span>
       </label>`;
     });
@@ -103,7 +102,7 @@ const FolderForm = {
       __state.folder = { id : "" , name : ""};
       textField.val("");
       __colorPanel.find('input[type="radio"]').each(function(index , __input){
-        this.checked = false;
+        this.checked = __inputColor.value === 'default' ? true : false;
       });
       __folderForm.modal('show');
     });

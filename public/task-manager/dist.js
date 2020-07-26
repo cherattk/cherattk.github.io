@@ -684,7 +684,7 @@ var FolderForm = {
     var __colorPanelContent = "";
 
     __colorList.forEach(function (color, index) {
-      __colorPanelContent += "<label>\n        <input type=\"radio\" value=\"".concat(color, "\" name=\"color-panel-value\" \n        ").concat(color === 'default' ? "checked=\"chekced\"" : "", "/>\n        <span class=\"bg-color-").concat(color, "\"></span>\n      </label>");
+      __colorPanelContent += "<label>\n        <input type=\"radio\" value=\"".concat(color, "\" name=\"color-panel-value\"/>\n        <span class=\"bg-color-").concat(color, "\"></span>\n      </label>");
     });
 
     __colorPanel.append(__colorPanelContent); // ===========================================================
@@ -742,7 +742,7 @@ var FolderForm = {
       textField.val("");
 
       __colorPanel.find('input[type="radio"]').each(function (index, __input) {
-        this.checked = false;
+        this.checked = __inputColor.value === 'default' ? true : false;
       });
 
       __folderForm.modal('show');
