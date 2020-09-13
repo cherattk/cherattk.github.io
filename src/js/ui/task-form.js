@@ -13,7 +13,6 @@ function TaskForm(anchorID) {
     }
   };
 
-  var self = this;
   var __form = $(`
     <div class="task-form">
       <form id="task-form" title="add a new task to do">

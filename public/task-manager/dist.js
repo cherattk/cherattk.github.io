@@ -692,7 +692,7 @@ var FolderForm = {
 
     $("#" + anchorID).append(__folderForm);
 
-    var textField = __folderForm.find('#folder-name');
+    var folderNameField = __folderForm.find('#folder-name');
 
     __folderForm.submit(function (event) {
       event.preventDefault();
@@ -702,7 +702,7 @@ var FolderForm = {
       } // add regex filter
 
 
-      __state.folder.name = textField.val();
+      __state.folder.name = folderNameField.val();
 
       if (!__state.folder.name) {
         alert("You can not set an empty list");
@@ -724,7 +724,7 @@ var FolderForm = {
 
     AppEvent.addListener("edit-folder", function (event) {
       __state.folder = DataManager.getItem('folder', event.message.folder_id);
-      textField.val(__state.folder.name); // var inputList = __colorPanelContent.find('input[type="radio"]');
+      folderNameField.val(__state.folder.name); // var inputList = __colorPanelContent.find('input[type="radio"]');
 
       __colorPanel.find('input[type="radio"]').each(function (index, __input) {
         if (this.value === __state.folder.color) {
@@ -739,9 +739,9 @@ var FolderForm = {
         id: "",
         name: ""
       };
-      textField.val("");
+      folderNameField.val("");
 
-      __colorPanel.find('input[type="radio"]').each(function (index, __input) {
+      __colorPanel.find('input[type="radio"]').each(function (index, __inputColor) {
         this.checked = __inputColor.value === 'default' ? true : false;
       });
 
