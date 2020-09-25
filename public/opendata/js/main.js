@@ -103,7 +103,7 @@ function myStatOne() {
 $(document).ready(function () {
 
   var __myStatOne = new myStatOne();
-  var dataDate = '2020-juillet-10';
+  var dataDate = '2020-aout-27';
   document.getElementById('data-date').innerHTML = dataDate;
   var dataPath = 'data/data-' + dataDate + '.csv';
   __myStatOne.init(dataPath);
