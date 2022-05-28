@@ -1,0 +1,27 @@
+.panier-page{
+  padding:5rem 0;
+  max-width:1000px;
+}
+.panier-page p{
+  font-size:1.3rem;
+  margin:0 0 7px;
+}
+.panier-image{
+  width: 140px;
+}
+.panier-image img{
+  width:100%;
+}
+
+.panier-page input[name="product_quantite"]{
+  width:100px;
+}
+/***************************************/
+
+@media (max-width: 576px) {
+
+  .product-image img{
+    width:100%;
+  }
+  
+}

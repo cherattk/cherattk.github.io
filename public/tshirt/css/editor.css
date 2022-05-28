@@ -1,0 +1,141 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d1cece; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #9E9E9E; 
+}
+
+.editor-button{
+  height:500px;
+  padding-right:1.5rem;
+  overflow:auto;
+}
+.editor-button .user-image{
+  display: none;
+}
+
+.editor-button *{
+  vertical-align:middle;
+}
+.btn-apercu-image{
+  position:relative;
+}
+.editor-button > div{
+  /* border-bottom:1px dashed #ccc; */
+  padding:10px 0px;
+}
+.editor-button input[type="range"]{
+  display:block;
+  margin-top:.5rem;
+}
+.editor-button button{
+  min-width:110px;
+}
+
+/*******************************************/
+.viewport-legend{
+  margin-top:10px;
+}
+.viewport-legend .legend{
+  border:2px dashed transparent;
+  margin-bottom:10px;
+  text-align:center;
+  padding:5px 10px;
+}
+.viewport-legend .legend:hover{
+  cursor:pointer;
+}
+.viewport-legend .viewport-draw-area{
+  border-color:red;
+}
+.viewport-legend .viewport-draw-paper{
+  border-color:blue;
+}
+.image-output-container{
+  position: relative;
+  margin:10px auto;
+  overflow:hidden;
+}
+
+.image-modele{
+  width:100%; 
+}
+.image-output-background{
+  margin:0 auto 10px auto; 
+  width:500px;
+  height:500px;
+  overflow:hidden;
+}
+.image-thumb > div{
+  display:inline-block;
+  width:70px;
+  height:70px;
+  margin:0 10px;
+  border:2px solid #ddd;
+  border-radius:5px;
+  overflow:hidden;
+}
+.image-thumb > div:hover{
+  cursor:pointer;
+  border-color:#03A9F4;
+}
+
+.image-output{
+  /* format A3 1:1.41 */
+  width:230px;
+  height:324px;
+  /* */
+  border:2px dashed transparent;
+  position: absolute;
+  top:80px;
+  left:145px;
+  z-index:10;
+  overflow:
+  hidden;
+}
+.image-output:hover{
+  border-color:#aaa;
+}
+.image-output:hover img{
+  border-color:#aaa;
+}
+
+.image-output.edit-mode{
+  border-color:red;
+}
+.image-output img{
+  border:2px dashed transparent;
+  position: absolute;
+}
+.image-output img:hover{
+  cursor:move;
+}
+.image-output img.edit-mode{
+  border:2px solid #2196F3;
+  top:0;
+  left:0;
+}
+.image-output img.edit-mode:hover{
+  cursor:move;
+}
+
+.editor-list-image{
+  width:100px;
+}
+.editor-list-image img{
+  width:100%;
+  margin-bottom:.75rem;
+}

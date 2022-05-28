@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tshirt editor</title>
+
+  <link rel="stylesheet" type="text/css" media="screen" href="lib/fontawesome-free-5.12.1-web/css/all.min.css">
+
+    <!-- jquery must be included befiore bootstrap  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Bootstrap 4.6.1 core CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+    crossorigin="anonymous"></script>
+
+  <script src="lib/jquery-ui.1.13.1.custom/jquery-ui.min.js"></script>
+
+  <!-- Custom styles for this template -->
+  <link href="css/editor.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="editor-header px-3 py-2 border-bottom">
+    <h1 class="h3 text-primary">Company</h1>
+  </div>
+
+  <div class="editor-app d-flex container">
+
+    <!-- editor view -->
+    <div class="editor-main-view d-flex w-75">
+      <div class="viewport-legend">
+        <div onclick="showHelp()">
+          <!-- <span class="viewport-draw-area">
+            Printing Area
+          </span>
+          <span class="viewport-draw-paper">
+            Design Area
+          </span> -->
+          <span class="bg-light border"> Help </span>
+        </div>
+      </div>
+
+      <div class="image-output-container">
+        <img class="image-tshirt-background" src="img/tshirt-modele.jpg" />
+        <div id="image-output" class="image-output">
+          <!-- <div id="image-paper" class="image-paper image-edit-mode"  
+                draggable="true">
+            <img id="user-image" class=""
+            src="img/design-here.png"/>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- editor control -->
+    <div class="editor-button w-25">
+      <input id="select-image" type="file" class="user-image" accept="image/*" onchange="getImage(this.files)">
+      <div>
+        <button onclick="selectImage()" class="btn btn-outline-primary">
+          + Image
+          <!-- <i class="fas fa-upload ml-1"></i> -->
+          <i class="far fa-image ml-1"></i>
+        </button>
+        <button onclick="editMode(false)" data-edit="1" class="btn btn-outline-primary">
+          Aper&ccedil;u
+          <i class="far fa-eye ml-1"></i>
+        </button>
+      </div>
+
+      <div id="list-file-control" class="list-file-control">
+        <div>
+          <div>
+            <label for="imageRotation" class="m-0 mr-2">Rotation</label>
+            <span id="rotateValue">0&deg;</span>
+            <input id="imageRotation" name="image_rotation" type="range" min="0" max="360" value="0" class="slider"
+              disabled oninput="rotatePaper(this)" />
+          </div>
+          <br />
+          <div>
+            <label for="imageScale" class="m-0 mr-2">Resize</label>
+            <span id="scaleValue">x1</span>
+            <input id="imageScale" name="image_scale" type="range" min="0.1" max="2" step="0.1" value="1" class="slider"
+              disabled oninput="scaleImage(this)" />
+          </div>
+        </div>
+
+      </div>
+
+      <!-- <div>
+        <button onclick="transparentImage()" class="btn btn-light border">
+          Transparence
+        </button>
+      </div> -->
+    </div>
+
+  </div>
+
+  <!-- Editor Modal Help -->
+  <div class="modal fade" id="editorHelp" tabindex="-1" aria-labelledby="editorHelp" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content px-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editorHelp">Editor Area</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="viewport-legend">
+            <span class="viewport-draw-area">
+              Printing Area
+            </span>
+            <p>
+              The "Printing Area" is the area of the Clothe
+              where your design can be printed.
+              <br />
+              <b>It is a fixed area</b>
+            </p>
+            <hr />
+            <span class="viewport-draw-paper">
+              Design Area
+            </span>
+            <p>
+              The "Design Area" Area is the
+              maximum size of your design.
+              <br />
+              - It can be <b>scaled, rotated and moved.</b>
+              <br />
+              - Inside the "Printing Area"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="/js/editor.js"></script>
+
+</body>
+
+</html>
