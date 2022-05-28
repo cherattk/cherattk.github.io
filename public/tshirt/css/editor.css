@@ -35,14 +35,14 @@
 }
 .editor-button > div{
   /* border-bottom:1px dashed #ccc; */
-  padding:10px 0px;
+  /* padding:10px 0px; */
 }
 .editor-button input[type="range"]{
   display:block;
   margin-top:.5rem;
 }
 .editor-button button{
-  min-width:110px;
+  /* min-width:110px; */
 }
 
 /*******************************************/
@@ -133,9 +133,17 @@
 }
 
 .editor-list-image{
-  width:100px;
+  width:100%;
+}
+.editor-list-image > div{
+  margin-bottom:.75rem;
 }
 .editor-list-image img{
-  width:100%;
-  margin-bottom:.75rem;
+  border:1px solid #ccc;
+}
+.editor-list-image img ,
+.editor-list-image button{
+  width:100px;
+  display:block;
+  margin:auto;
 }

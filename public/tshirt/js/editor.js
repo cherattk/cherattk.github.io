@@ -69,9 +69,12 @@ function getImage(files) {
     console.log(imageLayer);
   });
 
+  var thumbImage = new Image();
+  ///
   var reader = new FileReader();
   reader.onload = function (e) {
     image.src = e.target.result;
+    thumbImage.src = e.target.result;
     image.onload = function () {
       // console.log(image.width);
       // console.log(image.height);
@@ -105,7 +108,32 @@ function getImage(files) {
   };
 
   $('#image-output').append(image);
+
+  var thumbImageDiv = document.createElement('DIV');
+  thumbImageDiv.id = "user-img-thumb-" + (new Date()).getTime();
+  var thumbImageButton = document.createElement('button');
+  thumbImageButton.type = "button";
+  thumbImageButton.className = "btn btn-sm btn-danger";
+  thumbImageButton.setAttribute('data-image' , image.id);
+  thumbImageButton.setAttribute('data-thumb' , thumbImageDiv.id);
+  thumbImageButton.innerHTML = "Supprimer";
+  thumbImageButton.onclick = function(e){
+    removeImagelayer(e.target);
+  }
+  $(thumbImageDiv).append(thumbImage);
+  $(thumbImageDiv).append(thumbImageButton);
+  $('#imageLayerList').append(thumbImageDiv);
   reader.readAsDataURL(file);
+}
+
+function removeImagelayer(el){
+  var imageId = el.getAttribute('data-image');
+  var thumbImageId = el.getAttribute('data-thumb');
+  document.getElementById(imageId).remove();
+  document.getElementById(thumbImageId).remove();
+  imageLayer = imageLayer.filter(function(imageData){
+    return imageData.id !== imageId;
+  });
 }
 
 function setControlValue(control , value){
