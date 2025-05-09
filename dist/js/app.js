@@ -45500,23 +45500,21 @@ function QuestionCard(_ref) {
   // }, [send]);
 
   var verifiedAnswer = function verifiedAnswer(answerIndex) {
-    var style = "";
     if (send) {
       if (userAnswers.includes(answerIndex) && question.good_answers_index.includes(answerIndex)) {
-        style = "good-answer";
+        return "good-answer";
       }
       if (!userAnswers.includes(answerIndex) && question.good_answers_index.includes(answerIndex)) {
         // style = "missed-answer";
-        style = "good-answer";
+        return "good-answer";
       }
-      // if (userAnswers.includes(answerIndex) && !question.good_answers_index.includes(answerIndex)) {
-      // 	style = "bad-answer";
-      // }
+      if (userAnswers.includes(answerIndex) && !question.good_answers_index.includes(answerIndex)) {
+        return "bad-user-answer";
+      }
       if (!question.good_answers_index.includes(answerIndex)) {
-        style = "bad-answer";
+        return "bad-answer";
       }
     }
-    return style;
   };
   var setAnswer = function setAnswer(event) {
     var input = event.target;
@@ -45622,13 +45620,13 @@ function QuizCard(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "card-body text-dark text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h5", {
-    className: "card-title text-dark py-3 bg-light"
+    className: "card-title text-dark py-3"
   }, quizMetadata.categorie), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
     className: "card-text mb-4"
   }, quizMetadata.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "d-flex justify-content-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    className: "px-3 py-1 rounded " + "question-level-" + quizMetadata.level
+    className: "badge p-2 " + "question-level-" + quizMetadata.level
   }, level == 1 ? "Beginner" : level == 2 ? "Intermediate" : "Advanced"))))));
 }
 

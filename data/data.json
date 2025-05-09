@@ -1,268 +1,6 @@
 [
   {
     "metadata": {
-      "id": 123,
-      "categorie": "Biology",
-      "description": "Beginner level biology questions",
-      "level": 1,
-      "title": "Biology for Beginners",
-      "nbr_question": 10
-    },
-    "questions": [
-      {
-        "question": "What is the basic unit of life",
-        "options": [
-          {
-            "answer": "Atom",
-            "answer_description": ""
-          },
-          {
-            "answer": "Cell",
-            "answer_description": "Cells are the fundamental building blocks of all living organisms. They provide structure for the body, take in nutrients from food and convert those nutrients into energy, and carry out specialized functions."
-          },
-          {
-            "answer": "Molecule",
-            "answer_description": ""
-          },
-          {
-            "answer": "Organ",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          1
-        ]
-      },
-      {
-        "question": "Which of the following is NOT a characteristic of living things",
-        "options": [
-          {
-            "answer": "Reproduction",
-            "answer_description": ""
-          },
-          {
-            "answer": "Growth",
-            "answer_description": ""
-          },
-          {
-            "answer": "Movement",
-            "answer_description": ""
-          },
-          {
-            "answer": "Inertia",
-            "answer_description": "Inertia is a property of matter by which it continues in its existing state of rest or uniform motion in a straight line, unless that state is changed by an external force. It is not a characteristic of living things."
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          3
-        ]
-      },
-      {
-        "question": "What process do plants use to make their own food",
-        "options": [
-          {
-            "answer": "Photosynthesis",
-            "answer_description": "Photosynthesis is the process by which plants use sunlight, water, and carbon dioxide to create their own food (sugars) and release oxygen as a byproduct. This process is essential for life on Earth."
-          },
-          {
-            "answer": "Respiration",
-            "answer_description": ""
-          },
-          {
-            "answer": "Digestion",
-            "answer_description": ""
-          },
-          {
-            "answer": "Fermentation",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          0
-        ]
-      },
-      {
-        "question": "Which gas do plants absorb from the atmosphere for photosynthesis",
-        "options": [
-          {
-            "answer": "Oxygen",
-            "answer_description": ""
-          },
-          {
-            "answer": "Carbon Dioxide",
-            "answer_description": "Plants absorb carbon dioxide (CO2) from the atmosphere through small pores in their leaves called stomata. They use it as a key ingredient in photosynthesis to produce glucose (sugar) and oxygen."
-          },
-          {
-            "answer": "Nitrogen",
-            "answer_description": ""
-          },
-          {
-            "answer": "Hydrogen",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          1
-        ]
-      },
-      {
-        "question": "What is the green pigment in plants that captures sunlight",
-        "options": [
-          {
-            "answer": "Chlorophyll",
-            "answer_description": "Chlorophyll is the green pigment found in the chloroplasts of plant cells. It plays a vital role in photosynthesis by absorbing light energy, particularly in the red and blue wavelengths, which is then converted into chemical energy."
-          },
-          {
-            "answer": "Xanthophyll",
-            "answer_description": ""
-          },
-          {
-            "answer": "Carotenoid",
-            "answer_description": ""
-          },
-          {
-            "answer": "Anthocyanin",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          0
-        ]
-      },
-      {
-        "question": "Which part of the human body is responsible for pumping blood",
-        "options": [
-          {
-            "answer": "Lungs",
-            "answer_description": ""
-          },
-          {
-            "answer": "Liver",
-            "answer_description": ""
-          },
-          {
-            "answer": "Heart",
-            "answer_description": "The heart is a muscular organ that pumps blood throughout the body. It's the central component of the circulatory system, delivering oxygen and nutrients to tissues and removing carbon dioxide and other waste products."
-          },
-          {
-            "answer": "Kidneys",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          2
-        ]
-      },
-      {
-        "question": "What is the function of the human skeleton",
-        "options": [
-          {
-            "answer": "Digestion",
-            "answer_description": ""
-          },
-          {
-            "answer": "Support and movement",
-            "answer_description": "The human skeleton provides structural support for the body, allowing us to maintain our shape and posture. It also works in conjunction with muscles to facilitate movement and protect vital organs."
-          },
-          {
-            "answer": "Breathing",
-            "answer_description": ""
-          },
-          {
-            "answer": "Thinking",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          1
-        ]
-      },
-      {
-        "question": "Which of the following is a mammal",
-        "options": [
-          {
-            "answer": "Snake",
-            "answer_description": ""
-          },
-          {
-            "answer": "Eagle",
-            "answer_description": ""
-          },
-          {
-            "answer": "Whale",
-            "answer_description": "Whales are mammals. They are warm-blooded, breathe air with lungs, give birth to live young, produce milk to feed their offspring, and have hair (though it's sparse)."
-          },
-          {
-            "answer": "Frog",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          2
-        ]
-      },
-      {
-        "question": "What type of animal is an insect",
-        "options": [
-          {
-            "answer": "Amphibian",
-            "answer_description": ""
-          },
-          {
-            "answer": "Reptile",
-            "answer_description": ""
-          },
-          {
-            "answer": "Mammal",
-            "answer_description": ""
-          },
-          {
-            "answer": "Invertebrate",
-            "answer_description": "Insects are invertebrates, meaning they lack a backbone. They belong to the arthropod family, characterized by an exoskeleton, segmented body, and jointed legs."
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          3
-        ]
-      },
-      {
-        "question": "Which of these is a type of flowering plant",
-        "options": [
-          {
-            "answer": "Pine Tree",
-            "answer_description": ""
-          },
-          {
-            "answer": "Fern",
-            "answer_description": ""
-          },
-          {
-            "answer": "Rose Bush",
-            "answer_description": "A rose bush is a type of flowering plant. Flowering plants, also known as angiosperms, are the most diverse group of land plants, characterized by their flowers and the production of seeds enclosed in fruit."
-          },
-          {
-            "answer": "Moss",
-            "answer_description": ""
-          }
-        ],
-        "multiple_choice": false,
-        "good_answers_index": [
-          2
-        ]
-      }
-    ]
-  },
-  {
-    "metadata": {
       "id": 456,
       "categorie": "Physics",
       "description": "Beginner level physics questions",
@@ -1757,6 +1495,2120 @@
         "multiple_choice": false,
         "good_answers_index": [
           0
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 123,
+      "categorie": "Biology",
+      "description": "Basic Biology Quiz.",
+      "level": 1,
+      "title": "Basic Biology Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "Which organelle is responsible for photosynthesis in plant cells",
+        "options": [
+          {
+            "answer": "Mitochondria",
+            "answer_description": ""
+          },
+          {
+            "answer": "Chloroplast",
+            "answer_description": "Chloroplasts contain chlorophyll, which captures light energy for photosynthesis."
+          },
+          {
+            "answer": "Nucleus",
+            "answer_description": ""
+          },
+          {
+            "answer": "Endoplasmic reticulum",
+            "answer_description": ""
+          },
+          {
+            "answer": "Golgi apparatus",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the name for the process of cell division in eukaryotic cells that results in two daughter cells",
+        "options": [
+          {
+            "answer": "Meiosis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mitosis",
+            "answer_description": "Mitosis is the process of nuclear division that results in two genetically identical daughter cells."
+          },
+          {
+            "answer": "Binary fission",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fertilization",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sporulation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is the genetic material found in cells",
+        "options": [
+          {
+            "answer": "Protein",
+            "answer_description": ""
+          },
+          {
+            "answer": "Carbohydrate",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lipid",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ribonucleic acid (RNA)",
+            "answer_description": ""
+          },
+          {
+            "answer": "Deoxyribonucleic acid (DNA)",
+            "answer_description": "DNA carries the genetic instructions used in the growth, development, functioning, and reproduction of all known living organisms."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          4
+        ]
+      },
+      {
+        "question": "What is the primary function of red blood cells",
+        "options": [
+          {
+            "answer": "Fighting infection",
+            "answer_description": ""
+          },
+          {
+            "answer": "Blood clotting",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oxygen transport",
+            "answer_description": "Red blood cells contain hemoglobin, which binds to oxygen and carries it throughout the body."
+          },
+          {
+            "answer": "Digesting food",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hormone transport",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which type of tissue covers the body's surfaces and lines its cavities",
+        "options": [
+          {
+            "answer": "Muscle tissue",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nervous tissue",
+            "answer_description": ""
+          },
+          {
+            "answer": "Connective tissue",
+            "answer_description": ""
+          },
+          {
+            "answer": "Epithelial tissue",
+            "answer_description": "Epithelial tissue forms a protective barrier and can also be involved in secretion and absorption."
+          },
+          {
+            "answer": "Vascular tissue",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is the term for a group of organisms of one species that live in the same area",
+        "options": [
+          {
+            "answer": "Community",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ecosystem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Population",
+            "answer_description": "A population is a group of individuals of the same species living in a particular geographic area."
+          },
+          {
+            "answer": "Biome",
+            "answer_description": ""
+          },
+          {
+            "answer": "Habitat",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which gas is released as a waste product of photosynthesis",
+        "options": [
+          {
+            "answer": "Carbon dioxide",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nitrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hydrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Methane",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oxygen",
+            "answer_description": "Oxygen is produced as a byproduct when plants use light energy to convert carbon dioxide and water into glucose."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          4
+        ]
+      },
+      {
+        "question": "What is the process by which water evaporates from plant leaves",
+        "options": [
+          {
+            "answer": "Respiration",
+            "answer_description": ""
+          },
+          {
+            "answer": "Transpiration",
+            "answer_description": "Transpiration is the process of water movement through a plant and its evaporation from aerial parts, such as leaves, stems and flowers."
+          },
+          {
+            "answer": "Photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Guttation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Osmosis",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is the largest taxonomic group",
+        "options": [
+          {
+            "answer": "Species",
+            "answer_description": ""
+          },
+          {
+            "answer": "Genus",
+            "answer_description": ""
+          },
+          {
+            "answer": "Family",
+            "answer_description": ""
+          },
+          {
+            "answer": "Order",
+            "answer_description": ""
+          },
+          {
+            "answer": "Kingdom",
+            "answer_description": "Kingdom is the highest taxonomic rank, grouping organisms based on fundamental similarities."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          4
+        ]
+      },
+      {
+        "question": "What is the function of the ribosome in a cell",
+        "options": [
+          {
+            "answer": "DNA replication",
+            "answer_description": ""
+          },
+          {
+            "answer": "Energy production",
+            "answer_description": ""
+          },
+          {
+            "answer": "Protein synthesis",
+            "answer_description": "Ribosomes are the site of protein synthesis, where they translate genetic code from messenger RNA into proteins."
+          },
+          {
+            "answer": "Waste disposal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lipid synthesis",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 456,
+      "categorie": "Biology",
+      "description": "Mitochondria, the powerhouse of the cell.",
+      "level": 2,
+      "title": "Mitochondria Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the primary function of mitochondria in eukaryotic cells",
+        "options": [
+          {
+            "answer": "Protein synthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lipid storage",
+            "answer_description": ""
+          },
+          {
+            "answer": "ATP (adenosine triphosphate) production",
+            "answer_description": "Mitochondria are the main site of cellular respiration, generating ATP, the cell's energy currency."
+          },
+          {
+            "answer": "Waste degradation",
+            "answer_description": ""
+          },
+          {
+            "answer": "DNA replication",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a key molecule produced by mitochondria",
+        "options": [
+          {
+            "answer": "Glucose",
+            "answer_description": ""
+          },
+          {
+            "answer": "Amino acid",
+            "answer_description": ""
+          },
+          {
+            "answer": "ATP",
+            "answer_description": "Adenosine triphosphate (ATP) is the primary energy carrier for cells, produced in large quantities by mitochondria."
+          },
+          {
+            "answer": "RNA",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fatty acid",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the name of the process that occurs in mitochondria to generate energy",
+        "options": [
+          {
+            "answer": "Photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Translation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cellular respiration",
+            "answer_description": "Cellular respiration is the metabolic process in mitochondria that converts nutrients into ATP."
+          },
+          {
+            "answer": "Transcription",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fermentation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a structural feature of mitochondria",
+        "options": [
+          {
+            "answer": "Cell wall",
+            "answer_description": ""
+          },
+          {
+            "answer": "Large central vacuole",
+            "answer_description": ""
+          },
+          {
+            "answer": "Double membrane",
+            "answer_description": "Mitochondria have an outer and an inner membrane with folds called cristae."
+          },
+          {
+            "answer": "Chloroplast",
+            "answer_description": ""
+          },
+          {
+            "answer": "Smooth endoplasmic reticulum",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What are the folds of the inner mitochondrial membrane called",
+        "options": [
+          {
+            "answer": "Thylakoids",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cristae",
+            "answer_description": "Cristae increase the surface area for ATP production within the mitochondria."
+          },
+          {
+            "answer": "Grana",
+            "answer_description": ""
+          },
+          {
+            "answer": "Stroma",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lamellae",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Where does the Krebs cycle (Citric Acid Cycle) take place in mitochondria",
+        "options": [
+          {
+            "answer": "Outer membrane",
+            "answer_description": ""
+          },
+          {
+            "answer": "Intermembrane space",
+            "answer_description": ""
+          },
+          {
+            "answer": "Matrix",
+            "answer_description": "The Krebs cycle occurs in the mitochondrial matrix, the space within the inner membrane."
+          },
+          {
+            "answer": "Cristae membrane",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cytoplasm",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which molecule is the starting material for the Krebs cycle",
+        "options": [
+          {
+            "answer": "Glucose",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pyruvate",
+            "answer_description": ""
+          },
+          {
+            "answer": "Acetyl CoA",
+            "answer_description": "Acetyl CoA is the molecule that enters the Krebs cycle, derived from pyruvate."
+          },
+          {
+            "answer": "Oxaloacetate",
+            "answer_description": ""
+          },
+          {
+            "answer": "Citrate",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the role of the electron transport chain (ETC) in mitochondria",
+        "options": [
+          {
+            "answer": "Glucose breakdown",
+            "answer_description": ""
+          },
+          {
+            "answer": "Carbon dioxide production",
+            "answer_description": ""
+          },
+          {
+            "answer": "ATP synthesis",
+            "answer_description": "The ETC uses a series of protein complexes to generate a proton gradient that drives ATP synthesis."
+          },
+          {
+            "answer": "Oxygen storage",
+            "answer_description": ""
+          },
+          {
+            "answer": "Water storage",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which gas is required for the final step of the electron transport chain in mitochondria",
+        "options": [
+          {
+            "answer": "Carbon dioxide",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nitrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hydrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oxygen",
+            "answer_description": "Oxygen is the final electron acceptor in the ETC, forming water."
+          },
+          {
+            "answer": "Carbon monoxide",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "Do mitochondria have their own DNA",
+        "options": [
+          {
+            "answer": "No, they rely entirely on the cell's nuclear DNA.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yes, their DNA is identical to nuclear DNA.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yes, and it's circular, similar to bacterial DNA.",
+            "answer_description": "Mitochondria contain their own circular DNA, supporting the endosymbiotic theory."
+          },
+          {
+            "answer": "Yes, but it only codes for ribosomal RNA.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yes, but it's only present in plant mitochondria.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 789,
+      "categorie": "Physics",
+      "description": "Challenge your understanding of electromagnetism.",
+      "level": 2,
+      "title": "Electromagnetism Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the relationship between the electric field and electric potential",
+        "options": [
+          {
+            "answer": "Electric field is the gradient of the electric potential.",
+            "answer_description": "The electric field is the negative gradient of the electric potential, indicating the direction of the force on a positive charge."
+          },
+          {
+            "answer": "Electric field is the curl of the electric potential.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Electric field is equal to the electric potential.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Electric field is the Laplacian of the electric potential.",
+            "answer_description": ""
+          },
+          {
+            "answer": "There is no direct relationship.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of Maxwell's equations describes the absence of magnetic monopoles",
+        "options": [
+          {
+            "answer": "Gauss's law for electricity",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gauss's law for magnetism",
+            "answer_description": "Gauss's law for magnetism states that the net magnetic flux through any closed surface is zero, implying the non-existence of magnetic monopoles."
+          },
+          {
+            "answer": "Faraday's law of induction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ampere-Maxwell's law",
+            "answer_description": ""
+          },
+          {
+            "answer": "Coulomb's law",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What does the Poynting vector represent",
+        "options": [
+          {
+            "answer": "Electric potential energy density",
+            "answer_description": ""
+          },
+          {
+            "answer": "Magnetic field strength",
+            "answer_description": ""
+          },
+          {
+            "answer": "Energy density of the electromagnetic field",
+            "answer_description": ""
+          },
+          {
+            "answer": "Direction of energy flow in an electromagnetic field",
+            "answer_description": "The Poynting vector represents the directional energy flux density (the rate of energy transfer per unit area) of an electromagnetic field."
+          },
+          {
+            "answer": "Force on a moving charge",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "In electromagnetic induction, what does Lenz's law state",
+        "options": [
+          {
+            "answer": "The induced current flows to oppose the change in magnetic flux.",
+            "answer_description": "Lenz's law states that the induced electromotive force (EMF) and current in a circuit always oppose the change in magnetic flux that caused them."
+          },
+          {
+            "answer": "The induced current flows to aid the change in magnetic flux.",
+            "answer_description": ""
+          },
+          {
+            "answer": "The induced current flows in the same direction as the magnetic field.",
+            "answer_description": ""
+          },
+          {
+            "answer": "The induced current is directly proportional to the magnetic flux.",
+            "answer_description": ""
+          },
+          {
+            "answer": "There is no specific direction for the induced current.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the speed of electromagnetic waves in a vacuum",
+        "options": [
+          {
+            "answer": "Dependent on their frequency",
+            "answer_description": ""
+          },
+          {
+            "answer": "Dependent on their wavelength",
+            "answer_description": ""
+          },
+          {
+            "answer": "Approximately 3 x 10^8 meters per second",
+            "answer_description": "Electromagnetic waves, including light, travel at the speed of light (c ≈ 3 x 10^8 m/s) in a vacuum."
+          },
+          {
+            "answer": "Infinite",
+            "answer_description": ""
+          },
+          {
+            "answer": "Variable and unpredictable",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following equations represents Ampere-Maxwell's law",
+        "options": [
+          {
+            "answer": "∇ ⋅ E = ρ / ε₀",
+            "answer_description": ""
+          },
+          {
+            "answer": "∇ ⋅ B = 0",
+            "answer_description": ""
+          },
+          {
+            "answer": "∇ × E = - ∂B / ∂t",
+            "answer_description": ""
+          },
+          {
+            "answer": "∇ × B = μ₀ (J + ε₀ ∂E / ∂t)",
+            "answer_description": "Ampere-Maxwell's law relates the magnetic field to electric current and changing electric fields."
+          },
+          {
+            "answer": "E = -∇V",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is the Lorentz force",
+        "options": [
+          {
+            "answer": "The force between two stationary charges",
+            "answer_description": ""
+          },
+          {
+            "answer": "The force on a current-carrying wire in a magnetic field",
+            "answer_description": ""
+          },
+          {
+            "answer": "The force on a charge moving in an electromagnetic field",
+            "answer_description": "The Lorentz force is the combined force exerted on a charged particle due to electric and magnetic fields."
+          },
+          {
+            "answer": "The force between two parallel currents",
+            "answer_description": ""
+          },
+          {
+            "answer": "The force due to electromagnetic induction",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is electric displacement field (D)",
+        "options": [
+          {
+            "answer": "Another term for electric field intensity",
+            "answer_description": ""
+          },
+          {
+            "answer": "A field that relates the electric field to free charge density in a dielectric",
+            "answer_description": "The electric displacement field (D) is related to the electric field (E) and takes into account the effect of a dielectric material."
+          },
+          {
+            "answer": "The magnetic field produced by a displacement current",
+            "answer_description": ""
+          },
+          {
+            "answer": "A field that represents the energy stored in an electric field",
+            "answer_description": ""
+          },
+          {
+            "answer": "The electric field in a vacuum",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the skin effect in conductors",
+        "options": [
+          {
+            "answer": "Heating of the conductor due to current flow",
+            "answer_description": ""
+          },
+          {
+            "answer": "The tendency of AC current to concentrate near the surface of a conductor",
+            "answer_description": "The skin effect is the phenomenon where alternating current tends to flow more on the surface of a conductor, reducing the effective cross-sectional area."
+          },
+          {
+            "answer": "The change in resistance of a conductor with temperature",
+            "answer_description": ""
+          },
+          {
+            "answer": "The emission of electrons from a conductor when heated",
+            "answer_description": ""
+          },
+          {
+            "answer": "The magnetic field generated around a conductor",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the significance of the displacement current in Maxwell's equations",
+        "options": [
+          {
+            "answer": "It explains the flow of electrons in a conductor.",
+            "answer_description": ""
+          },
+          {
+            "answer": "It modifies Ampere's law to include the effect of changing electric fields, ensuring consistency.",
+            "answer_description": "Displacement current accounts for the changing electric field's contribution to the magnetic field, making Maxwell's equations complete and predicting electromagnetic waves."
+          },
+          {
+            "answer": "It describes the current due to the movement of ions in a solution.",
+            "answer_description": ""
+          },
+          {
+            "answer": "It represents the current in a DC circuit.",
+            "answer_description": ""
+          },
+          {
+            "answer": "It is related to the piezoelectric effect.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 901,
+      "categorie": "Geology",
+      "description": "Geological Quiz.",
+      "level": 2,
+      "title": "Geology Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the primary mechanism driving plate tectonics",
+        "options": [
+          {
+            "answer": "Tidal forces from the Moon and Sun",
+            "answer_description": ""
+          },
+          {
+            "answer": "Density differences in the mantle causing convection",
+            "answer_description": "Mantle convection, driven by heat from Earth's interior, is the main force behind the movement of tectonic plates."
+          },
+          {
+            "answer": "Gravitational pull of the outer planets",
+            "answer_description": ""
+          },
+          {
+            "answer": "Earth's rotation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Magnetic field interactions with the solar wind",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which type of metamorphism is typically associated with large-scale mountain building events",
+        "options": [
+          {
+            "answer": "Contact metamorphism",
+            "answer_description": ""
+          },
+          {
+            "answer": "Regional metamorphism",
+            "answer_description": "Regional metamorphism occurs over large areas, often during orogenic events, resulting in high temperatures and pressures."
+          },
+          {
+            "answer": "Hydrothermal metamorphism",
+            "answer_description": ""
+          },
+          {
+            "answer": "Shock metamorphism",
+            "answer_description": ""
+          },
+          {
+            "answer": "Burial metamorphism",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What does the principle of superposition state in stratigraphy",
+        "options": [
+          {
+            "answer": "Fossil organisms succeed one another in a definite and determinable order.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Rock layers are deposited horizontally.",
+            "answer_description": ""
+          },
+          {
+            "answer": "In any undisturbed sequence of rocks deposited in layers, the youngest layer is on top and the oldest on bottom.",
+            "answer_description": "The principle of superposition is a fundamental concept in stratigraphy for determining the relative ages of rock layers."
+          },
+          {
+            "answer": "Geologic processes operating today also operated in the past.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sedimentary strata extend outward in all directions until they thin and pinch out or terminate against the edges of the depositional basin.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following minerals is a common example of a nesosilicate",
+        "options": [
+          {
+            "answer": "Quartz",
+            "answer_description": ""
+          },
+          {
+            "answer": "Feldspar",
+            "answer_description": ""
+          },
+          {
+            "answer": "Olivine",
+            "answer_description": "Olivine has an isolated tetrahedral silicate structure, classifying it as a nesosilicate."
+          },
+          {
+            "answer": "Pyroxene",
+            "answer_description": ""
+          },
+          {
+            "answer": "Amphibole",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What type of seismic wave typically has the highest velocity",
+        "options": [
+          {
+            "answer": "Love waves",
+            "answer_description": ""
+          },
+          {
+            "answer": "Rayleigh waves",
+            "answer_description": ""
+          },
+          {
+            "answer": "P-waves (Primary waves)",
+            "answer_description": "P-waves are compressional waves and travel fastest through the Earth's interior."
+          },
+          {
+            "answer": "S-waves (Secondary waves)",
+            "answer_description": ""
+          },
+          {
+            "answer": "Surface waves",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a characteristic feature of a transform plate boundary",
+        "options": [
+          {
+            "answer": "Volcanic island arcs",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mid-ocean ridges",
+            "answer_description": ""
+          },
+          {
+            "answer": "Strike-slip faults",
+            "answer_description": "Transform boundaries are characterized by plates sliding past each other horizontally along strike-slip faults."
+          },
+          {
+            "answer": "Deep ocean trenches",
+            "answer_description": ""
+          },
+          {
+            "answer": "Folded mountain belts",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the term for the total amount of solid material transported by a stream",
+        "options": [
+          {
+            "answer": "Discharge",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gradient",
+            "answer_description": ""
+          },
+          {
+            "answer": "Load",
+            "answer_description": "The load of a stream refers to the total quantity of solid matter it carries."
+          },
+          {
+            "answer": "Velocity",
+            "answer_description": ""
+          },
+          {
+            "answer": "Base level",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following factors primarily controls the viscosity of magma",
+        "options": [
+          {
+            "answer": "Volume of the magma chamber",
+            "answer_description": ""
+          },
+          {
+            "answer": "Rate of volcanic eruption",
+            "answer_description": ""
+          },
+          {
+            "answer": "Silica content",
+            "answer_description": "Higher silica content leads to higher viscosity in magma due to increased polymerization."
+          },
+          {
+            "answer": "Temperature of the surrounding rocks",
+            "answer_description": ""
+          },
+          {
+            "answer": "Earth's magnetic field",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What type of weathering involves the breakdown of rocks through chemical reactions",
+        "options": [
+          {
+            "answer": "Mechanical weathering",
+            "answer_description": ""
+          },
+          {
+            "answer": "Physical weathering",
+            "answer_description": ""
+          },
+          {
+            "answer": "Chemical weathering",
+            "answer_description": "Chemical weathering alters the mineral composition of rocks through reactions with water, air, and acids."
+          },
+          {
+            "answer": "Biological weathering",
+            "answer_description": ""
+          },
+          {
+            "answer": "Exfoliation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which geologic time period is known as the 'Age of Reptiles'",
+        "options": [
+          {
+            "answer": "Paleozoic Era",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cenozoic Era",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mesozoic Era",
+            "answer_description": "The Mesozoic Era is widely known as the 'Age of Reptiles', during which dinosaurs flourished."
+          },
+          {
+            "answer": "Precambrian Supereon",
+            "answer_description": ""
+          },
+          {
+            "answer": "Neogene Period",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 1122,
+      "categorie": "Computer Science",
+      "description": "Computer science Quiz.",
+      "level": 2,
+      "title": "Computer Science Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "Which data structure is most efficient for implementing a priority queue",
+        "options": [
+          {
+            "answer": "Linked List",
+            "answer_description": ""
+          },
+          {
+            "answer": "Array",
+            "answer_description": ""
+          },
+          {
+            "answer": "Binary Search Tree",
+            "answer_description": ""
+          },
+          {
+            "answer": "Heap",
+            "answer_description": "Heaps, especially binary heaps, provide efficient insertion and extraction of the highest (or lowest) priority element."
+          },
+          {
+            "answer": "Hash Table",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is the primary purpose of a virtual memory system",
+        "options": [
+          {
+            "answer": "To increase the speed of the CPU",
+            "answer_description": ""
+          },
+          {
+            "answer": "To allow programs to use more memory than physically available",
+            "answer_description": "Virtual memory uses disk space to simulate additional RAM, enabling the execution of larger programs."
+          },
+          {
+            "answer": "To improve the security of the operating system",
+            "answer_description": ""
+          },
+          {
+            "answer": "To manage file storage on the hard drive",
+            "answer_description": ""
+          },
+          {
+            "answer": "To provide a graphical user interface",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a key characteristic of a relational database",
+        "options": [
+          {
+            "answer": "Data is stored in a hierarchical structure",
+            "answer_description": ""
+          },
+          {
+            "answer": "Data is organized into tables with relationships between them",
+            "answer_description": "Relational databases use tables with rows and columns, and relationships are defined using keys."
+          },
+          {
+            "answer": "Data is stored as key-value pairs",
+            "answer_description": ""
+          },
+          {
+            "answer": "Data is stored in a graph structure",
+            "answer_description": ""
+          },
+          {
+            "answer": "Data is stored in a document-oriented format",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What does the term 'Big O notation' represent in computer science",
+        "options": [
+          {
+            "answer": "The optimal solution to a problem",
+            "answer_description": ""
+          },
+          {
+            "answer": "The efficiency of an algorithm in the best-case scenario",
+            "answer_description": ""
+          },
+          {
+            "answer": "The upper bound on the growth rate of an algorithm's time or space complexity",
+            "answer_description": "Big O notation describes the worst-case or upper bound of an algorithm's performance as the input size increases."
+          },
+          {
+            "answer": "The average memory usage of a program",
+            "answer_description": ""
+          },
+          {
+            "answer": "The programming language used to implement an algorithm",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a core principle of object-oriented programming",
+        "options": [
+          {
+            "answer": "Procedural decomposition",
+            "answer_description": ""
+          },
+          {
+            "answer": "Functional programming",
+            "answer_description": ""
+          },
+          {
+            "answer": "Encapsulation",
+            "answer_description": "Encapsulation involves bundling data and methods that operate on that data within a single unit, or object."
+          },
+          {
+            "answer": "Assembly language programming",
+            "answer_description": ""
+          },
+          {
+            "answer": "Logic programming",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the purpose of a compiler in the software development process",
+        "options": [
+          {
+            "answer": "To execute code directly",
+            "answer_description": ""
+          },
+          {
+            "answer": "To translate source code into machine code",
+            "answer_description": "A compiler converts human-readable source code into machine code that a computer can execute."
+          },
+          {
+            "answer": "To debug and find errors in code",
+            "answer_description": ""
+          },
+          {
+            "answer": "To manage memory allocation",
+            "answer_description": ""
+          },
+          {
+            "answer": "To design user interfaces",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a common technique for preventing SQL injection attacks",
+        "options": [
+          {
+            "answer": "Using strong passwords",
+            "answer_description": ""
+          },
+          {
+            "answer": "Encrypting network traffic",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sanitizing user inputs",
+            "answer_description": "Sanitizing user inputs involves properly escaping or filtering characters that could be part of a malicious SQL query."
+          },
+          {
+            "answer": "Implementing a firewall",
+            "answer_description": ""
+          },
+          {
+            "answer": "Using HTTPS",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the role of a DNS (Domain Name System)",
+        "options": [
+          {
+            "answer": "To assign IP addresses to devices on a local network",
+            "answer_description": ""
+          },
+          {
+            "answer": "To translate domain names to IP addresses",
+            "answer_description": "DNS resolves human-readable domain names like 'google.com' to machine-readable IP addresses."
+          },
+          {
+            "answer": "To manage network security protocols",
+            "answer_description": ""
+          },
+          {
+            "answer": "To route data packets across the internet",
+            "answer_description": ""
+          },
+          {
+            "answer": "To provide file storage services",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a fundamental concept in concurrent programming",
+        "options": [
+          {
+            "answer": "Abstraction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Inheritance",
+            "answer_description": ""
+          },
+          {
+            "answer": "Polymorphism",
+            "answer_description": ""
+          },
+          {
+            "answer": "Synchronization",
+            "answer_description": "Synchronization mechanisms like locks and semaphores are crucial for managing access to shared resources in concurrent programs."
+          },
+          {
+            "answer": "Recursion",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is the purpose of version control systems like Git",
+        "options": [
+          {
+            "answer": "To optimize code performance",
+            "answer_description": ""
+          },
+          {
+            "answer": "To manage and track changes to source code",
+            "answer_description": "Version control systems allow developers to collaborate, track changes, and revert to previous versions of code."
+          },
+          {
+            "answer": "To create user interfaces",
+            "answer_description": ""
+          },
+          {
+            "answer": "To deploy applications to servers",
+            "answer_description": ""
+          },
+          {
+            "answer": "To design database schemas",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 1234,
+      "categorie": "Botany",
+      "description": "Plant biology.",
+      "level": 2,
+      "title": "Botany Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the primary function of the Casparian strip in plant roots",
+        "options": [
+          {
+            "answer": "To facilitate water movement through the xylem",
+            "answer_description": ""
+          },
+          {
+            "answer": "To regulate the movement of water and minerals into the vascular cylinder",
+            "answer_description": "The Casparian strip, a band of suberin in the endodermis, forces water and minerals to pass through cells, allowing for selective uptake."
+          },
+          {
+            "answer": "To provide structural support to the root",
+            "answer_description": ""
+          },
+          {
+            "answer": "To store carbohydrates",
+            "answer_description": ""
+          },
+          {
+            "answer": "To increase the surface area for absorption",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a key characteristic of C4 photosynthesis",
+        "options": [
+          {
+            "answer": "Initial carbon fixation occurs in the mesophyll cells",
+            "answer_description": ""
+          },
+          {
+            "answer": "Photorespiration is high",
+            "answer_description": ""
+          },
+          {
+            "answer": "It is less efficient in hot, dry climates compared to C3 photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Carbon fixation occurs in bundle sheath cells",
+            "answer_description": "C4 photosynthesis minimizes photorespiration by concentrating CO2 in bundle sheath cells where the Calvin cycle occurs."
+          },
+          {
+            "answer": "It uses the enzyme RuBisCO for initial carbon fixation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What role do mycorrhizae play in plant nutrition",
+        "options": [
+          {
+            "answer": "They protect plants from herbivores",
+            "answer_description": ""
+          },
+          {
+            "answer": "They fix atmospheric nitrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "They enhance the uptake of water and minerals by plant roots",
+            "answer_description": "Mycorrhizae are symbiotic associations between fungi and plant roots that significantly increase the root's absorptive surface area."
+          },
+          {
+            "answer": "They produce plant hormones",
+            "answer_description": ""
+          },
+          {
+            "answer": "They inhibit the growth of other plants",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which plant hormone is primarily responsible for apical dominance",
+        "options": [
+          {
+            "answer": "Gibberellins",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cytokinins",
+            "answer_description": ""
+          },
+          {
+            "answer": "Abscisic acid (ABA)",
+            "answer_description": ""
+          },
+          {
+            "answer": "Auxin",
+            "answer_description": "Auxin, produced in the apical meristem, inhibits the growth of lateral buds, maintaining apical dominance."
+          },
+          {
+            "answer": "Ethylene",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is the process of double fertilization unique to",
+        "options": [
+          {
+            "answer": "Bryophytes",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pteridophytes",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gymnosperms",
+            "answer_description": ""
+          },
+          {
+            "answer": "Angiosperms",
+            "answer_description": "Double fertilization in angiosperms involves one sperm fertilizing the egg and another fertilizing the central cell to form the endosperm."
+          },
+          {
+            "answer": "Algae",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "Which of the following is a characteristic of phloem tissue",
+        "options": [
+          {
+            "answer": "Transports water and minerals upward",
+            "answer_description": ""
+          },
+          {
+            "answer": "Composed primarily of tracheids",
+            "answer_description": ""
+          },
+          {
+            "answer": "Transports sugars and other metabolic products throughout the plant",
+            "answer_description": "Phloem transports sugars, amino acids, and other substances bidirectionally throughout the plant."
+          },
+          {
+            "answer": "Cells are dead at maturity",
+            "answer_description": ""
+          },
+          {
+            "answer": "Provides structural support",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the function of stomata in leaves",
+        "options": [
+          {
+            "answer": "To provide structural support",
+            "answer_description": ""
+          },
+          {
+            "answer": "To store water",
+            "answer_description": ""
+          },
+          {
+            "answer": "To regulate gas exchange and transpiration",
+            "answer_description": "Stomata are pores in the leaf epidermis that allow for CO2 uptake and water vapor release."
+          },
+          {
+            "answer": "To attract pollinators",
+            "answer_description": ""
+          },
+          {
+            "answer": "To protect against herbivores",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following describes the alternation of generations in plants",
+        "options": [
+          {
+            "answer": "The alternation between haploid and diploid multicellular stages",
+            "answer_description": "Plants alternate between a haploid gametophyte and a diploid sporophyte in their life cycle."
+          },
+          {
+            "answer": "The alternation between sexual and asexual reproduction",
+            "answer_description": ""
+          },
+          {
+            "answer": "The alternation between aquatic and terrestrial forms",
+            "answer_description": ""
+          },
+          {
+            "answer": "The alternation between flowering and non-flowering stages",
+            "answer_description": ""
+          },
+          {
+            "answer": "The alternation between dormancy and active growth",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the primary function of lenticels on stems",
+        "options": [
+          {
+            "answer": "To prevent water loss",
+            "answer_description": ""
+          },
+          {
+            "answer": "To provide structural support",
+            "answer_description": ""
+          },
+          {
+            "answer": "To facilitate gas exchange",
+            "answer_description": "Lenticels are pores in the periderm that allow for gas exchange between the stem and the atmosphere."
+          },
+          {
+            "answer": "To store food reserves",
+            "answer_description": ""
+          },
+          {
+            "answer": "To produce flowers",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a characteristic of monocotyledonous plants",
+        "options": [
+          {
+            "answer": "Net-like venation in leaves",
+            "answer_description": ""
+          },
+          {
+            "answer": "Vascular bundles arranged in a ring in the stem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Two cotyledons in the seed",
+            "answer_description": ""
+          },
+          {
+            "answer": "Flower parts in multiples of four or five",
+            "answer_description": ""
+          },
+          {
+            "answer": "Parallel venation in leaves",
+            "answer_description": "Monocots typically have leaves with parallel veins."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 5678,
+      "categorie": "Astronomy",
+      "description": "Astronomical Quiz.",
+      "level": 2,
+      "title": "Astronomy Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the primary mechanism responsible for the energy production in main sequence stars",
+        "options": [
+          {
+            "answer": "Gravitational contraction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nuclear fission of heavy elements",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nuclear fusion of hydrogen into helium",
+            "answer_description": "Main sequence stars generate energy through the proton-proton chain or the CNO cycle, both fusing hydrogen into helium in their cores."
+          },
+          {
+            "answer": "Chemical combustion",
+            "answer_description": ""
+          },
+          {
+            "answer": "Black hole accretion",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following provides the strongest evidence for the existence of dark matter in galaxies",
+        "options": [
+          {
+            "answer": "The observed redshift of distant galaxies",
+            "answer_description": ""
+          },
+          {
+            "answer": "The cosmic microwave background radiation",
+            "answer_description": ""
+          },
+          {
+            "answer": "The flat rotation curves of spiral galaxies",
+            "answer_description": "The unexpectedly constant orbital speeds of stars at increasing radii suggest the presence of additional, non-luminous mass (dark matter)."
+          },
+          {
+            "answer": "The abundance of light elements in the universe",
+            "answer_description": ""
+          },
+          {
+            "answer": "The detection of gravitational waves",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the Tolman-Oppenheimer-Volkoff limit",
+        "options": [
+          {
+            "answer": "The maximum mass of a white dwarf star",
+            "answer_description": ""
+          },
+          {
+            "answer": "The minimum mass required for a star to become a black hole",
+            "answer_description": ""
+          },
+          {
+            "answer": "The maximum mass of a neutron star before it collapses into a black hole",
+            "answer_description": "The TOV limit is the upper mass limit for neutron stars beyond which their internal pressure cannot support them against gravitational collapse."
+          },
+          {
+            "answer": "The maximum luminosity of a star",
+            "answer_description": ""
+          },
+          {
+            "answer": "The minimum temperature for nuclear fusion to begin in a star's core",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which cosmological model is currently the most widely accepted description of the universe's evolution",
+        "options": [
+          {
+            "answer": "The Steady State theory",
+            "answer_description": ""
+          },
+          {
+            "answer": "The Oscillating Universe theory",
+            "answer_description": ""
+          },
+          {
+            "answer": "The Big Bang theory with Lambda-CDM (Lambda Cold Dark Matter)",
+            "answer_description": "Lambda-CDM incorporates a cosmological constant (Lambda) for dark energy and cold dark matter to explain the universe's expansion and structure."
+          },
+          {
+            "answer": "The Eternal Inflation theory",
+            "answer_description": ""
+          },
+          {
+            "answer": "The Holographic Universe theory",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is gravitational lensing",
+        "options": [
+          {
+            "answer": "The bending of light around massive objects",
+            "answer_description": "Gravitational lensing occurs when the gravity of a massive object bends the path of light from a more distant object behind it."
+          },
+          {
+            "answer": "The emission of gravitational waves by accelerating masses",
+            "answer_description": ""
+          },
+          {
+            "answer": "The slowing down of time in strong gravitational fields",
+            "answer_description": ""
+          },
+          {
+            "answer": "The expansion of spacetime due to mass",
+            "answer_description": ""
+          },
+          {
+            "answer": "The absorption of light by black holes",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the event horizon of a black hole",
+        "options": [
+          {
+            "answer": "The physical surface of the black hole",
+            "answer_description": ""
+          },
+          {
+            "answer": "The point of infinite density at the center of the black hole",
+            "answer_description": ""
+          },
+          {
+            "answer": "The boundary beyond which nothing, not even light, can escape",
+            "answer_description": "The event horizon is the 'point of no return' around a black hole where the escape velocity equals the speed of light."
+          },
+          {
+            "answer": "The region where Hawking radiation is emitted",
+            "answer_description": ""
+          },
+          {
+            "answer": "The outermost layer of the black hole's atmosphere",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the primary difference between Type Ia and Type II supernovae",
+        "options": [
+          {
+            "answer": "Their peak luminosity",
+            "answer_description": ""
+          },
+          {
+            "answer": "The types of elements they synthesize",
+            "answer_description": ""
+          },
+          {
+            "answer": "Their progenitor stars and mechanisms",
+            "answer_description": "Type Ia supernovae result from the thermonuclear explosion of a white dwarf in a binary system, while Type II involve the core-collapse of a massive star."
+          },
+          {
+            "answer": "Their frequency of occurrence",
+            "answer_description": ""
+          },
+          {
+            "answer": "Their resulting remnants",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the cosmic microwave background (CMB) radiation",
+        "options": [
+          {
+            "answer": "Radiation emitted by stars in distant galaxies",
+            "answer_description": ""
+          },
+          {
+            "answer": "The afterglow of the Big Bang",
+            "answer_description": "The CMB is the residual thermal radiation from the early universe, providing crucial evidence for the Big Bang theory."
+          },
+          {
+            "answer": "Radio waves emitted by pulsars",
+            "answer_description": ""
+          },
+          {
+            "answer": "X-rays emitted by black holes",
+            "answer_description": ""
+          },
+          {
+            "answer": "Infrared radiation from planetary formation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is metallicity in the context of stellar evolution",
+        "options": [
+          {
+            "answer": "The abundance of metals heavier than iron in a star",
+            "answer_description": ""
+          },
+          {
+            "answer": "The overall mass of a star",
+            "answer_description": ""
+          },
+          {
+            "answer": "The abundance of elements heavier than helium in a star",
+            "answer_description": "In astronomy, metallicity refers to the fraction of a star's mass that is not hydrogen or helium."
+          },
+          {
+            "answer": "The temperature of a star's core",
+            "answer_description": ""
+          },
+          {
+            "answer": "The magnetic field strength of a star",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the Drake equation primarily used for",
+        "options": [
+          {
+            "answer": "Calculating the age of the universe",
+            "answer_description": ""
+          },
+          {
+            "answer": "Estimating the number of potentially detectable extraterrestrial civilizations",
+            "answer_description": "The Drake equation is a probabilistic argument used to estimate the number of active, communicative extraterrestrial civilizations in the Milky Way galaxy."
+          },
+          {
+            "answer": "Predicting the orbits of planets around other stars",
+            "answer_description": ""
+          },
+          {
+            "answer": "Measuring the expansion rate of the universe",
+            "answer_description": ""
+          },
+          {
+            "answer": "Classifying different types of galaxies",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
         ]
       }
     ]

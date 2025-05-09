@@ -22,24 +22,22 @@ export default function QuestionCard({ question, question_index, incrementAnswer
 	// }, [send]);
 
 	const verifiedAnswer = (answerIndex) => {
-		var style = "";
 		if (send) {
 
 			if (userAnswers.includes(answerIndex) && question.good_answers_index.includes(answerIndex)) {
-				style = "good-answer";
+				return "good-answer";
 			}
 			if (!userAnswers.includes(answerIndex) && question.good_answers_index.includes(answerIndex)) {
 				// style = "missed-answer";
-				style = "good-answer";
+				return "good-answer";
 			}
-			// if (userAnswers.includes(answerIndex) && !question.good_answers_index.includes(answerIndex)) {
-			// 	style = "bad-answer";
-			// }
+			if (userAnswers.includes(answerIndex) && !question.good_answers_index.includes(answerIndex)) {
+				return "bad-user-answer";
+			}
 			if (!question.good_answers_index.includes(answerIndex)) {
-				style = "bad-answer";
+				return "bad-answer";
 			}
 		}
-		return style;
 	};
 
 	const setAnswer = (event) => {
