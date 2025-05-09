@@ -1,6 +1,11 @@
+export const answerSchema = {
+  answer: "",
+  answer_description: ""
+}
+
 export const questionSchema = {
   question: "",
-  options: [],
+  options: [answerSchema],
   multiple_choice: true,
   good_answers_index: []
 }
@@ -15,7 +20,7 @@ export const quizMetadata = {
 }
 export const quizSchema = {
   metadata: quizMetadata,
-  questions: []
+  questions: [questionSchema]
 }
 
 

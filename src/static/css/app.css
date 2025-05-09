@@ -27,16 +27,20 @@ body, html {
   padding: 0;
 }
 
+.home-main h1{
+  font-size:3rem;
+}
+/* 
 .left-panel {
   width: 200px;
   background-color: #fff;
 }
+*/
 
 .quiz-page{
-  border:1px solid #ddd;
-  width: 900px;
+  max-width: 860px;
   margin-bottom: 500px;
-}
+} 
 
 /*******************************************/
 .question-level-1{

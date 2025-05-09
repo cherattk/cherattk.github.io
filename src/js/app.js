@@ -73,11 +73,11 @@ const App = () => {
   const Home = () => {
     return (
       <>
-        <main>
+        <main className='home-main'>
           <section className="py-5 text-center container">
             <div className="row">
               <div className="mx-auto">
-                <h1 className="display-5 text-primary">
+                <h1 className="text-primary">
                   {/* <i className='bi bi-rocket text-danger me-3'></i> */}
                   10 Questions Brain Booster
                   <i className='bi bi-rocket text-danger ms-3'></i>

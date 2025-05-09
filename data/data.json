@@ -1,482 +1,261 @@
 [
   {
     "metadata": {
-      "id": 0,
-      "categorie": "Physics",
-      "description": "What governs motion, energy, and the fundamental forces of nature? Test your understanding of basic physics in our upcoming quiz!",
-      "level": 1,
-      "title": "Physics"
-    },
-    "questions": [
-      {
-        "question": "Which of the following are units of energy",
-        "options": [
-          "Joule",
-          "Watt",
-          "Newton",
-          "Calorie",
-          "Electron volt"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          3
-        ]
-      },
-      {
-        "question": "Which of the following are examples of electromagnetic waves",
-        "options": [
-          "Sound waves",
-          "Radio waves",
-          "Microwaves",
-          "Water waves",
-          "X-rays"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are fundamental forces",
-        "options": [
-          "Tension",
-          "Gravity",
-          "Normal Force",
-          "Electromagnetism",
-          "Strong nuclear force"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          3
-        ]
-      },
-      {
-        "question": "Which of the following are properties of waves",
-        "options": [
-          "Amplitude",
-          "Velocity",
-          "Mass",
-          "Wavelength",
-          "Frequency"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          4
-        ]
-      },
-      {
-        "question": "Which of the following are related to thermodynamics",
-        "options": [
-          "Entropy",
-          "Pressure",
-          "Momentum",
-          "Enthalpy",
-          "Impulse"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          1
-        ]
-      },
-      {
-        "question": "Which of the following are vector quantities",
-        "options": [
-          "Speed",
-          "Velocity",
-          "Distance",
-          "Displacement",
-          "Time"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          3
-        ]
-      },
-      {
-        "question": "Which of the following are associated with quantum mechanics",
-        "options": [
-          "Superposition",
-          "Diffraction",
-          "Quantization",
-          "Refraction",
-          "Uncertainty principle"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are types of energy",
-        "options": [
-          "Kinetic",
-          "Potential",
-          "Inertia",
-          "Thermal",
-          "Power"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          1
-        ]
-      },
-      {
-        "question": "Which of the following are true about electric circuits",
-        "options": [
-          "Voltage is measured in Amperes",
-          "Current is measured in Ohms",
-          "Resistance is measured in Ohms",
-          "Power is measured in Watts",
-          "Charge is measured in Volts"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          2,
-          3
-        ]
-      },
-      {
-        "question": "Which of the following are parts of the electromagnetic spectrum",
-        "options": [
-          "Infrared",
-          "Ultrasound",
-          "Gamma rays",
-          "Beta radiation",
-          "Visible light"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      }
-    ]
-  },
-  {
-    "metadata": {
-      "id": 0,
-      "categorie": "Geography",
-      "description": "Explore the winding paths and vital roles of rivers across the globe! Test your geographical knowledge of these essential waterways in our quiz.",
-      "level": 1,
-      "title": "Rivers"
-    },
-    "questions": [
-      {
-        "question": "Which of the following are key processes in the formation of a river",
-        "options": [
-          "Precipitation",
-          "Subduction",
-          "Runoff",
-          "Volcanism",
-          "Erosion"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following landforms are commonly associated with rivers",
-        "options": [
-          "Canyons",
-          "Plateaus",
-          "Floodplains",
-          "Glaciers",
-          "Deltas"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "What factors influence the flow rate of a river",
-        "options": [
-          "Gradient",
-          "Humidity",
-          "Volume of water",
-          "Wind speed",
-          "Channel shape"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following describes a river's drainage basin",
-        "options": [
-          "The area of land drained by a river and its tributaries",
-          "The path the river flows",
-          "The point where the river enters a lake or ocean",
-          "A large body of saline water",
-          "The underground water source for the river"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          1
-        ]
-      },
-      {
-        "question": "What are the different stages of a river's course",
-        "options": [
-          "Youthful",
-          "Arid",
-          "Mature",
-          "Subtropical",
-          "Old"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are types of river erosion",
-        "options": [
-          "Abrasion",
-          "Deposition",
-          "Hydraulic action",
-          "Weathering",
-          "Solution"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "What are the ways in which rivers transport sediment",
-        "options": [
-          "Suspension",
-          "Evaporation",
-          "Saltation",
-          "Condensation",
-          "Traction"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are features of a mature river",
-        "options": [
-          "Rapids",
-          "Meanders",
-          "Wide valley",
-          "Waterfalls",
-          "Oxbow lakes"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          2
-        ]
-      },
-      {
-        "question": "What are the environmental impacts on a river",
-        "options": [
-          "Pollution",
-          "Habitat preservation",
-          "Dam construction",
-          "Sustainable fishing",
-          "Deforestation"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are important for river management",
-        "options": [
-          "Flood control",
-          "Channelization",
-          "Water conservation",
-          "Urban sprawl",
-          "Ecosystem restoration"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      }
-    ]
-  },
-  {
-    "metadata": {
-      "id": 0,
+      "id": 123,
       "categorie": "Biology",
-      "description": "Dive into the microscopic world! Explores the building blocks of life. How well do you know the inner workings",
+      "description": "Beginner level biology questions",
       "level": 1,
-      "title": "Biology"
+      "title": "Biology for Beginners",
+      "nbr_question": 10
     },
     "questions": [
       {
-        "question": "Which of the following organelles are responsible for energy production in both plant and animal cells",
+        "question": "What is the basic unit of life",
         "options": [
-          "Chloroplasts",
-          "Mitochondria",
-          "Vacuoles",
-          "Ribosomes",
-          "Endoplasmic Reticulum"
+          {
+            "answer": "Atom",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cell",
+            "answer_description": "Cells are the fundamental building blocks of all living organisms. They provide structure for the body, take in nutrients from food and convert those nutrients into energy, and carry out specialized functions."
+          },
+          {
+            "answer": "Molecule",
+            "answer_description": ""
+          },
+          {
+            "answer": "Organ",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          4
+          1
         ]
       },
       {
-        "question": "Which structures are involved in protein synthesis in both plant and animal cells",
+        "question": "Which of the following is NOT a characteristic of living things",
         "options": [
-          "Nucleus",
-          "Ribosomes",
-          "Golgi apparatus",
-          "Lysosomes",
-          "Cell membrane"
+          {
+            "answer": "Reproduction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Growth",
+            "answer_description": ""
+          },
+          {
+            "answer": "Movement",
+            "answer_description": ""
+          },
+          {
+            "answer": "Inertia",
+            "answer_description": "Inertia is a property of matter by which it continues in its existing state of rest or uniform motion in a straight line, unless that state is changed by an external force. It is not a characteristic of living things."
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
+          3
+        ]
+      },
+      {
+        "question": "What process do plants use to make their own food",
+        "options": [
+          {
+            "answer": "Photosynthesis",
+            "answer_description": "Photosynthesis is the process by which plants use sunlight, water, and carbon dioxide to create their own food (sugars) and release oxygen as a byproduct. This process is essential for life on Earth."
+          },
+          {
+            "answer": "Respiration",
+            "answer_description": ""
+          },
+          {
+            "answer": "Digestion",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fermentation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
           0
         ]
       },
       {
-        "question": "Which of the following contain genetic material in both cell types",
+        "question": "Which gas do plants absorb from the atmosphere for photosynthesis",
         "options": [
-          "Cell wall",
-          "Nucleus",
-          "Cytoplasm",
-          "Chromosomes",
-          "Vacuoles"
+          {
+            "answer": "Oxygen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Carbon Dioxide",
+            "answer_description": "Plants absorb carbon dioxide (CO2) from the atmosphere through small pores in their leaves called stomata. They use it as a key ingredient in photosynthesis to produce glucose (sugar) and oxygen."
+          },
+          {
+            "answer": "Nitrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hydrogen",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
+          1
+        ]
+      },
+      {
+        "question": "What is the green pigment in plants that captures sunlight",
+        "options": [
+          {
+            "answer": "Chlorophyll",
+            "answer_description": "Chlorophyll is the green pigment found in the chloroplasts of plant cells. It plays a vital role in photosynthesis by absorbing light energy, particularly in the red and blue wavelengths, which is then converted into chemical energy."
+          },
+          {
+            "answer": "Xanthophyll",
+            "answer_description": ""
+          },
+          {
+            "answer": "Carotenoid",
+            "answer_description": ""
+          },
+          {
+            "answer": "Anthocyanin",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which part of the human body is responsible for pumping blood",
+        "options": [
+          {
+            "answer": "Lungs",
+            "answer_description": ""
+          },
+          {
+            "answer": "Liver",
+            "answer_description": ""
+          },
+          {
+            "answer": "Heart",
+            "answer_description": "The heart is a muscular organ that pumps blood throughout the body. It's the central component of the circulatory system, delivering oxygen and nutrients to tissues and removing carbon dioxide and other waste products."
+          },
+          {
+            "answer": "Kidneys",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the function of the human skeleton",
+        "options": [
+          {
+            "answer": "Digestion",
+            "answer_description": ""
+          },
+          {
+            "answer": "Support and movement",
+            "answer_description": "The human skeleton provides structural support for the body, allowing us to maintain our shape and posture. It also works in conjunction with muscles to facilitate movement and protect vital organs."
+          },
+          {
+            "answer": "Breathing",
+            "answer_description": ""
+          },
+          {
+            "answer": "Thinking",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a mammal",
+        "options": [
+          {
+            "answer": "Snake",
+            "answer_description": ""
+          },
+          {
+            "answer": "Eagle",
+            "answer_description": ""
+          },
+          {
+            "answer": "Whale",
+            "answer_description": "Whales are mammals. They are warm-blooded, breathe air with lungs, give birth to live young, produce milk to feed their offspring, and have hair (though it's sparse)."
+          },
+          {
+            "answer": "Frog",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What type of animal is an insect",
+        "options": [
+          {
+            "answer": "Amphibian",
+            "answer_description": ""
+          },
+          {
+            "answer": "Reptile",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mammal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Invertebrate",
+            "answer_description": "Insects are invertebrates, meaning they lack a backbone. They belong to the arthropod family, characterized by an exoskeleton, segmented body, and jointed legs."
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
           3
         ]
       },
       {
-        "question": "Which structures play a role in transporting materials within both plant and animal cells",
+        "question": "Which of these is a type of flowering plant",
         "options": [
-          "Cell membrane",
-          "Endoplasmic reticulum",
-          "Golgi apparatus",
-          "Mitochondria",
-          "Chloroplasts"
+          {
+            "answer": "Pine Tree",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fern",
+            "answer_description": ""
+          },
+          {
+            "answer": "Rose Bush",
+            "answer_description": "A rose bush is a type of flowering plant. Flowering plants, also known as angiosperms, are the most diverse group of land plants, characterized by their flowers and the production of seeds enclosed in fruit."
+          },
+          {
+            "answer": "Moss",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are present in both plant and animal cells",
-        "options": [
-          "Cell wall",
-          "Cell membrane",
-          "Large central vacuole",
-          "Cytoplasm",
-          "Nucleus"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          3
-        ]
-      },
-      {
-        "question": "Which organelles are involved in breaking down waste products in both plant and animal cells",
-        "options": [
-          "Peroxisomes",
-          "Vacuoles",
-          "Lysosomes",
-          "Ribosomes",
-          "Endoplasmic Reticulum"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following is a function of the cell membrane in both plant and animal cells",
-        "options": [
-          "Providing structural support",
-          "Regulating the passage of materials",
-          "Photosynthesis",
-          "Cellular respiration",
-          "Maintaining cell shape"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          4
-        ]
-      },
-      {
-        "question": "Which of the following are involved in cell division in both plant and animal cells",
-        "options": [
-          "Mitosis",
-          "Meiosis",
-          "Cytokinesis",
-          "Cell elongation",
-          "Spore formation"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are energy sources for cells",
-        "options": [
-          "Glucose",
-          "Starch",
-          "ATP",
-          "Sunlight",
-          "Carbon dioxide"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following describes the ability of a cell to maintain a stable internal environment in both plant and animal cells",
-        "options": [
-          "Homeostasis",
-          "Photosynthesis",
-          "Osmosis",
-          "Diffusion",
-          "Cellular respiration"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
           2
         ]
       }
@@ -484,48 +263,923 @@
   },
   {
     "metadata": {
-      "id": 0,
-      "categorie": "Astronomy",
-      "description": "Explore the cosmos! Astronomy quiz will test your knowledge of stars, planets, and galaxies. Are you ready for an interstellar challenge",
+      "id": 456,
+      "categorie": "Physics",
+      "description": "Beginner level physics questions",
       "level": 1,
-      "title": "Astronomy"
+      "title": "Physics for Beginners",
+      "nbr_question": 10
     },
     "questions": [
       {
-        "question": "Which two things are true about a light-year",
+        "question": "What is the International System unit of force",
         "options": [
-          "It is a unit of time.",
-          "It is a unit of distance.",
-          "It measures the distance light travels in one year.",
-          "It measures the age of a star."
+          {
+            "answer": "Kilogram",
+            "answer_description": ""
+          },
+          {
+            "answer": "Newton",
+            "answer_description": "The Newton (N) is the International System unit of force, defined as the force required to accelerate one kilogram of mass at one meter per second squared. It's a fundamental unit in mechanics."
+          },
+          {
+            "answer": "Meter",
+            "answer_description": ""
+          },
+          {
+            "answer": "Second",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a type of energy",
+        "options": [
+          {
+            "answer": "Mass",
+            "answer_description": ""
+          },
+          {
+            "answer": "Velocity",
+            "answer_description": ""
+          },
+          {
+            "answer": "Kinetic energy",
+            "answer_description": "Kinetic energy is the energy of motion. Any object that is moving possesses kinetic energy. The amount of kinetic energy depends on the mass and the velocity of the object."
+          },
+          {
+            "answer": "Time",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What does the law of inertia state",
+        "options": [
+          {
+            "answer": "Energy cannot be created or destroyed",
+            "answer_description": ""
+          },
+          {
+            "answer": "For every action, there is an equal and opposite reaction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Objects in motion stay in motion, and objects at rest stay at rest, unless acted upon by a force",
+            "answer_description": "The law of inertia, Newton's first law, states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. It defines inertia as the tendency of an object to resist changes in its state of motion."
+          },
+          {
+            "answer": "Gravity is a force of attraction between objects with mass",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a unit of speed",
+        "options": [
+          {
+            "answer": "Meter",
+            "answer_description": ""
+          },
+          {
+            "answer": "Second",
+            "answer_description": ""
+          },
+          {
+            "answer": "Kilogram",
+            "answer_description": ""
+          },
+          {
+            "answer": "Meters per second",
+            "answer_description": "Meters per second (m/s) is a unit of speed, measuring the distance traveled in meters over a period of one second. It's a standard unit in the International System of Units (SI)."
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
           3
         ]
       },
       {
-        "question": "Which two are types of galaxies",
+        "question": "What force pulls objects towards the Earth",
         "options": [
-          "Spiral",
-          "Globular",
-          "Elliptical",
-          "Planetary"
+          {
+            "answer": "Friction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gravity",
+            "answer_description": "Gravity is the force of attraction that pulls objects with mass towards each other. The Earth's gravity pulls objects towards its center, causing them to fall if unsupported."
+          },
+          {
+            "answer": "Tension",
+            "answer_description": ""
+          },
+          {
+            "answer": "Magnetism",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          0,
+          1
+        ]
+      },
+      {
+        "question": "Which state of matter has a definite volume but no definite shape",
+        "options": [
+          {
+            "answer": "Solid",
+            "answer_description": ""
+          },
+          {
+            "answer": "Liquid",
+            "answer_description": "Liquids have a definite volume, meaning they take up a specific amount of space, but they do not have a definite shape. They take the shape of their container."
+          },
+          {
+            "answer": "Gas",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plasma",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the process of heat transfer by direct contact",
+        "options": [
+          {
+            "answer": "Convection",
+            "answer_description": ""
+          },
+          {
+            "answer": "Radiation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Conduction",
+            "answer_description": "Conduction is the transfer of heat through direct contact between substances. Heat energy is transferred from molecule to molecule within a substance or between touching substances."
+          },
+          {
+            "answer": "Evaporation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
           2
         ]
       },
       {
-        "question": "Which two planets are considered gas giants",
+        "question": "Which color of light has the shortest wavelength",
         "options": [
-          "Mars",
-          "Jupiter",
-          "Saturn",
-          "Venus"
+          {
+            "answer": "Red",
+            "answer_description": ""
+          },
+          {
+            "answer": "Blue",
+            "answer_description": "Blue light has the shortest wavelength among the visible light spectrum. Wavelength is inversely proportional to energy, meaning shorter wavelengths carry more energy."
+          },
+          {
+            "answer": "Green",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yellow",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What type of lens is used to correct nearsightedness",
+        "options": [
+          {
+            "answer": "Convex lens",
+            "answer_description": ""
+          },
+          {
+            "answer": "Concave lens",
+            "answer_description": "A concave lens is used to correct nearsightedness (myopia). It diverges light rays before they enter the eye, allowing the image to focus correctly on the retina."
+          },
+          {
+            "answer": "Prismatic lens",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cylindrical lens",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the unit of electric current",
+        "options": [
+          {
+            "answer": "Volt",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ohm",
+            "answer_description": ""
+          },
+          {
+            "answer": "Watt",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ampere",
+            "answer_description": "The ampere (A) is the SI unit of electric current. It measures the rate of flow of electric charge in a circuit."
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 3,
+      "categorie": "Geology",
+      "description": "Beginner level geology quiz",
+      "level": 1,
+      "title": "Geology Basics Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the name for the Earth's outermost layer",
+        "options": [
+          {
+            "answer": "Crust",
+            "answer_description": "The solid, rocky outermost layer of the Earth."
+          },
+          {
+            "answer": "Mantle",
+            "answer_description": ""
+          },
+          {
+            "answer": "Outer core",
+            "answer_description": ""
+          },
+          {
+            "answer": "Inner core",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lithosphere",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which type of rock is formed from cooled lava or magma",
+        "options": [
+          {
+            "answer": "Igneous",
+            "answer_description": "Igneous rocks solidify from molten material."
+          },
+          {
+            "answer": "Sedimentary",
+            "answer_description": ""
+          },
+          {
+            "answer": "Metamorphic",
+            "answer_description": ""
+          },
+          {
+            "answer": "Granite",
+            "answer_description": ""
+          },
+          {
+            "answer": "Shale",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the process of breaking down rocks at the Earth's surface called",
+        "options": [
+          {
+            "answer": "Weathering",
+            "answer_description": "Weathering involves physical and chemical breakdown of rocks."
+          },
+          {
+            "answer": "Erosion",
+            "answer_description": ""
+          },
+          {
+            "answer": "Deposition",
+            "answer_description": ""
+          },
+          {
+            "answer": "Compaction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cementation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of the following is a common mineral found in rocks",
+        "options": [
+          {
+            "answer": "Quartz",
+            "answer_description": "A very common and hard mineral composed of silica."
+          },
+          {
+            "answer": "Coal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oil",
+            "answer_description": ""
+          },
+          {
+            "answer": "Natural gas",
+            "answer_description": ""
+          },
+          {
+            "answer": "Obsidian",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the name for a sudden shaking of the ground caused by the release of energy in the Earth's crust",
+        "options": [
+          {
+            "answer": "Earthquake",
+            "answer_description": "Earthquakes are caused by the movement of tectonic plates."
+          },
+          {
+            "answer": "Volcano",
+            "answer_description": ""
+          },
+          {
+            "answer": "Tsunami",
+            "answer_description": ""
+          },
+          {
+            "answer": "Landslide",
+            "answer_description": ""
+          },
+          {
+            "answer": "Avalanche",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of these is a type of sedimentary rock",
+        "options": [
+          {
+            "answer": "Sandstone",
+            "answer_description": "Sandstone is made from cemented sand grains."
+          },
+          {
+            "answer": "Granite",
+            "answer_description": ""
+          },
+          {
+            "answer": "Marble",
+            "answer_description": ""
+          },
+          {
+            "answer": "Basalt",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gneiss",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the term for the molten rock beneath the Earth's surface",
+        "options": [
+          {
+            "answer": "Magma",
+            "answer_description": "Magma can erupt as lava at the surface."
+          },
+          {
+            "answer": "Lava",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ash",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pumice",
+            "answer_description": ""
+          },
+          {
+            "answer": "Obsidian",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of the following forces is primarily responsible for the movement of tectonic plates",
+        "options": [
+          {
+            "answer": "Convection currents in the mantle",
+            "answer_description": "These currents drive plate movement."
+          },
+          {
+            "answer": "Wind",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ocean currents",
+            "answer_description": ""
+          },
+          {
+            "answer": "Solar radiation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gravity from the moon",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the name for a large, slow-moving mass of ice",
+        "options": [
+          {
+            "answer": "Glacier",
+            "answer_description": "Glaciers can carve out valleys and transport sediment."
+          },
+          {
+            "answer": "Iceberg",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ice sheet",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sea ice",
+            "answer_description": ""
+          },
+          {
+            "answer": "Permafrost",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of these is a metamorphic rock formed from limestone",
+        "options": [
+          {
+            "answer": "Marble",
+            "answer_description": "Marble is known for its decorative uses."
+          },
+          {
+            "answer": "Slate",
+            "answer_description": ""
+          },
+          {
+            "answer": "Quartzite",
+            "answer_description": ""
+          },
+          {
+            "answer": "Schist",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gneiss",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 2,
+      "categorie": "Astronomy",
+      "description": "Beginner level astronomy quiz",
+      "level": 1,
+      "title": "Astronomy Quiz for Beginners",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "Which of the following are planets in our solar system",
+        "options": [
+          {
+            "answer": "Jupiter",
+            "answer_description": "The largest planet, known for its Great Red Spot."
+          },
+          {
+            "answer": "Mars",
+            "answer_description": "The Red Planet, known for its rusty color."
+          },
+          {
+            "answer": "Venus",
+            "answer_description": "The hottest planet, known for its thick atmosphere."
+          },
+          {
+            "answer": "Moon",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sun",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "What are the different types of galaxies",
+        "options": [
+          {
+            "answer": "Spiral",
+            "answer_description": "Characterized by their spiral arms."
+          },
+          {
+            "answer": "Elliptical",
+            "answer_description": "Smooth, oval-shaped galaxies."
+          },
+          {
+            "answer": "Irregular",
+            "answer_description": "Galaxies that do not have a regular shape."
+          },
+          {
+            "answer": "Circular",
+            "answer_description": ""
+          },
+          {
+            "answer": "Square",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of these are types of stars",
+        "options": [
+          {
+            "answer": "Red Giant",
+            "answer_description": "A large, luminous star with a low surface temperature."
+          },
+          {
+            "answer": "White Dwarf",
+            "answer_description": "A small, dense, and hot star."
+          },
+          {
+            "answer": "Neutron Star",
+            "answer_description": "The collapsed core of a massive star."
+          },
+          {
+            "answer": "Black Hole",
+            "answer_description": ""
+          },
+          {
+            "answer": "Brown Dwarf",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "What are the phases of the Moon",
+        "options": [
+          {
+            "answer": "New Moon",
+            "answer_description": "The moon is not visible."
+          },
+          {
+            "answer": "Full Moon",
+            "answer_description": "The entire face of the moon is illuminated."
+          },
+          {
+            "answer": "Crescent Moon",
+            "answer_description": "The moon appears partially lit."
+          },
+          {
+            "answer": "Ringed Moon",
+            "answer_description": ""
+          },
+          {
+            "answer": "Comet Moon",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are celestial bodies",
+        "options": [
+          {
+            "answer": "Comet",
+            "answer_description": "An icy body that releases gas or dust."
+          },
+          {
+            "answer": "Asteroid",
+            "answer_description": "A rocky object that orbits the Sun."
+          },
+          {
+            "answer": "Meteoroid",
+            "answer_description": "A small rocky or metallic body traveling through space."
+          },
+          {
+            "answer": "Cloud",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fog",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "What are the layers of the Sun",
+        "options": [
+          {
+            "answer": "Core",
+            "answer_description": "The innermost layer where nuclear fusion occurs."
+          },
+          {
+            "answer": "Photosphere",
+            "answer_description": "The visible surface of the Sun."
+          },
+          {
+            "answer": "Corona",
+            "answer_description": "The outermost layer of the Sun's atmosphere."
+          },
+          {
+            "answer": "Crust",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mantle",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are types of telescopes",
+        "options": [
+          {
+            "answer": "Refracting Telescope",
+            "answer_description": "Uses lenses to focus light."
+          },
+          {
+            "answer": "Reflecting Telescope",
+            "answer_description": "Uses mirrors to focus light."
+          },
+          {
+            "answer": "Radio Telescope",
+            "answer_description": "Detects radio waves from space."
+          },
+          {
+            "answer": "Microscope",
+            "answer_description": ""
+          },
+          {
+            "answer": "Periscope",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "What are the names of the galaxies closest to the Milky Way",
+        "options": [
+          {
+            "answer": "Andromeda Galaxy",
+            "answer_description": "A spiral galaxy, the closest large galaxy to the Milky Way."
+          },
+          {
+            "answer": "Large Magellanic Cloud (LMC)",
+            "answer_description": "A satellite galaxy of the Milky Way."
+          },
+          {
+            "answer": "Small Magellanic Cloud (SMC)",
+            "answer_description": "A dwarf galaxy near the Milky Way."
+          },
+          {
+            "answer": "Triangulum Galaxy",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sombrero Galaxy",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "What are the different types of nebulae",
+        "options": [
+          {
+            "answer": "Emission Nebula",
+            "answer_description": "A cloud of gas and dust that emits light."
+          },
+          {
+            "answer": "Reflection Nebula",
+            "answer_description": "A cloud that reflects the light of nearby stars."
+          },
+          {
+            "answer": "Dark Nebula",
+            "answer_description": "A cloud that obscures light behind it."
+          },
+          {
+            "answer": "Plasma Nebula",
+            "answer_description": ""
+          },
+          {
+            "answer": "Liquid Nebula",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are units of astronomical distance",
+        "options": [
+          {
+            "answer": "Light-year",
+            "answer_description": "The distance light travels in one year."
+          },
+          {
+            "answer": "Astronomical Unit (AU)",
+            "answer_description": "The average distance between Earth and the Sun."
+          },
+          {
+            "answer": "Parsec",
+            "answer_description": "A unit used to measure distances to stars and galaxies."
+          },
+          {
+            "answer": "Kilometer",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mile",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 1,
+      "categorie": "New Technology",
+      "description": "A quiz about recent advancements in technology.",
+      "level": 1,
+      "title": "Tech Innovations Quiz",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "Which of the following are key components of a blockchain network",
+        "options": [
+          {
+            "answer": "Blocks",
+            "answer_description": ""
+          },
+          {
+            "answer": "Chains",
+            "answer_description": "A blockchain is a growing list of records, called blocks, which are linked using cryptography."
+          },
+          {
+            "answer": "Nodes",
+            "answer_description": "Nodes maintain and verify copies of the blockchain, ensuring network consensus."
+          },
+          {
+            "answer": "Central Server",
+            "answer_description": ""
+          },
+          {
+            "answer": "Smart Contracts",
+            "answer_description": ""
+          }
         ],
         "multiple_choice": true,
         "good_answers_index": [
@@ -534,12 +1188,28 @@
         ]
       },
       {
-        "question": "Which two things can black holes be formed from",
+        "question": "Which of the following are potential applications of Artificial Intelligence (AI) in healthcare",
         "options": [
-          "The collapse of a massive star",
-          "A supernova",
-          "A white dwarf",
-          "Planetary nebula"
+          {
+            "answer": "Diagnosing diseases",
+            "answer_description": "AI algorithms can analyze medical images and patient data to assist in diagnosis."
+          },
+          {
+            "answer": "Developing new drugs",
+            "answer_description": "AI can accelerate drug discovery by identifying potential drug candidates."
+          },
+          {
+            "answer": "Managing hospital inventory",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cooking meals for patients",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cleaning hospital rooms",
+            "answer_description": ""
+          }
         ],
         "multiple_choice": true,
         "good_answers_index": [
@@ -548,198 +1218,178 @@
         ]
       },
       {
-        "question": "Which two are true about the Milky Way",
+        "question": "Which of the following are benefits of using cloud computing",
         "options": [
-          "It is a spiral galaxy.",
-          "It is an elliptical galaxy.",
-          "Our solar system is located in it.",
-          "It is the largest known galaxy."
+          {
+            "answer": "Scalability",
+            "answer_description": "Cloud computing allows businesses to easily scale their resources up or down as needed."
+          },
+          {
+            "answer": "Reduced costs",
+            "answer_description": ""
+          },
+          {
+            "answer": "Increased security risks",
+            "answer_description": ""
+          },
+          {
+            "answer": "Accessibility",
+            "answer_description": "Cloud computing enables access to data and applications from anywhere with an internet connection."
+          },
+          {
+            "answer": "Limited storage capacity",
+            "answer_description": ""
+          }
         ],
         "multiple_choice": true,
         "good_answers_index": [
           0,
-          2
-        ]
-      },
-      {
-        "question": "Which two things are used to classify stars",
-        "options": [
-          "Distance",
-          "Temperature",
-          "Luminosity",
-          "Shape"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          2
-        ]
-      },
-      {
-        "question": "Which two are types of celestial bodies found in space",
-        "options": [
-          "Comets",
-          "Mountains",
-          "Asteroids",
-          "Oceans"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which two things are true about an astronomical unit (AU)",
-        "options": [
-          "It is the average distance between Earth and the Sun.",
-          "It is the distance light travels in one year.",
-          "It is used to measure distances within our solar system.",
-          "It is used to measure distances between galaxies."
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which two phases are part of the lunar cycle",
-        "options": [
-          "Solar Eclipse",
-          "Full Moon",
-          "New Moon",
-          "Lunar Eclipse"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          2
-        ]
-      },
-      {
-        "question": "Which two things are types of telescopes",
-        "options": [
-          "Reflector",
-          "Periscope",
-          "Refractor",
-          "Kaleidoscope"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      }
-    ]
-  },
-  {
-    "metadata": {
-      "id": 0,
-      "categorie": "Technology",
-      "description": "Explore the future now! Test your knowledge of the latest tech innovations shaping our world with this engaging quiz. Discover what's next!",
-      "level": 1,
-      "title": "Technology"
-    },
-    "questions": [
-      {
-        "question": "Which of the following are key components of a blockchain",
-        "options": [
-          "Blocks",
-          "Servers",
-          "Hashes",
-          "Routers",
-          "Distributed ledger"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are applications of Artificial Intelligence (AI)",
-        "options": [
-          "Web browsing",
-          "Machine learning",
-          "Natural language processing",
-          "Data storage",
-          "Image recognition"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are examples of Virtual Reality (VR) devices",
-        "options": [
-          "Smartwatch",
-          "Oculus Rift",
-          "HTC Vive",
-          "Smartphone",
-          "PlayStation VR"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are benefits of cloud computing",
-        "options": [
-          "Scalability",
-          "High initial cost",
-          "Accessibility",
-          "Data loss",
-          "Cost-effectiveness"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are programming languages commonly used in AI development",
-        "options": [
-          "HTML",
-          "Python",
-          "Java",
-          "CSS",
-          "R"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          1,
-          4
+          3
         ]
       },
       {
         "question": "Which of the following are examples of Internet of Things (IoT) devices",
         "options": [
-          "Laptop",
-          "Smart thermostat",
-          "Smart speaker",
-          "Desktop computer",
-          "Wearable fitness tracker"
+          {
+            "answer": "Smartwatches",
+            "answer_description": "Smartwatches collect and transmit data about health, activity, and location."
+          },
+          {
+            "answer": "Self-driving cars",
+            "answer_description": ""
+          },
+          {
+            "answer": "Desktop computers",
+            "answer_description": ""
+          },
+          {
+            "answer": "Smart thermostats",
+            "answer_description": "Smart thermostats regulate temperature based on user preferences and occupancy."
+          },
+          {
+            "answer": "Traditional landline phones",
+            "answer_description": ""
+          }
         ],
         "multiple_choice": true,
         "good_answers_index": [
-          1,
+          0,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are challenges associated with the adoption of 5G technology",
+        "options": [
+          {
+            "answer": "High infrastructure costs",
+            "answer_description": "Deploying 5G requires significant investment in new infrastructure."
+          },
+          {
+            "answer": "Limited bandwidth",
+            "answer_description": ""
+          },
+          {
+            "answer": "Security concerns",
+            "answer_description": "5G networks introduce new security challenges due to increased connectivity."
+          },
+          {
+            "answer": "Low latency",
+            "answer_description": ""
+          },
+          {
+            "answer": "Widespread availability",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
           2
         ]
       },
       {
-        "question": "Which of the following are key concepts in cybersecurity",
+        "question": "Which of the following are advantages of using Virtual Reality (VR) technology",
         "options": [
-          "Encryption",
-          "Firewall",
-          "Data mining",
-          "Phishing",
-          "Quantum computing"
+          {
+            "answer": "Immersive experiences",
+            "answer_description": "VR creates realistic and engaging simulations for users."
+          },
+          {
+            "answer": "Remote collaboration",
+            "answer_description": ""
+          },
+          {
+            "answer": "High cost of equipment",
+            "answer_description": ""
+          },
+          {
+            "answer": "Enhanced training simulations",
+            "answer_description": "VR allows for safe and effective training in various fields."
+          },
+          {
+            "answer": "Limited accessibility",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are key features of quantum computing",
+        "options": [
+          {
+            "answer": "Superposition",
+            "answer_description": "Qubits can exist in multiple states simultaneously, unlike classical bits."
+          },
+          {
+            "answer": "Entanglement",
+            "answer_description": ""
+          },
+          {
+            "answer": "Bits",
+            "answer_description": ""
+          },
+          {
+            "answer": "Qubits",
+            "answer_description": "Quantum bits are the basic unit of information in quantum computing."
+          },
+          {
+            "answer": "Classical logic gates",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are applications of nanotechnology",
+        "options": [
+          {
+            "answer": "Drug delivery",
+            "answer_description": "Nanoparticles can be used to target specific cells for drug delivery."
+          },
+          {
+            "answer": "Materials science",
+            "answer_description": "Nanotechnology enables the development of new materials with enhanced properties."
+          },
+          {
+            "answer": "Food preservation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Building construction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Renewable energy",
+            "answer_description": ""
+          }
         ],
         "multiple_choice": true,
         "good_answers_index": [
@@ -748,209 +1398,365 @@
         ]
       },
       {
-        "question": "Which of the following are components of a self-driving car system",
+        "question": "Which of the following are considered ethical concerns related to AI",
         "options": [
-          "GPS",
-          "Engine",
-          "Lidar",
-          "Transmission",
-          "Radar"
+          {
+            "answer": "Bias in algorithms",
+            "answer_description": "AI algorithms can perpetuate and amplify existing societal biases."
+          },
+          {
+            "answer": "Job displacement",
+            "answer_description": ""
+          },
+          {
+            "answer": "Increased productivity",
+            "answer_description": ""
+          },
+          {
+            "answer": "Data privacy",
+            "answer_description": "AI systems often require large amounts of data, raising concerns about privacy."
+          },
+          {
+            "answer": "Improved decision-making",
+            "answer_description": ""
+          }
         ],
         "multiple_choice": true,
         "good_answers_index": [
           0,
-          2
+          3
         ]
       },
       {
-        "question": "Which of the following are types of 3D printing technology",
+        "question": "Which of the following are benefits of using blockchain technology in supply chain management",
         "options": [
-          "Fused deposition modeling (FDM)",
-          "Laser printing",
-          "Stereolithography (SLA)",
-          "Inkjet printing",
-          "Selective laser sintering (SLS)"
+          {
+            "answer": "Increased transparency",
+            "answer_description": "Blockchain provides a transparent and immutable record of transactions."
+          },
+          {
+            "answer": "Improved traceability",
+            "answer_description": "Blockchain allows for tracking products from origin to consumer."
+          },
+          {
+            "answer": "Reduced efficiency",
+            "answer_description": ""
+          },
+          {
+            "answer": "Enhanced security",
+            "answer_description": ""
+          },
+          {
+            "answer": "Centralized control",
+            "answer_description": ""
+          }
         ],
         "multiple_choice": true,
         "good_answers_index": [
           0,
-          2
-        ]
-      },
-      {
-        "question": "Which of the following are applications of nanotechnology",
-        "options": [
-          "Drug delivery",
-          "Food packaging",
-          "Microprocessors",
-          "Textile manufacturing",
-          "Water purification"
-        ],
-        "multiple_choice": true,
-        "good_answers_index": [
-          0,
-          4
+          1
         ]
       }
     ]
   },
   {
     "metadata": {
-      "id": 0,
+      "id": 2,
       "categorie": "Botany",
-      "description": "Unearth your inner botanist! Our quiz explores the fascinating world of plants, from roots to leaves. Test your knowledge of the green kingdom!",
+      "description": "Beginner level botany quiz",
       "level": 1,
-      "title": "Botany"
+      "title": "Botany Basics Quiz",
+      "nbr_question": 10
     },
     "questions": [
       {
-        "question": "Which of the following are essential for photosynthesis",
+        "question": "What is the primary function of a plant's root system",
         "options": [
-          "Oxygen",
-          "Carbon dioxide",
-          "Sunlight",
-          "Nitrogen",
-          "Water"
+          {
+            "answer": "Absorbing water and nutrients",
+            "answer_description": "Roots anchor the plant and take in essential substances from the soil."
+          },
+          {
+            "answer": "Producing seeds",
+            "answer_description": ""
+          },
+          {
+            "answer": "Photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Supporting the stem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Attracting pollinators",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          2
+          0
         ]
       },
       {
-        "question": "Which of the following are parts of a flower",
+        "question": "Which part of the plant is responsible for photosynthesis",
         "options": [
-          "Stem",
-          "Petal",
-          "Root",
-          "Sepal",
-          "Stamen"
+          {
+            "answer": "Leaves",
+            "answer_description": "Leaves contain chlorophyll, which captures light energy for photosynthesis."
+          },
+          {
+            "answer": "Stem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Roots",
+            "answer_description": ""
+          },
+          {
+            "answer": "Flowers",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fruits",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          3
+          0
         ]
       },
       {
-        "question": "Which of the following are types of plant tissue",
+        "question": "What is the name of the green pigment in plants that captures light energy",
         "options": [
-          "Epithelial",
-          "Meristematic",
-          "Connective",
-          "Vascular",
-          "Ground"
+          {
+            "answer": "Chlorophyll",
+            "answer_description": "Chlorophyll is essential for photosynthesis."
+          },
+          {
+            "answer": "Xylem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Phloem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Stomata",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cellulose",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          3
+          0
         ]
       },
       {
-        "question": "Which of the following are involved in plant reproduction",
+        "question": "Which of the following is NOT a basic need for plant growth",
         "options": [
-          "Pollination",
-          "Germination",
-          "Transpiration",
-          "Fertilization",
-          "Respiration"
+          {
+            "answer": "Carbon dioxide",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sunlight",
+            "answer_description": ""
+          },
+          {
+            "answer": "Water",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nutrients",
+            "answer_description": ""
+          },
+          {
+            "answer": "Noise",
+            "answer_description": "Plants do not require noise to grow."
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          0,
-          3
+          4
         ]
       },
       {
-        "question": "Which of the following are examples of gymnosperms",
+        "question": "What is the process by which plants lose water through their leaves",
         "options": [
-          "Rose",
-          "Pine",
-          "Oak",
-          "Cycad",
-          "Maple"
+          {
+            "answer": "Transpiration",
+            "answer_description": "Transpiration helps move water from roots to leaves."
+          },
+          {
+            "answer": "Respiration",
+            "answer_description": ""
+          },
+          {
+            "answer": "Germination",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pollination",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fertilization",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          3
+          0
         ]
       },
       {
-        "question": "Which of the following are adaptations to reduce water loss in plants",
+        "question": "Which part of the flower develops into a fruit",
         "options": [
-          "Large leaves",
-          "Thick cuticle",
-          "Extensive root system",
-          "Stomata on upper surface",
-          "Reduced leaf surface area"
+          {
+            "answer": "Ovary",
+            "answer_description": "The ovary contains the ovules, which become seeds."
+          },
+          {
+            "answer": "Petal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Stamen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sepal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Anther",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          2
+          0
         ]
       },
       {
-        "question": "Which of the following are products of the light-dependent reactions in photosynthesis",
+        "question": "What is the term for the transfer of pollen from the male part of a flower to the female part",
         "options": [
-          "Glucose",
-          "ATP",
-          "NADPH",
-          "Oxygen",
-          "Carbon dioxide"
+          {
+            "answer": "Pollination",
+            "answer_description": "Pollination is necessary for fertilization and seed production."
+          },
+          {
+            "answer": "Germination",
+            "answer_description": ""
+          },
+          {
+            "answer": "Propagation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Translocation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Vegetation",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          2
+          0
         ]
       },
       {
-        "question": "Which of the following are macronutrients for plant growth",
+        "question": "Which of these is a type of plant tissue that transports water and minerals",
         "options": [
-          "Iron",
-          "Nitrogen",
-          "Copper",
-          "Phosphorus",
-          "Molybdenum"
+          {
+            "answer": "Xylem",
+            "answer_description": "Xylem vessels carry water upwards from the roots."
+          },
+          {
+            "answer": "Phloem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cambium",
+            "answer_description": ""
+          },
+          {
+            "answer": "Epidermis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Parenchyma",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          3
+          0
         ]
       },
       {
-        "question": "Which of the following are examples of plant hormones",
+        "question": "What is the process by which a seed begins to grow and develop",
         "options": [
-          "Insulin",
-          "Auxin",
-          "Testosterone",
-          "Gibberellin",
-          "Estrogen"
+          {
+            "answer": "Germination",
+            "answer_description": "Germination is influenced by factors like water, temperature, and oxygen."
+          },
+          {
+            "answer": "Budding",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cloning",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mitosis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Meiosis",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          1,
-          3
+          0
         ]
       },
       {
-        "question": "Which of the following are processes in the water cycle that involve plants",
+        "question": "Which of the following describes a non-vascular plant",
         "options": [
-          "Evaporation",
-          "Condensation",
-          "Transpiration",
-          "Precipitation",
-          "Sublimation"
+          {
+            "answer": "Moss",
+            "answer_description": "Mosses lack specialized tissues for water and nutrient transport."
+          },
+          {
+            "answer": "Rose",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sunflower",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pine tree",
+            "answer_description": ""
+          },
+          {
+            "answer": "Corn",
+            "answer_description": ""
+          }
         ],
-        "multiple_choice": true,
+        "multiple_choice": false,
         "good_answers_index": [
-          0,
-          2
+          0
         ]
       }
     ]

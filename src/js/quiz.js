@@ -69,7 +69,7 @@ export default function Quiz() {
 					<h1 className="bg-light m-0 px-4 py-3 quiz-title fs-4">
 						{quiz.title}
 					</h1>
-					<div className='quest-list px-4'>
+					<div className='quest-list'>
 						{renderListCard()}
 					</div>
 				</div>

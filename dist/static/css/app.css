@@ -1,6 +1,3 @@
-.card-subject:hover .card-title{
-  background-color: aliceblue;
-}
 /* width */
 ::-webkit-scrollbar {
   width:10px;
@@ -27,25 +24,34 @@ body, html {
   padding: 0;
 }
 
+.home-main h1{
+  font-size:3rem;
+}
+/* 
 .left-panel {
   width: 200px;
   background-color: #fff;
 }
+*/
 
 .quiz-page{
-  border:1px solid #ddd;
-  max-width: 900px;
+  max-width: 860px;
   margin-bottom: 500px;
-}
+} 
 
-/*******************************************/
+.card.subject-card:hover{
+  box-shadow:0px 3px 5px #d6d9dc !important;
+}
+.card.subject-card:hover .card-title{
+  background-color: #ebf0f1 !important;
+}
 .question-level-1{
   background-color: #4bba4b;
   color:#fff;
 }
 .question-level-2{
-  background-color: #f0b508;
-  color:#211f1e;
+  background-color: #e2df08;
+  color:yellow;
 }
 .question-level-3{
   background-color: #de0d0d;
@@ -74,16 +80,14 @@ body, html {
   background-color:#eaf4fd;
 }
 .answer input + .answer-label.good-answer{
-  background-color:#d0f8d0;
-  color:#344c34;
-  border-color:#4bba4b;
+  background-color:#c7fac4;
 }
-.answer input:checked + .answer-label.bad-answer{
-  background-color:#facfcc;
-  color:#710f0f;
-  border-color:#c15c5c;
+.answer input + .answer-label.bad-answer{
+  text-decoration:line-through;
+  color:#999;
+  background-color:#fff;
 }
-.answer input + .answer-label.missed-answer{
-  background-color:#d0f8d0;
+.answer .answer-label.missed-answer{
+  background-color:#c7fac4;
   color:#344c34;
 }
