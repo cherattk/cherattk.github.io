@@ -5,11 +5,9 @@ export default function QuizSideList({ questions , quizId}) {
 
 	return (
 		<div className='list-group list-group-flush'>
-			<Link to={`/`} className="border-bottom text-center py-2 text-decoration-none">
-				<i className="bi bi-arrow-left me-3"></i>Back
-				<h1 className='fs-4'>				
-				10/Quest
-				</h1>
+			<Link to={`/`} className="border-bottom text-center py-3 text-decoration-none">
+				<i className="bi bi-arrow-left me-2"></i>
+				<h1 className='fs-5 d-inline'> (Brain)<sup>10</sup> </h1>
 			</Link>
 			{
 				questions.map((item, index) => {

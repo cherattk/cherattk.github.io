@@ -5,4 +5,5 @@
 node/
 node_modules/
 draft/
+*.js.map
 
