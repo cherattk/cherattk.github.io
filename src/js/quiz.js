@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams , useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 //
 import QuestionCard from './question-card';
 import { quizSchema } from './data-schema';
@@ -9,7 +9,7 @@ export default function Quiz() {
 
 	const { quizId } = useParams();
 	const location = useLocation();
-	const [quiz, setQuiz] = useState({title : "" , questions:[]});
+	const [quiz, setQuiz] = useState({ title: "", questions: [] });
 	const [answerCount, setAnswerCount] = useState(0);
 
 	const incrementAnswerCount = () => {
@@ -17,21 +17,21 @@ export default function Quiz() {
 	}
 
 	useEffect(() => {
-    if (location.hash) {
-      const element = document.querySelector(location.hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'auto' }); // or 'auto' for instant scroll
-      }
-    }
-  }, [location]);
+		if (location.hash) {
+			const element = document.querySelector(location.hash);
+			if (element) {
+				element.scrollIntoView({ behavior: 'auto' }); // or 'auto' for instant scroll
+			}
+		}
+	}, [location]);
 
 	useEffect(() => {
 		let data = localStorage.getItem('data');
 		let dataList = JSON.parse(data);
 		// get quiz by index
 		setQuiz({
-			title : dataList[quizId-1].metadata.title,
-			questions : dataList[quizId-1].questions
+			title: dataList[quizId - 1].metadata.title,
+			questions: dataList[quizId - 1].questions
 		});
 		console.log('Component mounting');
 		// Cleanup function (optional)
@@ -62,9 +62,23 @@ export default function Quiz() {
 	}
 
 	return (
+
+		<>
+			<div className='px-3 py-4 py-lg-0'>
+				<div className='quiz-page bg-white mx-auto p-3 rounded border'>
+					<h1 className="bg-light m-0 px-4 py-3 quiz-title fs-4">
+						{quiz.title}
+					</h1>
+					<div className='quest-list px-4'>
+						{renderListCard()}
+					</div>
+				</div>
+			</div>
+
+			{/* 
 		<div className='d-flex h-100'>
 			<div className='left-panel border-end overflow-auto p-2'>
-				<QuizSideList questions={quiz.questions} quizId={quizId}/>
+				<QuizSideList questions={quiz.questions} quizId={quizId} />
 			</div>
 			<div className='main-panel overflow-auto h-100 w-100 py-4'>
 				<div className='quiz-page bg-white mx-auto p-3 rounded border'>
@@ -77,6 +91,9 @@ export default function Quiz() {
 				</div>
 			</div>
 		</div>
+		 */}
+		</>
+
 	);
 }
 

@@ -34,7 +34,7 @@ body, html {
 
 .quiz-page{
   border:1px solid #ddd;
-  width: 900px;
+  max-width: 900px;
   margin-bottom: 500px;
 }
 
