@@ -1,0 +1,958 @@
+[
+  {
+    "metadata": {
+      "id": 0,
+      "categorie": "Physics",
+      "description": "What governs motion, energy, and the fundamental forces of nature? Test your understanding of basic physics in our upcoming quiz!",
+      "level": 1,
+      "title": "Physics"
+    },
+    "questions": [
+      {
+        "question": "Which of the following are units of energy",
+        "options": [
+          "Joule",
+          "Watt",
+          "Newton",
+          "Calorie",
+          "Electron volt"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are examples of electromagnetic waves",
+        "options": [
+          "Sound waves",
+          "Radio waves",
+          "Microwaves",
+          "Water waves",
+          "X-rays"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are fundamental forces",
+        "options": [
+          "Tension",
+          "Gravity",
+          "Normal Force",
+          "Electromagnetism",
+          "Strong nuclear force"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are properties of waves",
+        "options": [
+          "Amplitude",
+          "Velocity",
+          "Mass",
+          "Wavelength",
+          "Frequency"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          4
+        ]
+      },
+      {
+        "question": "Which of the following are related to thermodynamics",
+        "options": [
+          "Entropy",
+          "Pressure",
+          "Momentum",
+          "Enthalpy",
+          "Impulse"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1
+        ]
+      },
+      {
+        "question": "Which of the following are vector quantities",
+        "options": [
+          "Speed",
+          "Velocity",
+          "Distance",
+          "Displacement",
+          "Time"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are associated with quantum mechanics",
+        "options": [
+          "Superposition",
+          "Diffraction",
+          "Quantization",
+          "Refraction",
+          "Uncertainty principle"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are types of energy",
+        "options": [
+          "Kinetic",
+          "Potential",
+          "Inertia",
+          "Thermal",
+          "Power"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1
+        ]
+      },
+      {
+        "question": "Which of the following are true about electric circuits",
+        "options": [
+          "Voltage is measured in Amperes",
+          "Current is measured in Ohms",
+          "Resistance is measured in Ohms",
+          "Power is measured in Watts",
+          "Charge is measured in Volts"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are parts of the electromagnetic spectrum",
+        "options": [
+          "Infrared",
+          "Ultrasound",
+          "Gamma rays",
+          "Beta radiation",
+          "Visible light"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 0,
+      "categorie": "Geography",
+      "description": "Explore the winding paths and vital roles of rivers across the globe! Test your geographical knowledge of these essential waterways in our quiz.",
+      "level": 1,
+      "title": "Rivers"
+    },
+    "questions": [
+      {
+        "question": "Which of the following are key processes in the formation of a river",
+        "options": [
+          "Precipitation",
+          "Subduction",
+          "Runoff",
+          "Volcanism",
+          "Erosion"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following landforms are commonly associated with rivers",
+        "options": [
+          "Canyons",
+          "Plateaus",
+          "Floodplains",
+          "Glaciers",
+          "Deltas"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "What factors influence the flow rate of a river",
+        "options": [
+          "Gradient",
+          "Humidity",
+          "Volume of water",
+          "Wind speed",
+          "Channel shape"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following describes a river's drainage basin",
+        "options": [
+          "The area of land drained by a river and its tributaries",
+          "The path the river flows",
+          "The point where the river enters a lake or ocean",
+          "A large body of saline water",
+          "The underground water source for the river"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1
+        ]
+      },
+      {
+        "question": "What are the different stages of a river's course",
+        "options": [
+          "Youthful",
+          "Arid",
+          "Mature",
+          "Subtropical",
+          "Old"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are types of river erosion",
+        "options": [
+          "Abrasion",
+          "Deposition",
+          "Hydraulic action",
+          "Weathering",
+          "Solution"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "What are the ways in which rivers transport sediment",
+        "options": [
+          "Suspension",
+          "Evaporation",
+          "Saltation",
+          "Condensation",
+          "Traction"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are features of a mature river",
+        "options": [
+          "Rapids",
+          "Meanders",
+          "Wide valley",
+          "Waterfalls",
+          "Oxbow lakes"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "What are the environmental impacts on a river",
+        "options": [
+          "Pollution",
+          "Habitat preservation",
+          "Dam construction",
+          "Sustainable fishing",
+          "Deforestation"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are important for river management",
+        "options": [
+          "Flood control",
+          "Channelization",
+          "Water conservation",
+          "Urban sprawl",
+          "Ecosystem restoration"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 0,
+      "categorie": "Biology",
+      "description": "Dive into the microscopic world! Explores the building blocks of life. How well do you know the inner workings",
+      "level": 1,
+      "title": "Biology"
+    },
+    "questions": [
+      {
+        "question": "Which of the following organelles are responsible for energy production in both plant and animal cells",
+        "options": [
+          "Chloroplasts",
+          "Mitochondria",
+          "Vacuoles",
+          "Ribosomes",
+          "Endoplasmic Reticulum"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          4
+        ]
+      },
+      {
+        "question": "Which structures are involved in protein synthesis in both plant and animal cells",
+        "options": [
+          "Nucleus",
+          "Ribosomes",
+          "Golgi apparatus",
+          "Lysosomes",
+          "Cell membrane"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          0
+        ]
+      },
+      {
+        "question": "Which of the following contain genetic material in both cell types",
+        "options": [
+          "Cell wall",
+          "Nucleus",
+          "Cytoplasm",
+          "Chromosomes",
+          "Vacuoles"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which structures play a role in transporting materials within both plant and animal cells",
+        "options": [
+          "Cell membrane",
+          "Endoplasmic reticulum",
+          "Golgi apparatus",
+          "Mitochondria",
+          "Chloroplasts"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are present in both plant and animal cells",
+        "options": [
+          "Cell wall",
+          "Cell membrane",
+          "Large central vacuole",
+          "Cytoplasm",
+          "Nucleus"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which organelles are involved in breaking down waste products in both plant and animal cells",
+        "options": [
+          "Peroxisomes",
+          "Vacuoles",
+          "Lysosomes",
+          "Ribosomes",
+          "Endoplasmic Reticulum"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a function of the cell membrane in both plant and animal cells",
+        "options": [
+          "Providing structural support",
+          "Regulating the passage of materials",
+          "Photosynthesis",
+          "Cellular respiration",
+          "Maintaining cell shape"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          4
+        ]
+      },
+      {
+        "question": "Which of the following are involved in cell division in both plant and animal cells",
+        "options": [
+          "Mitosis",
+          "Meiosis",
+          "Cytokinesis",
+          "Cell elongation",
+          "Spore formation"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are energy sources for cells",
+        "options": [
+          "Glucose",
+          "Starch",
+          "ATP",
+          "Sunlight",
+          "Carbon dioxide"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following describes the ability of a cell to maintain a stable internal environment in both plant and animal cells",
+        "options": [
+          "Homeostasis",
+          "Photosynthesis",
+          "Osmosis",
+          "Diffusion",
+          "Cellular respiration"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 0,
+      "categorie": "Astronomy",
+      "description": "Explore the cosmos! Astronomy quiz will test your knowledge of stars, planets, and galaxies. Are you ready for an interstellar challenge",
+      "level": 1,
+      "title": "Astronomy"
+    },
+    "questions": [
+      {
+        "question": "Which two things are true about a light-year",
+        "options": [
+          "It is a unit of time.",
+          "It is a unit of distance.",
+          "It measures the distance light travels in one year.",
+          "It measures the age of a star."
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which two are types of galaxies",
+        "options": [
+          "Spiral",
+          "Globular",
+          "Elliptical",
+          "Planetary"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which two planets are considered gas giants",
+        "options": [
+          "Mars",
+          "Jupiter",
+          "Saturn",
+          "Venus"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which two things can black holes be formed from",
+        "options": [
+          "The collapse of a massive star",
+          "A supernova",
+          "A white dwarf",
+          "Planetary nebula"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1
+        ]
+      },
+      {
+        "question": "Which two are true about the Milky Way",
+        "options": [
+          "It is a spiral galaxy.",
+          "It is an elliptical galaxy.",
+          "Our solar system is located in it.",
+          "It is the largest known galaxy."
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which two things are used to classify stars",
+        "options": [
+          "Distance",
+          "Temperature",
+          "Luminosity",
+          "Shape"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which two are types of celestial bodies found in space",
+        "options": [
+          "Comets",
+          "Mountains",
+          "Asteroids",
+          "Oceans"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which two things are true about an astronomical unit (AU)",
+        "options": [
+          "It is the average distance between Earth and the Sun.",
+          "It is the distance light travels in one year.",
+          "It is used to measure distances within our solar system.",
+          "It is used to measure distances between galaxies."
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which two phases are part of the lunar cycle",
+        "options": [
+          "Solar Eclipse",
+          "Full Moon",
+          "New Moon",
+          "Lunar Eclipse"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which two things are types of telescopes",
+        "options": [
+          "Reflector",
+          "Periscope",
+          "Refractor",
+          "Kaleidoscope"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 0,
+      "categorie": "Technology",
+      "description": "Explore the future now! Test your knowledge of the latest tech innovations shaping our world with this engaging quiz. Discover what's next!",
+      "level": 1,
+      "title": "Technology"
+    },
+    "questions": [
+      {
+        "question": "Which of the following are key components of a blockchain",
+        "options": [
+          "Blocks",
+          "Servers",
+          "Hashes",
+          "Routers",
+          "Distributed ledger"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are applications of Artificial Intelligence (AI)",
+        "options": [
+          "Web browsing",
+          "Machine learning",
+          "Natural language processing",
+          "Data storage",
+          "Image recognition"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are examples of Virtual Reality (VR) devices",
+        "options": [
+          "Smartwatch",
+          "Oculus Rift",
+          "HTC Vive",
+          "Smartphone",
+          "PlayStation VR"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are benefits of cloud computing",
+        "options": [
+          "Scalability",
+          "High initial cost",
+          "Accessibility",
+          "Data loss",
+          "Cost-effectiveness"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are programming languages commonly used in AI development",
+        "options": [
+          "HTML",
+          "Python",
+          "Java",
+          "CSS",
+          "R"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          4
+        ]
+      },
+      {
+        "question": "Which of the following are examples of Internet of Things (IoT) devices",
+        "options": [
+          "Laptop",
+          "Smart thermostat",
+          "Smart speaker",
+          "Desktop computer",
+          "Wearable fitness tracker"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are key concepts in cybersecurity",
+        "options": [
+          "Encryption",
+          "Firewall",
+          "Data mining",
+          "Phishing",
+          "Quantum computing"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          1
+        ]
+      },
+      {
+        "question": "Which of the following are components of a self-driving car system",
+        "options": [
+          "GPS",
+          "Engine",
+          "Lidar",
+          "Transmission",
+          "Radar"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are types of 3D printing technology",
+        "options": [
+          "Fused deposition modeling (FDM)",
+          "Laser printing",
+          "Stereolithography (SLA)",
+          "Inkjet printing",
+          "Selective laser sintering (SLS)"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are applications of nanotechnology",
+        "options": [
+          "Drug delivery",
+          "Food packaging",
+          "Microprocessors",
+          "Textile manufacturing",
+          "Water purification"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          4
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 0,
+      "categorie": "Botany",
+      "description": "Unearth your inner botanist! Our quiz explores the fascinating world of plants, from roots to leaves. Test your knowledge of the green kingdom!",
+      "level": 1,
+      "title": "Botany"
+    },
+    "questions": [
+      {
+        "question": "Which of the following are essential for photosynthesis",
+        "options": [
+          "Oxygen",
+          "Carbon dioxide",
+          "Sunlight",
+          "Nitrogen",
+          "Water"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are parts of a flower",
+        "options": [
+          "Stem",
+          "Petal",
+          "Root",
+          "Sepal",
+          "Stamen"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are types of plant tissue",
+        "options": [
+          "Epithelial",
+          "Meristematic",
+          "Connective",
+          "Vascular",
+          "Ground"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are involved in plant reproduction",
+        "options": [
+          "Pollination",
+          "Germination",
+          "Transpiration",
+          "Fertilization",
+          "Respiration"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are examples of gymnosperms",
+        "options": [
+          "Rose",
+          "Pine",
+          "Oak",
+          "Cycad",
+          "Maple"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are adaptations to reduce water loss in plants",
+        "options": [
+          "Large leaves",
+          "Thick cuticle",
+          "Extensive root system",
+          "Stomata on upper surface",
+          "Reduced leaf surface area"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are products of the light-dependent reactions in photosynthesis",
+        "options": [
+          "Glucose",
+          "ATP",
+          "NADPH",
+          "Oxygen",
+          "Carbon dioxide"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          2
+        ]
+      },
+      {
+        "question": "Which of the following are macronutrients for plant growth",
+        "options": [
+          "Iron",
+          "Nitrogen",
+          "Copper",
+          "Phosphorus",
+          "Molybdenum"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are examples of plant hormones",
+        "options": [
+          "Insulin",
+          "Auxin",
+          "Testosterone",
+          "Gibberellin",
+          "Estrogen"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1,
+          3
+        ]
+      },
+      {
+        "question": "Which of the following are processes in the water cycle that involve plants",
+        "options": [
+          "Evaporation",
+          "Condensation",
+          "Transpiration",
+          "Precipitation",
+          "Sublimation"
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0,
+          2
+        ]
+      }
+    ]
+  }
+]
