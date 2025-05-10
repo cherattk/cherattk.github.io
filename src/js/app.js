@@ -121,6 +121,7 @@ const App = () => {
           <Route path="/quiz/:quizId" element={<Quiz />} />
         </Routes>
       </HashRouter>
+
     </>
   );
 };

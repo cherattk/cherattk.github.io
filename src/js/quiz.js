@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 //
 import QuestionCard from './question-card';
-import { quizSchema } from './data-schema';
-import QuizSideList from './quiz-side-list';
 
 export default function Quiz() {
 
 	const { quizId } = useParams();
-	const location = useLocation();
+	// const location = useLocation();
 	const [quiz, setQuiz] = useState({ title: "", questions: [] });
 	const [answerCount, setAnswerCount] = useState(0);
 
@@ -16,14 +14,15 @@ export default function Quiz() {
 		setAnswerCount(prevCount => prevCount + 1);
 	}
 
-	useEffect(() => {
-		if (location.hash) {
-			const element = document.querySelector(location.hash);
-			if (element) {
-				element.scrollIntoView({ behavior: 'auto' }); // or 'auto' for instant scroll
-			}
-		}
-	}, [location]);
+	// to navigate with side-panel
+	// useEffect(() => {
+	// 	if (location.hash) {
+	// 		const element = document.querySelector(location.hash);
+	// 		if (element) {
+	// 			element.scrollIntoView({ behavior: 'auto' }); // or 'auto' for instant scroll
+	// 		}
+	// 	}
+	// }, [location]);
 
 	useEffect(() => {
 		let data = localStorage.getItem('data');
@@ -31,6 +30,7 @@ export default function Quiz() {
 		// get quiz by index
 		setQuiz({
 			title: dataList[quizId - 1].metadata.title,
+			level: dataList[quizId - 1].metadata.level,
 			questions: dataList[quizId - 1].questions
 		});
 		console.log('Component mounting');
@@ -61,6 +61,16 @@ export default function Quiz() {
 		return <div>No Quiz found.  Please ensure data.json exists and contains data.</div>;
 	}
 
+	// ScrollToTop component to handle scrolling
+	const ScrollToTop = () => {
+		const { pathname } = useLocation();
+
+		useEffect(() => {
+			window.scrollTo(0, 0);
+		}, [pathname]);
+		return null; // This component doesn't render anything
+	};
+
 	return (
 
 		<>
@@ -68,12 +78,19 @@ export default function Quiz() {
 				<div className='quiz-page bg-white mx-auto p-3 rounded border'>
 					<h1 className="bg-light m-0 px-4 py-3 quiz-title fs-4">
 						{quiz.title}
+						<span className={"badge p-2 float-end " + "question-level-" + quiz.level}>
+							{quiz.level == 1 ? "Beginner" :
+								quiz.level == 2 ? "Intermediate" : "Advanced"
+							}
+						</span>
 					</h1>
 					<div className='quest-list'>
 						{renderListCard()}
 					</div>
 				</div>
 			</div>
+
+			<ScrollToTop /> {/* Include ScrollToTop here */}
 
 			{/* 
 		<div className='d-flex h-100'>

@@ -99,7 +99,9 @@ export default function QuestionCard({ question, question_index, incrementAnswer
 												className="form-check-input mt-0 me-2" />
 											<label key={checkBoxKey} htmlFor={checkBoxKey}
 												className={answerStyle}>
-												<span className="d-block py-2 answer-text">{index + 1}. {item.answer}</span>
+												<span className="d-block py-2 answer-text">
+													{index + 1}. {item.answer}
+												</span>
 												{send ? item.answer_description.length > 0 ?
 													<span className='d-block answer-description border-top border-white py-2 mb-2'>
 														{item.answer_description}

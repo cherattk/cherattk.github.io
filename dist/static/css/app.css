@@ -39,6 +39,9 @@ body, html {
   margin-bottom: 500px;
 } 
 
+.quiz-page .quiz-title .badge{
+  font-size:0.7rem;
+}
 .card.subject-card:hover{
   box-shadow:0px 3px 5px #d6d9dc !important;
 }
@@ -49,12 +52,12 @@ body, html {
   background-color: #ebf0f1 !important;
 }
 .question-level-1{
-  background-color: #239623;
+  background-color: #53a353;
   color:#fff;
 }
 .question-level-2{
   background-color: var(--bs-warning);
-  color:#3b3522;
+  color:#000;
 }
 .question-level-3{
   background-color: var(--bs-danger);

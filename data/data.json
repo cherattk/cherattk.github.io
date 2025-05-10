@@ -3,9 +3,9 @@
     "metadata": {
       "id": 456,
       "categorie": "Physics",
-      "description": "Beginner level physics questions",
+      "description": "Physics Fundamentals.",
       "level": 1,
-      "title": "Physics for Beginners",
+      "title": "Physics Fundamentals.",
       "nbr_question": 10
     },
     "questions": [
@@ -265,9 +265,9 @@
     "metadata": {
       "id": 3,
       "categorie": "Geology",
-      "description": "Beginner level geology quiz",
+      "description": "Geology fundamentals.",
       "level": 1,
-      "title": "Geology Basics Quiz",
+      "title": "Geology Fundamentals.",
       "nbr_question": 10
     },
     "questions": [
@@ -567,9 +567,9 @@
     "metadata": {
       "id": 2,
       "categorie": "Astronomy",
-      "description": "Beginner level astronomy quiz",
+      "description": "Astronomy fundamentals.",
       "level": 1,
-      "title": "Astronomy Quiz for Beginners",
+      "title": "Astronomy fundamentals.",
       "nbr_question": 10
     },
     "questions": [
@@ -889,9 +889,9 @@
     "metadata": {
       "id": 1,
       "categorie": "New Technology",
-      "description": "A quiz about recent advancements in technology.",
+      "description": "Recent advancements in technology.",
       "level": 1,
-      "title": "Tech Innovations Quiz",
+      "title": "Tech Innovations.",
       "nbr_question": 10
     },
     "questions": [
@@ -1201,9 +1201,9 @@
     "metadata": {
       "id": 2,
       "categorie": "Botany",
-      "description": "Beginner level botany quiz",
+      "description": "Botany fundamentals.",
       "level": 1,
-      "title": "Botany Basics Quiz",
+      "title": "Botany fundamentals.",
       "nbr_question": 10
     },
     "questions": [
@@ -1503,9 +1503,9 @@
     "metadata": {
       "id": 123,
       "categorie": "Biology",
-      "description": "Basic Biology Quiz.",
+      "description": "Biology fundamentals.",
       "level": 1,
-      "title": "Basic Biology Quiz",
+      "title": "Biology fundamentals.",
       "nbr_question": 10
     },
     "questions": [
@@ -1805,9 +1805,9 @@
     "metadata": {
       "id": 456,
       "categorie": "Biology",
-      "description": "Mitochondria, the powerhouse of the cell.",
+      "description": "Mitochondria.",
       "level": 2,
-      "title": "Mitochondria Quiz",
+      "title": "Mitochondria.",
       "nbr_question": 10
     },
     "questions": [
@@ -2107,9 +2107,9 @@
     "metadata": {
       "id": 789,
       "categorie": "Physics",
-      "description": "Challenge your understanding of electromagnetism.",
+      "description": "Electromagnetism.",
       "level": 2,
-      "title": "Electromagnetism Quiz",
+      "title": "Electromagnetism",
       "nbr_question": 10
     },
     "questions": [
@@ -2241,8 +2241,8 @@
             "answer_description": ""
           },
           {
-            "answer": "Approximately 3 x 10^8 meters per second",
-            "answer_description": "Electromagnetic waves, including light, travel at the speed of light (c ≈ 3 x 10^8 m/s) in a vacuum."
+            "answer": "Approximately 3 x 10⁸ meters per second",
+            "answer_description": "Electromagnetic waves, including light, travel at the speed of light (c ≈ 3 x 10⁸ m/s) in a vacuum."
           },
           {
             "answer": "Infinite",
@@ -2409,9 +2409,9 @@
     "metadata": {
       "id": 901,
       "categorie": "Geology",
-      "description": "Geological Quiz.",
+      "description": "Geology fundamentals.",
       "level": 2,
-      "title": "Geology Quiz",
+      "title": "Geology fundamentals",
       "nbr_question": 10
     },
     "questions": [
@@ -2711,9 +2711,9 @@
     "metadata": {
       "id": 1122,
       "categorie": "Computer Science",
-      "description": "Computer science Quiz.",
+      "description": "Computer science fundamentals.",
       "level": 2,
-      "title": "Computer Science Quiz",
+      "title": "Computer Science fundamentals.",
       "nbr_question": 10
     },
     "questions": [
@@ -3013,9 +3013,9 @@
     "metadata": {
       "id": 1234,
       "categorie": "Botany",
-      "description": "Plant biology.",
+      "description": "Botany fundamentals.",
       "level": 2,
-      "title": "Botany Quiz",
+      "title": "Botany fundamentals.",
       "nbr_question": 10
     },
     "questions": [
@@ -3315,9 +3315,9 @@
     "metadata": {
       "id": 5678,
       "categorie": "Astronomy",
-      "description": "Astronomical Quiz.",
+      "description": "Astronomy fundamentals.",
       "level": 2,
-      "title": "Astronomy Quiz",
+      "title": "Astronomy fundamentals.",
       "nbr_question": 10
     },
     "questions": [
