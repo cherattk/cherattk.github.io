@@ -1,0 +1,2440 @@
+[
+  {
+    "metadata": {
+      "id": 456,
+      "categorie": "Physics",
+      "description": "Physics Fundamentals.",
+      "level": 1,
+      "title": "Physics Fundamentals.",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the International System unit of force",
+        "options": [
+          {
+            "answer": "Kilogram",
+            "answer_description": ""
+          },
+          {
+            "answer": "Newton",
+            "answer_description": "The Newton (N) is the International System unit of force, defined as the force required to accelerate one kilogram of mass at one meter per second squared. It's a fundamental unit in mechanics."
+          },
+          {
+            "answer": "Meter",
+            "answer_description": ""
+          },
+          {
+            "answer": "Second",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a type of energy",
+        "options": [
+          {
+            "answer": "Mass",
+            "answer_description": ""
+          },
+          {
+            "answer": "Velocity",
+            "answer_description": ""
+          },
+          {
+            "answer": "Kinetic energy",
+            "answer_description": "Kinetic energy is the energy of motion. Any object that is moving possesses kinetic energy. The amount of kinetic energy depends on the mass and the velocity of the object."
+          },
+          {
+            "answer": "Time",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What does the law of inertia state",
+        "options": [
+          {
+            "answer": "Energy cannot be created or destroyed",
+            "answer_description": ""
+          },
+          {
+            "answer": "For every action, there is an equal and opposite reaction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Objects in motion stay in motion, and objects at rest stay at rest, unless acted upon by a force",
+            "answer_description": "The law of inertia, Newton's first law, states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. It defines inertia as the tendency of an object to resist changes in its state of motion."
+          },
+          {
+            "answer": "Gravity is a force of attraction between objects with mass",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a unit of speed",
+        "options": [
+          {
+            "answer": "Meter",
+            "answer_description": ""
+          },
+          {
+            "answer": "Second",
+            "answer_description": ""
+          },
+          {
+            "answer": "Kilogram",
+            "answer_description": ""
+          },
+          {
+            "answer": "Meters per second",
+            "answer_description": "Meters per second (m/s) is a unit of speed, measuring the distance traveled in meters over a period of one second. It's a standard unit in the International System of Units (SI)."
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What force pulls objects towards the Earth",
+        "options": [
+          {
+            "answer": "Friction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gravity",
+            "answer_description": "Gravity is the force of attraction that pulls objects with mass towards each other. The Earth's gravity pulls objects towards its center, causing them to fall if unsupported."
+          },
+          {
+            "answer": "Tension",
+            "answer_description": ""
+          },
+          {
+            "answer": "Magnetism",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which state of matter has a definite volume but no definite shape",
+        "options": [
+          {
+            "answer": "Solid",
+            "answer_description": ""
+          },
+          {
+            "answer": "Liquid",
+            "answer_description": "Liquids have a definite volume, meaning they take up a specific amount of space, but they do not have a definite shape. They take the shape of their container."
+          },
+          {
+            "answer": "Gas",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plasma",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the process of heat transfer by direct contact",
+        "options": [
+          {
+            "answer": "Convection",
+            "answer_description": ""
+          },
+          {
+            "answer": "Radiation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Conduction",
+            "answer_description": "Conduction is the transfer of heat through direct contact between substances. Heat energy is transferred from molecule to molecule within a substance or between touching substances."
+          },
+          {
+            "answer": "Evaporation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which color of light has the shortest wavelength",
+        "options": [
+          {
+            "answer": "Red",
+            "answer_description": ""
+          },
+          {
+            "answer": "Blue",
+            "answer_description": "Blue light has the shortest wavelength among the visible light spectrum. Wavelength is inversely proportional to energy, meaning shorter wavelengths carry more energy."
+          },
+          {
+            "answer": "Green",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yellow",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What type of lens is used to correct nearsightedness",
+        "options": [
+          {
+            "answer": "Convex lens",
+            "answer_description": ""
+          },
+          {
+            "answer": "Concave lens",
+            "answer_description": "A concave lens is used to correct nearsightedness (myopia). It diverges light rays before they enter the eye, allowing the image to focus correctly on the retina."
+          },
+          {
+            "answer": "Prismatic lens",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cylindrical lens",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the unit of electric current",
+        "options": [
+          {
+            "answer": "Volt",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ohm",
+            "answer_description": ""
+          },
+          {
+            "answer": "Watt",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ampere",
+            "answer_description": "The ampere (A) is the SI unit of electric current. It measures the rate of flow of electric charge in a circuit."
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          3
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 123,
+      "categorie": "Biology",
+      "description": "Biology fundamentals.",
+      "level": 1,
+      "title": "Biology fundamentals.",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "Which organelle is responsible for photosynthesis in plant cells",
+        "options": [
+          {
+            "answer": "Mitochondria",
+            "answer_description": ""
+          },
+          {
+            "answer": "Chloroplast",
+            "answer_description": "Chloroplasts contain chlorophyll, which captures light energy for photosynthesis."
+          },
+          {
+            "answer": "Nucleus",
+            "answer_description": ""
+          },
+          {
+            "answer": "Endoplasmic reticulum",
+            "answer_description": ""
+          },
+          {
+            "answer": "Golgi apparatus",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the name for the process of cell division in eukaryotic cells that results in two daughter cells",
+        "options": [
+          {
+            "answer": "Meiosis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mitosis",
+            "answer_description": "Mitosis is the process of nuclear division that results in two genetically identical daughter cells."
+          },
+          {
+            "answer": "Binary fission",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fertilization",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sporulation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is the genetic material found in cells",
+        "options": [
+          {
+            "answer": "Protein",
+            "answer_description": ""
+          },
+          {
+            "answer": "Carbohydrate",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lipid",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ribonucleic acid (RNA)",
+            "answer_description": ""
+          },
+          {
+            "answer": "Deoxyribonucleic acid (DNA)",
+            "answer_description": "DNA carries the genetic instructions used in the growth, development, functioning, and reproduction of all known living organisms."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          4
+        ]
+      },
+      {
+        "question": "What is the primary function of red blood cells",
+        "options": [
+          {
+            "answer": "Fighting infection",
+            "answer_description": ""
+          },
+          {
+            "answer": "Blood clotting",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oxygen transport",
+            "answer_description": "Red blood cells contain hemoglobin, which binds to oxygen and carries it throughout the body."
+          },
+          {
+            "answer": "Digesting food",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hormone transport",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which type of tissue covers the body's surfaces and lines its cavities",
+        "options": [
+          {
+            "answer": "Muscle tissue",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nervous tissue",
+            "answer_description": ""
+          },
+          {
+            "answer": "Connective tissue",
+            "answer_description": ""
+          },
+          {
+            "answer": "Epithelial tissue",
+            "answer_description": "Epithelial tissue forms a protective barrier and can also be involved in secretion and absorption."
+          },
+          {
+            "answer": "Vascular tissue",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is the term for a group of organisms of one species that live in the same area",
+        "options": [
+          {
+            "answer": "Community",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ecosystem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Population",
+            "answer_description": "A population is a group of individuals of the same species living in a particular geographic area."
+          },
+          {
+            "answer": "Biome",
+            "answer_description": ""
+          },
+          {
+            "answer": "Habitat",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which gas is released as a waste product of photosynthesis",
+        "options": [
+          {
+            "answer": "Carbon dioxide",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nitrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hydrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Methane",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oxygen",
+            "answer_description": "Oxygen is produced as a byproduct when plants use light energy to convert carbon dioxide and water into glucose."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          4
+        ]
+      },
+      {
+        "question": "What is the process by which water evaporates from plant leaves",
+        "options": [
+          {
+            "answer": "Respiration",
+            "answer_description": ""
+          },
+          {
+            "answer": "Transpiration",
+            "answer_description": "Transpiration is the process of water movement through a plant and its evaporation from aerial parts, such as leaves, stems and flowers."
+          },
+          {
+            "answer": "Photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Guttation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Osmosis",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is the largest taxonomic group",
+        "options": [
+          {
+            "answer": "Species",
+            "answer_description": ""
+          },
+          {
+            "answer": "Genus",
+            "answer_description": ""
+          },
+          {
+            "answer": "Family",
+            "answer_description": ""
+          },
+          {
+            "answer": "Order",
+            "answer_description": ""
+          },
+          {
+            "answer": "Kingdom",
+            "answer_description": "Kingdom is the highest taxonomic rank, grouping organisms based on fundamental similarities."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          4
+        ]
+      },
+      {
+        "question": "What is the function of the ribosome in a cell",
+        "options": [
+          {
+            "answer": "DNA replication",
+            "answer_description": ""
+          },
+          {
+            "answer": "Energy production",
+            "answer_description": ""
+          },
+          {
+            "answer": "Protein synthesis",
+            "answer_description": "Ribosomes are the site of protein synthesis, where they translate genetic code from messenger RNA into proteins."
+          },
+          {
+            "answer": "Waste disposal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lipid synthesis",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 2,
+      "categorie": "Botany",
+      "description": "Botany fundamentals.",
+      "level": 1,
+      "title": "Botany fundamentals.",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the primary function of a plant's root system",
+        "options": [
+          {
+            "answer": "Absorbing water and nutrients",
+            "answer_description": "Roots anchor the plant and take in essential substances from the soil."
+          },
+          {
+            "answer": "Producing seeds",
+            "answer_description": ""
+          },
+          {
+            "answer": "Photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Supporting the stem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Attracting pollinators",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which part of the plant is responsible for photosynthesis",
+        "options": [
+          {
+            "answer": "Leaves",
+            "answer_description": "Leaves contain chlorophyll, which captures light energy for photosynthesis."
+          },
+          {
+            "answer": "Stem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Roots",
+            "answer_description": ""
+          },
+          {
+            "answer": "Flowers",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fruits",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the name of the green pigment in plants that captures light energy",
+        "options": [
+          {
+            "answer": "Chlorophyll",
+            "answer_description": "Chlorophyll is essential for photosynthesis."
+          },
+          {
+            "answer": "Xylem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Phloem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Stomata",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cellulose",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of the following is NOT a basic need for plant growth",
+        "options": [
+          {
+            "answer": "Carbon dioxide",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sunlight",
+            "answer_description": ""
+          },
+          {
+            "answer": "Water",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nutrients",
+            "answer_description": ""
+          },
+          {
+            "answer": "Noise",
+            "answer_description": "Plants do not require noise to grow."
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          4
+        ]
+      },
+      {
+        "question": "What is the process by which plants lose water through their leaves",
+        "options": [
+          {
+            "answer": "Transpiration",
+            "answer_description": "Transpiration helps move water from roots to leaves."
+          },
+          {
+            "answer": "Respiration",
+            "answer_description": ""
+          },
+          {
+            "answer": "Germination",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pollination",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fertilization",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which part of the flower develops into a fruit",
+        "options": [
+          {
+            "answer": "Ovary",
+            "answer_description": "The ovary contains the ovules, which become seeds."
+          },
+          {
+            "answer": "Petal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Stamen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sepal",
+            "answer_description": ""
+          },
+          {
+            "answer": "Anther",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the term for the transfer of pollen from the male part of a flower to the female part",
+        "options": [
+          {
+            "answer": "Pollination",
+            "answer_description": "Pollination is necessary for fertilization and seed production."
+          },
+          {
+            "answer": "Germination",
+            "answer_description": ""
+          },
+          {
+            "answer": "Propagation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Translocation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Vegetation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of these is a type of plant tissue that transports water and minerals",
+        "options": [
+          {
+            "answer": "Xylem",
+            "answer_description": "Xylem vessels carry water upwards from the roots."
+          },
+          {
+            "answer": "Phloem",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cambium",
+            "answer_description": ""
+          },
+          {
+            "answer": "Epidermis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Parenchyma",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the process by which a seed begins to grow and develop",
+        "options": [
+          {
+            "answer": "Germination",
+            "answer_description": "Germination is influenced by factors like water, temperature, and oxygen."
+          },
+          {
+            "answer": "Budding",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cloning",
+            "answer_description": ""
+          },
+          {
+            "answer": "Mitosis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Meiosis",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of the following describes a non-vascular plant",
+        "options": [
+          {
+            "answer": "Moss",
+            "answer_description": "Mosses lack specialized tissues for water and nutrient transport."
+          },
+          {
+            "answer": "Rose",
+            "answer_description": ""
+          },
+          {
+            "answer": "Sunflower",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pine tree",
+            "answer_description": ""
+          },
+          {
+            "answer": "Corn",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": false,
+        "good_answers_index": [
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 789,
+      "categorie": "Physics",
+      "description": "Electromagnetism.",
+      "level": 2,
+      "title": "Electromagnetism",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the relationship between the electric field and electric potential",
+        "options": [
+          {
+            "answer": "Electric field is the gradient of the electric potential.",
+            "answer_description": "The electric field is the negative gradient of the electric potential, indicating the direction of the force on a positive charge."
+          },
+          {
+            "answer": "Electric field is the curl of the electric potential.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Electric field is equal to the electric potential.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Electric field is the Laplacian of the electric potential.",
+            "answer_description": ""
+          },
+          {
+            "answer": "There is no direct relationship.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "Which of Maxwell's equations describes the absence of magnetic monopoles",
+        "options": [
+          {
+            "answer": "Gauss's law for electricity",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gauss's law for magnetism",
+            "answer_description": "Gauss's law for magnetism states that the net magnetic flux through any closed surface is zero, implying the non-existence of magnetic monopoles."
+          },
+          {
+            "answer": "Faraday's law of induction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ampere-Maxwell's law",
+            "answer_description": ""
+          },
+          {
+            "answer": "Coulomb's law",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What does the Poynting vector represent",
+        "options": [
+          {
+            "answer": "Electric potential energy density",
+            "answer_description": ""
+          },
+          {
+            "answer": "Magnetic field strength",
+            "answer_description": ""
+          },
+          {
+            "answer": "Energy density of the electromagnetic field",
+            "answer_description": ""
+          },
+          {
+            "answer": "Direction of energy flow in an electromagnetic field",
+            "answer_description": "The Poynting vector represents the directional energy flux density (the rate of energy transfer per unit area) of an electromagnetic field."
+          },
+          {
+            "answer": "Force on a moving charge",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "In electromagnetic induction, what does Lenz's law state",
+        "options": [
+          {
+            "answer": "The induced current flows to oppose the change in magnetic flux.",
+            "answer_description": "Lenz's law states that the induced electromotive force (EMF) and current in a circuit always oppose the change in magnetic flux that caused them."
+          },
+          {
+            "answer": "The induced current flows to aid the change in magnetic flux.",
+            "answer_description": ""
+          },
+          {
+            "answer": "The induced current flows in the same direction as the magnetic field.",
+            "answer_description": ""
+          },
+          {
+            "answer": "The induced current is directly proportional to the magnetic flux.",
+            "answer_description": ""
+          },
+          {
+            "answer": "There is no specific direction for the induced current.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the speed of electromagnetic waves in a vacuum",
+        "options": [
+          {
+            "answer": "Dependent on their frequency",
+            "answer_description": ""
+          },
+          {
+            "answer": "Dependent on their wavelength",
+            "answer_description": ""
+          },
+          {
+            "answer": "Approximately 3 x 10⁸ meters per second",
+            "answer_description": "Electromagnetic waves, including light, travel at the speed of light (c ≈ 3 x 10⁸ m/s) in a vacuum."
+          },
+          {
+            "answer": "Infinite",
+            "answer_description": ""
+          },
+          {
+            "answer": "Variable and unpredictable",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following equations represents Ampere-Maxwell's law",
+        "options": [
+          {
+            "answer": "∇ ⋅ E = ρ / ε₀",
+            "answer_description": ""
+          },
+          {
+            "answer": "∇ ⋅ B = 0",
+            "answer_description": ""
+          },
+          {
+            "answer": "∇ × E = - ∂B / ∂t",
+            "answer_description": ""
+          },
+          {
+            "answer": "∇ × B = μ₀ (J + ε₀ ∂E / ∂t)",
+            "answer_description": "Ampere-Maxwell's law relates the magnetic field to electric current and changing electric fields."
+          },
+          {
+            "answer": "E = -∇V",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is the Lorentz force",
+        "options": [
+          {
+            "answer": "The force between two stationary charges",
+            "answer_description": ""
+          },
+          {
+            "answer": "The force on a current-carrying wire in a magnetic field",
+            "answer_description": ""
+          },
+          {
+            "answer": "The force on a charge moving in an electromagnetic field",
+            "answer_description": "The Lorentz force is the combined force exerted on a charged particle due to electric and magnetic fields."
+          },
+          {
+            "answer": "The force between two parallel currents",
+            "answer_description": ""
+          },
+          {
+            "answer": "The force due to electromagnetic induction",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is electric displacement field (D)",
+        "options": [
+          {
+            "answer": "Another term for electric field intensity",
+            "answer_description": ""
+          },
+          {
+            "answer": "A field that relates the electric field to free charge density in a dielectric",
+            "answer_description": "The electric displacement field (D) is related to the electric field (E) and takes into account the effect of a dielectric material."
+          },
+          {
+            "answer": "The magnetic field produced by a displacement current",
+            "answer_description": ""
+          },
+          {
+            "answer": "A field that represents the energy stored in an electric field",
+            "answer_description": ""
+          },
+          {
+            "answer": "The electric field in a vacuum",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the skin effect in conductors",
+        "options": [
+          {
+            "answer": "Heating of the conductor due to current flow",
+            "answer_description": ""
+          },
+          {
+            "answer": "The tendency of AC current to concentrate near the surface of a conductor",
+            "answer_description": "The skin effect is the phenomenon where alternating current tends to flow more on the surface of a conductor, reducing the effective cross-sectional area."
+          },
+          {
+            "answer": "The change in resistance of a conductor with temperature",
+            "answer_description": ""
+          },
+          {
+            "answer": "The emission of electrons from a conductor when heated",
+            "answer_description": ""
+          },
+          {
+            "answer": "The magnetic field generated around a conductor",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the significance of the displacement current in Maxwell's equations",
+        "options": [
+          {
+            "answer": "It explains the flow of electrons in a conductor.",
+            "answer_description": ""
+          },
+          {
+            "answer": "It modifies Ampere's law to include the effect of changing electric fields, ensuring consistency.",
+            "answer_description": "Displacement current accounts for the changing electric field's contribution to the magnetic field, making Maxwell's equations complete and predicting electromagnetic waves."
+          },
+          {
+            "answer": "It describes the current due to the movement of ions in a solution.",
+            "answer_description": ""
+          },
+          {
+            "answer": "It represents the current in a DC circuit.",
+            "answer_description": ""
+          },
+          {
+            "answer": "It is related to the piezoelectric effect.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 456,
+      "categorie": "Biology",
+      "description": "Mitochondria.",
+      "level": 2,
+      "title": "Mitochondria.",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the primary function of mitochondria in eukaryotic cells",
+        "options": [
+          {
+            "answer": "Protein synthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lipid storage",
+            "answer_description": ""
+          },
+          {
+            "answer": "ATP (adenosine triphosphate) production",
+            "answer_description": "Mitochondria are the main site of cellular respiration, generating ATP, the cell's energy currency."
+          },
+          {
+            "answer": "Waste degradation",
+            "answer_description": ""
+          },
+          {
+            "answer": "DNA replication",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a key molecule produced by mitochondria",
+        "options": [
+          {
+            "answer": "Glucose",
+            "answer_description": ""
+          },
+          {
+            "answer": "Amino acid",
+            "answer_description": ""
+          },
+          {
+            "answer": "ATP",
+            "answer_description": "Adenosine triphosphate (ATP) is the primary energy carrier for cells, produced in large quantities by mitochondria."
+          },
+          {
+            "answer": "RNA",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fatty acid",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the name of the process that occurs in mitochondria to generate energy",
+        "options": [
+          {
+            "answer": "Photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Translation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cellular respiration",
+            "answer_description": "Cellular respiration is the metabolic process in mitochondria that converts nutrients into ATP."
+          },
+          {
+            "answer": "Transcription",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fermentation",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a structural feature of mitochondria",
+        "options": [
+          {
+            "answer": "Cell wall",
+            "answer_description": ""
+          },
+          {
+            "answer": "Large central vacuole",
+            "answer_description": ""
+          },
+          {
+            "answer": "Double membrane",
+            "answer_description": "Mitochondria have an outer and an inner membrane with folds called cristae."
+          },
+          {
+            "answer": "Chloroplast",
+            "answer_description": ""
+          },
+          {
+            "answer": "Smooth endoplasmic reticulum",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What are the folds of the inner mitochondrial membrane called",
+        "options": [
+          {
+            "answer": "Thylakoids",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cristae",
+            "answer_description": "Cristae increase the surface area for ATP production within the mitochondria."
+          },
+          {
+            "answer": "Grana",
+            "answer_description": ""
+          },
+          {
+            "answer": "Stroma",
+            "answer_description": ""
+          },
+          {
+            "answer": "Lamellae",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Where does the Krebs cycle (Citric Acid Cycle) take place in mitochondria",
+        "options": [
+          {
+            "answer": "Outer membrane",
+            "answer_description": ""
+          },
+          {
+            "answer": "Intermembrane space",
+            "answer_description": ""
+          },
+          {
+            "answer": "Matrix",
+            "answer_description": "The Krebs cycle occurs in the mitochondrial matrix, the space within the inner membrane."
+          },
+          {
+            "answer": "Cristae membrane",
+            "answer_description": ""
+          },
+          {
+            "answer": "Cytoplasm",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which molecule is the starting material for the Krebs cycle",
+        "options": [
+          {
+            "answer": "Glucose",
+            "answer_description": ""
+          },
+          {
+            "answer": "Pyruvate",
+            "answer_description": ""
+          },
+          {
+            "answer": "Acetyl CoA",
+            "answer_description": "Acetyl CoA is the molecule that enters the Krebs cycle, derived from pyruvate."
+          },
+          {
+            "answer": "Oxaloacetate",
+            "answer_description": ""
+          },
+          {
+            "answer": "Citrate",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the role of the electron transport chain (ETC) in mitochondria",
+        "options": [
+          {
+            "answer": "Glucose breakdown",
+            "answer_description": ""
+          },
+          {
+            "answer": "Carbon dioxide production",
+            "answer_description": ""
+          },
+          {
+            "answer": "ATP synthesis",
+            "answer_description": "The ETC uses a series of protein complexes to generate a proton gradient that drives ATP synthesis."
+          },
+          {
+            "answer": "Oxygen storage",
+            "answer_description": ""
+          },
+          {
+            "answer": "Water storage",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which gas is required for the final step of the electron transport chain in mitochondria",
+        "options": [
+          {
+            "answer": "Carbon dioxide",
+            "answer_description": ""
+          },
+          {
+            "answer": "Nitrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hydrogen",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oxygen",
+            "answer_description": "Oxygen is the final electron acceptor in the ETC, forming water."
+          },
+          {
+            "answer": "Carbon monoxide",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "Do mitochondria have their own DNA",
+        "options": [
+          {
+            "answer": "No, they rely entirely on the cell's nuclear DNA.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yes, their DNA is identical to nuclear DNA.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yes, and it's circular, similar to bacterial DNA.",
+            "answer_description": "Mitochondria contain their own circular DNA, supporting the endosymbiotic theory."
+          },
+          {
+            "answer": "Yes, but it only codes for ribosomal RNA.",
+            "answer_description": ""
+          },
+          {
+            "answer": "Yes, but it's only present in plant mitochondria.",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 3,
+      "categorie": "Botany",
+      "description": "Plant Physiology",
+      "level": 2,
+      "title": "Plant Physiology",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the primary focus of plant physiology",
+        "options": [
+          {
+            "answer": "The structure of plant cells",
+            "answer_description": ""
+          },
+          {
+            "answer": "The functions and processes of plants",
+            "answer_description": "Plant physiology studies the internal activities of plants, covering all chemical and physical processes."
+          },
+          {
+            "answer": "The classification of plant species",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant diseases",
+            "answer_description": ""
+          },
+          {
+            "answer": "The interaction of plants with animals",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which process is NOT a key area of study in plant physiology",
+        "options": [
+          {
+            "answer": "Photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "Respiration",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant nutrition",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant morphology",
+            "answer_description": "Plant morphology, the study of the physical form and external structure of plants, is related to, but distinct from, plant physiology."
+          },
+          {
+            "answer": "Hormone functions",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          3
+        ]
+      },
+      {
+        "question": "What is phytochemistry",
+        "options": [
+          {
+            "answer": "The study of plant diseases",
+            "answer_description": ""
+          },
+          {
+            "answer": "The study of plant biochemistry",
+            "answer_description": "Phytochemistry is the study of the chemical compounds in plants, including their structure, properties, and biological activity."
+          },
+          {
+            "answer": "The study of plant cells",
+            "answer_description": ""
+          },
+          {
+            "answer": "The study of plant evolution",
+            "answer_description": ""
+          },
+          {
+            "answer": "The study of plant fossils",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the main difference between plant and animal cells",
+        "options": [
+          {
+            "answer": "Plant cells have a nucleus",
+            "answer_description": ""
+          },
+          {
+            "answer": "Animal cells have mitochondria",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant cells have cell walls and chloroplasts",
+            "answer_description": "Plant cells have cell walls for support and chloroplasts for photosynthesis, which are not found in animal cells."
+          },
+          {
+            "answer": "Animal cells are smaller",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant cells cannot reproduce",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the function of vascular tissue in plants",
+        "options": [
+          {
+            "answer": "To produce hormones",
+            "answer_description": ""
+          },
+          {
+            "answer": "To perform photosynthesis",
+            "answer_description": ""
+          },
+          {
+            "answer": "To transport water and nutrients",
+            "answer_description": "Vascular tissue, including xylem and phloem, transports water, minerals, and sugars throughout the plant."
+          },
+          {
+            "answer": "To protect the plant from pests",
+            "answer_description": ""
+          },
+          {
+            "answer": "To store energy",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is environmental physiology in plants",
+        "options": [
+          {
+            "answer": "The study of plant evolution",
+            "answer_description": ""
+          },
+          {
+            "answer": "The study of plant hormones",
+            "answer_description": ""
+          },
+          {
+            "answer": "The study of how plants respond to their environment",
+            "answer_description": "Environmental physiology examines how plants respond and adapt to various environmental conditions."
+          },
+          {
+            "answer": "The study of plant cell structure",
+            "answer_description": ""
+          },
+          {
+            "answer": "The study of plant nutrition",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "Which of the following is a key area of research in plant physiology",
+        "options": [
+          {
+            "answer": "Animal behavior",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant morphology",
+            "answer_description": ""
+          },
+          {
+            "answer": "Phytopathology",
+            "answer_description": "Phytopathology, the study of plant diseases, is a significant area within plant physiology."
+          },
+          {
+            "answer": "Oceanography",
+            "answer_description": ""
+          },
+          {
+            "answer": "Human anatomy",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What does plant physiology primarily study at the molecular level",
+        "options": [
+          {
+            "answer": "Molecular interactions",
+            "answer_description": "Plant physiology examines chemical and physical processes at all scales, including molecular interactions."
+          },
+          {
+            "answer": "Plant taxonomy",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant morphology",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant evolution",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant geography",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          0
+        ]
+      },
+      {
+        "question": "What is the role of plant hormones",
+        "options": [
+          {
+            "answer": "To transport water",
+            "answer_description": ""
+          },
+          {
+            "answer": "To regulate internal functions",
+            "answer_description": "Plant hormones regulate internal functions, including growth, development, and responses to the environment."
+          },
+          {
+            "answer": "To absorb sunlight",
+            "answer_description": ""
+          },
+          {
+            "answer": "To protect from pests",
+            "answer_description": ""
+          },
+          {
+            "answer": "To store energy",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which field interacts with plant physiology to study plant structure",
+        "options": [
+          {
+            "answer": "Plant ecology",
+            "answer_description": ""
+          },
+          {
+            "answer": "Phytochemistry",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant morphology",
+            "answer_description": "Plant morphology, the study of the physical form and external structure of plants, is closely related to plant physiology."
+          },
+          {
+            "answer": "Plant genetics",
+            "answer_description": ""
+          },
+          {
+            "answer": "Plant biophysics",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 7,
+      "categorie": "Physics",
+      "description": "Geometrical optics!",
+      "level": 3,
+      "title": "Geometrical Optics",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the phenomenon responsible for the formation of mirages on hot days",
+        "options": [
+          {
+            "answer": "Diffraction",
+            "answer_description": ""
+          },
+          {
+            "answer": "Refraction due to varying air densities",
+            "answer_description": "Mirages occur because light bends as it passes through air layers of different temperatures (and thus densities), causing the illusion of a distant object or water."
+          },
+          {
+            "answer": "Polarization",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "In the context of thick lenses, what does the term 'principal planes' refer to",
+        "options": [
+          {
+            "answer": "The physical surfaces of the lens",
+            "answer_description": ""
+          },
+          {
+            "answer": "Planes from which object and image distances are measured",
+            "answer_description": "Principal planes are imaginary planes where refraction is assumed to occur, simplifying calculations for thick lenses."
+          },
+          {
+            "answer": "Planes where chromatic aberration is minimized",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the Abbe sine condition primarily used to minimize in optical systems",
+        "options": [
+          {
+            "answer": "Chromatic aberration",
+            "answer_description": ""
+          },
+          {
+            "answer": "Spherical aberration",
+            "answer_description": "The Abbe sine condition is a condition that must be satisfied by a lens to produce sharp images of off-axis objects, minimizing spherical aberration."
+          },
+          {
+            "answer": "Astigmatism",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What does the term 'numerical aperture' (NA) quantify in an optical system",
+        "options": [
+          {
+            "answer": "Magnification",
+            "answer_description": ""
+          },
+          {
+            "answer": "Light-gathering ability and resolving power",
+            "answer_description": "Numerical aperture determines how much light the objective can gather and the finest detail it can resolve."
+          },
+          {
+            "answer": "Focal length",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What phenomenon causes the blurring of an image when light passes through a lens with a non-spherical surface",
+        "options": [
+          {
+            "answer": "Coma",
+            "answer_description": ""
+          },
+          {
+            "answer": "Distortion",
+            "answer_description": ""
+          },
+          {
+            "answer": "Spherical aberration",
+            "answer_description": "Spherical aberration arises when light rays passing through different parts of a spherical lens focus at different points, resulting in a blurred image."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "In holography, what is the purpose of the reference beam",
+        "options": [
+          {
+            "answer": "To illuminate the object",
+            "answer_description": ""
+          },
+          {
+            "answer": "To interfere with the object beam and record phase information",
+            "answer_description": "The reference beam interferes with the light diffracted from the object, creating an interference pattern that stores both amplitude and phase information."
+          },
+          {
+            "answer": "To create a color image",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What does the Lagrange invariant relate in an optical system",
+        "options": [
+          {
+            "answer": "Object and image distances",
+            "answer_description": ""
+          },
+          {
+            "answer": "Refractive indices and lens curvatures",
+            "answer_description": ""
+          },
+          {
+            "answer": "Object size, image size, refractive index, and ray angle",
+            "answer_description": "The Lagrange invariant is a quantity that remains constant throughout an optical system and relates object and image sizes, refractive indices, and ray angles."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the primary function of an aperture stop in an optical instrument",
+        "options": [
+          {
+            "answer": "To correct for chromatic aberration",
+            "answer_description": ""
+          },
+          {
+            "answer": "To limit the amount of light reaching the image plane",
+            "answer_description": "The aperture stop controls the brightness of the image and affects depth of field."
+          },
+          {
+            "answer": "To focus the image",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the Petzval curvature in an optical system",
+        "options": [
+          {
+            "answer": "A type of lens distortion",
+            "answer_description": ""
+          },
+          {
+            "answer": "The curvature of the field of best focus",
+            "answer_description": "Petzval curvature refers to the inherent curvature of the image field in an optical system, which can cause the image to be in focus in a curved plane rather than a flat one."
+          },
+          {
+            "answer": "A measure of lens thickness",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the primary principle behind adaptive optics",
+        "options": [
+          {
+            "answer": "Using multiple lenses to correct for aberrations",
+            "answer_description": ""
+          },
+          {
+            "answer": "Adjusting optical elements to compensate for wavefront distortions",
+            "answer_description": "Adaptive optics systems use deformable mirrors or other active elements to correct for distortions caused by atmospheric turbulence or imperfections in optical components."
+          },
+          {
+            "answer": "Filtering specific wavelengths of light",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 5,
+      "categorie": "Biology",
+      "description": "Protein biosynthesis!",
+      "level": 3,
+      "title": "Protein Biosynthesis",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "What is the central dogma of molecular biology primarily concerned with",
+        "options": [
+          {
+            "answer": "Protein folding",
+            "answer_description": ""
+          },
+          {
+            "answer": "The flow of genetic information",
+            "answer_description": "The central dogma describes the flow of genetic information: DNA -> RNA -> Protein."
+          },
+          {
+            "answer": "Cell division",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Where does protein biosynthesis mainly occur in the cell",
+        "options": [
+          {
+            "answer": "Nucleus",
+            "answer_description": ""
+          },
+          {
+            "answer": "Ribosomes",
+            "answer_description": "Ribosomes are the cellular machinery responsible for protein synthesis."
+          },
+          {
+            "answer": "Mitochondria",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What molecule carries the genetic code from DNA to the ribosome",
+        "options": [
+          {
+            "answer": "tRNA (transfer RNA)",
+            "answer_description": ""
+          },
+          {
+            "answer": "rRNA (ribosomal RNA)",
+            "answer_description": ""
+          },
+          {
+            "answer": "mRNA (messenger RNA)",
+            "answer_description": "mRNA carries the sequence information from DNA to the ribosome for protein synthesis."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What are the building blocks of proteins",
+        "options": [
+          {
+            "answer": "Nucleotides",
+            "answer_description": ""
+          },
+          {
+            "answer": "Fatty acids",
+            "answer_description": ""
+          },
+          {
+            "answer": "Amino acids",
+            "answer_description": "Proteins are polymers made of amino acid monomers."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the process of creating mRNA from a DNA template called",
+        "options": [
+          {
+            "answer": "Translation",
+            "answer_description": ""
+          },
+          {
+            "answer": "Replication",
+            "answer_description": ""
+          },
+          {
+            "answer": "Transcription",
+            "answer_description": "Transcription is the process where the information in DNA is used to create a complementary mRNA molecule."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What molecule brings amino acids to the ribosome during protein synthesis",
+        "options": [
+          {
+            "answer": "mRNA (messenger RNA)",
+            "answer_description": ""
+          },
+          {
+            "answer": "rRNA (ribosomal RNA)",
+            "answer_description": ""
+          },
+          {
+            "answer": "tRNA (transfer RNA)",
+            "answer_description": "tRNA molecules carry specific amino acids to the ribosome based on the mRNA codon."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is a codon",
+        "options": [
+          {
+            "answer": "A sequence of three nucleotides in tRNA",
+            "answer_description": ""
+          },
+          {
+            "answer": "A sequence of three nucleotides in mRNA that specifies an amino acid",
+            "answer_description": "A codon is a three-nucleotide sequence in mRNA that codes for a specific amino acid or a stop signal."
+          },
+          {
+            "answer": "A structural component of the ribosome",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the role of rRNA (ribosomal RNA)",
+        "options": [
+          {
+            "answer": "Carrying genetic information from DNA",
+            "answer_description": ""
+          },
+          {
+            "answer": "Bringing amino acids to the ribosome",
+            "answer_description": ""
+          },
+          {
+            "answer": "Forming part of the ribosome structure and catalyzing peptide bond formation",
+            "answer_description": "rRNA is a key component of ribosomes and plays a catalytic role in peptide bond formation."
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          2
+        ]
+      },
+      {
+        "question": "What is the process of synthesizing a polypeptide chain based on the mRNA sequence called",
+        "options": [
+          {
+            "answer": "Transcription",
+            "answer_description": ""
+          },
+          {
+            "answer": "Translation",
+            "answer_description": "Translation is the process where the genetic code in mRNA is used to synthesize a protein."
+          },
+          {
+            "answer": "Replication",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What happens at a stop codon",
+        "options": [
+          {
+            "answer": "An amino acid is added to the polypeptide chain",
+            "answer_description": ""
+          },
+          {
+            "answer": "The ribosome detaches and protein synthesis stops",
+            "answer_description": "Stop codons signal the termination of translation, leading to the release of the polypeptide."
+          },
+          {
+            "answer": "mRNA is synthesized",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      }
+    ]
+  },
+  {
+    "metadata": {
+      "id": 6,
+      "categorie": "Botany",
+      "description": "Phytochemistry!",
+      "level": 3,
+      "title": "Phytochemistry",
+      "nbr_question": 10
+    },
+    "questions": [
+      {
+        "question": "Which analytical technique is most suitable for the identification and quantification of volatile organic compounds (VOCs) in plant extracts",
+        "options": [
+          {
+            "answer": "High-Performance Liquid Chromatography (HPLC)",
+            "answer_description": ""
+          },
+          {
+            "answer": "Gas Chromatography-Mass Spectrometry (GC-MS)",
+            "answer_description": "GC-MS is ideal for separating, identifying, and quantifying volatile compounds due to the volatility requirement for GC."
+          },
+          {
+            "answer": "Nuclear Magnetic Resonance (NMR) spectroscopy",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the primary role of cytochrome P450 enzymes in plant secondary metabolism",
+        "options": [
+          {
+            "answer": "Hydrolysis of glycosides",
+            "answer_description": ""
+          },
+          {
+            "answer": "Oxidation and hydroxylation reactions",
+            "answer_description": "Cytochrome P450s are a superfamily of monooxygenases that catalyze various oxidative reactions, including hydroxylations, epoxidations, and N- and O-dealkylations, crucial for diversifying plant secondary metabolites."
+          },
+          {
+            "answer": "Reduction of flavonoids",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following classes of compounds is derived from the shikimic acid pathway",
+        "options": [
+          {
+            "answer": "Terpenoids",
+            "answer_description": ""
+          },
+          {
+            "answer": "Alkaloids",
+            "answer_description": "Many aromatic amino acids and alkaloids are synthesized via the shikimic acid pathway."
+          },
+          {
+            "answer": "Polyketides",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the significance of plant lectins in plant defense mechanisms",
+        "options": [
+          {
+            "answer": "They act as antioxidants",
+            "answer_description": ""
+          },
+          {
+            "answer": "They bind to glycoproteins on the surface of pathogens or herbivores",
+            "answer_description": "Lectins are carbohydrate-binding proteins that can recognize and bind to specific glycoconjugates on potential invaders, disrupting their cellular processes."
+          },
+          {
+            "answer": "They enhance photosynthetic efficiency",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following phytohormones plays a crucial role in the biosynthesis of plant secondary metabolites under stress conditions",
+        "options": [
+          {
+            "answer": "Gibberellins",
+            "answer_description": ""
+          },
+          {
+            "answer": "Jasmonates",
+            "answer_description": "Jasmonates are signaling molecules that mediate the activation of genes involved in the biosynthesis of defensive secondary metabolites in response to biotic and abiotic stresses."
+          },
+          {
+            "answer": "Auxins",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the chemical basis for the antioxidant activity of flavonoids",
+        "options": [
+          {
+            "answer": "Ester linkages",
+            "answer_description": ""
+          },
+          {
+            "answer": "Hydroxyl groups",
+            "answer_description": "The presence of hydroxyl groups, particularly in specific positions on the flavonoid ring structure, allows them to scavenge free radicals."
+          },
+          {
+            "answer": "Aldehyde functional groups",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which of the following is a key function of plant polyketides",
+        "options": [
+          {
+            "answer": "Structural components of cell walls",
+            "answer_description": ""
+          },
+          {
+            "answer": "Defense against pathogens and herbivores",
+            "answer_description": "Polyketides are a diverse class of secondary metabolites that serve various ecological roles, including defense, signaling, and allelopathy."
+          },
+          {
+            "answer": "Energy storage",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the role of ABC transporters in plant phytochemistry",
+        "options": [
+          {
+            "answer": "Intracellular signaling",
+            "answer_description": ""
+          },
+          {
+            "answer": "Transport of secondary metabolites across membranes",
+            "answer_description": "ABC transporters are involved in the efflux and influx of a wide range of secondary metabolites, influencing their distribution and accumulation within the plant."
+          },
+          {
+            "answer": "Photosynthetic electron transport",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "Which analytical method is preferred for the chiral analysis of plant secondary metabolites",
+        "options": [
+          {
+            "answer": "Thin-Layer Chromatography (TLC)",
+            "answer_description": ""
+          },
+          {
+            "answer": "Chiral High-Performance Liquid Chromatography (Chiral HPLC)",
+            "answer_description": "Chiral HPLC uses specialized stationary phases that can separate enantiomers, enabling the determination of the stereochemical purity and composition of plant metabolites."
+          },
+          {
+            "answer": "UV-Visible Spectroscopy",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      },
+      {
+        "question": "What is the ecological significance of allelochemicals in plants",
+        "options": [
+          {
+            "answer": "Attraction of pollinators",
+            "answer_description": ""
+          },
+          {
+            "answer": "Inhibition of the growth of neighboring plants",
+            "answer_description": "Allelopathy involves the release of chemicals by plants to suppress the growth or germination of surrounding vegetation, reducing competition for resources."
+          },
+          {
+            "answer": "Enhancement of nutrient uptake",
+            "answer_description": ""
+          }
+        ],
+        "multiple_choice": true,
+        "good_answers_index": [
+          1
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,9 @@
+### VS Code ###
+.vscode/
+
+###
+node/
+node_modules/
+draft/
+*.js.map
+

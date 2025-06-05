@@ -1,0 +1,93 @@
+.card-subject:hover .card-title{
+  background-color: aliceblue;
+}
+/* width */
+::-webkit-scrollbar {
+  width:10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track { 
+  background: #e3e1e1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c3c3c5;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #9e9ea3;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.home-main h1{
+  font-size:3rem;
+}
+/* 
+.left-panel {
+  width: 200px;
+  background-color: #fff;
+}
+*/
+
+.quiz-page{
+  max-width: 860px;
+  margin-bottom: 500px;
+} 
+
+/*******************************************/
+.question-level-1{
+  background-color: #4bba4b;
+  color:#fff;
+}
+.question-level-2{
+  background-color: #e2df08;
+  color:yellow;
+}
+.question-level-3{
+  background-color: #de0d0d;
+  color:#fff;
+}
+
+/*******************************************/
+.question-title{
+  padding:.5rem 1rem;
+}
+.question-title h3{
+  font-size:1rem;
+  margin:0;
+  line-height:1.5;
+}
+.question-title p{
+  font-size:1rem;
+}
+.answers-list{
+  margin-bottom:1.5rem;
+}
+.answer input:checked + .answer-label,
+.answer .answer-label:not(.good-answer , .bad-answer , .missed-answer):hover{
+  cursor:pointer;
+  border-color:#c3dff8;
+  background-color:#eaf4fd;
+}
+.answer input + .answer-label.good-answer{
+  background-color:#d0f8d0;
+  color:#344c34;
+  border-color:#4bba4b;
+}
+.answer input:checked + .answer-label.bad-answer{
+  background-color:#facfcc;
+  color:#710f0f;
+  border-color:#c15c5c;
+}
+.answer input + .answer-label.missed-answer{
+  background-color:#d0f8d0;
+  color:#344c34;
+}
